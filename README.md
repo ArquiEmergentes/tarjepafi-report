@@ -241,6 +241,58 @@ Algunos de los competidores a los que TarjePafi podría enfrentarse son:
 
 ### 2.1.2. Estrategias y tácticas frente a competidores.
 
+**Estrategia de Diferenciación por Validación Física Verificable**
+
+Mientras que Blackboard registra la asistencia de forma manual y declarativa, y AccuClass la captura mediante métodos vulnerables a suplantación como códigos QR, proximidad o banda magnética, TarjePafi se posicionará como la única solución que certifica presencia física real. El eje de la diferenciación no será la comodidad del registro, sino la confiabilidad del dato: nuestro competidor no compite por registrar más rápido, sino por registrar lo que efectivamente ocurrió.
+
+**Tácticas:**
+
+- Comunicar la propuesta bajo el concepto de "dato verificable frente a dato declarado", contrastando explícitamente en cada demostración la facilidad con que se replica un código QR o una credencial móvil frente a la imposibilidad de clonar una tarjeta NFC sin acceso físico a ella.
+- Documentar métricas de precisión durante el piloto (porcentaje de coincidencia entre registros del sistema y conteo físico real) para sustentar el argumento con evidencia y no con promesas.
+- Posicionar la validación física no solo como control de asistencia, sino como refuerzo de seguridad del recinto, ampliando el valor percibido hacia el área de seguridad y no únicamente hacia la académica.
+
+**Estrategia de Integración en Lugar de Sustitución**
+
+Blackboard no es un rival al que haya que desplazar, sino un incumbente ya pagado e instalado en la universidad. Intentar reemplazarlo activaría resistencia institucional y costos de migración innecesarios. TarjePafi se posicionará como la capa física que alimenta al sistema académico existente, resolviendo por anticipado la objeción más probable de la administración: por qué invertir en hardware si el LMS ya contempla un módulo de asistencia.
+
+**Tácticas:**
+
+- Desarrollar APIs REST de sincronización con el LMS y el sistema académico institucional, de modo que la asistencia validada por NFC se refleje automáticamente en el expediente del alumno sin doble registro.
+- Presentar la solución ante la administración como complemento y no como reemplazo, enfatizando que el LMS conserva la gestión académica mientras TarjePafi aporta la capa de verificación física que aquel no puede cubrir.
+- Ofrecer exportación de reportes en formatos compatibles con las herramientas que el personal administrativo ya utiliza, reduciendo la curva de aprendizaje y la resistencia al cambio.
+
+**Estrategia de Adaptación al Contexto Local y Entrada Escalonada**
+
+SEAtS es el competidor más capaz en términos funcionales, pero su propuesta gira en torno al cumplimiento normativo de visados y auditorías propias del contexto anglosajón, y carece de presencia comercial en Latinoamérica. TarjePafi aprovechará esa brecha construyendo una solución diseñada para las necesidades operativas reales del campus peruano, con acompañamiento local y un modelo de adopción que reduzca la barrera de entrada del hardware.
+
+**Tácticas:**
+
+- Implementar un programa piloto acotado en la sede San Miguel, priorizando los puntos de mayor impacto visible (accesos principales y cubículos de estudio) para demostrar resultados antes de exigir una inversión a escala completa.
+- Ofrecer el hardware bajo modelo de arrendamiento y mantenimiento (HaaS), trasladando la inversión de capital a un gasto operativo predecible y eliminando el riesgo financiero inicial para la institución.
+- Brindar soporte técnico en zona horaria local y en español, un diferencial concreto frente a proveedores internacionales sin operación en la región.
+- Adecuar las reglas de negocio a la normativa y a las políticas académicas peruanas, en lugar de imponer flujos diseñados para otros marcos regulatorios.
+
+**Estrategia de Ampliación del Alcance hacia la Analítica Operativa**
+
+Todos los competidores analizados limitan su valor al ámbito académico: reportan quién asistió a clase. Ninguno convierte esa información en inteligencia para la operación del campus. TarjePafi ampliará deliberadamente el alcance de la propuesta más allá de la asistencia, apuntando a un comprador distinto dentro de la misma institución: el área de logística, facility management y seguridad.
+
+**Tácticas:**
+
+- Desarrollar un dashboard con aforo en tiempo real, mapas de calor y análisis histórico de picos de afluencia, orientado a la planificación de rondas de limpieza, seguridad y mantenimiento.
+- Incorporar la liberación automática de reservas a los diez minutos como funcionalidad insignia, atacando un problema cotidiano que ninguna plataforma de asistencia resuelve y que los estudiantes perciben de inmediato.
+- Comercializar la analítica de afluencia como insumo para la planificación de eventos y ferias universitarias, abriendo un caso de uso adicional ante las autoridades académicas.
+
+**Estrategia de Adopción sin Fricción**
+
+La principal amenaza interna de TarjePafi es que la comunidad universitaria perciba la credencial física como un retroceso frente a la credencial móvil, o que la validación en los accesos genere colas en horas punta. Anticiparse a esa resistencia es tan importante como diferenciarse de los competidores, porque una adopción fallida invalida cualquier ventaja técnica.
+
+**Tácticas:**
+
+- Garantizar tiempos de lectura inferiores a un segundo y validar el rendimiento del sistema en los bloques horarios de máxima concurrencia antes del despliegue general.
+- Realizar pruebas de usabilidad con estudiantes, docentes y personal administrativo durante el piloto, iterando el diseño de la interacción física antes de escalar la instalación.
+- Diseñar los lectores y su montaje priorizando la resistencia al desgaste y al vandalismo, e incluir el reemplazo dentro del contrato de mantenimiento para que el costo no recaiga sobre la institución.
+- Mantener un canal de reporte de incidencias visible en cada punto de validación, de modo que las fallas se resuelvan antes de erosionar la confianza en el sistema.
+
 ## 2.2. Entrevistas.
 
 ### 2.2.1. Diseño de entrevistas.
