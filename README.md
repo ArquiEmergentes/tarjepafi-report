@@ -211,6 +211,13 @@ Criterio: : Capacidad de comunicarse efectivamente con un rango de audiencias.
 
 ## 2.1 Competidores
 
+Algunos de los competidores a los que TarjePafi podría enfrentarse son:
+
+- **SEAtS Software:** Plataforma de gestión de asistencia y analítica de compromiso estudiantil utilizada por universidades de Reino Unido, Irlanda y Oceanía. Captura la asistencia mediante app móvil, balizas Bluetooth, biometría o lectores de credencial instalados en el aula, y ofrece reportes, alertas tempranas y métricas de utilización de espacios.
+- **AccuClass (Engineerica Systems):** Plataforma de registro de asistencia en aula que permite al docente pasar lista desde su dispositivo, registrar alumnos por proximidad, generar códigos QR de clase o leer el carné mediante cámara o lector de banda magnética, con sincronización en la nube y reportes en línea.
+- **Student Check-in:** Solución de registro de asistencia basada en códigos QR y dispositivos móviles, diseñada para agilizar el check-in del estudiante y reducir tiempos de espera al inicio de la sesión.
+- **Blackboard (Anthology):** Sistema de gestión del aprendizaje ampliamente adoptado que incluye un módulo de seguimiento de asistencia dentro de un ecosistema mayor de gestión de cursos, evaluaciones y comunicación.
+
 ### 2.1.1. Análisis competitivo
 
 ### 2.1.2. Estrategias y tácticas frente a competidores.
