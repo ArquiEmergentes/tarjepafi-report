@@ -297,6 +297,80 @@ La principal amenaza interna de TarjePafi es que la comunidad universitaria perc
 
 ### 2.2.1. Diseño de entrevistas.
 
+**Objetivo de las entrevistas**
+
+Las entrevistas buscan validar los supuestos planteados en el Lean UX Process de TarjePafi, comprendiendo cómo se registra hoy la asistencia y el acceso a los espacios del campus, qué fricciones genera el proceso actual y qué información necesitan realmente quienes toman decisiones operativas. Se definieron dos segmentos con necesidades y niveles de acceso claramente distintos, esto son, los portadores de la credencial, que interactúan diariamente con el hardware, y el personal administrativo, único con acceso a la plataforma de reportes.
+
+
+**Introducción (común a ambos segmentos)**
+
+Entrevistador: Buenos días/tardes/noches. En esta ocasión realizaremos una entrevista para conocer a los posibles usuarios de una solución que automatiza el registro de asistencia y accesos en el campus universitario mediante credenciales inteligentes.
+
+Entrevistador: Antes de comenzar, quisiera comentarle que no existen respuestas correctas o incorrectas. Nos interesa conocer su experiencia real con los procesos actuales, incluyendo aquello que no funciona bien. La entrevista será grabada únicamente con fines académicos y su información será tratada de manera confidencial. ¿Nos autoriza a grabar la sesión?
+
+Entrevistado: [Entrevistado responde]
+
+Entrevistador: Para el registro de la entrevista, por favor indique sus nombres, apellidos, edad, distrito y ocupación o cargo dentro de la universidad.
+
+Entrevistado: [Entrevistado responde]
+
+Entrevistador: Listo, comenzaremos con las siguientes preguntas:
+
+
+**Segmento #1: Portadores de credencial (estudiantes, docentes y personal del campus)**
+
+**Preguntas generales:**
+
+1. ¿Podría describirme cómo es un día habitual suyo dentro del campus, desde que ingresa hasta que se retira?
+2. ¿De qué manera se registra actualmente su ingreso al campus y su asistencia a clases o a su jornada? ¿Quién realiza ese registro?
+3. ¿Cuánto tiempo estima que toma ese proceso y con qué frecuencia le genera demoras o incomodidades?
+4. ¿Ha tenido alguna situación en la que su asistencia o su ingreso quedara mal registrado? ¿Qué ocurrió y cómo se resolvió?
+5. ¿Qué credencial utiliza hoy para identificarse dentro de la universidad y qué tan confiable le parece ese método?
+6. ¿Con qué frecuencia utiliza los espacios de estudio del campus, como cubículos o salas grupales, y cómo hace para conseguirlos?
+7. ¿Le ha tocado encontrar espacios reservados pero físicamente vacíos, o no conseguir uno pese a que había lugares libres? ¿Cómo lo manejó?
+8. Si el registro de su asistencia se realizara automáticamente al acercar una tarjeta a un lector, ¿qué ventajas y qué inconvenientes le encontraría?
+9. ¿Qué tendría que cumplir ese sistema para que usted lo prefiera sobre el método que utiliza actualmente?
+
+**Preguntas complementarias:**
+
+1. ¿Qué opina sobre llevar consigo una tarjeta física en lugar de usar su celular como credencial?
+2. ¿Cuánto tiempo consideraría aceptable esperar en una cola de ingreso durante las horas de mayor concurrencia?
+3. ¿Qué información sobre su propia asistencia o sobre la disponibilidad de espacios le gustaría poder consultar por su cuenta?
+4. *(Solo para docentes)* ¿Cuántos minutos de clase dedica habitualmente a tomar asistencia y qué haría con ese tiempo si lo recuperara?
+
+
+**Segmento #2: Personal administrativo con acceso a la plataforma de reportes**
+
+**Preguntas generales:**
+
+1. ¿Cuál es su cargo y qué decisiones operativas sobre el campus dependen de usted o de su área?
+2. ¿Cómo obtiene actualmente la información sobre asistencia, ingresos o uso de los espacios del campus?
+3. ¿Con qué frecuencia recibe esa información y qué tan confiable la considera para tomar decisiones?
+4. ¿Qué herramientas o sistemas utiliza hoy para consolidar y revisar estos datos, y qué limitaciones ha encontrado en ellos?
+5. ¿Podría contarme sobre alguna decisión que haya tenido que tomar sin contar con la información suficiente? ¿Qué consecuencias tuvo?
+6. ¿Cómo se distribuye actualmente al personal de limpieza, seguridad o mantenimiento a lo largo del día, y en qué criterios se basa esa asignación?
+7. Si contara con una plataforma que muestre en tiempo real el aforo y el flujo de personas por zona, ¿qué decisiones tomaría de forma distinta?
+8. ¿Qué indicadores o reportes considera indispensables para que una herramienta de este tipo le resulte útil en su trabajo diario?
+9. ¿Qué criterios evalúa su institución antes de aprobar la implementación de una nueva tecnología en el campus?
+
+**Preguntas complementarias:**
+
+1. ¿Prefiere revisar la información de forma continua durante el día o recibir reportes consolidados en momentos específicos?
+2. ¿Qué tipo de alertas automáticas le resultarían realmente útiles y cuáles considera que terminaría ignorando?
+3. ¿Qué preocupaciones tendría respecto al manejo y la privacidad de los datos de asistencia y desplazamiento de la comunidad universitaria?
+4. ¿Qué obstáculos anticipa para que una solución basada en hardware instalado en el campus sea aprobada e implementada en su institución?
+
+
+**Cierre (común a ambos segmentos)**
+
+Entrevistador: Eso sería todo, muchas gracias por participar.
+
+Entrevistador: ¿Desea agregar algún comentario adicional o algo que considere que no le preguntamos?
+
+Entrevistado: [Entrevistado responde]
+
+Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego.
+
 ### 2.2.2. Registro de entrevistas.
 
 ### 2.2.3. Análisis de entrevistas.
