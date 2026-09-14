@@ -409,7 +409,27 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
 
 ## 2.3. Needfinding.
 
+
+En esta sección, se presenta el análisis detallado de las necesidades, dolores y comportamientos de nuestros segmentos objetivo.
+
 ### 2.3.1. User Personas.
+
+
+#### Segmento 1: Administradores y Responsables de Gestión Universitaria
+
+<td align="center"><img src="assets/images/Ricardo Alberto Luján.png" alt="User persona 2"></td>
+
+<div align = center>
+
+
+
+</div>
+
+#### Segmento 2: Usuarios de Credencial
+
+<td align="center"><img src="assets/images/Claudia Valdivia.png" alt="User persona 1" ></td>
+
+<div align = center>
 
 ### 2.3.2. User Task Matrix.
 
