@@ -436,8 +436,86 @@ En esta sección, se presenta el análisis detallado de las necesidades, dolores
 Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan sus responsabilidades actuales, lo que nos permitirá identificar dónde nuestra solución puede aportar el mayor valor.
 
 
-
-<table> <thead> <tr> <th rowspan="2">Tareas</th> <th colspan="2">María Fernanda (Administradora)</th> <th colspan="2">Bruno (Estudiante)</th> </tr> <tr> <th>Frecuencia</th> <th>Importancia</th> <th>Frecuencia</th> <th>Importancia</th> </tr> </thead> <tbody> <tr> <td>Registrar asistencia acercando la credencial NFC a un lector</td> <td>N/A</td> <td>N/A</td> <td>Alta</td> <td>Crítica</td> </tr> <tr> <td>Ingresar a ambientes autorizados (aulas, laboratorio, biblioteca)</td> <td>N/A</td> <td>N/A</td> <td>Alta</td> <td>Crítica</td> </tr> <tr> <td>Consultar dashboards de ocupación y aforo del campus</td> <td>Alta</td> <td>Crítica</td> <td>N/A</td> <td>N/A</td> </tr> <tr> <td>Consolidar manualmente reportes de asistencia y accesos entre sistemas</td> <td>Alta</td> <td>Alta</td> <td>N/A</td> <td>N/A</td> </tr> <tr> <td>Autorizar o revocar accesos a ambientes específicos</td> <td>Media</td> <td>Alta</td> <td>N/A</td> <td>N/A</td> </tr> <tr> <td>Recibir alertas de aforo excedido o accesos no autorizados</td> <td>Media</td> <td>Crítica</td> <td>N/A</td> <td>N/A</td> </tr> <tr> <td>Reportar a Dirección Académica sobre uso de infraestructura</td> <td>Baja</td> <td>Alta</td> <td>N/A</td> <td>N/A</td> </tr> <tr> <td>Reservar un ambiente o laboratorio para una actividad académica</td> <td>N/A</td> <td>N/A</td> <td>Baja</td> <td>Media</td> </tr> <tr> <td>Esperar/hacer fila para procesos de acceso o registro lentos</td> <td>N/A</td> <td>N/A</td> <td>Alta</td> <td>Baja</td> </tr> <tr> <td>Tramitar reposición de credencial NFC perdida o dañada</td> <td>Baja</td> <td>Media</td> <td>Baja</td> <td>Media</td> </tr> </tbody> </table>
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">Tareas</th>
+      <th colspan="2">María Fernanda (Administradora)</th>
+      <th colspan="2">Bruno (Estudiante)</th>
+    </tr>
+    <tr>
+      <th>Frecuencia</th>
+      <th>Importancia</th>
+      <th>Frecuencia</th>
+      <th>Importancia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Registrar asistencia acercando la credencial NFC a un lector</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Crítica</td>
+    </tr>
+    <tr>
+      <td>Ingresar a ambientes autorizados (aulas, laboratorio, biblioteca)</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Crítica</td>
+    </tr>
+    <tr>
+      <td>Consultar dashboards de ocupación y aforo del campus</td>
+      <td>Alta</td>
+      <td>Crítica</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Consolidar manualmente reportes de asistencia y accesos entre sistemas</td>
+      <td>Alta</td>
+      <td>Alta</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Autorizar o revocar accesos a ambientes específicos</td>
+      <td>Media</td>
+      <td>Alta</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Recibir alertas de aforo excedido o accesos no autorizados</td>
+      <td>Media</td>
+      <td>Crítica</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Reportar a Dirección Académica sobre uso de infraestructura</td>
+      <td>Baja</td>
+      <td>Alta</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Reservar un ambiente o laboratorio para una actividad académica</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Baja</td>
+      <td>Media</td>
+    </tr>
+    <tr>
+      <td>Esperar/hacer fila para procesos de acceso o registro lentos</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Baja</td>
+    </tr>
+  </tbody>
+</table>
 
 ### 2.3.3. Empathy Mapping.
 
