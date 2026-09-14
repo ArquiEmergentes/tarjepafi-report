@@ -49,8 +49,8 @@ Integrantes
       <td style="border: none; padding: 4px;">Gonzales Alvarado, Javier Sebastián</td>
     </tr>
     <tr>
-      <td style="border: none; padding: 4px; font-weight: bold;"></td>
-      <td style="border: none; padding: 4px;"></td>
+      <td style="border: none; padding: 4px; font-weight: bold;">u20231d974</td>
+      <td style="border: none; padding: 4px;">Rivera Ratachi, Renzo Sebastian</td>
     </tr>
     <tr>
       <td style="border: none; padding: 4px; font-weight: bold;"></td>
@@ -212,7 +212,7 @@ Promovemos la innovación tecnológica como medio para mejorar la experiencia un
 |  Nombres y Apellidos |    Codigo   | Descripción | Foto | 
 |----------------------|-------------|-------------|------|
 | Javier Sebastian Gonzales Alvarado | u20231296 | Mi nombre es Javier Gonzales, soy estudiante de Ingeniería de Software de séptimo ciclo. Tengo conocimientos en diversos lenguajes de programación como C++, Python y JavaScript, entre otros. Además, he desarrollado proyectos de software utilizando distintos frameworks como Angular y Vue. Me considero una persona responsable, empática y analítica. Mi objetivo personal es desarrollar soluciones tecnológicas que contribuyan a mejorar la calidad de vida de las personas y aportar a la construcción de un mundo más innovador y conectado. |![Foto](assets/fotoGonzales.jpeg)|
-
+| Renzo Sebastian Rivera Ratachi | u20231d974 | Soy Renzo Sebastian Rivera Ratachi y soy estudiante de la carrera de Ingeniería de Software. Actualmente estoy cursando el 7mo ciclo de mi carrera y tengo conocimientos intermedios de JavaScript y C++. Me considero una persona responsable y puntual.  |![Foto](assets/fotorenzo.jpg)|
 
 ## 1.2. Solution Profile
 
@@ -412,12 +412,12 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
 
 En esta sección, se presenta el análisis detallado de las necesidades, dolores y comportamientos de nuestros segmentos objetivo.
 
-### 2.3.1. User Personas.
+### 2.3.1. User Personas
 
 
 #### Segmento 1: Administradores y Responsables de Gestión Universitaria
 
-<td align="center"><img src="assets/images/Ricardo Alberto Luján.png" alt="User persona 2"></td>
+<td align="center"><img src="assets/images/user-personas/Andrea Abanto Begazo.png" alt="User persona 2"></td>
 
 <div align = center>
 
@@ -427,11 +427,95 @@ En esta sección, se presenta el análisis detallado de las necesidades, dolores
 
 #### Segmento 2: Usuarios de Credencial
 
-<td align="center"><img src="assets/images/Claudia Valdivia.png" alt="User persona 1" ></td>
+<td align="center"><img src="assets/images/user-personas/Jair Tello Magro.png" alt="User persona 1" ></td>
 
-<div align = center>
 
-### 2.3.2. User Task Matrix.
+
+### 2.3.2. User Task Matrix
+
+Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan sus responsabilidades actuales, lo que nos permitirá identificar dónde nuestra solución puede aportar el mayor valor.
+
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">Tareas</th>
+      <th colspan="2">María Fernanda (Administradora)</th>
+      <th colspan="2">Bruno (Estudiante)</th>
+    </tr>
+    <tr>
+      <th>Frecuencia</th>
+      <th>Importancia</th>
+      <th>Frecuencia</th>
+      <th>Importancia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Registrar asistencia acercando la credencial NFC a un lector</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Crítica</td>
+    </tr>
+    <tr>
+      <td>Ingresar a ambientes autorizados (aulas, laboratorio, biblioteca)</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Crítica</td>
+    </tr>
+    <tr>
+      <td>Consultar dashboards de ocupación y aforo del campus</td>
+      <td>Alta</td>
+      <td>Crítica</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Consolidar manualmente reportes de asistencia y accesos entre sistemas</td>
+      <td>Alta</td>
+      <td>Alta</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Autorizar o revocar accesos a ambientes específicos</td>
+      <td>Media</td>
+      <td>Alta</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Recibir alertas de aforo excedido o accesos no autorizados</td>
+      <td>Media</td>
+      <td>Crítica</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Reportar a Dirección Académica sobre uso de infraestructura</td>
+      <td>Baja</td>
+      <td>Alta</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Reservar un ambiente o laboratorio para una actividad académica</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Baja</td>
+      <td>Media</td>
+    </tr>
+    <tr>
+      <td>Esperar/hacer fila para procesos de acceso o registro lentos</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Baja</td>
+    </tr>
+  </tbody>
+</table>
 
 ### 2.3.3. Empathy Mapping.
 
