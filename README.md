@@ -213,6 +213,7 @@ Promovemos la innovación tecnológica como medio para mejorar la experiencia un
 |----------------------|-------------|-------------|------|
 | Javier Sebastian Gonzales Alvarado | u20231296 | Mi nombre es Javier Gonzales, soy estudiante de Ingeniería de Software de séptimo ciclo. Tengo conocimientos en diversos lenguajes de programación como C++, Python y JavaScript, entre otros. Además, he desarrollado proyectos de software utilizando distintos frameworks como Angular y Vue. Me considero una persona responsable, empática y analítica. Mi objetivo personal es desarrollar soluciones tecnológicas que contribuyan a mejorar la calidad de vida de las personas y aportar a la construcción de un mundo más innovador y conectado. |![Foto](assets/fotoGonzales.jpeg)|
 | Renzo Sebastian Rivera Ratachi | u20231d974 | Soy Renzo Sebastian Rivera Ratachi y soy estudiante de la carrera de Ingeniería de Software. Actualmente estoy cursando el 7mo ciclo de mi carrera y tengo conocimientos intermedios de JavaScript y C++. Me considero una persona responsable y puntual.  |![Foto](assets/fotorenzo.jpg)|
+| Bruce Via Luna | U202313403 | Soy Bruce Via Luna, estudiante de la carrera de ingenieria de Software en la UPC. Actualmente cuento con conocimientos en C#, C++ e interes en la gestion de informacion de bases de datos. Me considero una persona altamente responsable y dedicada a los proyectos con los que me comprometo.  |![Foto](assets/fotobruce.jpeg)|
 
 ## 1.2. Solution Profile
 
@@ -405,6 +406,95 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
 
 ### 2.2.2. Registro de entrevistas.
 
+*Entrevistas a Administrativos*
+---
+<br>
+
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 1</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  ``
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="" alt="segmento1entrevista2" width="1000"><br>
+    </td>
+  </tr>
+</table>
+
+*Entrevistas a usuarios de tarjetas*
+---
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 1</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Oriana Via</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>29</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>Cercado de Lima</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>0:56-8:26</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://youtu.be/RHp96fure88`
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Oriana, instructora en la universidad Cayetano Heredia, reside en el destrito de Cercado de Lima, habla sobre como la implementacion si bien no seria 100% util en su area, igual describe como la existencia de las tarjetas aceleraria los procesos de registro de asistencia y seguridad de su universidad tanto para la asistencia como el acceso a espacios de trabajos reservados.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/images/entrevistas/captura-entrevista.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
+    </td>
+  </tr>
+</table>
+
+
 ### 2.2.3. Análisis de entrevistas.
 
 ## 2.3. Needfinding.
@@ -570,7 +660,74 @@ Se puede visualizar con más detalle en el siguiente enlace:
 
 ## 3.1. To-Be Scenario Mapping.
 
+En esta sección se presenta un análisis detallado de la situación actual (TO-BE) para los diferentes segmentos.
+
+Se puede visualizar con más detalle en el siguiente enlace:
+ https://lucid.app/lucidchart/248d5465-d381-4cde-87f1-66bdedbebb72/edit?viewport_loc=-6954%2C-757%2C1795%2C1049%2C0_0&invitationId=inv_8bc3eada-8980-4183-a77e-ef736ec53050
+
+<td align="center"><img src="assets/images/user-personas/to-be1.png" alt="TO BE 1" ></td>
+
+<div align = center>
+
+
+</div>
+
+#### Segmento 2: Usuarios de credencial
+
+<td align="center"><img src="assets/images/user-personas/to-be2.png" alt="TO BE 2" ></td>
+
+<div align = center>
+
+
+
+</div>
+
 ## 3.2. User Stories.
+
+En esta seccion detallaremos la existencia, escenarios y diferentes User Stories que usaremos a lo largo del proyecto, para mejor orden se iniciara con la creacion de 
+Epicas para poder agrupar a todas las Users Stories en categorias para su posterior cumplimiento
+
+|Epic ID | Titulo | Descripción|
+|--------|--------|------------|
+|EP01    | Landing Page | Como usuario de TarjePafi quiero navegar por una Landing Page con una experiencia de usuario fluida y agil, para verificar y experimentar sus funcionalidades y el acceso a la informacion util del producto.
+|EP02    |Gestion de usuarios|Como usuario de TarjePafi, quiero una division entre los diferentes usuarios que utilicen el servicio de TarjePafi para separar las funcionalidaes y accesos a estas.
+|EP03    |Registro de Asistencia| Como usuario de TarjePafi, quier registrar correctamente la asistencia de alumnos meiante los sensores para acelerar los procesos de asistencia.|
+|EP04    |Gestión de Espacios y Servicios|Como usuario estudiante de TarjePafi, quiero activar mis reservas de con la tarjeta para evitar usar otros medios que atracen el proceso.|
+|EP05    |Administración y Control| Como usuario administrativo de TarjePafi, quiero tener control administrativo para acceder y controlar las funcionalidades diseñadas de las tarjetas.|
+|EP06    |Diseño y Usabilidad| Como usuario de TarjePafi, quiero ver un trabajo de diseño tanto fisico y digital para que sea agradable usar el producto.|
+
+
+Una vez concluidas las epicas, ahora podemos proceder a encapsular las multiples historias de usuario que poseemos para definir los requerimientos de nuestra aplicacion y saber como desarrollarla correctamente
+
+| Epic / Story ID | Titulo | Descripción | Criterios de Aceptación | Epic ID | 
+|-----------------|--------|-------------|-------------------------|--------------------------|
+| **US01** | Registro de Asistencia Estudiantil | Como estudiante, quiero poder pasar mi tarjeta por un lector al entrar al salón de clases, para que mi asistencia sea registrada automáticamente. | **Scenario:** Registro de asistencia en clase.<br>Dado que el estudiante pasa su tarjeta por el lector, y la clase ha comenzado, cuando la tarjeta es leída, entonces su asistencia se registra automáticamente. | **EP03** |
+| **US02** | Confirmación de Asistencia | Como estudiante, quiero que el lector muestre un mensaje de "Asistencia tomada" en la pantalla, para que sepa que mi asistencia ha sido registrada. | **Scenario:** Mensaje de confirmación.<br>Dado que el estudiante pasa su tarjeta, y la asistencia ha sido registrada, cuando el lector procesa la tarjeta, entonces se muestra el mensaje "Asistencia tomada". | **EP03** |
+| **US03** | Reserva de Espacios de Estudio | Como estudiante, quiero usar mi tarjeta para acceder a mis reservas para usarlas | **Scenario:** Activacion e una reserva.<br>Dado que el estudiante quiere activar la reserva de un espacio, y tiene su tarjeta, cuando pasa la tarjeta por el lector en el área de reserva, entonces se activara la reserva. | **EP04** |
+| **US04** | Visualización de reportes | Como personal administratico, quiero que la pagina muestre reportes administrativos con la informacion recolectada para administrar y tener datos utiles. | **Scenario:** Ver el reporte.<br>Dado que el administrador ingresa a la pagina, y está registrado, cuano ingrese a la sección de "Ver Reporte", entonces vera un reporte que use lashoras recolectadas y de sugerencias. | **EP05** |
+| **US05** | Diseño Atractivo de la Tarjeta | Como estudiante, quiero que la tarjeta tenga un diseño atractivo y fácil de identificar, para que me sienta orgulloso de usarla. | **Scenario:** Diseño de tarjeta.<br>Dado que un estudiante recibe su tarjeta, y la observa, cuando la tarjeta es presentada, entonces tiene un diseño atractivo y fácil de identificar. | **EP06** |
+| **US06** | Acceso Multicentro con la Tarjeta | Como estudiante, quiero que la tarjeta funcione en múltiples puntos de acceso, como bibliotecas y laboratorios, para facilitar mi acceso a los recursos. | **Scenario:** Acceso a múltiples áreas.<br>Dado que el estudiante usa la tarjeta en diferentes puntos, y está autorizado para acceder, cuando pasa la tarjeta por el lector, entonces se le permite el acceso. | **EP04** |
+| **US07** | Participación en Eventos Universitarios | Como estudiante, quiero que la tarjeta me permita acceder a eventos universitarios, para participar en actividades extracurriculares. | **Scenario:** Acceso a eventos.<br>Dado que hay un evento universitario, y el estudiante tiene su tarjeta, cuando pasa la tarjeta por el lector en la entrada, entonces se permite su entrada al evento. | **EP04** |
+| **US08** | Identificación Estudiantil | Como estudiante, quiero que la tarjeta funcione como una forma de identificación, para ser reconocido fácilmente por el personal académico. | **Scenario:** Identificación al personal.<br>Dado que el estudiante presenta su tarjeta, y es abordado por el personal, cuando la tarjeta es leída, entonces su identidad es verificada. | **EP02** |
+| **US09** | Durabilidad de la Tarjeta | Como estudiante, quiero que la tarjeta esté diseñada para ser resistente al desgaste, para que pueda usarla durante todo el año académico sin problemas. | **Scenario:** Uso prolongado.<br>Dado que el estudiante utiliza su tarjeta frecuentemente, y la tarjeta es de buena calidad, cuando transcurre un año académico, entonces la tarjeta se encuentra en buen estado. | **EP06** |
+| **US10** | Baja de Tarjeta para Estudiantes Retirados | Como administrador, quiero poder dar de baja una tarjeta de un estudiante que se ha retirado de la universidad, para asegurar que ya no tenga acceso a los servicios. | **Scenario:** Baja de tarjeta.<br>Dado que un estudiante se ha retirado, y el administrador lo registra, cuando se da de baja la tarjeta, entonces el acceso a los servicios se cancela. | **EP05** |
+| **US11** | Vinculación a Base de Datos | Como administrador, quiero que la tarjeta esté vinculada a la base de datos de estudiantes, para poder gestionar fácilmente su estado. | **Scenario:** Gestión de tarjetas.<br>Dado que la tarjeta está vinculada a un estudiante, y se actualiza la base de datos, cuando se registra un cambio, entonces la información de la tarjeta se actualiza automáticamente. | **EP05** |
+| **US12** | Control de Acceso en Áreas Restringidas | Como administrador, quiero que la tarjeta proporcione un mensaje en el lector cuando un estudiante accede a un área restringida, para garantizar que solo los autorizados ingresen. | **Scenario:** Control de acceso.<br>Dado que un estudiante intenta acceder a un área restringida, y su tarjeta es leída, cuando no tiene permiso, entonces se muestra un mensaje de "Acceso denegado". | **EP05** |
+| **US13** | Reactivación de Tarjetas | Como administrador, quiero tener la opción de reactivar una tarjeta si un estudiante vuelve a inscribirse, para facilitar su regreso. | **Scenario:** Reactivación de tarjeta.<br>Dado que un estudiante se reincorpora, y la tarjeta fue desactivada, cuando el administrador la reactiva, entonces el estudiante puede usarla nuevamente. | **EP05** |
+| **US14** | Personalización de Permisos de Acceso | Como administrador, quiero poder personalizar los permisos de acceso de cada tarjeta según el rol, para mantener un control adecuado. | **Scenario:** Permisos de acceso.<br>Dado que el administrador personaliza los permisos, y los asigna a una tarjeta, cuando la tarjeta es leída, entonces se verifica el acceso según los permisos. | **EP05** |
+| **US15** | Desactivación Automática de Tarjetas | Como administrador, quiero que las tarjetas se desactiven automáticamente si un estudiante no completa su matrícula a tiempo, para mantener la seguridad. | **Scenario:** Desactivación automática.<br>Dado que un estudiante no completa su matrícula, y la fecha límite ha pasado, cuando el sistema verifica la matrícula, entonces la tarjeta se desactiva automáticamente. | **EP05** |
+| **US16** | Registro de Asistencia Docente | Como profesor, quiero que la tarjeta registre automáticamente la asistencia de los estudiantes al pasarla por el lector, para ahorrar tiempo en el proceso de toma de asistencia. | **Scenario:** Registro de asistencia docente.<br>Dado que el profesor pasa su tarjeta al inicio de clase, y los estudiantes están presentes, cuando la tarjeta es leída, entonces se registra automáticamente la asistencia. | **EP03** |
+| **US17** | Registro de Horas de Trabajo | Como trabajador, quiero que al finalizar la jornada, al pasar de nuevo mi tarjeta por el lector, se registre mi salida, para tener un registro completo de mis horas trabajadas. | **Scenario:** Registro de horas trabajadas.<br>Dado que el trabajador pasa su tarjeta al finalizar su jornada laboral, y el lector está activo, cuando la tarjeta es leída, entonces se registra la hora de salida. | **EP03** |
+| **US18** | Confirmación de Registro de Asistencia | Como profesor, quiero que el sistema muestre un mensaje que confirme que mi asistencia ha sido registrada, para tener la seguridad de que el proceso se ha completado. | **Scenario:** Confirmación de asistencia.<br>Dado que el profesor pasa su tarjeta, y la asistencia ha sido registrada, cuando el lector procesa la tarjeta, entonces se muestra un mensaje de confirmación. | **EP03** |
+| **US19** | Visualización de Horas Acumuladas en espacios| Como administraor, quiero ver que tantas horas se usan diferentes espacios, para poder revisar y gestionar mejor los recursos. | **Scenario:** Revisión de horas.<br>Dado que se pasan las tarjetas, y el lector tiene acceso a datos acumulados, cuando la tarjeta es leída, entonces se muestran las horas y personas en ese espacio. | **EP03** |
+| **US20** | Historial de Asistencia Docente | Como profesor, quiero que se registre la hora y fecha exacta en que escaneo mi tarjeta, para tener un historial preciso de mi asistencia. | **Scenario:** Registro de asistencia docente.<br>Dado que el profesor escanea su tarjeta, y se registra la hora y fecha, cuando se consulta el historial, entonces se muestra el registro de asistencia. | **EP03** |
+| **US21** | Registro de Asistencia en Reuniones | Como profesor, quiero que mi tarjeta me permita marcar mi asistencia a reuniones o capacitaciones, para llevar un control integral de mi tiempo. | **Scenario:** Registro en reuniones.<br>Dado que el profesor asiste a una reunión, y pasa su tarjeta al inicio, cuando la tarjeta es leída, entonces se registra su asistencia a la reunión. | **EP03** |
+| **US22** | Registro de Llegada a Clases | Como profesor, quiero que, al pasar mi tarjeta por el lector al inicio de la clase, se registre automáticamente mi llegada, para llevar un control de mis horas de trabajo. | **Scenario:** Registro de llegada.<br>Dado que el profesor pasa su tarjeta al inicio de la clase, y el lector está activo, cuando la tarjeta es leída, entonces se registra la hora de llegada. | **EP03** |
+| **US23** | Registro de Duración de Clases | Como profesor, quiero que, al pasar la tarjeta por el lector, se registre automáticamente la duración de la clase, para tener un control más preciso sobre el tiempo de enseñanza. | **Scenario:** Duración de la clase.<br>Dado que el profesor pasa su tarjeta al inicio y al final, y el lector registra ambas, cuando se procesa la información, entonces se calcula la duración de la clase. | **EP03** |
+| **US24** | Control de Entrada y Salida | Como profesor, quiero que la tarjeta muestre una foto cuando un estudiante registra su asistencia en la clase, para llevar un registro claro de su presencia. | **Scenario:** Foto para la entrada.<br>Dado que un estudiante pasa su tarjeta al entrar, y el lector está activo, cuando se lee la tarjeta, entonces se muestra una foto. | **EP03** |
+| **US25** | Registro de Curso y Materia | Como profesor, quiero que, al escanear mi tarjeta, se registre automáticamente el nombre del curso y la materia que imparto, para llevar un control más detallado. | **Scenario:** Registro de curso.<br>Dado que el profesor escanea su tarjeta, y está vinculado a un curso específico, cuando se procesa la lectura, entonces se registra automáticamente el curso y la materia. | **EP03** |
+| **US26** | Visualización de Funcionalidades | Como visitante de la web, quiero ver una sección clara con las funcionalidades principales de TarjePafi en la Landing Page, para entender rápidamente qué ofrece el producto antes de adquirirlo. | **Scenario:** Exploración de características.<br>Dado que el visitante entra a la Landing Page, cuando navega hacia la sección de beneficios, entonces puede leer un resumen claro de las funciones del sistema. | **EP01** |
+| **US27** | Acceso a Contacto y Soporte | Como usuario interesado, quiero tener un botón de contacto visible en la Landing Page, para poder enviar mis dudas al equipo de TarjePafi de manera rápida. | **Scenario:** Envío de consultas.<br>Dado que el usuario tiene dudas sobre el servicio, cuando hace clic en el botón de contacto, entonces se despliega un formulario o enlace directo para comunicarse con el equipo. | **EP01** |
 
 ## 3.3. Impact Mapping.
 
