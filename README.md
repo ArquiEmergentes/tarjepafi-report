@@ -769,6 +769,20 @@ Este diseño busca garantizar atributos clave como disponibilidad ante alta conc
 
 #### 4.1.2.1. Primary Functionality
 
+Estas historias fueron seleccionadas porque representan los requisitos con mayor impacto en la arquitectura del sistema.
+
+
+| Epic / Story ID | Título | Descripción | Criterios de Aceptación | Epic ID |
+|-----------------|--------|-------------|-------------------------|---------|
+| **US01** | Registro de Asistencia Estudiantil | Como estudiante, quiero poder pasar mi tarjeta por un lector al entrar al salón de clases, para que mi asistencia sea registrada automáticamente. | **Scenario:** Registro de asistencia en clase.<br>Dado que el estudiante pasa su tarjeta por el lector, y la clase ha comenzado, cuando la tarjeta es leída, entonces su asistencia se registra automáticamente. | **EP03** |
+| **US02** | Confirmación de Asistencia | Como estudiante, quiero que el lector muestre un mensaje de "Asistencia tomada" en la pantalla, para que sepa que mi asistencia ha sido registrada. | **Scenario:** Mensaje de confirmación.<br>Dado que el estudiante pasa su tarjeta, y la asistencia ha sido registrada, cuando el lector procesa la tarjeta, entonces se muestra el mensaje "Asistencia tomada". | **EP03** |
+| **US16** | Registro de Asistencia Docente | Como profesor, quiero que la tarjeta registre automáticamente la asistencia de los estudiantes al pasarla por el lector, para ahorrar tiempo en el proceso de toma de asistencia. | **Scenario:** Registro de asistencia docente.<br>Dado que el profesor pasa su tarjeta al inicio de clase, y los estudiantes están presentes, cuando la tarjeta es leída, entonces se registra automáticamente la asistencia. | **EP03** |
+| **US03** | Reserva de Espacios de Estudio | Como estudiante, quiero usar mi tarjeta para acceder a mis reservas para usarlas | **Scenario:** Activacion e una reserva.<br>Dado que el estudiante quiere activar la reserva de un espacio, y tiene su tarjeta, cuando pasa la tarjeta por el lector en el área de reserva, entonces se activara la reserva. | **EP04** |
+| **US08** | Identificación Estudiantil | Como estudiante, quiero que la tarjeta funcione como una forma de identificación, para ser reconocido fácilmente por el personal académico. | **Scenario:** Identificación al personal.<br>Dado que el estudiante presenta su tarjeta, y es abordado por el personal, cuando la tarjeta es leída, entonces su identidad es verificada. | **EP02** |
+| **US10** | Baja de Tarjeta para Estudiantes Retirados | Como administrador, quiero poder dar de baja una tarjeta de un estudiante que se ha retirado de la universidad, para asegurar que ya no tenga acceso a los servicios. | **Scenario:** Baja de tarjeta.<br>Dado que un estudiante se ha retirado, y el administrador lo registra, cuando se da de baja la tarjeta, entonces el acceso a los servicios se cancela. | **EP05** |
+| **US12** | Control de Acceso en Áreas Restringidas | Como administrador, quiero que la tarjeta proporcione un mensaje en el lector cuando un estudiante accede a un área restringida, para garantizar que solo los autorizados ingresen. | **Scenario:** Control de acceso.<br>Dado que un estudiante intenta acceder a un área restringida, y su tarjeta es leída, cuando no tiene permiso, entonces se muestra un mensaje de "Acceso denegado". | **EP05** |
+| **US04** | Visualización de reportes | Como personal administratico, quiero que la pagina muestre reportes administrativos con la informacion recolectada para administrar y tener datos utiles. | **Scenario:** Ver el reporte.<br>Dado que el administrador ingresa a la pagina, y está registrado, cuano ingrese a la sección de "Ver Reporte", entonces vera un reporte que use lashoras recolectadas y de sugerencias. | **EP05** |
+
 #### 4.1.2.2. Quality attribute Scenario
 
 #### 4.1.2.3. Constraints
