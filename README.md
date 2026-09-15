@@ -452,42 +452,35 @@ Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan 
   </thead>
   <tbody>
     <tr>
-      <td>Registrar asistencia acercando la credencial NFC a un lector</td>
+      <td>Esperar a que el docente pase asistencia en la plataforma web al inicio de clase</td>
       <td>N/A</td>
       <td>N/A</td>
       <td>Alta</td>
       <td>Crítica</td>
     </tr>
     <tr>
-      <td>Ingresar a ambientes autorizados (aulas, laboratorio, biblioteca)</td>
+      <td>Ingresar a laboratorios o biblioteca mostrando carné o registrando datos manualmente</td>
       <td>N/A</td>
       <td>N/A</td>
       <td>Alta</td>
-      <td>Crítica</td>
-    </tr>
-    <tr>
-      <td>Consultar dashboards de ocupación y aforo del campus</td>
       <td>Alta</td>
-      <td>Crítica</td>
-      <td>N/A</td>
-      <td>N/A</td>
     </tr>
     <tr>
-      <td>Consolidar manualmente reportes de asistencia y accesos entre sistemas</td>
+      <td>Consolidar manualmente reportes de asistencia (exportados por cada docente) y de accesos</td>
       <td>Alta</td>
       <td>Alta</td>
       <td>N/A</td>
       <td>N/A</td>
     </tr>
     <tr>
-      <td>Autorizar o revocar accesos a ambientes específicos</td>
+      <td>Verificar autorización de acceso a zonas restringidas de forma manual (lista impresa o consulta a seguridad)</td>
       <td>Media</td>
       <td>Alta</td>
       <td>N/A</td>
       <td>N/A</td>
     </tr>
     <tr>
-      <td>Recibir alertas de aforo excedido o accesos no autorizados</td>
+      <td>Atender reclamos de docentes/estudiantes por errores en el registro de asistencia</td>
       <td>Media</td>
       <td>Crítica</td>
       <td>N/A</td>
@@ -501,25 +494,75 @@ Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan 
       <td>N/A</td>
     </tr>
     <tr>
-      <td>Reservar un ambiente o laboratorio para una actividad académica</td>
+      <td>Reservar un ambiente o laboratorio por correo o solicitud presencial</td>
       <td>N/A</td>
       <td>N/A</td>
       <td>Baja</td>
       <td>Media</td>
     </tr>
     <tr>
-      <td>Esperar/hacer fila para procesos de acceso o registro lentos</td>
+      <td>Perder minutos de clase mientras el docente pasa asistencia uno por uno</td>
       <td>N/A</td>
       <td>N/A</td>
       <td>Alta</td>
-      <td>Baja</td>
+      <td>Media</td>
     </tr>
   </tbody>
 </table>
 
-### 2.3.3. Empathy Mapping.
+### 2.3.3. Empathy Mapping
+
+
+ A continuación, se presentan los Empathy Maps para los dos segmentos objetivo.
+
+
+#### Segmento 1: Administradores y Responsables de Gestión Universitaria
+
+<td align="center"><img src="assets/images/user-personas/Empathy map andrea.png" alt="Empathy Map 1" ></td>
+
+
+
+
+</div>
+
+#### Segmento 2: Usuarios de Credencial
+
+<td align="center"><img src="assets/images/user-personas/Empathy map jair.png" alt="Empathy Map 2" ></td>
+
+
+
+
+</div>
+
 
 ### 2.3.4. As-is Scenario Mapping.
+
+En esta sección se presenta un análisis detallado de la situación actual (AS-IS) para los diferentes segmentos.
+
+Se puede visualizar con más detalle en el siguiente enlace:
+ https://lucid.app/lucidchart/1a5b371c-5aa4-4aef-bd8f-27a9c5132f0d/edit?viewport_loc=-8631%2C-1540%2C4493%2C2127%2C0_0&invitationId=inv_df4c245c-0fcc-4a3e-8dce-f9a24864599f
+
+
+#### Segmento 1: Administradores y Responsables de Gestión Universitaria
+
+<td align="center"><img src="assets/images/user-personas/as-is1.png" alt="AS IS 1" ></td>
+
+<div align = center>
+
+
+</div>
+
+#### Segmento 2: Usuarios de credencial
+
+<td align="center"><img src="assets/images/user-personas/as-is2.png" alt="AS IS 2" ></td>
+
+<div align = center>
+
+
+
+</div>
+
+
 
 ## 2.4. Ubiquitous Language.
 
