@@ -755,6 +755,16 @@ Se puede visualizar con más detalle en el siguiente enlace:
 
 ### 4.1.1. Design Purpose
 
+El propósito del diseño arquitectónico de TarjePafi es construir una solución tecnológica robusta y extensible que permita a las universidades digitalizar y automatizar los procesos de registro de asistencia, control de accesos y gestión de reservas de espacios mediante credenciales físicas NFC y lectores IoT, reduciendo la dependencia de procesos manuales como el pase de lista docente y los métodos tradicionales de control de acceso. La solución se apoya en una arquitectura basada en Domain-Driven Design con bounded contexts claramente delimitados, desarrollada sobre un backend en Java 25 con Spring Boot, al cual se integra una capa de comunicación asíncrona mediante RabbitMQ como message bus para el procesamiento de eventos de lectura NFC.
+
+Esta elección arquitectónica responde a la necesidad de sostener un sistema donde múltiples puntos de lectura distribuidos por el campus como ingresos principales, aulas, cubículos de estudio y puntos de personal operativo generan eventos de manera simultánea, especialmente en momentos de alta concurrencia como el inicio de clases. La organización en bounded contexts independientes permite incorporar y evolucionar cada funcionalidad sin modificar la lógica de negocio de las demás, garantizando mantenibilidad y escalabilidad progresiva del sistema.
+
+Desde el lado del estudiante y el docente, la interacción con el sistema se limita al uso de la tarjeta física NFC sobre los lectores ESP32 con módulo MFRC522, sin requerir intervención manual adicional: cada lectura registra automáticamente la asistencia, activa una reserva o valida un acceso. Desde el lado del personal administrativo, la plataforma web en Angular centraliza la gestión de tarjetas, la configuración de permisos de acceso y la visualización de reportes con la información recolectada por los lectores. Ambos entornos consumen la misma API REST y base de datos PostgreSQL, asegurando coherencia de información entre todos los actores del sistema.
+
+El componente IoT introduce una arquitectura de comunicación basada en un message bus mediante RabbitMQ, permitiendo que los lectores NFC publiquen los eventos de lectura de manera desacoplada, tolerante a fallos y escalable hacia el backend. En lugar de depender de una comunicación directa y síncrona entre cada lector y la API, los dispositivos publican sus lecturas en una cola de mensajería, desde donde el backend las consume, valida y persiste. Esta decisión mejora la disponibilidad del sistema ante caídas temporales del backend, absorbe los picos de carga generados por la concurrencia de lecturas al inicio de clases, y permite escalar horizontalmente el procesamiento agregando nuevas instancias consumidoras sin modificar el firmware de los lectores.
+
+Este diseño busca garantizar atributos clave como disponibilidad ante alta concurrencia, tiempo de respuesta adecuado para el registro de asistencia en tiempo real, mantenibilidad por módulos y escalabilidad funcional a medida que se incorporen nuevos puntos de lectura.
+
 ### 4.1.2. Attribute-Driven Design Inputs
 
 #### 4.1.2.1. Primary Functionality
