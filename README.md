@@ -133,6 +133,27 @@ Integrantes
   - [3.3. Impact Mapping](#33-impact-mapping)
   - [3.4. Product Backlog](#34-product-backlog)
 
+- [Capítulo IV: Strategic-Level Software Design](#capítulo-iv-strategic-level-domain-driven-design)
+  - [4.1. Strategic-Level Attribute-Driven Design](#41-strategic-level-domain-driven-design)
+    - [4.1.1. Design Purpose](#411-design-purpose)
+    - [4.1.2. Attribute-Driven Design Inputs](#412-attribute-driven-design-inputs)
+      - [4.1.2.1. Primary Functionality](#4121-primary-functionality)
+      - [4.1.2.2. Quality attribute Scenario](#4122-quality-attribute-scenario)
+      - [4.1.2.3. Constraints](#4123-constraints)
+    - [4.1.3. Architectural Drivers Backlog](#413-architectural-drivers-backlog)
+    - [4.1.4. Architectural Design Decisions](#414-architectural-design-decisions)
+    - [4.1.5. Quality Attribute Scenario Refinements](#415-quality-attribute-scenario-refinements)
+  - [4.2. Strategic-Level Domain-Driven Design](#41-strategic-level-domain-driven-design)
+    - [4.2.1. EventStorming](#421-eventstorming)
+    - [4.2.2. Candidate Context Discovery](#422-candidate-context-discovery)
+    - [4.2.3. Domain Message Flows Modeling](#423-domain-message-flows-modeling)
+    - [4.2.4. Bounded Context Canvases](#424-bounded-context-canvases)
+    - [4.2.5. Context Mapping](#425-context-mapping)
+  - [4.3. Software Architecture](#43-software-architecture)
+    - [4.3.1. Software Architecture System Landscape Diagram](#431-software-architecture-system-landscape-diagram)
+    - [4.3.2. Software Architecture Context Level Diagrams](#432-software-architecture-context-level-diagrams)
+    - [4.3.3. Software Architecture Container Level Diagrams](#433-software-architecture-container-level-diagrams)
+    - [4.3.4. Software Architecture Deployment Diagrams](#434-software-architecture-deployment-diagrams)
 
 - [Conclusiones](#conclusiones)
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
@@ -727,3 +748,45 @@ Se puede visualizar con más detalle en el siguiente enlace:
 ## 3.3. Impact Mapping.
 
 ## 3.4. Product Backlog.
+
+# Capítulo 4: Strategic-Level Software Design
+
+## 4.1. Strategic-Level Attribute-Driven Design
+
+### 4.1.1. Design Purpose
+
+### 4.1.2. Attribute-Driven Design Inputs
+
+#### 4.1.2.1. Primary Functionality
+
+#### 4.1.2.2. Quality attribute Scenario
+
+#### 4.1.2.3. Constraints
+
+### 4.1.3. Architectural Drivers Backlog
+
+### 4.1.4. Architectural Design Decisions
+
+### 4.1.5. Quality Attribute Scenario Refinements
+
+## 4.2. Strategic-Level Domain-Driven Design
+
+### 4.2.1. EventStorming
+
+### 4.2.2. Candidate Context Discovery
+
+### 4.2.3. Domain Message Flows Modeling
+
+### 4.2.4. Bounded Context Canvases
+
+### 4.2.5. Context Mapping
+
+## 4.3. Software Architecture
+
+### 4.3.1. Software Architecture System Landscape Diagram
+
+### 4.3.2. Software Architecture Context Level Diagrams
+
+### 4.3.3. Software Architecture Container Level Diagrams
+
+### 4.3.4. Software Architecture Deployment Diagrams
