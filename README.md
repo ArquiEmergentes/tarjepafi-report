@@ -783,7 +783,23 @@ Estas historias fueron seleccionadas porque representan los requisitos con mayor
 | **US12** | Control de Acceso en Áreas Restringidas | Como administrador, quiero que la tarjeta proporcione un mensaje en el lector cuando un estudiante accede a un área restringida, para garantizar que solo los autorizados ingresen. | **Scenario:** Control de acceso.<br>Dado que un estudiante intenta acceder a un área restringida, y su tarjeta es leída, cuando no tiene permiso, entonces se muestra un mensaje de "Acceso denegado". | **EP05** |
 | **US04** | Visualización de reportes | Como personal administratico, quiero que la pagina muestre reportes administrativos con la informacion recolectada para administrar y tener datos utiles. | **Scenario:** Ver el reporte.<br>Dado que el administrador ingresa a la pagina, y está registrado, cuano ingrese a la sección de "Ver Reporte", entonces vera un reporte que use lashoras recolectadas y de sugerencias. | **EP05** |
 
-#### 4.1.2.2. Quality attribute Scenario
+#### 4.1.2.2. Quality attribute Scenarios
+
+
+| ID | Atributo | Fuente | Estímulo | Artefacto | Entorno | Respuesta | Medida |
+|----|----------|--------|----------|-----------|---------|-----------|--------|
+| QAS01 | Rendimiento | Estudiante/Docente | Lectura de tarjeta NFC en un lector | API de asistencia, RabbitMQ | Operación normal | El evento se publica en la cola y se procesa hasta persistir el registro de asistencia | ≤ 1 segundo desde la lectura hasta la confirmación |
+| QAS02 | Rendimiento | Lectores NFC (ESP32) | Envío concurrente de eventos de lectura al inicio de clases | Cola RabbitMQ, backend consumer | Alta carga, hora pico | El sistema encola y procesa los eventos sin bloquear ni perder mensajes | Soporte ≥ 200 lecturas/minuto sin degradar el tiempo de respuesta |
+| QAS03 | Rendimiento | Personal administrativo | Solicitud de reporte de asistencia/aforo | API, base de datos | Operación normal | Retorna reporte consolidado | ≤ 2 segundos de respuesta |
+| QAS04 | Confiabilidad | Backend | Caída temporal del servicio backend | RabbitMQ | Falla interna | Los eventos de lectura NFC quedan retenidos en la cola sin pérdida | 0% de eventos perdidos ante caída ≤ 5 minutos |
+| QAS05 | Confiabilidad | Lector NFC defectuoso | Envío de un evento con formato inválido o tarjeta no registrada | Consumer de eventos | Operación normal | El sistema rechaza y descarta el evento sin afectar el procesamiento de los demás | 100% de eventos inválidos detectados y rechazados |
+| QAS06 | Confiabilidad | Backend | Procesamiento repetido o reintento de un mismo evento de lectura | Consumer, base de datos | Operación normal | Se evita el registro duplicado de asistencia o acceso | 0 duplicados por evento de lectura |
+| QAS07 | Disponibilidad | Lectores NFC (ESP32) | Envío continuo de eventos durante horario académico | API Backend, RabbitMQ | Operación 24/7 | El sistema permanece accesible para recibir y encolar eventos | Disponibilidad ≥ 99% |
+| QAS08 | Disponibilidad | Personal administrativo | Consulta al dashboard web | API Backend | Operación normal | El sistema responde o muestra estado degradado controlado | Disponibilidad ≥ 99%, fallback ≤ 2 segundos |
+| QAS09 | Seguridad | Usuario no autenticado | Intento de acceso al módulo administrativo | API Backend | Operación normal | Bloqueo y redirección al login | 100% de endpoints protegidos |
+| QAS10 | Seguridad | Tarjeta dada de baja | Intento de lectura con una tarjeta desactivada | API de asistencia/accesos | Operación normal | Se deniega el registro de asistencia o acceso | 100% de tarjetas dadas de baja bloqueadas en el primer intento |
+| QAS11 | Escalabilidad | Crecimiento del campus | Aumento de puntos de lectura NFC instalados | RabbitMQ, backend consumer | Alta carga | El sistema escala horizontalmente agregando instancias consumidoras | Soporte ≥ 500 lectores concurrentes |
+| QAS12 | Escalabilidad | Usuarios concurrentes | Uso simultáneo del dashboard administrativo | Backend | Periodo pico de uso | Mantiene el rendimiento sin degradación | Usuarios concurrentes ≥ 100 |
 
 #### 4.1.2.3. Constraints
 
