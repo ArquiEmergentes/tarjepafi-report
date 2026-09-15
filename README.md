@@ -53,8 +53,8 @@ Integrantes
       <td style="border: none; padding: 4px;">Rivera Ratachi, Renzo Sebastian</td>
     </tr>
     <tr>
-      <td style="border: none; padding: 4px; font-weight: bold;"></td>
-      <td style="border: none; padding: 4px;"></td>
+      <td style="border: none; padding: 4px; font-weight: bold;"> U202313403</td>
+      <td style="border: none; padding: 4px;"> Via Luna, Bruce</td>
     </tr>
     <tr>
       <td style="border: none; padding: 4px; font-weight: bold;"></td>
