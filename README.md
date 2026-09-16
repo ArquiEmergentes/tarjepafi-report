@@ -184,14 +184,14 @@ Criterio: : Capacidad de comunicarse efectivamente con un rango de audiencias.
     </thead>
     <tbody>
         <tr>
-            <td>Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerarquicos, en el marco del desarrollo de un proyecto en ingeniería.</td>
+            <td>Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.</td>
             <td>
             </td>
             <td>
             </td>
         </tr>
         <tr>
-            <td>Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerarquicos, en el marco del desarrollo de un proyecto en ingeniería.
+            <td>Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.
 </td>
             <td>
             </td>
@@ -230,11 +230,11 @@ Promovemos la innovación tecnológica como medio para mejorar la experiencia un
 ### 1.1.2. Perfiles de integrantes del equipo
 
 
-|  Nombres y Apellidos |    Codigo   | Descripción | Foto | 
+|  Nombres y Apellidos |    Código   | Descripción | Foto | 
 |----------------------|-------------|-------------|------|
 | Javier Sebastian Gonzales Alvarado | u20231296 | Mi nombre es Javier Gonzales, soy estudiante de Ingeniería de Software de séptimo ciclo. Tengo conocimientos en diversos lenguajes de programación como C++, Python y JavaScript, entre otros. Además, he desarrollado proyectos de software utilizando distintos frameworks como Angular y Vue. Me considero una persona responsable, empática y analítica. Mi objetivo personal es desarrollar soluciones tecnológicas que contribuyan a mejorar la calidad de vida de las personas y aportar a la construcción de un mundo más innovador y conectado. |![Foto](assets/fotoGonzales.jpeg)|
 | Renzo Sebastian Rivera Ratachi | u20231d974 | Soy Renzo Sebastian Rivera Ratachi y soy estudiante de la carrera de Ingeniería de Software. Actualmente estoy cursando el 7mo ciclo de mi carrera y tengo conocimientos intermedios de JavaScript y C++. Me considero una persona responsable y puntual.  |![Foto](assets/fotorenzo.jpg)|
-| Bruce Via Luna | U202313403 | Soy Bruce Via Luna, estudiante de la carrera de ingenieria de Software en la UPC. Actualmente cuento con conocimientos en C#, C++ e interes en la gestion de informacion de bases de datos. Me considero una persona altamente responsable y dedicada a los proyectos con los que me comprometo.  |![Foto](assets/fotobruce.jpeg)|
+| Bruce Via Luna | U202313403 | Soy Bruce Via Luna, estudiante de la carrera de ingeniería de Software en la UPC. Actualmente cuento con conocimientos en C#, C++ e interés en la gestión de información de bases de datos. Me considero una persona altamente responsable y dedicada a los proyectos con los que me comprometo.  |![Foto](assets/fotobruce.jpeg)|
 
 ## 1.2. Solution Profile
 
@@ -657,7 +657,7 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
   <tr>
     <td colspan="2" style="text-align:justify">
       Resumen: <br>
-      Oriana, instructora en la universidad Cayetano Heredia, reside en el destrito de Cercado de Lima, habla sobre como la implementacion si bien no seria 100% util en su area, igual describe como la existencia de las tarjetas aceleraria los procesos de registro de asistencia y seguridad de su universidad tanto para la asistencia como el acceso a espacios de trabajos reservados.
+      Oriana, instructora en la universidad Cayetano Heredia, reside en el distrito de Cercado de Lima, habla sobre cómo la implementación si bien no sería 100% útil en su área, igual describe cómo la existencia de las tarjetas aceleraría los procesos de registro de asistencia y seguridad de su universidad tanto para la asistencia como el acceso a espacios de trabajos reservados.
     </td>
   </tr>
   <tr>
@@ -857,27 +857,27 @@ Se puede visualizar con más detalle en el siguiente enlace:
 
 ## 3.2. User Stories.
 
-En esta seccion detallaremos la existencia, escenarios y diferentes User Stories que usaremos a lo largo del proyecto, para mejor orden se iniciara con la creacion de 
-Epicas para poder agrupar a todas las Users Stories en categorias para su posterior cumplimiento
+En esta sección detallaremos la existencia, escenarios y diferentes User Stories que usaremos a lo largo del proyecto, para mejor orden se iniciará con la creación de 
+Épicas para poder agrupar a todas las Users Stories en categorías para su posterior cumplimiento
 
 |Epic ID | Titulo | Descripción|
 |--------|--------|------------|
-|EP01    | Landing Page | Como usuario de TarjePafi quiero navegar por una Landing Page con una experiencia de usuario fluida y agil, para verificar y experimentar sus funcionalidades y el acceso a la informacion util del producto.
-|EP02    |Gestion de usuarios|Como usuario de TarjePafi, quiero una division entre los diferentes usuarios que utilicen el servicio de TarjePafi para separar las funcionalidaes y accesos a estas.
-|EP03    |Registro de Asistencia| Como usuario de TarjePafi, quier registrar correctamente la asistencia de alumnos meiante los sensores para acelerar los procesos de asistencia.|
-|EP04    |Gestión de Espacios y Servicios|Como usuario estudiante de TarjePafi, quiero activar mis reservas de con la tarjeta para evitar usar otros medios que atracen el proceso.|
+|EP01    | Landing Page | Como usuario de TarjePafi quiero navegar por una Landing Page con una experiencia de usuario fluida y ágil, para verificar y experimentar sus funcionalidades y el acceso a la información útil del producto.
+|EP02    |Gestión de usuarios|Como usuario de TarjePafi, quiero una división entre los diferentes usuarios que utilicen el servicio de TarjePafi para separar las funcionalidades y accesos a estas.
+|EP03    |Registro de Asistencia| Como usuario de TarjePafi, quiero registrar correctamente la asistencia de alumnos mediante los sensores para acelerar los procesos de asistencia.|
+|EP04    |Gestión de Espacios y Servicios|Como usuario estudiante de TarjePafi, quiero activar mis reservas con la tarjeta para evitar usar otros medios que atrasen el proceso.|
 |EP05    |Administración y Control| Como usuario administrativo de TarjePafi, quiero tener control administrativo para acceder y controlar las funcionalidades diseñadas de las tarjetas.|
 |EP06    |Diseño y Usabilidad| Como usuario de TarjePafi, quiero ver un trabajo de diseño tanto fisico y digital para que sea agradable usar el producto.|
 
 
-Una vez concluidas las epicas, ahora podemos proceder a encapsular las multiples historias de usuario que poseemos para definir los requerimientos de nuestra aplicacion y saber como desarrollarla correctamente
+Una vez concluidas las épicas, ahora podemos proceder a encapsular las múltiples historias de usuario que poseemos para definir los requerimientos de nuestra aplicación y saber cómo desarrollarla correctamente
 
 | Epic / Story ID | Titulo | Descripción | Criterios de Aceptación | Epic ID | 
 |-----------------|--------|-------------|-------------------------|--------------------------|
 | **US01** | Registro de Asistencia Estudiantil | Como estudiante, quiero poder pasar mi tarjeta por un lector al entrar al salón de clases, para que mi asistencia sea registrada automáticamente. | **Scenario:** Registro de asistencia en clase.<br>Dado que el estudiante pasa su tarjeta por el lector, y la clase ha comenzado, cuando la tarjeta es leída, entonces su asistencia se registra automáticamente. | **EP03** |
 | **US02** | Confirmación de Asistencia | Como estudiante, quiero que el lector muestre un mensaje de "Asistencia tomada" en la pantalla, para que sepa que mi asistencia ha sido registrada. | **Scenario:** Mensaje de confirmación.<br>Dado que el estudiante pasa su tarjeta, y la asistencia ha sido registrada, cuando el lector procesa la tarjeta, entonces se muestra el mensaje "Asistencia tomada". | **EP03** |
-| **US03** | Reserva de Espacios de Estudio | Como estudiante, quiero usar mi tarjeta para acceder a mis reservas para usarlas | **Scenario:** Activacion e una reserva.<br>Dado que el estudiante quiere activar la reserva de un espacio, y tiene su tarjeta, cuando pasa la tarjeta por el lector en el área de reserva, entonces se activara la reserva. | **EP04** |
-| **US04** | Visualización de reportes | Como personal administratico, quiero que la pagina muestre reportes administrativos con la informacion recolectada para administrar y tener datos utiles. | **Scenario:** Ver el reporte.<br>Dado que el administrador ingresa a la pagina, y está registrado, cuano ingrese a la sección de "Ver Reporte", entonces vera un reporte que use lashoras recolectadas y de sugerencias. | **EP05** |
+| **US03** | Reserva de Espacios de Estudio | Como estudiante, quiero usar mi tarjeta para acceder a mis reservas para usarlas | **Scenario:** Activación de una reserva.<br>Dado que el estudiante quiere activar la reserva de un espacio, y tiene su tarjeta, cuando pasa la tarjeta por el lector en el área de reserva, entonces se activará la reserva. | **EP04** |
+| **US04** | Visualización de reportes | Como personal administrativo, quiero que la página muestre reportes administrativos con la información recolectada para administrar y tener datos útiles. | **Scenario:** Ver el reporte.<br>Dado que el administrador ingresa a la página, y está registrado, cuando ingrese a la sección de "Ver Reporte", entonces verá un reporte que use las horas recolectadas y de sugerencias. | **EP05** |
 | **US05** | Diseño Atractivo de la Tarjeta | Como estudiante, quiero que la tarjeta tenga un diseño atractivo y fácil de identificar, para que me sienta orgulloso de usarla. | **Scenario:** Diseño de tarjeta.<br>Dado que un estudiante recibe su tarjeta, y la observa, cuando la tarjeta es presentada, entonces tiene un diseño atractivo y fácil de identificar. | **EP06** |
 | **US06** | Acceso Multicentro con la Tarjeta | Como estudiante, quiero que la tarjeta funcione en múltiples puntos de acceso, como bibliotecas y laboratorios, para facilitar mi acceso a los recursos. | **Scenario:** Acceso a múltiples áreas.<br>Dado que el estudiante usa la tarjeta en diferentes puntos, y está autorizado para acceder, cuando pasa la tarjeta por el lector, entonces se le permite el acceso. | **EP04** |
 | **US07** | Participación en Eventos Universitarios | Como estudiante, quiero que la tarjeta me permita acceder a eventos universitarios, para participar en actividades extracurriculares. | **Scenario:** Acceso a eventos.<br>Dado que hay un evento universitario, y el estudiante tiene su tarjeta, cuando pasa la tarjeta por el lector en la entrada, entonces se permite su entrada al evento. | **EP04** |
@@ -938,7 +938,7 @@ Estas historias fueron seleccionadas porque representan los requisitos con mayor
 | **US08** | Identificación Estudiantil | Como estudiante, quiero que la tarjeta funcione como una forma de identificación, para ser reconocido fácilmente por el personal académico. | **Scenario:** Identificación al personal.<br>Dado que el estudiante presenta su tarjeta, y es abordado por el personal, cuando la tarjeta es leída, entonces su identidad es verificada. | **EP02** |
 | **US10** | Baja de Tarjeta para Estudiantes Retirados | Como administrador, quiero poder dar de baja una tarjeta de un estudiante que se ha retirado de la universidad, para asegurar que ya no tenga acceso a los servicios. | **Scenario:** Baja de tarjeta.<br>Dado que un estudiante se ha retirado, y el administrador lo registra, cuando se da de baja la tarjeta, entonces el acceso a los servicios se cancela. | **EP05** |
 | **US12** | Control de Acceso en Áreas Restringidas | Como administrador, quiero que la tarjeta proporcione un mensaje en el lector cuando un estudiante accede a un área restringida, para garantizar que solo los autorizados ingresen. | **Scenario:** Control de acceso.<br>Dado que un estudiante intenta acceder a un área restringida, y su tarjeta es leída, cuando no tiene permiso, entonces se muestra un mensaje de "Acceso denegado". | **EP05** |
-| **US04** | Visualización de reportes | Como personal administratico, quiero que la pagina muestre reportes administrativos con la informacion recolectada para administrar y tener datos utiles. | **Scenario:** Ver el reporte.<br>Dado que el administrador ingresa a la pagina, y está registrado, cuano ingrese a la sección de "Ver Reporte", entonces vera un reporte que use lashoras recolectadas y de sugerencias. | **EP05** |
+| **US04** | Visualización de reportes | Como personal administrativo, quiero que la página muestre reportes administrativos con la información recolectada para administrar y tener datos útiles. | **Scenario:** Ver el reporte.<br>Dado que el administrador ingresa a la página, y está registrado, cuando ingrese a la sección de "Ver Reporte", entonces verá un reporte que use las horas recolectadas y de sugerencias. | **EP05** |
 
 #### 4.1.2.2. Quality attribute Scenarios
 
