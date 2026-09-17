@@ -626,6 +626,7 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
 
 *Entrevistas a usuarios de tarjetas*
 ---
+
 <table align="center">
   <tr>
     <th colspan="2" style="text-align:center">Entrevista 1</th>
@@ -666,6 +667,53 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
     </td>
   </tr>
 </table>
+
+
+
+
+
+
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 2</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Alvaro Abanto</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>Los Olivos</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>0:58-7:11</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td> 
+
+   `https://youtu.be/b_XeFh_mzvQ` 
+  
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Alvaro, estudiante de la carrera de Ciencias de la Computación, reside en el distrito de Los Olivos, menciona que ciertos protocolos de asistencia o ingreso en su campus universitario suelen ser lentos o a veces frustrantes. La solución propuesta le parece interesante ya que es más sencillo transportar una tarjeta física que no depende de internet pero añade que el sistema propuesto debe ser rapido y preciso para preferirlo sobre el sistema actual.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/images/entrevistas/captura-entrevista-alvaro.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
+    </td>
+  </tr>
+</table>
+
 
 
 ### 2.2.3. Análisis de entrevistas.
