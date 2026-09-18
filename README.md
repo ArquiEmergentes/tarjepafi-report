@@ -1024,11 +1024,89 @@ Estas historias fueron seleccionadas porque representan los requisitos con mayor
 
 ### 4.2.4. Bounded Context Canvases
 
++ **Bounded Context: IAM:**
+
+<p align="center">
+  <img src="assets/images/bd-context-canvases/iam-bounded-context-canvases.png" alt="bounded-context-canvases" width="750">
+</p>
+
++ **Bounded Context: Academic Attendance Context:**
+
+<p align="center">
+  <img src="assets/images/bd-context-canvases/academic-attendance-bounded-context-canvases.png" alt="bounded-context-canvases" width="750">
+</p>
+
++ **Bounded Context: Space & Facility Context:**
+
+<p align="center">
+  <img src="assets/images/bd-context-canvases/space-and-facility-bounded-context-canvases.png" alt="bounded-context-canvases" width="750">
+</p>
+
++ **Bounded Context: Analytics & IoT Data Context:**
+
+<p align="center">
+  <img src="assets/images/bd-context-canvases/analytics-iot-bounded-context-canvases.png" alt="bounded-context-canvases" width="750">
+</p>
+
++ **Bounded Context: Identification Context:**
+
+<p align="center">
+  <img src="assets/images/bd-context-canvases/identification-bounded-context-canvases.png" alt="bounded-context-canvases" width="750">
+</p>
+
+
 ### 4.2.5. Context Mapping
+
+El proceso de Context Mapping permitió representar las relaciones estructurales y los mecanismos de integración existentes entre los bounded contexts definidos para TarjePAFI. Mientras que los Bounded Context Canvases permiten analizar individualmente las responsabilidades, reglas y dependencias de cada contexto, el Context Map proporciona una visión global de cómo estos colaboran para soportar los procesos de identificación mediante NFC, registro de asistencia, gestión de espacios y análisis de información dentro del Smart Campus.
+
+Para su elaboración, el equipo revisó las responsabilidades definidas previamente para cada bounded context y planteó preguntas de exploración propias de Domain-Driven Design, entre ellas:
+
++ ¿Qué ocurriría si la validación de las tarjetas NFC fuera responsabilidad de IAM?
++ ¿Sería conveniente unificar Academic Attendance Context y Space & Facility Context debido a que ambos utilizan la identificación mediante tarjetas?
++ ¿Qué información debería ser proporcionada por Identification Context a los demás bounded contexts?
++ ¿Es necesario compartir un modelo de usuario entre todos los contextos o solamente intercambiar identificadores y eventos?
++ ¿Analytics & IoT Data Context debería almacenar las reglas de negocio de asistencia y reservas o únicamente procesar los eventos producidos por dichos contextos?
++ ¿Sería conveniente dividir Analytics & IoT Data Context en un contexto de adquisición IoT y otro exclusivamente orientado a analítica?
+
+A partir de este análisis se determinó mantener los cinco bounded contexts definidos. Se descartó integrar la administración de tarjetas dentro de IAM, debido a que IAM se encarga de la autenticación y autorización de los usuarios dentro de las aplicaciones, mientras que Identification Context administra el ciclo de vida y validación de las credenciales físicas NFC. Asimismo, Academic Attendance Context y Space & Facility Context permanecen separados debido a que poseen reglas de negocio diferentes: el primero trabaja con sesiones académicas, horarios y registros de asistencia, mientras que el segundo administra reservas, capacidad y disponibilidad de espacios.
+
+También se evaluó dividir Analytics & IoT Data Context en dos contextos independientes: uno orientado a la adquisición de información IoT y otro dedicado exclusivamente a analítica. Para el alcance actual de TarjePAFI se decidió mantenerlos integrados, debido a que ambos procesos forman parte de una misma cadena de procesamiento de telemetría y generación de indicadores. Esta separación podría considerarse posteriormente si el volumen de dispositivos o información aumenta significativamente.
+
+A partir de estas decisiones se identificaron los siguientes patrones de relación entre contextos:
+
++ Open Host Service (OHS) en IAM, que expone servicios estandarizados de autenticación y autorización consumidos por los demás bounded contexts. De esta manera, Academic Attendance, Space & Facility, Analytics & IoT Data e Identification pueden validar sesiones, roles y permisos sin implementar mecanismos propios de autenticación.
+
++ Conformist en la relación entre IAM e Identification Context. Identification utiliza la representación de usuarios, roles y permisos proporcionada por IAM para determinar qué funciones puede realizar el propietario de una tarjeta, evitando mantener un segundo modelo independiente de usuarios.
+
++ Customer/Supplier entre Identification Context y Academic Attendance Context, donde Identification actúa como supplier proporcionando la identidad validada asociada a una tarjeta NFC. Academic Attendance utiliza dicha información para determinar quién está intentando registrar asistencia antes de ejecutar sus propias reglas relacionadas con horario, matrícula y sesión académica.
+
++ Customer/Supplier entre Identification Context y Space & Facility Context. Identification proporciona la identidad y estado de la tarjeta, mientras que Space & Facility utiliza estos datos para determinar si el usuario puede realizar una reserva, acceder a un ambiente o registrar la ocupación de un espacio.
+
++ Event-Driven Consistency entre Academic Attendance Context y Analytics & IoT Data Context. Cuando se producen eventos como AttendanceRecorded, AttendanceRejected o LateAttendanceDetected, estos pueden ser consumidos de manera asíncrona por Analytics & IoT Data para actualizar indicadores de asistencia sin acoplar directamente ambos modelos de dominio.
+
++ Event-Driven Consistency entre Space & Facility Context y Analytics & IoT Data Context, mediante eventos como ReservationCreated, SpaceOccupied o SpaceReleased. Esto permite actualizar métricas de utilización y ocupación de espacios sin que el contexto de reservas tenga conocimiento de la lógica interna del módulo analítico.
+
++ Event-Driven Consistency entre Identification Context y Analytics & IoT Data Context, donde eventos como CardValidated y CardRejected pueden utilizarse para analizar flujos de usuarios, accesos y frecuencia de interacción de las tarjetas con los lectores distribuidos en el campus.
+
++ Anti-Corruption Layer (ACL) en el límite entre los dispositivos físicos NFC/IoT y los bounded contexts de TarjePAFI. Los lectores generan identificadores, telemetría y eventos en formatos propios del dispositivo, por lo que una capa de adaptación transforma esta información antes de ingresarla al modelo de dominio de Identification o Analytics & IoT Data. De esta forma, cambios en el protocolo o fabricante del dispositivo no afectan directamente las reglas del negocio.
+
+El patrón Shared Kernel también fue considerado para compartir elementos como User, Card, Space o sus identificadores entre los diferentes bounded contexts. Sin embargo, se decidió no utilizarlo, ya que compartir directamente modelos de dominio incrementaría el acoplamiento. En su lugar, cada contexto mantiene su propio modelo y comparte únicamente identificadores, contratos y eventos necesarios para la integración.
+
+El Context Map resultante posiciona a Identification Context como el punto central para las interacciones realizadas mediante las credenciales NFC, proporcionando identidad validada a Academic Attendance y Space & Facility. IAM actúa como un servicio transversal encargado de autenticación y autorización, mientras que Academic Attendance Context y Space & Facility Context concentran las principales reglas de negocio relacionadas con asistencia y gestión de espacios. Finalmente, Analytics & IoT Data Context funciona como un contexto de soporte que consume los eventos generados por los demás contextos y por la infraestructura IoT para transformarlos en indicadores, reportes y dashboards orientados a la toma de decisiones de los administradores.
+
+<p align="center">
+  <img src="assets/context_mapping.png" alt="context-mapping" width="750">
+</p>
 
 ## 4.3. Software Architecture
 
 ### 4.3.1. Software Architecture System Landscape Diagram
+
+Expone el ecosistema completo donde nuestro sistema interactúa con múltiples sistemas externos, identificando dependencias y límites organizacionales.
+
+<p align="center">
+  <img src="assets/TarjePAFI-System-Landscape.png" alt="System-Landscape" width="750">
+</p>
 
 ### 4.3.2. Software Architecture Context Level Diagrams
 
