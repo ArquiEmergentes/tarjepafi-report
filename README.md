@@ -1018,13 +1018,19 @@ Estas historias fueron seleccionadas porque representan los requisitos con mayor
 
 ### 4.2.1. EventStorming
 
+Aqui se presentara la distribucion y vinculacion de los bounded context desarrollados para nuestro proyecto:
+
+<img src="assets/images/bounded contexts/Bounded-Context.jpg" alt="EventStorming Image"><br>
+
+Enlace al miro: `https://miro.com/app/board/uXjVHlVuyVw=/?share_link_id=483153268721`
+
 ### 4.2.2. Candidate Context Discovery
 
  - 1. IAM (Autentificacion de la pagina para los roles)
  - 2. Academic Attendance Context (Encargado de hacer la funcion de registrar las asistencias correctamente)
- - 3. Space & Facility Context (Manejo de Reservas)
- - 4. Analytics & IoT Data Context (IoT bounded context)
- - 5. Identification Context (Revisar y dividir las correctas funciones de tarjetas por roles)
+ - 3. Space and Facility Context (Manejo de Reservas)
+ - 4. IoT Monitoring Context (IoT bounded context)
+ - 5. Data Management Context (La pagina para el amin)
 
 ### 4.2.3. Domain Message Flows Modeling
 
