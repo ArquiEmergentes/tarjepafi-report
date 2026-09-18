@@ -589,37 +589,37 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
   </tr>
   <tr>
     <td><strong>Entrevistado</strong></td>
-    <td></td>
+    <td>Juan Antonio Flores Moroco</td>
   </tr>
   <tr>
     <td><strong>Edad</strong></td>
-    <td></td>
+    <td>46 años</td>
   </tr>
   <tr>
     <td><strong>Distrito</strong></td>
-    <td></td>
+    <td>Pueblo Libre</td>
   </tr>
   <tr>
     <td><strong>Timing</strong></td>
-    <td></td>
+    <td>0:40-26:17</td>
   </tr>
   <tr>
     <td><strong>URL</strong></td>
     <td>
       
-  ``
+  `https://youtu.be/RHp96fure88`
 
   </td>
   </tr>
   <tr>
     <td colspan="2" style="text-align:justify">
       Resumen: <br>
-
+      Juan Antonio Flores Moroco, PTC (Profesor a tiempo completo) de la carrera de ingenieria de software, sistemas y ciencias de la computacion de la UPC, reside en el distrito de Pueblo Libre, habla y describe la idea de que la implementacion de tarjetas llegaria a ser posible gracias a las nuevas funcionalidades agregadas ademas de sugerir ideas y funciones adicionales para asegurar la aceptacion de dicho proceso
     </td>
   </tr>
   <tr>
     <td colspan="2"><br>
-      <img src="" alt="segmento1entrevista2" width="1000"><br>
+      <img src="assets/images/entrevistas/captura-moroco.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
     </td>
   </tr>
 </table>
@@ -1019,6 +1019,12 @@ Estas historias fueron seleccionadas porque representan los requisitos con mayor
 ### 4.2.1. EventStorming
 
 ### 4.2.2. Candidate Context Discovery
+
+ - 1. IAM (Autentificacion de la pagina para los roles)
+ - 2. Academic Attendance Context (Encargado de hacer la funcion de registrar las asistencias correctamente)
+ - 3. Space & Facility Context (Manejo de Reservas)
+ - 4. Analytics & IoT Data Context (IoT bounded context)
+ - 5. Identification Context (Revisar y dividir las correctas funciones de tarjetas por roles)
 
 ### 4.2.3. Domain Message Flows Modeling
 
