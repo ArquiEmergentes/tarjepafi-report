@@ -1110,6 +1110,34 @@ Expone el ecosistema completo donde nuestro sistema interactúa con múltiples s
 
 ### 4.3.2. Software Architecture Context Level Diagrams
 
+Este diagrama muestra que el sistema TarjePAFI interactúa directamente con dos tipos de usuarios y dos sistemas externos:
+
+- **Administrativos**, que utilizan la plataforma web para visualizar reportes de asistencia y gestionar la información relacionada con la asistencia, identificación y reserva de espacios universitarios.
+- **Usuarios (alumnos y personal)**, que interactúan con el sistema mediante tarjetas NFC para registrar su asistencia. Estos usuarios no interactúan directamente con TarjePAFI, sino que presentan sus tarjetas ante los lectores NFC/IoT.
+
+El sistema también se comunica con dos sistemas externos:
+
+- **Lectores NFC/IoT**, que detectan las tarjetas NFC utilizadas por los usuarios y envían los eventos de lectura a TarjePAFI para el registro de asistencia.
+- **Sistema Académico UPC**, que proporciona información académica como datos de alumnos, profesores, personal universitario, horarios y cursos, permitiendo que TarjePAFI utilice esta información para gestionar sus funcionalidades.
+
+  [![Context-Diagram.png](https://i.postimg.cc/bw4PKkqx/Context-Diagram.png)](https://postimg.cc/v47Cn1gT)
+
 ### 4.3.3. Software Architecture Container Level Diagrams
 
+Este diagrama muestra que el sistema TarjePAFI está compuesto por cinco contenedores principales:
+
+- Una Landing Page, encargada de presentar la plataforma y proporcionar el punto de acceso inicial al sistema.
+- Una Web App, desarrollada en Angular, que permite a los usuarios administrativos gestionar las funcionalidades del sistema, como la asistencia, las reservas y la visualización de reportes.
+- Un Backend API, desarrollado con Spring Boot, que concentra la lógica de negocio de TarjePAFI, procesa los eventos de asistencia y expone los servicios REST utilizados por la aplicación web.
+RabbitMQ, utilizado como message broker para recibir y gestionar de forma asíncrona los eventos generados por los lectores NFC/IoT, permitiendo desacoplar los dispositivos del procesamiento realizado por el backend.
+- Una Base de Datos PostgreSQL, encargada de almacenar la información de asistencias, reservas, usuarios y configuraciones del sistema.
+
+Además, el sistema se integra con los Lectores NFC/IoT, que envían los eventos generados por las tarjetas NFC hacia RabbitMQ, y con el Sistema Académico UPC, del cual el Backend API obtiene información académica mediante servicios REST/HTTPS.
+
+[![Container-Diagram.png](https://i.postimg.cc/02rLPjW2/Container-Diagram.png)](https://postimg.cc/yk4fT1Cw)
+
 ### 4.3.4. Software Architecture Deployment Diagrams
+
+Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes componentes de software y dispositivos físicos. La plataforma está compuesta por una Landing Page y una aplicación web desarrolladas en Angular, un Backend API desarrollado con Spring Boot, un servidor RabbitMQ encargado de gestionar los eventos de lectura NFC y una base de datos PostgreSQL para almacenar la información del sistema. Los usuarios administrativos acceden a la aplicación web mediante HTTPS, mientras que los lectores NFC/IoT envían los eventos de lectura hacia RabbitMQ mediante HTTPS/MQTT. El Backend procesa estos eventos y se comunica con la base de datos mediante JDBC. Asimismo, el Backend se integra con el Sistema Académico UPC mediante REST/HTTPS para obtener información académica.
+
+[![Deployment-Diagram.png](https://i.postimg.cc/7hhQHtNd/Deployment-Diagram.png)](https://postimg.cc/5Qcmp3TS)
