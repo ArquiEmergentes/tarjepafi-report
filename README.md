@@ -61,8 +61,8 @@ Integrantes
       <td style="border: none; padding: 4px;">Palomino Fiestas, Erick Leonardo</td>
     </tr>
     <tr>
-      <td style="border: none; padding: 4px; font-weight: bold;"></td>
-      <td style="border: none; padding: 4px;"></td>
+      <td style="border: none; padding: 4px; font-weight: bold;">U20211a620</td>
+      <td style="border: none; padding: 4px;">Velarde Luyo, Piero Alberto</td>
     </tr>
     <tr>
       <td style="border: none; padding: 4px; font-weight: bold;"></td>
