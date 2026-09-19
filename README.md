@@ -952,6 +952,11 @@ Una vez concluidas las épicas, ahora podemos proceder a encapsular las múltipl
 
 ## 3.3. Impact Mapping.
 
+<img src="assets/images/bounded contexts/Impact map 1.png" alt="EventStorming Image"><br>
+
+<img src="assets/images/bounded contexts/Impact map 2.png" alt="EventStorming Image"><br>
+
+
 ## 3.4. Product Backlog.
 
 # Capítulo 4: Strategic-Level Software Design
@@ -1026,13 +1031,71 @@ Enlace al miro: `https://miro.com/app/board/uXjVHlVuyVw=/?share_link_id=48315326
 
 ### 4.2.2. Candidate Context Discovery
 
- - 1. IAM (Autentificacion de la pagina para los roles)
- - 2. Academic Attendance Context (Encargado de hacer la funcion de registrar las asistencias correctamente)
- - 3. Space and Facility Context (Manejo de Reservas)
- - 4. IoT Monitoring Context (IoT bounded context)
- - 5. Data Management Context (La pagina para el amin)
+1. Contexto de IAM Context
+
+<img src="assets/images/bounded contexts/IAM.png" alt="IAM Bounded Context"><br>
+
+- **Limite**: Se encarga completamente de las gestiones en la aplicacion web, la verificacion de identidad, roles y su autorizacion de acceso al sistema para los administradores, dependiendo de su rol. Gestion la verificacion de cuentas, el inicio de sesion, la autentificacion mediante token JWT y delimitar el acceso a funcionalidades de los otros bounded Contexts.
+
+- **Eventos clave**: RegistrarUsuario, IniciarSesion, ActualizarCredenciales, EliminarCuenta.
+
+- **Justificacion**: Se justifica su existencia como subdominio aislado del resto al solo funcionar para uno de los segmentos objetivos dentro de sus funcionalidades. Extrae la data entregada hacia la cuenta del administrados y la devuelve hacia la pagina web, permitiendo la creacion de reportes y uso de dicha informacion para su uso futuro.
+
+2. Context de Academic Attendance Context .
+
+<img src="assets/images/bounded contexts/Academic.png" alt="Academic Bounded Context"><br>
+
+- **Limite**: Se encarga de unicamente registrar la asistencia en las aulas para alumnos y profesores gracias a las tarjetas IoT. Gestiona y registra las aulas gracias a las funcionalidades de asistencia y scripts programados en los sensores.
+
+- **Eventos clave**: AbrirAsistencia, RegistrarAsistencia, CerrarAsistencia, GuardarAsistencia.
+
+- **Justificacion**: Su existencia como bounded context se debe a la funcionaliad especifica e indispensable dentro de nuestro producto, encargada de hacer que nuestra tarjeta tenga mayores funcionalidades gracias a la lectura de sus sensores y la programacion de registro de asistencia.
+
+3. Contexto de Space and Facility Context
+
+<img src="assets/images/bounded contexts/Spaces.png" alt="Sapce Bounded Context"><br>
+
+- **Limite**: Verifica y se encarga de registrar el uso de espacios y la activacion de reservas, desde ingresar a la universiadad a usar espacios reservados como cubiculos, gimnasios o aulas siempre y cuando se reserven previamente.
+
+- **Eventos clave**: ActivarEntrada, ActivarSalida, ActivarReserva, RechazarReserva, AccesoDenegado, AccesoConcedido, BuscarDatos.
+
+- **Justificacion**: Como uno de los bounded contexts principales se debe gracias a que presenta el acceso a otros bounded context mas aisaldos por tener un aspecto sustancial de la tarjeta como el tener acceso a los espacios universitarios o a la misma universidad.
+
+4. Contexto de IoT Monitoring Context 
+
+<img src="assets/images/bounded contexts/IoT.png" alt="IoT Bounded Context"><br>
+
+- **Limite**: Encapsula todo lo relacionado a las tarjetas IoT, es decir la entrega de estas, vinculacion de identidad y sobre todo separar sus funcionalidades dependiendo el rol de los diferentes segmentos objetivos.
+
+- **Eventos clave**: AsignarInformacion, DesactivarTarjeta, ModificarInformacion, ActivarTarjeta.
+
+- **Justificacion**: Como el bounded context de entrada al resto de bounded context, se refiere a otro bounded context principal embedido dentro de otros ya que se necesita la tarjeta IoT para la existencia del resto.
+
+5. Contexto de Data Management Context
+
+<img src="assets/images/bounded contexts/Data.png" alt="Data Bounded Context"><br>
+
+- **Limite**: Almacenar, ordenar, mostrar y resumir toda la informacion recolectada de las tarjetas de forma semanal, mensual o semetral para la ser mostrada a los administradores, ademas de retener la informacion recolectada de espacios usados.
+
+- **Eventos clave**: OrdenarInformacion, RegistrarDatos, RealizarReporteSemanal, RealizarReporteMensual, RealizarReporteSemestral, ErrorRegistro.
+
+- **Justificacion**: Siendo necesario para el lado adminsitrativo, su existencia se debe a las funcionalidades de el manejo de informacion recolectada por todos los sensores existentes a lo largo del centro universitario.
 
 ### 4.2.3. Domain Message Flows Modeling
+
+Para esta sección nuestro objetivo fue visualizar cómo los bounded contexts colaboran para soportar los casos de uso clave. Se aplicó Domain Storytelling para describir interacciones humanas y técnicas
+
+Enlace al Miro: `https://miro.com/app/board/uXjVHklCdSw=/?share_link_id=475456703400`
+
+<img src="assets/images/bounded contexts/InOutBC.jpg" alt="DomainMessage Model 1"><br>
+
+
+
+<img src="assets/images/bounded contexts/AssitanceBc.jpg" alt="DomainMessage Model 2"><br>
+
+<img src="assets/images/bounded contexts/ReportBC.jpg" alt="DomainMessage Model 3"><br>
+
+
 
 ### 4.2.4. Bounded Context Canvases
 
