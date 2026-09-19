@@ -1347,6 +1347,12 @@ Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes component
 
 + Azizi, S., Nair, G., Rabiee, R., & Olofsson, T. (2020). Application of Internet of Things in academic buildings for space use efficiency using occupancy and booking data. Building and Environment, 186, 107355. https://doi.org/10.1016/j.buildenv.2020.107355
 
++ Das, D. K. (2025). Integrating IoT and AI for sustainable energy-efficient smart building: Potential, barriers and strategic pathways. *Sustainability*, *17*(22), Artículo 10313[cite: 14]. https://doi.org/10.3390/su172210313[cite: 14]
+
++ Israil, S. I. S., & Dhumane, P. B. (2025). Smart campus solutions: An IoT-based attendance system for universities and schools. *International Journal for Research Trends and Innovation*, *10*(5), b426–b433[cite: 12]. https://www.ijrti.org/papers/IJRTI2505148.pdf
+
 + Rashid, A. M. (2024). Smart campus: A review on smart attendance systems as an efficient approach. Journal of Engineering & Technological Advances, 8(2), 16–24. https://doi.org/10.35934/segi.v8i2.85
 
 + Sutjarittham, T., Habibi Gharakheili, H., Kanhere, S. S., & Sivaraman, V. (2019). Experiences with IoT and AI in a smart campus for optimizing classroom usage. IEEE Internet of Things Journal, 6(5), 7595–7607. https://doi.org/10.1109/JIOT.2019.2902410
+
++ Prabakaran, S., Geetha, S., Nivesh Raja, R., Dhanush Balaji, G., Maya Kannan, M., & Sam Brainald, C. (2025). Smart campus surveillance and guidance system using face recognition. *Journal on Innovations in Teaching and Learning*, *4*(4), 22–31[cite: 13]. https://doi.org/10.46632/jitl/4/4/4[cite: 13]
