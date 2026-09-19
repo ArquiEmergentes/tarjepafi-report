@@ -86,9 +86,19 @@ Integrantes
 
 # Registro de Versiones
 
+
 | **Versión** | **Fecha** | **Autor(es)** | **Descripción de modificación** |
-|-------------|------------|----------------|---------------------------------|
-| 0.1 |  |    |  |
+|-------------|-----------|---------------|---------------------------------|
+| 0.1 | 01/09/2026 | Gonzales Alvarado, Javier Sebastian | Creación inicial del documento e incorporación del Capítulo I: Startup Profile, descripción de la startup, antecedentes y problemática de la solución. |
+| 0.2 | 03/09/2026 | Palomino Fiestas, Erick Leonardo | Incorporación del Solution Profile, Lean UX Process, Lean UX Problem Statements, Lean UX Assumptions, Lean UX Hypothesis Statements y Lean UX Canvas. |
+| 0.3 | 05/09/2026 | Velarde Luyo, Piero Alberto | Incorporación del Capítulo II: análisis de competidores, análisis competitivo, estrategias y tácticas frente a competidores y diseño de entrevistas. |
+| 0.4 | 07/09/2026 | Rivera Ratachi, Renzo Sebastián | Incorporación del Needfinding mediante User Personas, User Task Matrix, Empathy Mapping y As-is Scenario Mapping. |
+| 0.5 | 09/09/2026 | Via Luna, Bruce | Incorporación del Capítulo III: To-Be Scenario Mapping, User Stories e Impact Mapping. |
+| 0.6 | 11/09/2026 | Palomino Fiestas, Erick Leonardo | Incorporación del Product Backlog y desarrollo del Strategic-Level Attribute-Driven Design, incluyendo Design Purpose, Quality Attribute Scenarios y Constraints. |
+| 0.7 | 13/09/2026 | Via Luna, Bruce | Incorporación del Architectural Drivers Backlog, Architectural Design Decisions y Quality Attribute Scenario Refinements. |
+| 0.8 | 15/09/2026 | Gonzales Alvarado, Javier Sebastian | Desarrollo del Strategic-Level Domain-Driven Design mediante EventStorming, Candidate Context Discovery y Bounded Context Canvases. |
+| 0.9 | 17/09/2026 | Rivera Ratachi, Renzo Sebastián | Incorporación del Domain Message Flows Modeling y revisión de los artefactos relacionados con el diseño estratégico del dominio. |
+| 1.0 | 19/09/2026 | Velarde Luyo, Piero Alberto | Incorporación del Context Mapping y diagramas de Software Architecture. Revisión, integración y consolidación final del documento correspondiente a la TB1. |
 
 <div style="break-after: page;"></div>
 
@@ -174,32 +184,10 @@ Criterio: : Capacidad de comunicarse efectivamente con un rango de audiencias.
 
 <div align="center">
 
-<table>
-    <thead>
-        <tr>
-            <th>Criterio específico</th>
-            <th>Acciones realizadas</th>
-            <th>Conclusiones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.</td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td>Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.
-</td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-    </tbody>
-</table>
+| Criterio específico | Acciones realizadas | Conclusiones |
+|---|---|---|
+| **Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.** | **Gonzales Alvarado, Javier Sebastian – TB1:** Expuso y explicó la propuesta de arquitectura del sistema, comunicando la organización de los Bounded Contexts y sus relaciones mediante el Context Mapping y System Landscape Diagram.<br><br>**Via Luna, Bruce – TB1:** Expuso la definición de los Bounded Contexts y explicó la interacción entre ellos mediante el Domain Message Flow Diagram.<br><br>**Palomino Fiestas, Erick Leonardo – TB1:** Expuso las principales decisiones de diseño arquitectónico y explicó su relación con los Architectural Drivers identificados para la solución.<br><br>**Velarde Luyo, Piero Alberto – TB1:** Expuso el análisis de los competidores y explicó las estrategias y tácticas planteadas para diferenciar la solución frente a otras alternativas del mercado.<br><br>**Rivera Ratachi, Renzo Sebastián – TB1:** Expuso los principales escenarios de calidad identificados para el sistema, explicando su importancia dentro del diseño de la solución. | Durante la TB1, el equipo comunicó oralmente los principales resultados del análisis y diseño de la solución, explicando aspectos de negocio, experiencia de usuario y arquitectura de software mediante conceptos y recursos visuales que facilitaron la comprensión de las decisiones tomadas durante el proyecto. |
+| **Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.** | **Gonzales Alvarado, Javier Sebastian – TB1:** Documentó los antecedentes y la problemática del proyecto, describiendo de manera estructurada la situación que da origen a la solución propuesta.<br><br>**Via Luna, Bruce – TB1:** Documentó las User Stories del producto, expresando las necesidades funcionales de los usuarios de manera estructurada y comprensible.<br><br>**Palomino Fiestas, Erick Leonardo – TB1:** Documentó el Lean UX Process, organizando los supuestos y elementos necesarios para definir y validar la propuesta de solución.<br><br>**Velarde Luyo, Piero Alberto – TB1:** Documentó la descripción y análisis de los competidores, presentando de manera objetiva sus principales características y su relación con la propuesta del proyecto.<br><br>**Rivera Ratachi, Renzo Sebastián – TB1:** Documentó las User Personas y el Empathy Mapping, estructurando las características, necesidades y comportamientos de los usuarios considerados en la solución. | Durante la TB1, el equipo logró comunicar por escrito los resultados obtenidos en las diferentes actividades del proyecto, utilizando artefactos de negocio, UX y arquitectura que permitieron organizar la información de forma clara, objetiva y coherente para diferentes tipos de lectores. |
 
 </div>
 <div style="break-after: page;"></div>
@@ -1113,3 +1101,14 @@ Expone el ecosistema completo donde nuestro sistema interactúa con múltiples s
 ### 4.3.3. Software Architecture Container Level Diagrams
 
 ### 4.3.4. Software Architecture Deployment Diagrams
+
+
+# Conclusiones
+
+# Bibliografía
+
++ Azizi, S., Nair, G., Rabiee, R., & Olofsson, T. (2020). Application of Internet of Things in academic buildings for space use efficiency using occupancy and booking data. Building and Environment, 186, 107355. https://doi.org/10.1016/j.buildenv.2020.107355
+
++ Rashid, A. M. (2024). Smart campus: A review on smart attendance systems as an efficient approach. Journal of Engineering & Technological Advances, 8(2), 16–24. https://doi.org/10.35934/segi.v8i2.85
+
++ Sutjarittham, T., Habibi Gharakheili, H., Kanhere, S. S., & Sivaraman, V. (2019). Experiences with IoT and AI in a smart campus for optimizing classroom usage. IEEE Internet of Things Journal, 6(5), 7595–7607. https://doi.org/10.1109/JIOT.2019.2902410
