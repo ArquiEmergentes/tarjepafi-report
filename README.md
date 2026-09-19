@@ -770,7 +770,7 @@ Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego
   </tr>
   <tr>
     <td colspan="2"><br>
-      <img src="captura-entrevista-carlos.png" alt="segmento1entrevista2" width="1000"><br>
+      <img src="assets/images/entrevistas/captura-entrevista-carlos.png" alt="segmento1entrevista2" width="1000"><br>
     </td>
   </tr>
 </table>
