@@ -57,8 +57,8 @@ Integrantes
       <td style="border: none; padding: 4px;"> Via Luna, Bruce</td>
     </tr>
     <tr>
-      <td style="border: none; padding: 4px; font-weight: bold;"></td>
-      <td style="border: none; padding: 4px;"></td>
+      <td style="border: none; padding: 4px; font-weight: bold;">U20231a500</td>
+      <td style="border: none; padding: 4px;">Palomino Fiestas, Erick Leonardo</td>
     </tr>
     <tr>
       <td style="border: none; padding: 4px; font-weight: bold;"></td>
@@ -86,9 +86,19 @@ Integrantes
 
 # Registro de Versiones
 
+
 | **Versión** | **Fecha** | **Autor(es)** | **Descripción de modificación** |
-|-------------|------------|----------------|---------------------------------|
-| 0.1 |  |    |  |
+|-------------|-----------|---------------|---------------------------------|
+| 0.1 | 01/09/2026 | Gonzales Alvarado, Javier Sebastian | Creación inicial del documento e incorporación del Capítulo I: Startup Profile, descripción de la startup, antecedentes y problemática de la solución. |
+| 0.2 | 03/09/2026 | Palomino Fiestas, Erick Leonardo | Incorporación del Solution Profile, Lean UX Process, Lean UX Problem Statements, Lean UX Assumptions, Lean UX Hypothesis Statements y Lean UX Canvas. |
+| 0.3 | 05/09/2026 | Velarde Luyo, Piero Alberto | Incorporación del Capítulo II: análisis de competidores, análisis competitivo, estrategias y tácticas frente a competidores y diseño de entrevistas. |
+| 0.4 | 07/09/2026 | Rivera Ratachi, Renzo Sebastián | Incorporación del Needfinding mediante User Personas, User Task Matrix, Empathy Mapping y As-is Scenario Mapping. |
+| 0.5 | 09/09/2026 | Via Luna, Bruce | Incorporación del Capítulo III: To-Be Scenario Mapping, User Stories e Impact Mapping. |
+| 0.6 | 11/09/2026 | Palomino Fiestas, Erick Leonardo | Incorporación del Product Backlog y desarrollo del Strategic-Level Attribute-Driven Design, incluyendo Design Purpose, Quality Attribute Scenarios y Constraints. |
+| 0.7 | 13/09/2026 | Via Luna, Bruce | Incorporación del Architectural Drivers Backlog, Architectural Design Decisions y Quality Attribute Scenario Refinements. |
+| 0.8 | 15/09/2026 | Gonzales Alvarado, Javier Sebastian | Desarrollo del Strategic-Level Domain-Driven Design mediante EventStorming, Candidate Context Discovery y Bounded Context Canvases. |
+| 0.9 | 17/09/2026 | Rivera Ratachi, Renzo Sebastián | Incorporación del Domain Message Flows Modeling y revisión de los artefactos relacionados con el diseño estratégico del dominio. |
+| 1.0 | 19/09/2026 | Velarde Luyo, Piero Alberto | Incorporación del Context Mapping y diagramas de Software Architecture. Revisión, integración y consolidación final del documento correspondiente a la TB1. |
 
 <div style="break-after: page;"></div>
 
@@ -174,32 +184,10 @@ Criterio: : Capacidad de comunicarse efectivamente con un rango de audiencias.
 
 <div align="center">
 
-<table>
-    <thead>
-        <tr>
-            <th>Criterio específico</th>
-            <th>Acciones realizadas</th>
-            <th>Conclusiones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.</td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td>Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.
-</td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-    </tbody>
-</table>
+| Criterio específico | Acciones realizadas | Conclusiones |
+|---|---|---|
+| **Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.** | **Gonzales Alvarado, Javier Sebastian – TB1:** Expuso y explicó la propuesta de arquitectura del sistema, comunicando la organización de los Bounded Contexts y sus relaciones mediante el Context Mapping y System Landscape Diagram.<br><br>**Via Luna, Bruce – TB1:** Expuso la definición de los Bounded Contexts y explicó la interacción entre ellos mediante el Domain Message Flow Diagram.<br><br>**Palomino Fiestas, Erick Leonardo – TB1:** Expuso las principales decisiones de diseño arquitectónico y explicó su relación con los Architectural Drivers identificados para la solución.<br><br>**Velarde Luyo, Piero Alberto – TB1:** Expuso el análisis de los competidores y explicó las estrategias y tácticas planteadas para diferenciar la solución frente a otras alternativas del mercado.<br><br>**Rivera Ratachi, Renzo Sebastián – TB1:** Expuso los principales escenarios de calidad identificados para el sistema, explicando su importancia dentro del diseño de la solución. | Durante la TB1, el equipo comunicó oralmente los principales resultados del análisis y diseño de la solución, explicando aspectos de negocio, experiencia de usuario y arquitectura de software mediante conceptos y recursos visuales que facilitaron la comprensión de las decisiones tomadas durante el proyecto. |
+| **Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.** | **Gonzales Alvarado, Javier Sebastian – TB1:** Documentó los antecedentes y la problemática del proyecto, describiendo de manera estructurada la situación que da origen a la solución propuesta.<br><br>**Via Luna, Bruce – TB1:** Documentó las User Stories del producto, expresando las necesidades funcionales de los usuarios de manera estructurada y comprensible.<br><br>**Palomino Fiestas, Erick Leonardo – TB1:** Documentó el Lean UX Process, organizando los supuestos y elementos necesarios para definir y validar la propuesta de solución.<br><br>**Velarde Luyo, Piero Alberto – TB1:** Documentó la descripción y análisis de los competidores, presentando de manera objetiva sus principales características y su relación con la propuesta del proyecto.<br><br>**Rivera Ratachi, Renzo Sebastián – TB1:** Documentó las User Personas y el Empathy Mapping, estructurando las características, necesidades y comportamientos de los usuarios considerados en la solución. | Durante la TB1, el equipo logró comunicar por escrito los resultados obtenidos en las diferentes actividades del proyecto, utilizando artefactos de negocio, UX y arquitectura que permitieron organizar la información de forma clara, objetiva y coherente para diferentes tipos de lectores. |
 
 </div>
 <div style="break-after: page;"></div>
@@ -235,6 +223,7 @@ Promovemos la innovación tecnológica como medio para mejorar la experiencia un
 | Javier Sebastian Gonzales Alvarado | u20231296 | Mi nombre es Javier Gonzales, soy estudiante de Ingeniería de Software de séptimo ciclo. Tengo conocimientos en diversos lenguajes de programación como C++, Python y JavaScript, entre otros. Además, he desarrollado proyectos de software utilizando distintos frameworks como Angular y Vue. Me considero una persona responsable, empática y analítica. Mi objetivo personal es desarrollar soluciones tecnológicas que contribuyan a mejorar la calidad de vida de las personas y aportar a la construcción de un mundo más innovador y conectado. |![Foto](assets/fotoGonzales.jpeg)|
 | Renzo Sebastian Rivera Ratachi | u20231d974 | Soy Renzo Sebastian Rivera Ratachi y soy estudiante de la carrera de Ingeniería de Software. Actualmente estoy cursando el 7mo ciclo de mi carrera y tengo conocimientos intermedios de JavaScript y C++. Me considero una persona responsable y puntual.  |![Foto](assets/fotorenzo.jpg)|
 | Bruce Via Luna | U202313403 | Soy Bruce Via Luna, estudiante de la carrera de ingeniería de Software en la UPC. Actualmente cuento con conocimientos en C#, C++ e interés en la gestión de información de bases de datos. Me considero una persona altamente responsable y dedicada a los proyectos con los que me comprometo.  |![Foto](assets/fotobruce.jpeg)|
+| Erick Leonardo Palomino Fiestas| U20231a500 | Hola, soy Erick Leonardo Palomino Fiestas, un estudiante entusiasta de séptimo ciclo en Ingeniería de Software. Mi conjunto de habilidades técnicas incluye C++, HTML, CSS, .NET, Python, fundamentos de JavaScript y experiencia con bases de datos SQL y MongoDB. Me considero una persona responsable, con sólidas habilidades de comunicación para trabajar en equipo y una perspectiva optimista. También tengo un nivel básico de inglés.  |![Foto](assets/foroerick.png)|
 
 ## 1.2. Solution Profile
 
@@ -714,7 +703,46 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
   </tr>
 </table>
 
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 3</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Estefano Solís Campos</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>Pueblo Libre</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>0:56-6:49</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://youtu.be/kY0LlmRpvzc`
 
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Estefano Solís Campos, estudiante de 21 años que reside en el distrito de Pueblo Libre, comenta que el proceso actual de ingreso mediante la aplicación móvil suele presentar inconvenientes cuando falla la conexión a internet, la autenticación de la red del campus o la batería del celular, lo que llega a generar demoras en la entrada. La solución planteada mediante una tarjeta inteligente le parece favorable por ser un método más directo y libre de la dependencia de conectividad externa, aunque señala como desventaja el riesgo de extravío u olvido. Para preferir este sistema, precisa que los lectores deben funcionar de manera rápida y al primer intento (con esperas que no superen los 2 o 3 minutos), destacando la conveniencia de mantener el teléfono como respaldo y de integrar consultas en tiempo real sobre el límite de inasistencias y la disponibilidad real de cubículos.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/images/entrevistas/captura-entrevista-estefano.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
+    </td>
+  </tr>
+</table>
 
 ### 2.2.3. Análisis de entrevistas.
 
@@ -954,6 +982,38 @@ Una vez concluidas las épicas, ahora podemos proceder a encapsular las múltipl
 
 ## 3.4. Product Backlog.
 
+| # Orden | User Story Id | Título | Descripción | Story Points (1/2/3/5/8) |
+| :---: | :--- | :--- | :--- | :---: |
+| **1** | **US26** | Visualización de Funcionalidades | Como visitante de la web, quiero ver una sección clara con las funcionalidades principales de TarjePafi en la Landing Page, para entender rápidamente qué ofrece el producto antes de adquirirlo. | 2 |
+| **2** | **US27** | Acceso a Contacto y Soporte | Como usuario interesado, quiero tener un botón de contacto visible en la Landing Page, para poder enviar mis dudas al equipo de TarjePafi de manera rápida. | 2 |
+| **3** | **US01** | Registro de Asistencia Estudiantil | Como estudiante, quiero poder pasar mi tarjeta por un lector al entrar al salón de clases, para que mi asistencia sea registrada automáticamente. | 5 |
+| **4** | **US02** | Confirmación de Asistencia | Como estudiante, quiero que el lector muestre un mensaje de "Asistencia tomada" en la pantalla, para que sepa que mi asistencia ha sido registrada. | 2 |
+| **5** | **US16** | Registro de Asistencia Docente | Como profesor, quiero que la tarjeta registre automáticamente la asistencia de los estudiantes al pasarla por el lector, para ahorrar tiempo en el proceso de toma de asistencia. | 5 |
+| **6** | **US18** | Confirmación de Registro de Asistencia Docente | Como profesor, quiero que el sistema muestre un mensaje que confirme que mi asistencia ha sido registrada, para tener la seguridad de que el proceso se ha completado. | 2 |
+| **7** | **US22** | Registro de Llegada a Clases | Como profesor, quiero que, al pasar mi tarjeta por el lector al inicio de la clase, se registre automáticamente mi llegada, para llevar un control de mis horas de trabajo. | 3 |
+| **8** | **US25** | Registro de Curso y Materia | Como profesor, quiero que, al escanear mi tarjeta, se registre automáticamente el nombre del curso y la materia que imparto, para llevar un control más detallado. | 3 |
+| **9** | **US03** | Reserva y Activación de Espacios de Estudio | Como estudiante, quiero usar mi tarjeta para acceder a mis reservas para usarlas y confirmar mi presencia física en el cubículo. | 5 |
+| **10** | **US06** | Acceso Multicentro con la Tarjeta | Como estudiante, quiero que la tarjeta funcione en múltiples puntos de acceso, como bibliotecas y laboratorios, para facilitar mi acceso a los recursos. | 3 |
+| **11** | **US19** | Visualización de Horas Acumuladas en Espacios | Como administrador, quiero ver qué tantas horas se usan diferentes espacios, para poder revisar y gestionar mejor los recursos. | 3 |
+| **12** | **US23** | Registro de Duración de Clases | Como profesor, quiero que, al pasar la tarjeta por el lector al inicio y fin, se registre automáticamente la duración de la clase, para tener un control más preciso sobre el tiempo de enseñanza. | 3 |
+| **13** | **US20** | Historial de Asistencia Docente | Como profesor, quiero que se registre la hora y fecha exacta en que escaneo mi tarjeta, para tener un historial preciso de mi asistencia. | 3 |
+| **14** | **US17** | Registro de Horas de Trabajo del Personal | Como trabajador, quiero que al finalizar la jornada, al pasar de nuevo mi tarjeta por el lector, se registre mi salida, para tener un registro completo de mis horas trabajadas. | 3 |
+| **15** | **US21** | Registro de Asistencia en Reuniones | Como profesor, quiero que mi tarjeta me permita marcar mi asistencia a reuniones o capacitaciones, para llevar un control integral de mi tiempo. | 2 |
+| **16** | **US24** | Control Visual de Entrada y Salida | Como profesor, quiero que la plataforma muestre una foto cuando un estudiante registra su asistencia en la clase, para llevar un registro claro de su presencia. | 3 |
+| **17** | **US07** | Participación en Eventos Universitarios | Como estudiante, quiero que la tarjeta me permita acceder a eventos universitarios, para participar en actividades extracurriculares. | 3 |
+| **18** | **US08** | Identificación Estudiantil | Como estudiante, quiero que la tarjeta funcione como una forma de identificación, para ser reconocido fácilmente por el personal académico. | 2 |
+| **19** | **US04** | Visualización de Reportes Administrativos | Como personal administrativo, quiero que la página muestre reportes administrativos con la información recolectada para administrar y tener datos útiles de afluencia. | 5 |
+| **20** | **US11** | Vinculación a Base de Datos | Como administrador, quiero que la tarjeta esté vinculada a la base de datos de estudiantes, para poder gestionar fácilmente su estado. | 3 |
+| **21** | **US14** | Personalización de Permisos de Acceso | Como administrador, quiero poder personalizar los permisos de acceso de cada tarjeta según el rol, para mantener un control adecuado de ambientes. | 3 |
+| **22** | **US12** | Control de Acceso en Áreas Restringidas | Como administrador, quiero que la tarjeta proporcione un mensaje en el lector cuando un estudiante accede a un área restringida, para garantizar que solo los autorizados ingresen. | 3 |
+| **23** | **US10** | Baja de Tarjeta para Estudiantes Retirados | Como administrador, quiero poder dar de baja una tarjeta de un estudiante que se ha retirado de la universidad, para asegurar que ya no tenga acceso a los servicios. | 2 |
+| **24** | **US13** | Reactivación de Tarjetas | Como administrador, quiero tener la opción de reactivar una tarjeta si un estudiante vuelve a inscribirse, para facilitar su regreso. | 2 |
+| **25** | **US15** | Desactivación Automática de Tarjetas | Como administrador, quiero que las tarjetas se desactiven automáticamente si un estudiante no completa su matrícula a tiempo, para mantener la seguridad. | 5 |
+| **26** | **US05** | Diseño Atractivo de la Tarjeta | Como estudiante, quiero que la tarjeta tenga un diseño atractivo y fácil de identificar, para que me sienta orgulloso de usarla. | 1 |
+| **27** | **US09** | Durabilidad y Calidad Física de la Tarjeta | Como estudiante, quiero que la tarjeta esté diseñada para ser resistente al desgaste, para que pueda usarla durante todo el año académico sin problemas. | 1 |
+
+
+
 # Capítulo 4: Strategic-Level Software Design
 
 ## 4.1. Strategic-Level Attribute-Driven Design
@@ -1008,11 +1068,143 @@ Estas historias fueron seleccionadas porque representan los requisitos con mayor
 
 #### 4.1.2.3. Constraints
 
+Las restricciones del sistema representan directrices técnicas, organizacionales, normativas y de negocio de carácter no negociable impuestas por el entorno operativo universitario y los requerimientos arquitectónicos del proyecto. Para TarjePAFI, estas limitaciones delimitan el alcance tecnológico de la solución: establecen la exclusividad de una plataforma web responsive desarrollada sobre Angular, el despliegue centralizado en Microsoft Azure, la persistencia transaccional en PostgreSQL, el desacoplamiento asíncrono de lecturas IoT vía RabbitMQ, la integración de servicios de correo para la gestión de espacios y el cumplimiento estricto del marco legal peruano de protección de datos personales.
+
+| Technical Story ID | Título | Descripción | Criterios de Aceptación | Relacionado con (Epic ID) |
+| :--- | :--- | :--- | :--- | :--- |
+| **TS-CON01** | Restricción de Backend y Despliegue Cloud | Como desarrollador, debo implementar la arquitectura de servicios backend en Java con el framework Spring Boot y desplegarla en Microsoft Azure para cumplir con la infraestructura cloud establecida. | **Escenario:** Validación del servicio backend en Microsoft Azure.<br>**Dado que** los módulos de la aplicación están construidos en Java con Spring Boot,<br>**Cuando** se efectúa el despliegue hacia Azure App Services,<br>**Entonces** los endpoints de la API quedan operativos bajo HTTPS respondiendo con códigos de estado HTTP estándar. | **EP05** |
+| **TS-CON02** | Restricción de Frontend Web y Backend| Como desarrollador, debo desarrollar la aplicación web administrativa en Angular y Spring Boot, asegurando su correcto funcionamiento y comunicación. | **Escenario:** Correcto funcionamiento.<br>**Dado que** la plataforma web está construida sobre Angular y Spring Boot,<br>**Cuando** el usuario administrativo accede a la aplicación desde su navegador,<br>**Entonces** la interfaz se debe funcionar correctamente sin errores. | **EP05** |
+| **TS-CON03** | Restricción de Landing Page, Accesibilidad e i18n | Como desarrollador, debo implementar la Landing Page del producto utilizando HTML5, CSS3 y JavaScript, soportando internacionalización y pautas de accesibilidad. | **Escenario:** Soporte multiidioma y accesibilidad.<br>**Dado que** un visitante ingresa al Landing Page,<br>**Cuando** consulta el sitio web institucional,<br>**Entonces** el contenido se presenta en inglés (`en_US`) por defecto con alternancia a español latinoamericano (`es_419`)| **EP01** |
+| **TS-CON04** | Restricción de Persistencia en Base de Datos Relacional | Como desarrollador, debo utilizar PostgreSQL alojado en Microsoft Azure como motor de base de datos relacional para garantizar la integridad transaccional de los datos | **Escenario:** Consistencia en operaciones transaccionales.<br>**Dado que** se registran marcas de asistencia académica y validaciones de cubículos,<br>**Cuando** se ejecutan las transacciones de persistencia en la base de datos PostgreSQL,<br>**Entonces** la base de datos asegura la integridad de los registros. | **EP05** |
+| **TS-CON05** | Restricción de Autenticación y Cifrado | Como desarrollador, debo implementar autenticación basada en tokens JWT para correos administrativos | **Escenario:** Autenticación administrativa con JWT.<br>**Dado que** un usuario administrativo envía sus credenciales institucionales válidas,<br>**Cuando** el servidor procesa la autenticación,<br>**Entonces** retorna un token JWT. | **EP02** |
+| **TS-CON06** | Restricción de Tolerancia a Fallos en Hardware IoT | Como desarrollador de hardware, debo implementar un buffer de almacenamiento local en los lectores ESP32 para retener lecturas NFC ante cortes de red. | **Escenario:** Lectura offline por pérdida de conectividad.<br>**Dado que** un lector ESP32 detecta una tarjeta NFC y no tiene conexión de red con el servidor,<br>**Cuando** se realiza la lectura física en el aula o cubículo,<br>**Entonces** el dispositivo almacena la lectura en su memoria local temporal y la envía automáticamente en cuanto la red se restablece. | **EP03** |
+| **TS-CON07** | Restricción de Notificación Externa por Cancelación | Como desarrollador, debo integrar un servicio externo de correo electrónico para notificar automáticamente la liberación de espacios de estudio no ocupados. | **Escenario:** Cancelación automática a los 10 minutos.<br>**Dado que** un estudiante reservó un cubículo y transcurren 10 minutos sin registrar su tarjeta en la mesa,<br>**Cuando** el job del sistema cancela la reserva y libera el espacio,<br>**Entonces** se despacha un correo electrónico de notificación al estudiante mediante la API del servicio de mensajería externo. | **EP04** |
+| **TS-CON08** | Restricción de Cumplimiento Legal y Privacidad | Como desarrollador, debo asegurar que la recolección y tratamiento de marcas de identidad cumpla con la Ley N° 29733 (Ley de Protección de Datos Personales del Perú). | **Escenario:** Protección de datos personales de la comunidad universitaria.<br>**Dado que** el sistema procesa datos de asistencia, accesos e identidad de estudiantes y docentes,<br>**Cuando** la información es almacenada y consultada,<br>**Entonces** se restringe el acceso a personal no autorizado y se prohíbe la exposición de datos sensibles sin consentimiento explícito. | **EP02** |
+| **TS-CON09** | Restricción de Desacoplamiento con Broker de Mensajería | Como desarrollador, debo utilizar RabbitMQ como message broker para desacoplar el procesamiento de lecturas masivas entre los dispositivos IoT y el backend. | **Escenario:** Procesamiento asíncrono de lecturas concurrentes.<br>**Dado que** múltiples lectores NFC transmiten eventos de lectura de forma simultánea,<br>**Cuando** los mensajes llegan al broker RabbitMQ,<br>**Entonces** los eventos quedan encolados para su consumo controlado por los servicios backend sin saturar la base de datos. | **EP03** |
+
 ### 4.1.3. Architectural Drivers Backlog
+
+El Architectural Drivers Backlog de TarjePAFI es el resultado de un proceso iterativo de análisis arquitectónico fundamentado en la metodología del Quality Attribute Workshop (QAW). Durante esta reunión, el equipo de trabajo expuso las metas estratégicas de digitalización del campus universitario, la erradicación de cuellos de botella en la toma de asistencia y la eliminación del acaparamiento en las áreas de estudio. Paralelamente, se analizaron las implicancias técnicas asociadas a la absorción de picos de carga en el inicio de clases, la tolerancia a fallos ante caídas de conectividad y la persistencia confiable de datos sobre Microsoft Azure.
+
+A través de sesiones de lluvia de ideas y matrices de priorización participativa, el equipo consolidó los tres pilares del diseño arquitectónico: los Functional Drivers, los Quality Attribute Drivers y los Constraints técnicos y regulatorios impuestos por el entorno académico y legal. La priorización se estableció cruzando la importancia para los stakeholders institucionales con el nivel de impacto en la complejidad técnica de la solución, ubicando en la parte superior aquellos requerimientos de alta criticidad funcional y alto desafío de implementación.
+
+| Driver ID | Título de Driver | Descripción | Importancia para Stakeholders | Impacto en Architecture Technical Complexity |
+| :--- | :--- | :--- | :--- | :--- |
+| **AD01** | Ingesta masiva y procesamiento concurrente de eventos NFC | La arquitectura debe recibir datos masivos de lecturas generadas simultáneamente al inicio de los bloques horarios de clases, procesando al menos 200 lecturas por minuto sin empeorar el servicio ni generar pérdidas de eventos de asistencia o acceso. | High | High |
+| **AD02** | Tolerancia a fallos y almacenamiento offline en hardware IoT | Los lectores ESP32 deben contar con un mecanismo de almacenamiento temporal local para retener lecturas NFC ante caídas de la red WiFi del campus, sincronizando automáticamente los datos con el servidor en cuanto la conectividad se restablece. | High | High |
+| **AD03** | Gestión y liberación dinámica de espacios de estudio | El sistema debe verificar la presencia física de los estudiantes en las mesas de cubículos y ejecutar un proceso automatizado que libere el espacio si no se registra la credencial dentro de los primeros 10 minutos de la reserva. | High | High |
+| **AD04** | Registro y confirmación de asistencia en tiempo casi real | La solución debe registrar la marca de presencia académica y confirmar el estado visual al usuario en un tiempo inferior o igual a 1 segundo desde que la tarjeta hace contacto con el lector físico. | High | High |
+| **AD05** | Desacoplamiento asíncrono mediante message broker | La ingesta de datos entre los lectores IoT físicos y los servicios del backend debe realizarse mediante RabbitMQ, garantizando que el flujo de mensajes quede encolado y protegido contra caídas o saturación transaccional de la base de datos. | High | High |
+| **AD06** | Alta disponibilidad operativa del ecosistema de campus | Los servicios centrales de control de acceso, asistencia y validación deben mantener una disponibilidad mínima mensual del 99%, asegurando operatividad continua durante toda la jornada académica universitaria. | High | High |
+| **AD07** | Escalabilidad horizontal de puntos de lectura | La infraestructura backend y el sistema de colas deben permitir el crecimiento progresivo de nuevos puntos de lectura (aulas, laboratorios, cubículos e ingresos) sin requerir rediseños estructurales ni impactar la latencia. | High | High |
+| **AD08** | Control de accesos físicos y bloqueo de credenciales no autorizadas | El sistema debe validar de manera instantánea la legitimidad de cada credencial física en torniquetes y puertas restringidas, denegando el acceso y registrando el evento en el 100% de los intentos con tarjetas dadas de baja. | High | Medium |
+| **AD09** | Seguridad, autenticación stateless y protección de endpoints | El acceso a los recursos y APIs de gestión debe estar regulado mediante tokens JWT firmados, asegurando que cada petición verifique permisos administrativos válidos y viaje bajo canales seguros cifrados con TLS. | High | Medium |
+| **AD10** | Integridad transaccional y persistencia relacional | El almacenamiento de asistencias, historial de accesos y estado de reservas debe garantizar propiedades ACID y consistencia referencial mediante PostgreSQL sobre Microsoft Azure. | High | Medium |
+| **AD11** | Notificación externa automática ante cancelaciones | La solución debe integrarse con un servicio externo de mensajería electrónica para despachar notificaciones inmediatas por correo al estudiante cuando su reserva es cancelada por inasistencia. | High | Medium |
+| **AD12** | Centralización analítica y métricas de afluencia del campus | La plataforma debe procesar los eventos de lectura para generar reportes y tableros con métricas históricas de afluencia, apoyando la toma de decisiones sobre asignación de infraestructura y personal operativo. | High | Medium |
+| **AD13** | Confiabilidad y prevención de registros duplicados | El backend debe implementar validaciones de idempotencia sobre los eventos de lectura consumidos de la cola, garantizando 0 registros duplicados de asistencia ante reintentos de red o múltiples pasadas de tarjeta. | High | Medium |
+| **AD14** | Cumplimiento legal de protección de datos personales | El almacenamiento y tratamiento de marcas de identidad, horarios y ubicación física debe regirse de forma obligatoria por la Ley N° 29733 (Ley de Protección de Datos Personales del Perú) y su reglamento. | High | Medium |
+| **AD15** | Despliegue sobre infraestructura Cloud en Microsoft Azure | El backend desarrollado en Spring Boot, el message broker y la base de datos relacional deben estar alojados y orquestados sobre servicios gestionados en Microsoft Azure. | High | Medium |
+| **AD16** | Compatibilidad multiplataforma en navegadores modernos | La aplicación web debe ofrecer una visualización y rendimiento homogéneo en los navegadores web modernos de mayor difusión (Google Chrome, Microsoft Edge, Mozilla Firefox y Safari). | Medium | Low |
+| **AD17** | Landing Page accesible y con soporte de internacionalización | El portal informativo institucional debe desarrollarse en HTML5, CSS3 y JavaScript vanilla, incorporando soporte de internacionalización y accesibilidad web. | Medium | Low |
+
+Sustento de Priorización del Backlog
+
+**Concurrencia, asincronía y desacoplamiento:** Reciben la máxima prioridad arquitectónica debido a la naturaleza física del campus universitario. En las horas punta de cambio de clase (por ejemplo, a las 7:00 a. m. o 1:00 p. m.), cientos de estudiantes interactúan con los lectores de forma casi simultánea. El uso de RabbitMQ como intermediario y el buffer offline en los ESP32 evitan que caídas temporales de red provoquen pérdidas de datos o cuellos de botella en la base de datos.
+
+**Liberación de espacios y tiempo casi real:** Representan el valor diferencial del negocio frente a los métodos convencionales. La validación inmediata en aula evita la pérdida de minutos lectivos para el docente, mientras que el monitoreo activo con liberación automática a los 10 minutos soluciona directamente el problema recurrente de cubículos reservados pero desocupados.
+
+**Seguridad, legalidad y base relacional:** Garantizan la viabilidad operativa y regulatoria del sistema dentro de la universidad. La implementación de tokens JWT, transacciones ACID en PostgreSQL y la adhesión estricta a la Ley N° 29733 salvaguardan la privacidad de los datos personales de la comunidad estudiantil.
 
 ### 4.1.4. Architectural Design Decisions
 
+### 4.1.4. Architectural Design Decisions
+
+En esta sección se detalla el proceso sistemático aplicado por el equipo de TarjePAFI para evaluar, descartar y seleccionar las tácticas y patrones arquitectónicos que dan soporte a los requerimientos del sistema. La toma de decisiones siguió las fases del *Quality Attribute Workshop* (QAW), analizando en cada iteración los *Architectural Drivers* priorizados, debatiendo alternativas tecnológicas y contrastando ventajas frente a desventajas técnicas para evitar la sobreingeniería en las etapas iniciales del proyecto.
+
+Para cada decisión arquitectónica clave, se formuló una matriz de evaluación (*Candidate Pattern Evaluation Matrix*) en la que se contrastan tres patrones candidatos representativos, documentando sus respectivos pros y contras hasta justificar el patrón seleccionado.
+
+#### Candidate Pattern Evaluation Matrix
+
+| Driver ID | Título de Driver | Patrón 1 (Elegido) | Patrón 2 | Patrón 3 |
+| :--- | :--- | :--- | :--- | :--- |
+| **D01** | **Comunicación e Ingesta de Eventos IoT** | **Message Broker Asíncrono (RabbitMQ)**<br><br>**Pro:** Desacopla por completo la captura en hardware del procesamiento backend; absorbe ráfagas masivas de concurrencia al inicio de clases mediante colas de retención y garantiza tolerancia a fallos si la base de datos o el backend sufren saturación temporal.<br><br>**Contra:** Incorpora un componente adicional de infraestructura que requiere configuración, monitoreo y consumo de recursos en la nube. | **Comunicación Síncrona Punto a Punto (REST API Directa)**<br><br>**Pro:** Implementación simple y directa; bajo costo cognitivo para pruebas unitarias y monitoreo inicial mediante herramientas como Postman.<br><br>**Contra:** Alto acoplamiento temporal; si el servicio backend o la base de datos se saturan durante el pico de asistencia, las peticiones HTTP fallan por timeout, bloqueando las lecturas en los lectores físicos ESP32. | **Conexiones Persistentes Bidireccionales (WebSockets)**<br><br>**Pro:** Establece canales de comunicación bidireccionales continuos y de baja latencia entre clientes y servidor.<br><br>**Contra:** Demanda un consumo excesivo de memoria y sockets de red abiertos en los microcontroladores ESP32, requiriendo mecanismos complejos de reconexión ante fluctuaciones de la red WiFi del campus. |
+| **D02** | **Gestión de Identidades y Autenticación (IAM)** | **Autenticación con Tokens JWT (Spring Security)**<br><br>**Pro:** La validación criptográfica de identidad y roles administrativos se realiza en memoria sin consultar la base de datos en cada petición HTTP.<br><br>**Contra:** La invalidación inmediata de un token puede hacer más lento el ingreso por la generacion del token y revision de la autenticidad del mismo. | **Servidor de Identidad Completo (OAuth 2.0 / Keycloak)**<br><br>**Pro:** Estándar robusto de la industria; delega la seguridad, ciclo de vida de credenciales y auditoría de accesos a una solución empresarial consolidada.<br><br>**Contra:** Curva de aprendizaje empinada y sobreingeniería operativa para un sistema cuyo alcance de autenticación se restringe a personal administrativo de la universidad. | **Sesiones Tradicionales con Estado en Base de Datos**<br><br>**Pro:** Control centralizado absoluto; revocar o cerrar la sesión de un usuario administrativo es tan directo como eliminar el registro correspondiente en la tabla de sesiones.<br><br>**Contra:** Genera consultas constantes a la base de datos relacional por cada solicitud HTTP, limitando el rendimiento y la concurrencia en horas pico. |
+| **D03** | **Persistencia de Dominio y Trazabilidad del Campus** | **Base de Datos Relacional SQL (PostgreSQL en Azure)**<br><br>**Pro:** Garantiza consistencia estricta e integridad transaccional mediante soporte ACID; el uso de restricciones y llaves foráneas previene la duplicación de asistencias y el acaparamiento simultáneo de un mismo cubículo.<br><br>**Contra:** Esquemas de datos estructurados y rígidos que demandan migraciones de base de datos. | **Base de Datos Documental NoSQL (MongoDB / Azure Cosmos DB)**<br><br>**Pro:** Alta flexibilidad de esquemas; ideal para almacenar payloads variables de telemetría de dispositivos IoT y lecturas desestructuradas.<br><br>**Contra:** Dificultad para garantizar transacciones ACID distribuidas entre usuarios, matrículas y reservas de ambientes, aumentando el riesgo de inconsistencia de datos. | **Event Sourcing Puro**<br><br>**Pro:** Mantiene un registro inmutable de todos los eventos ocurridos en el campus (tarjeta leída, acceso concedido, cubículo liberado), permitiendo auditoría temporal perfecta.<br><br>**Contra:** Introduce una elevada complejidad de diseño del backend y es una forma de programar con dificultad elevada.|
+| **D04** | **Estrategia de Despliegue e Infraestructura Cloud** | **Contenedores Docker en Plataforma PaaS (Azure App Services)**<br><br>**Pro:** Despliegue automatizado, empaquetado hermético de componentes (Spring Boot, Angular y RabbitMQ) y escalabilidad gestionada por el proveedor sin requerir administración manual de servidores.<br><br>**Contra:** Menor control sobre la infraestructura profunda de red y costos operativos sujetos al tier de servicio configurado. | **Orquestación con Kubernetes (Azure Kubernetes Service - AKS)**<br><br>**Pro:** Máximo control, resiliencia y autoescalado elástico a nivel de contenedores individuales ante variaciones drásticas de demanda.<br><br>**Contra:** Complejidad operativa excesiva para la fase del proyecto; demanda configuración de clústeres, ingress controllers y mantenimiento DevOps especializado. | **Máquina Virtual Única IaaS (Azure Virtual Machine)**<br><br>**Pro:** Entorno sencillo y predecible; aprovisionamiento rápido mediante Docker Compose sobre una única instancia de bajo costo.<br><br>**Contra:** Cualquier saturación o reinicio de la máquina virtual interrumpe la totalidad de los servicios del campus. |
+
 ### 4.1.5. Quality Attribute Scenario Refinements
+
+### 4.1.5. Quality Attribute Scenario Refinements
+
+A partir de los resultados obtenidos en el *Quality Attribute Workshop* (QAW) y la priorización del *Architectural Drivers Backlog*, el equipo seleccionó los cuatro escenarios con mayor impacto en el diseño estructural, la resiliencia operativa y la viabilidad del modelo de negocio de TarjePAFI. A continuación, se presenta la especificación detallada de cada escenario refinado, profundizando en los estímulos, entornos, medidas de respuesta cuantificables, interrogantes técnicas y riesgos identificados.
+
+#### Scenario Refinement for Scenario 1: Ingesta masiva y concurrente de lecturas NFC al inicio de clases
+
+| Elemento | Descripción |
+| :--- | :--- |
+| **Scenario(s)** | Cientos de estudiantes y docentes aproximan simultáneamente sus credenciales físicas NFC a los lectores ubicados en aulas e ingresos al comenzar los bloques horarios principales (e.g., 7:00 a. m.), y el sistema debe recibir, encolar en RabbitMQ y procesar las marcas de asistencia sin degradar el servicio ni perder lecturas. |
+| **Business Goals** | Garantizar el registro de asistencia en aula en tiempo casi real, erradicando el pase de lista manual, devolviendo minutos lectivos al docente y evitando congestionamiento en las puertas de acceso. |
+| **Relevant Quality Attributes** | Rendimiento (Performance), Escalabilidad (Scalability). |
+| **Stimulus** | Ráfaga masiva y simultánea de eventos de lectura de tarjetas NFC generados en múltiples puntos de interacción física del campus. |
+| **Stimulus Source** | Lectores IoT (módulos ESP32 con lector MFRC522) desplegados en aulas, laboratorios e ingresos principales. |
+| **Environment** | Operación en hora pico bajo condiciones de alta carga de red concurrente en las instalaciones universitarias. |
+| **Artifact (if Known)** | Lectores ESP32, Broker de mensajería RabbitMQ, Consumidores asíncronos en Spring Boot y Base de Datos PostgreSQL en Azure. |
+| **Response** | Los dispositivos IoT publican de manera no bloqueante los eventos hacia la cola de RabbitMQ; el backend consume los mensajes a un ritmo controlado, valida la matrícula y persiste la asistencia en la base de datos sin generar contención. |
+| **Response Measure** | Procesamiento de al menos 200 lecturas por minuto, confirmación visual de lectura en < 1 segundo y 0% de mensajes perdidos o descartados por sobrecarga. |
+| **Questions** | ¿Cuántas instancias consumidoras y conexiones concurrentes deben configurarse en Spring Boot para mantener la cola vacía sin sobrepasar el pool de conexiones de PostgreSQL en Azure? |
+| **Issues** | La escritura individual fila por fila en la base de datos puede convertirse en un cuello de botella bajo concurrencia extrema, requiriendo el uso de inserciones por lotes (*batch processing*) en el consumidor. |
+
+---
+
+#### Scenario Refinement for Scenario 2: Tolerancia a fallos y almacenamiento offline en hardware IoT
+
+| Elemento | Descripción |
+| :--- | :--- |
+| **Scenario(s)** | La red WiFi de un pabellón o área del campus experimenta una interrupción temporal mientras los usuarios continúan interactuando con los lectores físicos; el dispositivo ESP32 retiene las lecturas en su memoria interna y las retransmite automáticamente en ráfaga hacia el backend al restablecerse la conexión. |
+| **Business Goals** | Asegurar la continuidad operativa de la toma de asistencia y el control de accesos sin depender estrictamente de una conectividad WiFi ininterrumpida en el campus. |
+| **Relevant Quality Attributes** | Confiabilidad (Reliability), Tolerancia a Fallos (Fault Tolerance), Disponibilidad (Availability). |
+| **Stimulus** | Pérdida total del enlace de red WiFi o imposibilidad de conexión con el broker de mensajería. |
+| **Stimulus Source** | Caída de infraestructura de telecomunicaciones del campus o saturación del punto de acceso inalámbrico. |
+| **Environment** | Operación en modo degradado (offline) en entornos de campo dentro de las aulas o cubículos. |
+| **Artifact (if Known)** | Firmware del microcontrolador ESP32 (LittleFS/SPIFFS), Cola RabbitMQ y Servicio de Sincronización en Spring Boot. |
+| **Response** | El lector detecta la falla del socket de red, conmuta a su buffer local en memoria flash, registra el evento con su identificador y marca de tiempo, provee retroalimentación física inmediata (LED/buzzer) y, tras reconectarse, sincroniza los eventos retenidos hacia RabbitMQ. |
+| **Response Measure** | 0% de lecturas perdidas ante caídas de conectividad de hasta 30 minutos (buffer de al menos 500 registros) y sincronización completa en menos de 10 segundos tras la recuperación del enlace. |
+| **Questions** | ¿Qué política de mitigación debe adoptar el firmware si el buffer local en memoria flash se llena al 100% antes de recuperar la red inalámbrica? |
+| **Issues** | Las lecturas retenidas fuera de línea ingresarán al sistema con desfase; el backend debe utilizar obligatoriamente la marca de tiempo original del evento generada por el lector y no la hora de recepción para preservar la fidelidad histórica. |
+
+#### Scenario Refinement for Scenario 3: Gestión y liberación dinámica de cubículos por inasistencia
+
+| Elemento | Descripción |
+| :--- | :--- |
+| **Scenario(s)** | Un estudiante reserva un cubículo de estudio mediante la plataforma web, pero no valida su presencia física mediante su credencial NFC en la mesa asignada dentro de los primeros 10 minutos; el sistema cancela la reserva automáticamente, libera el espacio y notifica la cancelación vía correo electrónico. |
+| **Business Goals** | Maximizar el aprovechamiento de los recursos físicos del campus, combatiendo el acaparamiento y garantizando un acceso equitativo a las salas de estudio para la comunidad universitaria. |
+| **Relevant Quality Attributes** | Disponibilidad (Availability), Mantenibilidad (Maintainability), Integración con Servicios Externos. |
+| **Stimulus** | Expiración del temporizador de tolerancia de 10 minutos sin registro de presencia física de la credencial en la mesa del cubículo. |
+| **Stimulus Source** | Tarea programada en segundo plano del sistema (*Spring Scheduled Task / Cron Job*). |
+| **Environment** | Operación normal continua durante el horario diurno de atención de biblioteca y cubículos. |
+| **Artifact (if Known)** | Bounded Context de Reservas de Espacios (Spring Boot), Base de Datos PostgreSQL y API de Correo Electrónico Transaccional. |
+| **Response** | El servicio programado identifica las reservas que superaron el tiempo límite sin validación, ejecuta la cancelación lógica en base de datos, actualiza el estado del cubículo a disponible en la interfaz web y envía un evento asíncrono para despachar el correo de aviso al estudiante. |
+| **Response Measure** | Actualización y liberación del estado del espacio en la plataforma en < 5 segundos tras cumplirse el límite de tiempo; despacho del correo de notificación con una tasa de éxito > 99%. |
+| **Questions** | ¿Con qué periodicidad debe ejecutarse el job programado (e.g., cada 60 segundos) para mantener precisión sin introducir sobrecarga innecesaria de lecturas a la base de datos? |
+| **Issues** | La indisponibilidad temporal o lentitud del servicio externo de correo no debe bloquear ni revertir la transacción de liberación física del cubículo en el sistema central. |
+
+
+#### Scenario Refinement for Scenario 4: Control de accesos y seguridad stateless con JWT
+
+| Elemento | Descripción |
+| :--- | :--- |
+| **Scenario(s)** | Un usuario no autorizado intenta invocar endpoints administrativos protegidos o un estudiante con credencial dada de baja intenta franquear un punto de acceso; el backend intercepta la solicitud, comprueba los privilegios criptográficos y deniega el acceso registrando la auditoría del intento. |
+| **Business Goals** | Proteger la infraestructura física de accesos no permitidos, salvaguardar la confidencialidad de la información y dar estricto cumplimiento a la Ley N° 29733 de Protección de Datos Personales del Perú. |
+| **Relevant Quality Attributes** | Seguridad (Security), Integridad (Integrity). |
+| **Stimulus** | Petición HTTP a un recurso administrativo sin token JWT válido o lectura de una credencial física clasificada como inactiva/revocada en un torniquete de ingreso. |
+| **Stimulus Source** | Cliente externo malicioso, usuario administrativo no autorizado o portador de tarjeta dada de baja. |
+| **Environment** | Operación continua en toda la superficie de exposición de la plataforma web y puntos de control físico. |
+| **Artifact (if Known)** | Filtro de Seguridad Spring Security, Validador de Tokens JWT, Servicio de Control de Accesos y Base de Datos PostgreSQL. |
+| **Response** | El filtro de seguridad intercepta la petición, verifica la firma criptográfica y claims del token en memoria sin tocar la base de datos, o consulta el estado de la credencial en el servicio de accesos, retornando inmediatamente un rechazo (HTTP 401/403 o señal de bloqueo en el lector) y registrando el intento en el log de auditoría. |
+| **Response Measure** | 100% de accesos no autenticados bloqueados, 100% de tarjetas dadas de baja rechazadas en el primer intento y tiempo de respuesta en la validación < 500 ms. |
+| **Questions** | ¿Cómo implementar una revocación inmediata de privilegios administrativos antes de la expiración natural del token JWT sin comprometer la naturaleza *stateless* del servicio? |
+| **Issues** | Mantener listas de revocación en memoria distribuida (e.g., Redis) agregaría una pieza de infraestructura adicional, por lo que se opta por definir tiempos de expiración cortos para minimizar la ventana de vulnerabilidad. |
 
 ## 4.2. Strategic-Level Domain-Driven Design
 
@@ -1141,3 +1333,13 @@ Además, el sistema se integra con los Lectores NFC/IoT, que envían los eventos
 Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes componentes de software y dispositivos físicos. La plataforma está compuesta por una Landing Page y una aplicación web desarrolladas en Angular, un Backend API desarrollado con Spring Boot, un servidor RabbitMQ encargado de gestionar los eventos de lectura NFC y una base de datos PostgreSQL para almacenar la información del sistema. Los usuarios administrativos acceden a la aplicación web mediante HTTPS, mientras que los lectores NFC/IoT envían los eventos de lectura hacia RabbitMQ mediante HTTPS/MQTT. El Backend procesa estos eventos y se comunica con la base de datos mediante JDBC. Asimismo, el Backend se integra con el Sistema Académico UPC mediante REST/HTTPS para obtener información académica.
 
 [![Deployment-Diagram.png](https://i.postimg.cc/7hhQHtNd/Deployment-Diagram.png)](https://postimg.cc/5Qcmp3TS)
+
+# Conclusiones
+
+# Bibliografía
+
++ Azizi, S., Nair, G., Rabiee, R., & Olofsson, T. (2020). Application of Internet of Things in academic buildings for space use efficiency using occupancy and booking data. Building and Environment, 186, 107355. https://doi.org/10.1016/j.buildenv.2020.107355
+
++ Rashid, A. M. (2024). Smart campus: A review on smart attendance systems as an efficient approach. Journal of Engineering & Technological Advances, 8(2), 16–24. https://doi.org/10.35934/segi.v8i2.85
+
++ Sutjarittham, T., Habibi Gharakheili, H., Kanhere, S. S., & Sivaraman, V. (2019). Experiences with IoT and AI in a smart campus for optimizing classroom usage. IEEE Internet of Things Journal, 6(5), 7595–7607. https://doi.org/10.1109/JIOT.2019.2902410
