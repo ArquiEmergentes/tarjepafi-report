@@ -57,8 +57,8 @@ Integrantes
       <td style="border: none; padding: 4px;"> Via Luna, Bruce</td>
     </tr>
     <tr>
-      <td style="border: none; padding: 4px; font-weight: bold;"></td>
-      <td style="border: none; padding: 4px;"></td>
+      <td style="border: none; padding: 4px; font-weight: bold;">U20231a500</td>
+      <td style="border: none; padding: 4px;">Palomino Fiestas, Erick Leonardo</td>
     </tr>
     <tr>
       <td style="border: none; padding: 4px; font-weight: bold;"></td>
@@ -223,6 +223,7 @@ Promovemos la innovación tecnológica como medio para mejorar la experiencia un
 | Javier Sebastian Gonzales Alvarado | u20231296 | Mi nombre es Javier Gonzales, soy estudiante de Ingeniería de Software de séptimo ciclo. Tengo conocimientos en diversos lenguajes de programación como C++, Python y JavaScript, entre otros. Además, he desarrollado proyectos de software utilizando distintos frameworks como Angular y Vue. Me considero una persona responsable, empática y analítica. Mi objetivo personal es desarrollar soluciones tecnológicas que contribuyan a mejorar la calidad de vida de las personas y aportar a la construcción de un mundo más innovador y conectado. |![Foto](assets/fotoGonzales.jpeg)|
 | Renzo Sebastian Rivera Ratachi | u20231d974 | Soy Renzo Sebastian Rivera Ratachi y soy estudiante de la carrera de Ingeniería de Software. Actualmente estoy cursando el 7mo ciclo de mi carrera y tengo conocimientos intermedios de JavaScript y C++. Me considero una persona responsable y puntual.  |![Foto](assets/fotorenzo.jpg)|
 | Bruce Via Luna | U202313403 | Soy Bruce Via Luna, estudiante de la carrera de ingeniería de Software en la UPC. Actualmente cuento con conocimientos en C#, C++ e interés en la gestión de información de bases de datos. Me considero una persona altamente responsable y dedicada a los proyectos con los que me comprometo.  |![Foto](assets/fotobruce.jpeg)|
+| Erick Leonardo Palomino Fiestas| U20231a500 | Hola, soy Erick Leonardo Palomino Fiestas, un estudiante entusiasta de séptimo ciclo en Ingeniería de Software. Mi conjunto de habilidades técnicas incluye C++, HTML, CSS, .NET, Python, fundamentos de JavaScript y experiencia con bases de datos SQL y MongoDB. Me considero una persona responsable, con sólidas habilidades de comunicación para trabajar en equipo y una perspectiva optimista. También tengo un nivel básico de inglés.  |![Foto](assets/foroerick.png)|
 
 ## 1.2. Solution Profile
 
@@ -702,7 +703,46 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
   </tr>
 </table>
 
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 3</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Estefano Solís Campos</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>Pueblo Libre</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>0:56-6:49</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://youtu.be/kY0LlmRpvzc`
 
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Estefano Solís Campos, estudiante de 21 años que reside en el distrito de Pueblo Libre, comenta que el proceso actual de ingreso mediante la aplicación móvil suele presentar inconvenientes cuando falla la conexión a internet, la autenticación de la red del campus o la batería del celular, lo que llega a generar demoras en la entrada. La solución planteada mediante una tarjeta inteligente le parece favorable por ser un método más directo y libre de la dependencia de conectividad externa, aunque señala como desventaja el riesgo de extravío u olvido. Para preferir este sistema, precisa que los lectores deben funcionar de manera rápida y al primer intento (con esperas que no superen los 2 o 3 minutos), destacando la conveniencia de mantener el teléfono como respaldo y de integrar consultas en tiempo real sobre el límite de inasistencias y la disponibilidad real de cubículos.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/images/entrevistas/captura-entrevista-estefano.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
+    </td>
+  </tr>
+</table>
 
 ### 2.2.3. Análisis de entrevistas.
 
