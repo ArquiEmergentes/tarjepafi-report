@@ -585,37 +585,43 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
   </tr>
   <tr>
     <td><strong>Entrevistado</strong></td>
-    <td></td>
+    <td>Guadalupe Alvarado Ramos</td>
   </tr>
   <tr>
     <td><strong>Edad</strong></td>
-    <td></td>
+    <td>54</td>
   </tr>
   <tr>
     <td><strong>Distrito</strong></td>
-    <td></td>
+    <td>San Miguel</td>
   </tr>
   <tr>
     <td><strong>Timing</strong></td>
-    <td></td>
+    <td>00:00 - 06:24</td>
   </tr>
   <tr>
     <td><strong>URL</strong></td>
     <td>
       
-  ``
+  `https://youtu.be/fksqMUkJ3oY`
 
   </td>
   </tr>
   <tr>
     <td colspan="2" style="text-align:justify">
       Resumen: <br>
+      La entrevistada, Guadalupe Alvarado, se desempeña como encargada de logística en un instituto de SENCICO. Actualmente, la institución cuenta con un sistema biométrico de control de asistencia dirigido únicamente a los trabajadores, quienes registran su ingreso y salida mediante su huella dactilar.
 
+En términos generales, considera que el sistema funciona adecuadamente para controlar el cumplimiento de la jornada laboral; sin embargo, identifica limitaciones relacionadas con la información y las estadísticas que proporciona, ya que estas resultan insuficientes para apoyar determinadas tareas de gestión y supervisión.
+
+La entrevistada considera de gran utilidad contar con una solución que permita conocer la ubicación actual del personal dentro de las instalaciones. Esta información facilitaría la supervisión del cumplimiento de sus funciones y también podría ser útil ante situaciones de emergencia, como un sismo, al permitir conocer la ubicación o presencia del personal.
+
+Finalmente, señaló que, antes de implementar una nueva solución tecnológica, la institución tendría que evaluar principalmente la relación costo-beneficio, considerando si las mejoras y beneficios obtenidos justifican la inversión necesaria.
     </td>
   </tr>
   <tr>
     <td colspan="2"><br>
-      <img src="" alt="segmento1entrevista2" width="1000"><br>
+      <img src="assets/images/entrevistas/entrevista-guadalupe-segmento2.png" alt="segmento1entrevista2" width="1000"><br>
     </td>
   </tr>
 </table>
