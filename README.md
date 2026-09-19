@@ -224,6 +224,7 @@ Promovemos la innovación tecnológica como medio para mejorar la experiencia un
 | Renzo Sebastian Rivera Ratachi | u20231d974 | Soy Renzo Sebastian Rivera Ratachi y soy estudiante de la carrera de Ingeniería de Software. Actualmente estoy cursando el 7mo ciclo de mi carrera y tengo conocimientos intermedios de JavaScript y C++. Me considero una persona responsable y puntual.  |![Foto](assets/fotorenzo.jpg)|
 | Bruce Via Luna | U202313403 | Soy Bruce Via Luna, estudiante de la carrera de ingeniería de Software en la UPC. Actualmente cuento con conocimientos en C#, C++ e interés en la gestión de información de bases de datos. Me considero una persona altamente responsable y dedicada a los proyectos con los que me comprometo.  |![Foto](assets/fotobruce.jpeg)|
 | Erick Leonardo Palomino Fiestas| U20231a500 | Hola, soy Erick Leonardo Palomino Fiestas, un estudiante entusiasta de séptimo ciclo en Ingeniería de Software. Mi conjunto de habilidades técnicas incluye C++, HTML, CSS, .NET, Python, fundamentos de JavaScript y experiencia con bases de datos SQL y MongoDB. Me considero una persona responsable, con sólidas habilidades de comunicación para trabajar en equipo y una perspectiva optimista. También tengo un nivel básico de inglés.  |![Foto](assets/foroerick.png)|
+| Piero Alberto Velarde Luyo | u20211a620 | Soy Piero, estudio la carrera de ingeniería de software en la Universidad Peruana de Ciencias Aplicadas cursando actualmente el octavo. Escogí esta carrera por mi facilidad en el uso de las computadoras. Asímismo, por mi interés en el funcionamiento de las anteriores mencionadas y todo respecto a la programación y las tecnologías emergentes. |[![pierovelarde.jpg](https://i.postimg.cc/pdj5nykJ/pierovelarde.jpg)](https://postimg.cc/Y4pC5r5v) |
 
 ## 1.2. Solution Profile
 
@@ -736,38 +737,40 @@ Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego
     <th colspan="2" style="text-align:center">Entrevista 1</th>
   </tr>
   <tr>
-    <td><strong>Entrevistado</strong></td>
-    <td></td>
+    <td><strong>Entrevistado 1</strong></td>
+    <td>Carlos Pingus</td>
   </tr>
   <tr>
     <td><strong>Edad</strong></td>
-    <td></td>
+    <td>24</td>
   </tr>
   <tr>
     <td><strong>Distrito</strong></td>
-    <td></td>
+    <td>San Martin de Porres</td>
   </tr>
   <tr>
     <td><strong>Timing</strong></td>
-    <td></td>
+    <td>0:00-6:11 </td>
   </tr>
   <tr>
     <td><strong>URL</strong></td>
     <td>
       
-  ``
+  `https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211a620_upc_edu_pe/IQB3X-klGNvYQKWSUi8pbM6aAbGwQSF23y78sSF4I3IVGyc?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=mry34y`
 
   </td>
   </tr>
   <tr>
     <td colspan="2" style="text-align:justify">
       Resumen: <br>
-
+      Carlos, administrativo encargado de revisar las asistencias, señala la importancia de contar con información confiable y oportuna para supervisar el 
+      campus y tomar decisiones operativas. Actualmente, la revisión de estos datos presenta limitaciones debido a la falta de información centralizada y 
+      en tiempo real. Considera que una plataforma con indicadores de asistencia, aforo y flujo de personas facilitaría el seguimiento y permitiría tomar decisiones con mayor información.
     </td>
   </tr>
   <tr>
     <td colspan="2"><br>
-      <img src="" alt="segmento1entrevista2" width="1000"><br>
+      <img src="captura-entrevista-carlos.png" alt="segmento1entrevista2" width="1000"><br>
     </td>
   </tr>
 </table>
@@ -903,7 +906,89 @@ Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego
   </tr>
 </table>
 
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 4</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Anyeli Peña Rojas</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>22</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>Pueblo Libre</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>0:01-4:23</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211a620_upc_edu_pe/IQAn0VgtdoQHQL92PL7WV7S4Ae-44WNeqKU7-cwJkmN_mW4?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=2dVoPu`
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Anyeli, una estudiante de 22 años, señala que el acceso mediante la aplicación móvil suele volverse lento debido a fallas de internet, problemas de autenticación en la red de la universidad o la descarga del teléfono, lo que provoca congestión y filas en las entradas. Aunque considera que una tarjeta inteligente es una solución práctica por no depender de conectividad, advierte el riesgo de olvidarla o perderla. Para adoptar este nuevo sistema, exige que los lectores respondan de forma rápida y eficiente,.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/images/entrevistas/captura-entrevista-anyeli.png" alt="Segmento 2 entrevista 4 " width="1000"><br>
+    </td>
+  </tr>
+</table>
+
 ### 2.2.3. Análisis de entrevistas.
+
+**Segmento Objetivo 1: Administradores y Responsables de Gestión Universitaria**
+
+**Insights principales:**
+
+- **Información centralizada:** Necesitan consultar información de asistencia, accesos y uso de espacios desde una plataforma unificada.
+- **Automatización:** Existe una oportunidad para reducir procesos manuales relacionados con el registro y seguimiento de actividades.
+- **Información confiable:** Requieren datos actualizados que faciliten el monitoreo y la toma de decisiones.
+- **Visualización de indicadores:** Los reportes y dashboards permiten identificar patrones y evaluar el funcionamiento del campus.
+
+**Necesidades identificadas:**
+
+- Reportes de asistencia y utilización de espacios.
+- Información actualizada y centralizada.
+- Automatización de procesos administrativos.
+- Integración con los sistemas universitarios existentes.
+
+---
+
+**Segmento Objetivo 2: Usuarios de la Credencial TarjePAFI**
+
+**Insights principales:**
+
+- **Rapidez y simplicidad:** Estudiantes, docentes y trabajadores requieren mecanismos de identificación que no interfieran con sus actividades.
+- **Uso frecuente:** Los usuarios se desplazan constantemente por diferentes ambientes del campus y pueden interactuar varias veces al día con los lectores.
+- **Automatización del registro:** El uso de una credencial NFC permite registrar asistencia y accesos sin procesos manuales adicionales.
+- **Facilidad de uso:** La solución debe funcionar de manera rápida y sencilla para los distintos perfiles de usuarios.
+
+**Necesidades identificadas:**
+
+- Registro automático de asistencia.
+- Identificación mediante una credencial única.
+- Acceso rápido a espacios autorizados.
+- Lectores confiables y fáciles de utilizar.
+- Seguridad y privacidad de la información.
+
+---
+
+**Patrones comunes entre segmentos**
+
+Ambos segmentos presentan una necesidad de **automatizar y simplificar los procesos universitarios**. Los usuarios requieren un mecanismo rápido y sencillo para identificarse y registrar sus actividades, mientras que los administradores necesitan **información confiable y centralizada** para supervisar el funcionamiento del campus y apoyar la toma de decisiones.
 
 ## 2.3. Needfinding.
 
