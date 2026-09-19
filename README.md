@@ -751,12 +751,70 @@ Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego
   <tr>
     <td><strong>Timing</strong></td>
     <td>0:00-6:11 </td>
+    <td><strong>Entrevistado</strong></td>
+    <td>Juan Antonio Flores Moroco</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>46 años</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>Pueblo Libre</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>0:40-26:17</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://youtu.be/RHp96fure88`
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Juan Antonio Flores Moroco, PTC (Profesor a tiempo completo) de la carrera de ingenieria de software, sistemas y ciencias de la computacion de la UPC, reside en el distrito de Pueblo Libre, habla y describe la idea de que la implementacion de tarjetas llegaria a ser posible gracias a las nuevas funcionalidades agregadas ademas de sugerir ideas y funciones adicionales para asegurar la aceptacion de dicho proceso
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/images/entrevistas/captura-moroco.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 1</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Guadalupe Alvarado Ramos</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>54</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>San Miguel</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>00:00 - 06:24</td>
   </tr>
   <tr>
     <td><strong>URL</strong></td>
     <td>
       
   `https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211a620_upc_edu_pe/IQB3X-klGNvYQKWSUi8pbM6aAbGwQSF23y78sSF4I3IVGyc?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=mry34y`
+  `https://youtu.be/fksqMUkJ3oY`
 
   </td>
   </tr>
@@ -766,11 +824,19 @@ Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego
       Carlos, administrativo encargado de revisar las asistencias, señala la importancia de contar con información confiable y oportuna para supervisar el 
       campus y tomar decisiones operativas. Actualmente, la revisión de estos datos presenta limitaciones debido a la falta de información centralizada y 
       en tiempo real. Considera que una plataforma con indicadores de asistencia, aforo y flujo de personas facilitaría el seguimiento y permitiría tomar decisiones con mayor información.
+      La entrevistada, Guadalupe Alvarado, se desempeña como encargada de logística en un instituto de SENCICO. Actualmente, la institución cuenta con un sistema biométrico de control de asistencia dirigido únicamente a los trabajadores, quienes registran su ingreso y salida mediante su huella dactilar.
+
+En términos generales, considera que el sistema funciona adecuadamente para controlar el cumplimiento de la jornada laboral; sin embargo, identifica limitaciones relacionadas con la información y las estadísticas que proporciona, ya que estas resultan insuficientes para apoyar determinadas tareas de gestión y supervisión.
+
+La entrevistada considera de gran utilidad contar con una solución que permita conocer la ubicación actual del personal dentro de las instalaciones. Esta información facilitaría la supervisión del cumplimiento de sus funciones y también podría ser útil ante situaciones de emergencia, como un sismo, al permitir conocer la ubicación o presencia del personal.
+
+Finalmente, señaló que, antes de implementar una nueva solución tecnológica, la institución tendría que evaluar principalmente la relación costo-beneficio, considerando si las mejoras y beneficios obtenidos justifican la inversión necesaria.
     </td>
   </tr>
   <tr>
     <td colspan="2"><br>
       <img src="assets/images/entrevistas/captura-entrevista-carlos.png" alt="segmento1entrevista2" width="1000"><br>
+      <img src="assets/images/entrevistas/entrevista-guadalupe-segmento2.png" alt="segmento1entrevista2" width="1000"><br>
     </td>
   </tr>
 </table>
@@ -1149,6 +1215,127 @@ Se puede visualizar con más detalle en el siguiente enlace:
 
 ## 2.4. Ubiquitous Language.
 
+En esta sección se define el Ubiquitous Language del dominio de TarjePAFI, con el objetivo de establecer un lenguaje común entre todos los miembros del equipo y stakeholders. Este glosario reúne los principales términos relacionados con la identificación de personas, asistencia académica, control de accesos, gestión de espacios y operación dentro de un campus universitario, evitando ambigüedades durante el análisis y desarrollo de la solución.
+
+<div align="center">
+
+<table>
+  <thead>
+    <tr>
+      <th>Term</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Campus User (Usuario del Campus)</td>
+      <td>Persona que realiza actividades dentro de la universidad y puede interactuar con los servicios y espacios del campus.</td>
+    </tr>
+    <tr>
+      <td>Student (Estudiante)</td>
+      <td>Usuario del campus matriculado en uno o más cursos y que participa en actividades académicas dentro de la universidad.</td>
+    </tr>
+    <tr>
+      <td>Teacher (Docente)</td>
+      <td>Usuario responsable de impartir clases y desarrollar actividades académicas dentro de la universidad.</td>
+    </tr>
+    <tr>
+      <td>Staff Member (Trabajador)</td>
+      <td>Persona que desempeña funciones administrativas, operativas o de servicios dentro de la universidad, como seguridad, limpieza, mantenimiento o cocina.</td>
+    </tr>
+    <tr>
+      <td>Administrator (Administrador)</td>
+      <td>Persona responsable de supervisar información relacionada con asistencia, accesos, ocupación y uso de espacios para apoyar la gestión del campus.</td>
+    </tr>
+    <tr>
+      <td>Campus Credential (Credencial del Campus)</td>
+      <td>Credencial física asignada a un usuario que permite identificarlo durante sus interacciones dentro de la universidad.</td>
+    </tr>
+    <tr>
+      <td>Card Holder (Titular de la Credencial)</td>
+      <td>Usuario del campus al que se encuentra asignada una credencial vigente.</td>
+    </tr>
+    <tr>
+      <td>Credential Status (Estado de Credencial)</td>
+      <td>Condición actual de una credencial, como activa, bloqueada, perdida o desactivada, que determina si puede utilizarse dentro del campus.</td>
+    </tr>
+    <tr>
+      <td>Academic Attendance (Asistencia Académica)</td>
+      <td>Registro que confirma la presencia de un estudiante o docente en una actividad académica programada.</td>
+    </tr>
+    <tr>
+      <td>Attendance Record (Registro de Asistencia)</td>
+      <td>Evidencia individual de que un usuario registró su asistencia a una sesión académica determinada.</td>
+    </tr>
+    <tr>
+      <td>Class Session (Sesión de Clase)</td>
+      <td>Actividad académica programada para un curso en una fecha, horario y espacio determinados.</td>
+    </tr>
+    <tr>
+      <td>Attendance Window (Ventana de Asistencia)</td>
+      <td>Periodo de tiempo definido durante el cual un usuario puede registrar válidamente su asistencia a una sesión de clase.</td>
+    </tr>
+    <tr>
+      <td>Enrollment (Matrícula)</td>
+      <td>Relación formal que vincula a un estudiante con un curso durante un periodo académico determinado.</td>
+    </tr>
+    <tr>
+      <td>Campus Space (Espacio del Campus)</td>
+      <td>Área física perteneciente a la universidad que puede ser utilizada para actividades académicas, administrativas u operativas.</td>
+    </tr>
+    <tr>
+      <td>Facility (Instalación)</td>
+      <td>Recurso físico gestionado por la universidad, como aulas, laboratorios, bibliotecas, salas de estudio u oficinas.</td>
+    </tr>
+    <tr>
+      <td>Space Reservation (Reserva de Espacio)</td>
+      <td>Asignación de un espacio universitario a un usuario o actividad durante un periodo de tiempo determinado.</td>
+    </tr>
+    <tr>
+      <td>Reservation Time Slot (Franja de Reserva)</td>
+      <td>Intervalo de tiempo durante el cual una reserva de espacio se encuentra vigente.</td>
+    </tr>
+    <tr>
+      <td>Occupancy (Ocupación)</td>
+      <td>Cantidad de personas que se encuentran utilizando un espacio determinado en un momento específico.</td>
+    </tr>
+    <tr>
+      <td>Capacity (Capacidad)</td>
+      <td>Número máximo de personas que pueden utilizar un espacio de acuerdo con las condiciones establecidas por la universidad.</td>
+    </tr>
+    <tr>
+      <td>Access Permission (Permiso de Acceso)</td>
+      <td>Autorización otorgada a un usuario para ingresar o utilizar un determinado espacio del campus.</td>
+    </tr>
+    <tr>
+      <td>Restricted Area (Área Restringida)</td>
+      <td>Espacio cuyo ingreso está limitado únicamente a usuarios que cuentan con la autorización correspondiente.</td>
+    </tr>
+    <tr>
+      <td>Access Record (Registro de Acceso)</td>
+      <td>Evidencia del ingreso o intento de ingreso de un usuario a un espacio determinado del campus.</td>
+    </tr>
+    <tr>
+      <td>Work Attendance (Asistencia Laboral)</td>
+      <td>Registro de presencia de un trabajador durante la jornada en la que debe cumplir sus funciones dentro de la universidad.</td>
+    </tr>
+    <tr>
+      <td>Work Shift (Jornada Laboral)</td>
+      <td>Periodo establecido durante el cual un trabajador debe desarrollar sus actividades dentro de la universidad.</td>
+    </tr>
+    <tr>
+      <td>Campus Foot Traffic (Afluencia del Campus)</td>
+      <td>Flujo y cantidad de personas que transitan por determinadas zonas del campus durante un periodo de tiempo.</td>
+    </tr>
+    <tr>
+      <td>Check-in (Marcación)</td>
+      <td>Acción mediante la cual un usuario registra su presencia para una actividad, espacio o jornada determinada.</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
 # Capítulo 3: Requirements Specification
 
 ## 3.1. To-Be Scenario Mapping.
@@ -1223,6 +1410,11 @@ Una vez concluidas las épicas, ahora podemos proceder a encapsular las múltipl
 | **US27** | Acceso a Contacto y Soporte | Como usuario interesado, quiero tener un botón de contacto visible en la Landing Page, para poder enviar mis dudas al equipo de TarjePafi de manera rápida. | **Scenario:** Envío de consultas.<br>Dado que el usuario tiene dudas sobre el servicio, cuando hace clic en el botón de contacto, entonces se despliega un formulario o enlace directo para comunicarse con el equipo. | **EP01** |
 
 ## 3.3. Impact Mapping.
+
+<img src="assets/images/bounded contexts/Impact map 1.png" alt="EventStorming Image"><br>
+
+<img src="assets/images/bounded contexts/Impact map 2.png" alt="EventStorming Image"><br>
+
 
 ## 3.4. Product Backlog.
 
@@ -1454,9 +1646,79 @@ A partir de los resultados obtenidos en el *Quality Attribute Workshop* (QAW) y 
 
 ### 4.2.1. EventStorming
 
+Aqui se presentara la distribucion y vinculacion de los bounded context desarrollados para nuestro proyecto:
+
+<img src="assets/images/bounded contexts/Bounded-Context.jpg" alt="EventStorming Image"><br>
+
+Enlace al miro: `https://miro.com/app/board/uXjVHlVuyVw=/?share_link_id=483153268721`
+
 ### 4.2.2. Candidate Context Discovery
 
+1. Contexto de IAM Context
+
+<img src="assets/images/bounded contexts/IAM.png" alt="IAM Bounded Context"><br>
+
+- **Limite**: Se encarga completamente de las gestiones en la aplicacion web, la verificacion de identidad, roles y su autorizacion de acceso al sistema para los administradores, dependiendo de su rol. Gestion la verificacion de cuentas, el inicio de sesion, la autentificacion mediante token JWT y delimitar el acceso a funcionalidades de los otros bounded Contexts.
+
+- **Eventos clave**: RegistrarUsuario, IniciarSesion, ActualizarCredenciales, EliminarCuenta.
+
+- **Justificacion**: Se justifica su existencia como subdominio aislado del resto al solo funcionar para uno de los segmentos objetivos dentro de sus funcionalidades. Extrae la data entregada hacia la cuenta del administrados y la devuelve hacia la pagina web, permitiendo la creacion de reportes y uso de dicha informacion para su uso futuro.
+
+2. Context de Academic Attendance Context .
+
+<img src="assets/images/bounded contexts/Academic.png" alt="Academic Bounded Context"><br>
+
+- **Limite**: Se encarga de unicamente registrar la asistencia en las aulas para alumnos y profesores gracias a las tarjetas IoT. Gestiona y registra las aulas gracias a las funcionalidades de asistencia y scripts programados en los sensores.
+
+- **Eventos clave**: AbrirAsistencia, RegistrarAsistencia, CerrarAsistencia, GuardarAsistencia.
+
+- **Justificacion**: Su existencia como bounded context se debe a la funcionaliad especifica e indispensable dentro de nuestro producto, encargada de hacer que nuestra tarjeta tenga mayores funcionalidades gracias a la lectura de sus sensores y la programacion de registro de asistencia.
+
+3. Contexto de Space and Facility Context
+
+<img src="assets/images/bounded contexts/Spaces.png" alt="Sapce Bounded Context"><br>
+
+- **Limite**: Verifica y se encarga de registrar el uso de espacios y la activacion de reservas, desde ingresar a la universiadad a usar espacios reservados como cubiculos, gimnasios o aulas siempre y cuando se reserven previamente.
+
+- **Eventos clave**: ActivarEntrada, ActivarSalida, ActivarReserva, RechazarReserva, AccesoDenegado, AccesoConcedido, BuscarDatos.
+
+- **Justificacion**: Como uno de los bounded contexts principales se debe gracias a que presenta el acceso a otros bounded context mas aisaldos por tener un aspecto sustancial de la tarjeta como el tener acceso a los espacios universitarios o a la misma universidad.
+
+4. Contexto de IoT Monitoring Context 
+
+<img src="assets/images/bounded contexts/IoT.png" alt="IoT Bounded Context"><br>
+
+- **Limite**: Encapsula todo lo relacionado a las tarjetas IoT, es decir la entrega de estas, vinculacion de identidad y sobre todo separar sus funcionalidades dependiendo el rol de los diferentes segmentos objetivos.
+
+- **Eventos clave**: AsignarInformacion, DesactivarTarjeta, ModificarInformacion, ActivarTarjeta.
+
+- **Justificacion**: Como el bounded context de entrada al resto de bounded context, se refiere a otro bounded context principal embedido dentro de otros ya que se necesita la tarjeta IoT para la existencia del resto.
+
+5. Contexto de Data Management Context
+
+<img src="assets/images/bounded contexts/Data.png" alt="Data Bounded Context"><br>
+
+- **Limite**: Almacenar, ordenar, mostrar y resumir toda la informacion recolectada de las tarjetas de forma semanal, mensual o semetral para la ser mostrada a los administradores, ademas de retener la informacion recolectada de espacios usados.
+
+- **Eventos clave**: OrdenarInformacion, RegistrarDatos, RealizarReporteSemanal, RealizarReporteMensual, RealizarReporteSemestral, ErrorRegistro.
+
+- **Justificacion**: Siendo necesario para el lado adminsitrativo, su existencia se debe a las funcionalidades de el manejo de informacion recolectada por todos los sensores existentes a lo largo del centro universitario.
+
 ### 4.2.3. Domain Message Flows Modeling
+
+Para esta sección nuestro objetivo fue visualizar cómo los bounded contexts colaboran para soportar los casos de uso clave. Se aplicó Domain Storytelling para describir interacciones humanas y técnicas
+
+Enlace al Miro: `https://miro.com/app/board/uXjVHklCdSw=/?share_link_id=475456703400`
+
+<img src="assets/images/bounded contexts/InOutBC.jpg" alt="DomainMessage Model 1"><br>
+
+
+
+<img src="assets/images/bounded contexts/AssitanceBc.jpg" alt="DomainMessage Model 2"><br>
+
+<img src="assets/images/bounded contexts/ReportBC.jpg" alt="DomainMessage Model 3"><br>
+
+
 
 ### 4.2.4. Bounded Context Canvases
 
@@ -1584,6 +1846,12 @@ Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes component
 
 + Azizi, S., Nair, G., Rabiee, R., & Olofsson, T. (2020). Application of Internet of Things in academic buildings for space use efficiency using occupancy and booking data. Building and Environment, 186, 107355. https://doi.org/10.1016/j.buildenv.2020.107355
 
++ Das, D. K. (2025). Integrating IoT and AI for sustainable energy-efficient smart building: Potential, barriers and strategic pathways. *Sustainability*, *17*(22), Artículo 10313[cite: 14]. https://doi.org/10.3390/su172210313[cite: 14]
+
++ Israil, S. I. S., & Dhumane, P. B. (2025). Smart campus solutions: An IoT-based attendance system for universities and schools. *International Journal for Research Trends and Innovation*, *10*(5), b426–b433[cite: 12]. https://www.ijrti.org/papers/IJRTI2505148.pdf
+
 + Rashid, A. M. (2024). Smart campus: A review on smart attendance systems as an efficient approach. Journal of Engineering & Technological Advances, 8(2), 16–24. https://doi.org/10.35934/segi.v8i2.85
 
 + Sutjarittham, T., Habibi Gharakheili, H., Kanhere, S. S., & Sivaraman, V. (2019). Experiences with IoT and AI in a smart campus for optimizing classroom usage. IEEE Internet of Things Journal, 6(5), 7595–7607. https://doi.org/10.1109/JIOT.2019.2902410
+
++ Prabakaran, S., Geetha, S., Nivesh Raja, R., Dhanush Balaji, G., Maya Kannan, M., & Sam Brainald, C. (2025). Smart campus surveillance and guidance system using face recognition. *Journal on Innovations in Teaching and Learning*, *4*(4), 22–31[cite: 13]. https://doi.org/10.46632/jitl/4/4/4[cite: 13]
