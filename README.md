@@ -709,7 +709,7 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
   </tr>
   <tr>
     <td><strong>Entrevistado</strong></td>
-    <td>Estefano Solis</td>
+    <td>Estefano Solís Campos</td>
   </tr>
   <tr>
     <td><strong>Edad</strong></td>
@@ -721,25 +721,25 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
   </tr>
   <tr>
     <td><strong>Timing</strong></td>
-    <td>0:56-8:26</td>
+    <td>0:56-6:49</td>
   </tr>
   <tr>
     <td><strong>URL</strong></td>
     <td>
       
-  `https://youtu.be/RHp96fure88`
+  `https://youtu.be/kY0LlmRpvzc`
 
   </td>
   </tr>
   <tr>
     <td colspan="2" style="text-align:justify">
       Resumen: <br>
-      Oriana, instructora en la universidad Cayetano Heredia, reside en el distrito de Cercado de Lima, habla sobre cómo la implementación si bien no sería 100% útil en su área, igual describe cómo la existencia de las tarjetas aceleraría los procesos de registro de asistencia y seguridad de su universidad tanto para la asistencia como el acceso a espacios de trabajos reservados.
+      Estefano Solís Campos, estudiante de 21 años que reside en el distrito de Pueblo Libre, comenta que el proceso actual de ingreso mediante la aplicación móvil suele presentar inconvenientes cuando falla la conexión a internet, la autenticación de la red del campus o la batería del celular, lo que llega a generar demoras en la entrada. La solución planteada mediante una tarjeta inteligente le parece favorable por ser un método más directo y libre de la dependencia de conectividad externa, aunque señala como desventaja el riesgo de extravío u olvido. Para preferir este sistema, precisa que los lectores deben funcionar de manera rápida y al primer intento (con esperas que no superen los 2 o 3 minutos), destacando la conveniencia de mantener el teléfono como respaldo y de integrar consultas en tiempo real sobre el límite de inasistencias y la disponibilidad real de cubículos.
     </td>
   </tr>
   <tr>
     <td colspan="2"><br>
-      <img src="assets/images/entrevistas/captura-entrevista.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
+      <img src="assets/images/entrevistas/captura-entrevista-estefano.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
     </td>
   </tr>
 </table>
