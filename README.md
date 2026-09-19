@@ -431,6 +431,13 @@ Creemos que las autoridades académicas organizarán eventos con mucho mayor imp
 
 #### 1.2.2.4. Lean UX Canvas
 
+A continuación, se presenta el Lean UX Canvas de TarjePAFI, estructurado a partir del problema observado en la sede San Miguel de la UPC.
+
+<br>
+
+<img src="assets/canva.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
+
+Link del Canva: `https://miro.com/app/board/uXjVHno9MJk=/?share_link_id=58266810328`
 
 
 ## 1.3. Segmentos Objetivos
@@ -1012,7 +1019,12 @@ Una vez concluidas las épicas, ahora podemos proceder a encapsular las múltipl
 | **26** | **US05** | Diseño Atractivo de la Tarjeta | Como estudiante, quiero que la tarjeta tenga un diseño atractivo y fácil de identificar, para que me sienta orgulloso de usarla. | 1 |
 | **27** | **US09** | Durabilidad y Calidad Física de la Tarjeta | Como estudiante, quiero que la tarjeta esté diseñada para ser resistente al desgaste, para que pueda usarla durante todo el año académico sin problemas. | 1 |
 
+<br>
 
+<img src="assets/productbacklog.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
+
+
+Link de trello: `https://trello.com/invite/b/6aaee560244f819349d961ca/ATTIbfb18f52e094ba23c88678615654fa56358E136D/product-backlog-tarjepafi`
 
 # Capítulo 4: Strategic-Level Software Design
 
@@ -1118,8 +1130,6 @@ Sustento de Priorización del Backlog
 
 ### 4.1.4. Architectural Design Decisions
 
-### 4.1.4. Architectural Design Decisions
-
 En esta sección se detalla el proceso sistemático aplicado por el equipo de TarjePAFI para evaluar, descartar y seleccionar las tácticas y patrones arquitectónicos que dan soporte a los requerimientos del sistema. La toma de decisiones siguió las fases del *Quality Attribute Workshop* (QAW), analizando en cada iteración los *Architectural Drivers* priorizados, debatiendo alternativas tecnológicas y contrastando ventajas frente a desventajas técnicas para evitar la sobreingeniería en las etapas iniciales del proyecto.
 
 Para cada decisión arquitectónica clave, se formuló una matriz de evaluación (*Candidate Pattern Evaluation Matrix*) en la que se contrastan tres patrones candidatos representativos, documentando sus respectivos pros y contras hasta justificar el patrón seleccionado.
@@ -1132,8 +1142,6 @@ Para cada decisión arquitectónica clave, se formuló una matriz de evaluación
 | **D02** | **Gestión de Identidades y Autenticación (IAM)** | **Autenticación con Tokens JWT (Spring Security)**<br><br>**Pro:** La validación criptográfica de identidad y roles administrativos se realiza en memoria sin consultar la base de datos en cada petición HTTP.<br><br>**Contra:** La invalidación inmediata de un token puede hacer más lento el ingreso por la generacion del token y revision de la autenticidad del mismo. | **Servidor de Identidad Completo (OAuth 2.0 / Keycloak)**<br><br>**Pro:** Estándar robusto de la industria; delega la seguridad, ciclo de vida de credenciales y auditoría de accesos a una solución empresarial consolidada.<br><br>**Contra:** Curva de aprendizaje empinada y sobreingeniería operativa para un sistema cuyo alcance de autenticación se restringe a personal administrativo de la universidad. | **Sesiones Tradicionales con Estado en Base de Datos**<br><br>**Pro:** Control centralizado absoluto; revocar o cerrar la sesión de un usuario administrativo es tan directo como eliminar el registro correspondiente en la tabla de sesiones.<br><br>**Contra:** Genera consultas constantes a la base de datos relacional por cada solicitud HTTP, limitando el rendimiento y la concurrencia en horas pico. |
 | **D03** | **Persistencia de Dominio y Trazabilidad del Campus** | **Base de Datos Relacional SQL (PostgreSQL en Azure)**<br><br>**Pro:** Garantiza consistencia estricta e integridad transaccional mediante soporte ACID; el uso de restricciones y llaves foráneas previene la duplicación de asistencias y el acaparamiento simultáneo de un mismo cubículo.<br><br>**Contra:** Esquemas de datos estructurados y rígidos que demandan migraciones de base de datos. | **Base de Datos Documental NoSQL (MongoDB / Azure Cosmos DB)**<br><br>**Pro:** Alta flexibilidad de esquemas; ideal para almacenar payloads variables de telemetría de dispositivos IoT y lecturas desestructuradas.<br><br>**Contra:** Dificultad para garantizar transacciones ACID distribuidas entre usuarios, matrículas y reservas de ambientes, aumentando el riesgo de inconsistencia de datos. | **Event Sourcing Puro**<br><br>**Pro:** Mantiene un registro inmutable de todos los eventos ocurridos en el campus (tarjeta leída, acceso concedido, cubículo liberado), permitiendo auditoría temporal perfecta.<br><br>**Contra:** Introduce una elevada complejidad de diseño del backend y es una forma de programar con dificultad elevada.|
 | **D04** | **Estrategia de Despliegue e Infraestructura Cloud** | **Contenedores Docker en Plataforma PaaS (Azure App Services)**<br><br>**Pro:** Despliegue automatizado, empaquetado hermético de componentes (Spring Boot, Angular y RabbitMQ) y escalabilidad gestionada por el proveedor sin requerir administración manual de servidores.<br><br>**Contra:** Menor control sobre la infraestructura profunda de red y costos operativos sujetos al tier de servicio configurado. | **Orquestación con Kubernetes (Azure Kubernetes Service - AKS)**<br><br>**Pro:** Máximo control, resiliencia y autoescalado elástico a nivel de contenedores individuales ante variaciones drásticas de demanda.<br><br>**Contra:** Complejidad operativa excesiva para la fase del proyecto; demanda configuración de clústeres, ingress controllers y mantenimiento DevOps especializado. | **Máquina Virtual Única IaaS (Azure Virtual Machine)**<br><br>**Pro:** Entorno sencillo y predecible; aprovisionamiento rápido mediante Docker Compose sobre una única instancia de bajo costo.<br><br>**Contra:** Cualquier saturación o reinicio de la máquina virtual interrumpe la totalidad de los servicios del campus. |
-
-### 4.1.5. Quality Attribute Scenario Refinements
 
 ### 4.1.5. Quality Attribute Scenario Refinements
 
@@ -1155,7 +1163,6 @@ A partir de los resultados obtenidos en el *Quality Attribute Workshop* (QAW) y 
 | **Questions** | ¿Cuántas instancias consumidoras y conexiones concurrentes deben configurarse en Spring Boot para mantener la cola vacía sin sobrepasar el pool de conexiones de PostgreSQL en Azure? |
 | **Issues** | La escritura individual fila por fila en la base de datos puede convertirse en un cuello de botella bajo concurrencia extrema, requiriendo el uso de inserciones por lotes (*batch processing*) en el consumidor. |
 
----
 
 #### Scenario Refinement for Scenario 2: Tolerancia a fallos y almacenamiento offline en hardware IoT
 
