@@ -620,6 +620,55 @@ Este subsegmento comprende al personal que realiza actividades administrativas, 
   </tr>
 </table>
 
+<br>
+
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 1</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Guadalupe Alvarado Ramos</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>54</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>San Miguel</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>00:00 - 06:24</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://youtu.be/fksqMUkJ3oY`
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      La entrevistada, Guadalupe Alvarado, se desempeña como encargada de logística en un instituto de SENCICO. Actualmente, la institución cuenta con un sistema biométrico de control de asistencia dirigido únicamente a los trabajadores, quienes registran su ingreso y salida mediante su huella dactilar.
+
+En términos generales, considera que el sistema funciona adecuadamente para controlar el cumplimiento de la jornada laboral; sin embargo, identifica limitaciones relacionadas con la información y las estadísticas que proporciona, ya que estas resultan insuficientes para apoyar determinadas tareas de gestión y supervisión.
+
+La entrevistada considera de gran utilidad contar con una solución que permita conocer la ubicación actual del personal dentro de las instalaciones. Esta información facilitaría la supervisión del cumplimiento de sus funciones y también podría ser útil ante situaciones de emergencia, como un sismo, al permitir conocer la ubicación o presencia del personal.
+
+Finalmente, señaló que, antes de implementar una nueva solución tecnológica, la institución tendría que evaluar principalmente la relación costo-beneficio, considerando si las mejoras y beneficios obtenidos justifican la inversión necesaria.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/images/entrevistas/entrevista-guadalupe-segmento2.png" alt="segmento1entrevista2" width="1000"><br>
+    </td>
+  </tr>
+</table>
+
 *Entrevistas a usuarios de tarjetas*
 ---
 
@@ -911,6 +960,127 @@ Se puede visualizar con más detalle en el siguiente enlace:
 
 
 ## 2.4. Ubiquitous Language.
+
+En esta sección se define el Ubiquitous Language del dominio de TarjePAFI, con el objetivo de establecer un lenguaje común entre todos los miembros del equipo y stakeholders. Este glosario reúne los principales términos relacionados con la identificación de personas, asistencia académica, control de accesos, gestión de espacios y operación dentro de un campus universitario, evitando ambigüedades durante el análisis y desarrollo de la solución.
+
+<div align="center">
+
+<table>
+  <thead>
+    <tr>
+      <th>Term</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Campus User (Usuario del Campus)</td>
+      <td>Persona que realiza actividades dentro de la universidad y puede interactuar con los servicios y espacios del campus.</td>
+    </tr>
+    <tr>
+      <td>Student (Estudiante)</td>
+      <td>Usuario del campus matriculado en uno o más cursos y que participa en actividades académicas dentro de la universidad.</td>
+    </tr>
+    <tr>
+      <td>Teacher (Docente)</td>
+      <td>Usuario responsable de impartir clases y desarrollar actividades académicas dentro de la universidad.</td>
+    </tr>
+    <tr>
+      <td>Staff Member (Trabajador)</td>
+      <td>Persona que desempeña funciones administrativas, operativas o de servicios dentro de la universidad, como seguridad, limpieza, mantenimiento o cocina.</td>
+    </tr>
+    <tr>
+      <td>Administrator (Administrador)</td>
+      <td>Persona responsable de supervisar información relacionada con asistencia, accesos, ocupación y uso de espacios para apoyar la gestión del campus.</td>
+    </tr>
+    <tr>
+      <td>Campus Credential (Credencial del Campus)</td>
+      <td>Credencial física asignada a un usuario que permite identificarlo durante sus interacciones dentro de la universidad.</td>
+    </tr>
+    <tr>
+      <td>Card Holder (Titular de la Credencial)</td>
+      <td>Usuario del campus al que se encuentra asignada una credencial vigente.</td>
+    </tr>
+    <tr>
+      <td>Credential Status (Estado de Credencial)</td>
+      <td>Condición actual de una credencial, como activa, bloqueada, perdida o desactivada, que determina si puede utilizarse dentro del campus.</td>
+    </tr>
+    <tr>
+      <td>Academic Attendance (Asistencia Académica)</td>
+      <td>Registro que confirma la presencia de un estudiante o docente en una actividad académica programada.</td>
+    </tr>
+    <tr>
+      <td>Attendance Record (Registro de Asistencia)</td>
+      <td>Evidencia individual de que un usuario registró su asistencia a una sesión académica determinada.</td>
+    </tr>
+    <tr>
+      <td>Class Session (Sesión de Clase)</td>
+      <td>Actividad académica programada para un curso en una fecha, horario y espacio determinados.</td>
+    </tr>
+    <tr>
+      <td>Attendance Window (Ventana de Asistencia)</td>
+      <td>Periodo de tiempo definido durante el cual un usuario puede registrar válidamente su asistencia a una sesión de clase.</td>
+    </tr>
+    <tr>
+      <td>Enrollment (Matrícula)</td>
+      <td>Relación formal que vincula a un estudiante con un curso durante un periodo académico determinado.</td>
+    </tr>
+    <tr>
+      <td>Campus Space (Espacio del Campus)</td>
+      <td>Área física perteneciente a la universidad que puede ser utilizada para actividades académicas, administrativas u operativas.</td>
+    </tr>
+    <tr>
+      <td>Facility (Instalación)</td>
+      <td>Recurso físico gestionado por la universidad, como aulas, laboratorios, bibliotecas, salas de estudio u oficinas.</td>
+    </tr>
+    <tr>
+      <td>Space Reservation (Reserva de Espacio)</td>
+      <td>Asignación de un espacio universitario a un usuario o actividad durante un periodo de tiempo determinado.</td>
+    </tr>
+    <tr>
+      <td>Reservation Time Slot (Franja de Reserva)</td>
+      <td>Intervalo de tiempo durante el cual una reserva de espacio se encuentra vigente.</td>
+    </tr>
+    <tr>
+      <td>Occupancy (Ocupación)</td>
+      <td>Cantidad de personas que se encuentran utilizando un espacio determinado en un momento específico.</td>
+    </tr>
+    <tr>
+      <td>Capacity (Capacidad)</td>
+      <td>Número máximo de personas que pueden utilizar un espacio de acuerdo con las condiciones establecidas por la universidad.</td>
+    </tr>
+    <tr>
+      <td>Access Permission (Permiso de Acceso)</td>
+      <td>Autorización otorgada a un usuario para ingresar o utilizar un determinado espacio del campus.</td>
+    </tr>
+    <tr>
+      <td>Restricted Area (Área Restringida)</td>
+      <td>Espacio cuyo ingreso está limitado únicamente a usuarios que cuentan con la autorización correspondiente.</td>
+    </tr>
+    <tr>
+      <td>Access Record (Registro de Acceso)</td>
+      <td>Evidencia del ingreso o intento de ingreso de un usuario a un espacio determinado del campus.</td>
+    </tr>
+    <tr>
+      <td>Work Attendance (Asistencia Laboral)</td>
+      <td>Registro de presencia de un trabajador durante la jornada en la que debe cumplir sus funciones dentro de la universidad.</td>
+    </tr>
+    <tr>
+      <td>Work Shift (Jornada Laboral)</td>
+      <td>Periodo establecido durante el cual un trabajador debe desarrollar sus actividades dentro de la universidad.</td>
+    </tr>
+    <tr>
+      <td>Campus Foot Traffic (Afluencia del Campus)</td>
+      <td>Flujo y cantidad de personas que transitan por determinadas zonas del campus durante un periodo de tiempo.</td>
+    </tr>
+    <tr>
+      <td>Check-in (Marcación)</td>
+      <td>Acción mediante la cual un usuario registra su presencia para una actividad, espacio o jornada determinada.</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
 
 # Capítulo 3: Requirements Specification
 
