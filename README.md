@@ -104,6 +104,17 @@ Integrantes
 
 # Project Report Collaboration Insights
 
++ TB1:
+
+<p align="center">
+  <img src="assets/insight tb1.png" alt="insights1" width="500">
+</p>
+
+<p align="center">
+  <img src="assets//insight 2 tb1.png" alt="insights1" width="500">
+</p>
+
+
 
 <div style="break-after: page;"></div>
 
@@ -756,7 +767,7 @@ Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego
     <td><strong>URL</strong></td>
     <td>
       
-  `https://youtu.be/RHp96fure88`
+  `https://youtu.be/w5s9bBvT1uQ?si=c8qPuEriqGDu5CTF`
 
   </td>
   </tr>
@@ -1850,7 +1861,9 @@ El sistema también se comunica con dos sistemas externos:
 - **Lectores NFC/IoT**, que detectan las tarjetas NFC utilizadas por los usuarios y envían los eventos de lectura a TarjePAFI para el registro de asistencia.
 - **Sistema Académico UPC**, que proporciona información académica como datos de alumnos, profesores, personal universitario, horarios y cursos, permitiendo que TarjePAFI utilice esta información para gestionar sus funcionalidades.
 
-  [![Context-Diagram.png](https://i.postimg.cc/bw4PKkqx/Context-Diagram.png)](https://postimg.cc/v47Cn1gT)
+<p align="center">
+  <img src="assets/contextdia.jpeg" alt="System-Landscape" width="750">
+</p>
 
 ### 4.3.3. Software Architecture Container Level Diagrams
 
@@ -1864,13 +1877,17 @@ RabbitMQ, utilizado como message broker para recibir y gestionar de forma asínc
 
 Además, el sistema se integra con los Lectores NFC/IoT, que envían los eventos generados por las tarjetas NFC hacia RabbitMQ, y con el Sistema Académico UPC, del cual el Backend API obtiene información académica mediante servicios REST/HTTPS.
 
-[![Container-Diagram.png](https://i.postimg.cc/02rLPjW2/Container-Diagram.png)](https://postimg.cc/yk4fT1Cw)
+<p align="center">
+  <img src="assets/containerdia.jpeg" alt="System-Landscape" width="750">
+</p>
 
 ### 4.3.4. Software Architecture Deployment Diagrams
 
 Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes componentes de software y dispositivos físicos. La plataforma está compuesta por una Landing Page y una aplicación web desarrolladas en Angular, un Backend API desarrollado con Spring Boot, un servidor RabbitMQ encargado de gestionar los eventos de lectura NFC y una base de datos PostgreSQL para almacenar la información del sistema. Los usuarios administrativos acceden a la aplicación web mediante HTTPS, mientras que los lectores NFC/IoT envían los eventos de lectura hacia RabbitMQ mediante HTTPS/MQTT. El Backend procesa estos eventos y se comunica con la base de datos mediante JDBC. Asimismo, el Backend se integra con el Sistema Académico UPC mediante REST/HTTPS para obtener información académica.
 
-[![Deployment-Diagram.png](https://i.postimg.cc/7hhQHtNd/Deployment-Diagram.png)](https://postimg.cc/5Qcmp3TS)
+<p align="center">
+  <img src="assets/deploydia.jpeg" alt="System-Landscape" width="750">
+</p>
 
 # Conclusiones
 
@@ -1888,12 +1905,12 @@ Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes component
 
 + Azizi, S., Nair, G., Rabiee, R., & Olofsson, T. (2020). Application of Internet of Things in academic buildings for space use efficiency using occupancy and booking data. Building and Environment, 186, 107355. https://doi.org/10.1016/j.buildenv.2020.107355
 
-+ Das, D. K. (2025). Integrating IoT and AI for sustainable energy-efficient smart building: Potential, barriers and strategic pathways. *Sustainability*, *17*(22), Artículo 10313[cite: 14]. https://doi.org/10.3390/su172210313[cite: 14]
++ Das, D. K. (2025). Integrating IoT and AI for sustainable energy-efficient smart building: Potential, barriers and strategic pathways. *Sustainability*, *17*(22), Artículo 10313. https://doi.org/10.3390/su172210313
 
-+ Israil, S. I. S., & Dhumane, P. B. (2025). Smart campus solutions: An IoT-based attendance system for universities and schools. *International Journal for Research Trends and Innovation*, *10*(5), b426–b433[cite: 12]. https://www.ijrti.org/papers/IJRTI2505148.pdf
++ Israil, S. I. S., & Dhumane, P. B. (2025). Smart campus solutions: An IoT-based attendance system for universities and schools. *International Journal for Research Trends and Innovation*, *10*(5), b426–b433. https://www.ijrti.org/papers/IJRTI2505148.pdf
 
 + Rashid, A. M. (2024). Smart campus: A review on smart attendance systems as an efficient approach. Journal of Engineering & Technological Advances, 8(2), 16–24. https://doi.org/10.35934/segi.v8i2.85
 
 + Sutjarittham, T., Habibi Gharakheili, H., Kanhere, S. S., & Sivaraman, V. (2019). Experiences with IoT and AI in a smart campus for optimizing classroom usage. IEEE Internet of Things Journal, 6(5), 7595–7607. https://doi.org/10.1109/JIOT.2019.2902410
 
-+ Prabakaran, S., Geetha, S., Nivesh Raja, R., Dhanush Balaji, G., Maya Kannan, M., & Sam Brainald, C. (2025). Smart campus surveillance and guidance system using face recognition. *Journal on Innovations in Teaching and Learning*, *4*(4), 22–31[cite: 13]. https://doi.org/10.46632/jitl/4/4/4[cite: 13]
++ Prabakaran, S., Geetha, S., Nivesh Raja, R., Dhanush Balaji, G., Maya Kannan, M., & Sam Brainald, C. (2025). Smart campus surveillance and guidance system using face recognition. *Journal on Innovations in Teaching and Learning*, *4*(4), 22–31. https://doi.org/10.46632/jitl/4/4/4
