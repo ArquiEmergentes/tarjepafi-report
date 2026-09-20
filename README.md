@@ -1862,7 +1862,7 @@ El sistema también se comunica con dos sistemas externos:
 - **Sistema Académico UPC**, que proporciona información académica como datos de alumnos, profesores, personal universitario, horarios y cursos, permitiendo que TarjePAFI utilice esta información para gestionar sus funcionalidades.
 
 <p align="center">
-  <img src="assets/contextdia.jpeg" alt="System-Landscape" width="750">
+  <img src="assets/deploydia.jpeg" alt="System-Landscape" width="750">
 </p>
 
 ### 4.3.3. Software Architecture Container Level Diagrams
@@ -1886,7 +1886,7 @@ Además, el sistema se integra con los Lectores NFC/IoT, que envían los eventos
 Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes componentes de software y dispositivos físicos. La plataforma está compuesta por una Landing Page y una aplicación web desarrolladas en Angular, un Backend API desarrollado con Spring Boot, un servidor RabbitMQ encargado de gestionar los eventos de lectura NFC y una base de datos PostgreSQL para almacenar la información del sistema. Los usuarios administrativos acceden a la aplicación web mediante HTTPS, mientras que los lectores NFC/IoT envían los eventos de lectura hacia RabbitMQ mediante HTTPS/MQTT. El Backend procesa estos eventos y se comunica con la base de datos mediante JDBC. Asimismo, el Backend se integra con el Sistema Académico UPC mediante REST/HTTPS para obtener información académica.
 
 <p align="center">
-  <img src="assets/deploydia.jpeg" alt="System-Landscape" width="750">
+  <img src="assets/contextdia.jpeg" alt="System-Landscape" width="750">
 </p>
 
 # Conclusiones
