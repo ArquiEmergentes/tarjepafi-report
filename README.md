@@ -738,25 +738,11 @@ Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego
   </tr>
   <tr>
     <td><strong>Entrevistado 1</strong></td>
-    <td>Carlos Pingus</td>
-  </tr>
-  <tr>
-    <td><strong>Edad</strong></td>
-    <td>24</td>
-  </tr>
-  <tr>
-    <td><strong>Distrito</strong></td>
-    <td>San Martin de Porres</td>
-  </tr>
-  <tr>
-    <td><strong>Timing</strong></td>
-    <td>0:00-6:11 </td>
-    <td><strong>Entrevistado</strong></td>
     <td>Juan Antonio Flores Moroco</td>
   </tr>
   <tr>
     <td><strong>Edad</strong></td>
-    <td>46 años</td>
+    <td>46</td>
   </tr>
   <tr>
     <td><strong>Distrito</strong></td>
@@ -764,7 +750,7 @@ Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego
   </tr>
   <tr>
     <td><strong>Timing</strong></td>
-    <td>0:40-26:17</td>
+    <td>0:40-26:17 </td>
   </tr>
   <tr>
     <td><strong>URL</strong></td>
@@ -791,30 +777,29 @@ Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego
 
 <table align="center">
   <tr>
-    <th colspan="2" style="text-align:center">Entrevista 1</th>
+    <th colspan="2" style="text-align:center">Entrevista 2</th>
   </tr>
   <tr>
     <td><strong>Entrevistado</strong></td>
-    <td>Guadalupe Alvarado Ramos</td>
+    <td>Carlos Pingus</td>
   </tr>
   <tr>
     <td><strong>Edad</strong></td>
-    <td>54</td>
+    <td>24</td>
   </tr>
   <tr>
     <td><strong>Distrito</strong></td>
-    <td>San Miguel</td>
+    <td>San Martin de Porres</td>
   </tr>
   <tr>
     <td><strong>Timing</strong></td>
-    <td>00:00 - 06:24</td>
+    <td>0:00-6:11</td>
   </tr>
   <tr>
     <td><strong>URL</strong></td>
     <td>
       
   `https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211a620_upc_edu_pe/IQB3X-klGNvYQKWSUi8pbM6aAbGwQSF23y78sSF4I3IVGyc?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=mry34y`
-  `https://youtu.be/fksqMUkJ3oY`
 
   </td>
   </tr>
@@ -836,6 +821,53 @@ Finalmente, señaló que, antes de implementar una nueva solución tecnológica,
   <tr>
     <td colspan="2"><br>
       <img src="assets/images/entrevistas/captura-entrevista-carlos.png" alt="segmento1entrevista2" width="1000"><br>
+    </td>
+  </tr>
+</table>
+
+
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 3</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Guadalupe Alvarado Ramos</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>54</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>San Miguel</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>00:00 - 06:24</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://youtu.be/fksqMUkJ3oY`
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      La entrevistada, Guadalupe Alvarado, se desempeña como encargada de logística en un instituto de SENCICO. Actualmente, la institución cuenta con un sistema biométrico de control de asistencia dirigido únicamente a los trabajadores, quienes registran su ingreso y salida mediante su huella dactilar.
+
+En términos generales, considera que el sistema funciona adecuadamente para controlar el cumplimiento de la jornada laboral; sin embargo, identifica limitaciones relacionadas con la información y las estadísticas que proporciona, ya que estas resultan insuficientes para apoyar determinadas tareas de gestión y supervisión.
+
+La entrevistada considera de gran utilidad contar con una solución que permita conocer la ubicación actual del personal dentro de las instalaciones. Esta información facilitaría la supervisión del cumplimiento de sus funciones y también podría ser útil ante situaciones de emergencia, como un sismo, al permitir conocer la ubicación o presencia del personal.
+
+Finalmente, señaló que, antes de implementar una nueva solución tecnológica, la institución tendría que evaluar principalmente la relación costo-beneficio, considerando si las mejoras y beneficios obtenidos justifican la inversión necesaria.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
       <img src="assets/images/entrevistas/entrevista-guadalupe-segmento2.png" alt="segmento1entrevista2" width="1000"><br>
     </td>
   </tr>
@@ -1841,6 +1873,16 @@ Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes component
 [![Deployment-Diagram.png](https://i.postimg.cc/7hhQHtNd/Deployment-Diagram.png)](https://postimg.cc/5Qcmp3TS)
 
 # Conclusiones
+
++ TB1:
+
+  + El análisis realizado permitió confirmar que la problemática de TarjePAFI no se limita únicamente al registro de asistencia, sino que comprende una gestión fragmentada de distintos procesos del campus, como el control de accesos, la ocupación de ambientes, las reservas y el monitoreo de afluencia. En este sentido, la propuesta de centralizar la información generada mediante credenciales NFC y dispositivos IoT responde a la necesidad de contar con información integrada y actualizada para estudiantes, docentes, trabajadores y responsables administrativos.
+
+  + Las entrevistas permitieron validar necesidades diferentes pero complementarias entre los dos segmentos objetivo. Por un lado, los usuarios de la credencial requieren interacciones rápidas, simples y confiables para registrar asistencia y acceder a los espacios del campus; por otro, los responsables administrativos necesitan información centralizada, indicadores y reportes que les permitan supervisar las operaciones y mejorar la toma de decisiones. Esto evidencia que TarjePAFI debe brindar valor tanto en la interacción física del usuario como en el aprovechamiento posterior de los datos generados.
+
+  + El proceso de Requirements Specification permitió transformar las necesidades identificadas en funcionalidades concretas relacionadas con registro automático de asistencia, activación de reservas, identificación de usuarios, control de accesos y generación de reportes administrativos. La priorización realizada en el Product Backlog establece una base para desarrollar progresivamente las funcionalidades de mayor valor y mantener trazabilidad entre las necesidades de los segmentos y la futura implementación del producto.
+
+  + El análisis arquitectónico permitió identificar que la concurrencia de múltiples lectores NFC, la necesidad de operar ante fallas temporales de conectividad y el procesamiento casi en tiempo real tienen un impacto directo sobre la arquitectura de TarjePAFI. Como respuesta, se planteó una arquitectura desacoplada mediante RabbitMQ, backend desarrollado con Spring Boot y persistencia en PostgreSQL, permitiendo que los dispositivos IoT generen eventos sin depender directamente de la disponibilidad inmediata del procesamiento central.
 
 # Bibliografía
 
