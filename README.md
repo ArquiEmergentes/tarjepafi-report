@@ -176,6 +176,73 @@ Integrantes
     - [4.3.3. Software Architecture Container Level Diagrams](#433-software-architecture-container-level-diagrams)
     - [4.3.4. Software Architecture Deployment Diagrams](#434-software-architecture-deployment-diagrams)
 
+- [Capítulo V: Tactical-Level Software Design](#capítulo-v-tactical-level-software-design)
+  - [5.1. Bounded Context: IAM Context](#51-bounded-context-iam-context)
+    - [5.1.1. Domain Layer](#511-domain-layer)
+    - [5.1.2. Interface Layer](#512-interface-layer)
+    - [5.1.3. Application Layer](#513-application-layer)
+    - [5.1.4. Infrastructure Layer](#514-infrastructure-layer)
+    - [5.1.6. Bounded Context Software Architecture Component Level Diagrams](#516-bounded-context-software-architecture-component-level-diagrams)
+    - [5.1.7. Bounded Context Software Architecture Code Level Diagrams](#517-bounded-context-software-architecture-code-level-diagrams)
+      - [5.1.7.1. Bounded Context Domain Layer Class Diagrams](#5171-bounded-context-domain-layer-class-diagrams)
+      - [5.1.7.2. Bounded Context Database Design Diagram](#5172-bounded-context-database-design-diagram)
+
+  - [5.2. Bounded Context: Academic Attendance Context](#52-bounded-context-academic-attendance-context)
+    - [5.2.1. Domain Layer](#521-domain-layer)
+    - [5.2.2. Interface Layer](#522-interface-layer)
+    - [5.2.3. Application Layer](#523-application-layer)
+    - [5.2.4. Infrastructure Layer](#524-infrastructure-layer)
+    - [5.2.6. Bounded Context Software Architecture Component Level Diagrams](#526-bounded-context-software-architecture-component-level-diagrams)
+    - [5.2.7. Bounded Context Software Architecture Code Level Diagrams](#527-bounded-context-software-architecture-code-level-diagrams)
+      - [5.2.7.1. Bounded Context Domain Layer Class Diagrams](#5271-bounded-context-domain-layer-class-diagrams)
+      - [5.2.7.2. Bounded Context Database Design Diagram](#5272-bounded-context-database-design-diagram)
+
+  - [5.3. Bounded Context: Space and Facility Context](#53-bounded-context-space-and-facility-context)
+    - [5.3.1. Domain Layer](#531-domain-layer)
+    - [5.3.2. Interface Layer](#532-interface-layer)
+    - [5.3.3. Application Layer](#533-application-layer)
+    - [5.3.4. Infrastructure Layer](#534-infrastructure-layer)
+    - [5.3.6. Bounded Context Software Architecture Component Level Diagrams](#536-bounded-context-software-architecture-component-level-diagrams)
+    - [5.3.7. Bounded Context Software Architecture Code Level Diagrams](#537-bounded-context-software-architecture-code-level-diagrams)
+      - [5.3.7.1. Bounded Context Domain Layer Class Diagrams](#5371-bounded-context-domain-layer-class-diagrams)
+      - [5.3.7.2. Bounded Context Database Design Diagram](#5372-bounded-context-database-design-diagram)
+
+  - [5.4. Bounded Context: IoT Monitoring Context](#54-bounded-context-iot-monitoring-context)
+    - [5.4.1. Domain Layer](#541-domain-layer)
+    - [5.4.2. Interface Layer](#542-interface-layer)
+    - [5.4.3. Application Layer](#543-application-layer)
+    - [5.4.4. Infrastructure Layer](#544-infrastructure-layer)
+    - [5.4.6. Bounded Context Software Architecture Component Level Diagrams](#546-bounded-context-software-architecture-component-level-diagrams)
+    - [5.4.7. Bounded Context Software Architecture Code Level Diagrams](#547-bounded-context-software-architecture-code-level-diagrams)
+      - [5.4.7.1. Bounded Context Domain Layer Class Diagrams](#5471-bounded-context-domain-layer-class-diagrams)
+      - [5.4.7.2. Bounded Context Database Design Diagram](#5472-bounded-context-database-design-diagram)
+
+  - [5.5. Bounded Context: Data Management Context](#55-bounded-context-data-management-context)
+    - [5.5.1. Domain Layer](#551-domain-layer)
+    - [5.5.2. Interface Layer](#552-interface-layer)
+    - [5.5.3. Application Layer](#553-application-layer)
+    - [5.5.4. Infrastructure Layer](#554-infrastructure-layer)
+    - [5.5.6. Bounded Context Software Architecture Component Level Diagrams](#556-bounded-context-software-architecture-component-level-diagrams)
+    - [5.5.7. Bounded Context Software Architecture Code Level Diagrams](#557-bounded-context-software-architecture-code-level-diagrams)
+      - [5.5.7.1. Bounded Context Domain Layer Class Diagrams](#5571-bounded-context-domain-layer-class-diagrams)
+      - [5.5.7.2. Bounded Context Database Design Diagram](#5572-bounded-context-database-design-diagram)
+
+- [Capítulo VI: Solution UX Design](#capítulo-vi-solution-ux-design)
+  - [6.1. Style Guidelines](#61-style-guidelines)
+    - [6.1.1. General Style Guidelines](#611-general-style-guidelines)
+    - [6.1.2. Web, Mobile & Devices Style Guidelines](#612-web-mobile--devices-style-guidelines)
+  - [6.2. Information Architecture](#62-information-architecture)
+    - [6.2.2. Labeling Systems](#622-labeling-systems)
+    - [6.2.3. Searching Systems](#623-searching-systems)
+    - [6.2.4. SEO Tags and Meta Tags](#624-seo-tags-and-meta-tags)
+    - [6.2.5. Navigation Systems](#625-navigation-systems)
+  - [6.3. Landing Page UI Design](#63-landing-page-ui-design)
+    - [6.3.1. Landing Page Wireframe](#631-landing-page-wireframe)
+    - [6.3.2. Landing Page Mock-up](#632-landing-page-mock-up)
+  - [6.4. Applications UX/UI Design](#64-applications-uxui-design)
+    - [6.4.1. Applications Wireframes](#641-applications-wireframes)
+    - [6.4.2. Applications Wireflow Diagrams](#642-applications-wireflow-diagrams)
+
 - [Conclusiones](#conclusiones)
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
 
@@ -1783,13 +1850,13 @@ Enlace al Miro: `https://miro.com/app/board/uXjVHklCdSw=/?share_link_id=47545670
   <img src="assets/images/bd-context-canvases/space-and-facility-bounded-context-canvases.png" alt="bounded-context-canvases" width="750">
 </p>
 
-+ **Bounded Context: Analytics & IoT Data Context:**
++ **Bounded Context: Iot Monitoring Context:**
 
 <p align="center">
   <img src="assets/images/bd-context-canvases/analytics-iot-bounded-context-canvases.png" alt="bounded-context-canvases" width="750">
 </p>
 
-+ **Bounded Context: Identification Context:**
++ **Bounded Context: Data Management Context:**
 
 <p align="center">
   <img src="assets/images/bd-context-canvases/identification-bounded-context-canvases.png" alt="bounded-context-canvases" width="750">
@@ -1798,42 +1865,44 @@ Enlace al Miro: `https://miro.com/app/board/uXjVHklCdSw=/?share_link_id=47545670
 
 ### 4.2.5. Context Mapping
 
-El proceso de Context Mapping permitió representar las relaciones estructurales y los mecanismos de integración existentes entre los bounded contexts definidos para TarjePAFI. Mientras que los Bounded Context Canvases permiten analizar individualmente las responsabilidades, reglas y dependencias de cada contexto, el Context Map proporciona una visión global de cómo estos colaboran para soportar los procesos de identificación mediante NFC, registro de asistencia, gestión de espacios y análisis de información dentro del Smart Campus.
+El proceso de Context Mapping permitió representar las relaciones estructurales y los mecanismos de integración existentes entre los bounded contexts definidos para TarjePAFI. Mientras que los Bounded Context Canvases permiten analizar individualmente las responsabilidades, reglas y dependencias de cada contexto, el Context Map proporciona una visión global de cómo estos colaboran para soportar los procesos de autenticación, monitoreo de dispositivos IoT, registro de asistencia, gestión de espacios y generación de información para la toma de decisiones dentro del Smart Campus.
 
 Para su elaboración, el equipo revisó las responsabilidades definidas previamente para cada bounded context y planteó preguntas de exploración propias de Domain-Driven Design, entre ellas:
 
-+ ¿Qué ocurriría si la validación de las tarjetas NFC fuera responsabilidad de IAM?
-+ ¿Sería conveniente unificar Academic Attendance Context y Space & Facility Context debido a que ambos utilizan la identificación mediante tarjetas?
-+ ¿Qué información debería ser proporcionada por Identification Context a los demás bounded contexts?
-+ ¿Es necesario compartir un modelo de usuario entre todos los contextos o solamente intercambiar identificadores y eventos?
-+ ¿Analytics & IoT Data Context debería almacenar las reglas de negocio de asistencia y reservas o únicamente procesar los eventos producidos por dichos contextos?
-+ ¿Sería conveniente dividir Analytics & IoT Data Context en un contexto de adquisición IoT y otro exclusivamente orientado a analítica?
++ ¿Qué responsabilidades relacionadas con autenticación y autorización deben permanecer dentro de IAM Context?
++ ¿Debe IoT Monitoring Context limitarse al monitoreo de dispositivos o también participar en la interpretación de las lecturas NFC?
++ ¿Cómo deben Academic Attendance Context y Space and Facility Context recibir los eventos generados por los lectores sin depender directamente del hardware?
++ ¿Es necesario compartir un mismo modelo de usuario entre los bounded contexts o únicamente intercambiar identificadores, roles y eventos?
++ ¿Data Management Context debe contener reglas de negocio de asistencia y reservas o únicamente almacenar, consolidar y analizar la información generada por los demás contextos?
++ ¿Cómo se debe aislar el dominio de TarjePAFI de los protocolos y formatos específicos utilizados por los lectores NFC e IoT?
 
-A partir de este análisis se determinó mantener los cinco bounded contexts definidos. Se descartó integrar la administración de tarjetas dentro de IAM, debido a que IAM se encarga de la autenticación y autorización de los usuarios dentro de las aplicaciones, mientras que Identification Context administra el ciclo de vida y validación de las credenciales físicas NFC. Asimismo, Academic Attendance Context y Space & Facility Context permanecen separados debido a que poseen reglas de negocio diferentes: el primero trabaja con sesiones académicas, horarios y registros de asistencia, mientras que el segundo administra reservas, capacidad y disponibilidad de espacios.
+A partir de este análisis se determinó mantener los cinco bounded contexts definidos. IAM Context se encarga exclusivamente de los procesos de autenticación, autorización, gestión de sesiones, roles y permisos dentro de las aplicaciones. Por otro lado, IoT Monitoring Context concentra las responsabilidades relacionadas con el registro, configuración, estado y monitoreo de los lectores NFC y dispositivos IoT distribuidos dentro del campus.
 
-También se evaluó dividir Analytics & IoT Data Context en dos contextos independientes: uno orientado a la adquisición de información IoT y otro dedicado exclusivamente a analítica. Para el alcance actual de TarjePAFI se decidió mantenerlos integrados, debido a que ambos procesos forman parte de una misma cadena de procesamiento de telemetría y generación de indicadores. Esta separación podría considerarse posteriormente si el volumen de dispositivos o información aumenta significativamente.
+Academic Attendance Context y Space and Facility Context permanecen separados debido a que poseen reglas de negocio distintas. Academic Attendance Context trabaja con sesiones académicas, horarios, matrículas y registros de asistencia, mientras que Space and Facility Context administra reservas, disponibilidad, capacidad, accesos y ocupación de los espacios universitarios.
+
+Finalmente, Data Management Context se encarga de almacenar, ordenar, consolidar y resumir la información producida por los demás contextos, permitiendo generar reportes, dashboards, indicadores e información histórica para los administradores. De esta manera, las reglas de negocio permanecen dentro de sus respectivos bounded contexts, mientras que Data Management se concentra en la explotación y presentación de la información.
 
 A partir de estas decisiones se identificaron los siguientes patrones de relación entre contextos:
 
-+ Open Host Service (OHS) en IAM, que expone servicios estandarizados de autenticación y autorización consumidos por los demás bounded contexts. De esta manera, Academic Attendance, Space & Facility, Analytics & IoT Data e Identification pueden validar sesiones, roles y permisos sin implementar mecanismos propios de autenticación.
++ Open Host Service (OHS) en IAM Context, que expone servicios estandarizados de autenticación y autorización consumidos por los demás bounded contexts. De esta manera, Academic Attendance Context, Space and Facility Context, IoT Monitoring Context y Data Management Context pueden validar sesiones, roles y permisos sin implementar mecanismos propios de autenticación.
 
-+ Conformist en la relación entre IAM e Identification Context. Identification utiliza la representación de usuarios, roles y permisos proporcionada por IAM para determinar qué funciones puede realizar el propietario de una tarjeta, evitando mantener un segundo modelo independiente de usuarios.
++ Conformist en la relación entre IAM Context e IoT Monitoring Context. IoT Monitoring utiliza los roles y permisos proporcionados por IAM para determinar qué usuarios administrativos pueden registrar, activar, desactivar o modificar la configuración de los dispositivos IoT.
 
-+ Customer/Supplier entre Identification Context y Academic Attendance Context, donde Identification actúa como supplier proporcionando la identidad validada asociada a una tarjeta NFC. Academic Attendance utiliza dicha información para determinar quién está intentando registrar asistencia antes de ejecutar sus propias reglas relacionadas con horario, matrícula y sesión académica.
++ Customer/Supplier entre IoT Monitoring Context y Academic Attendance Context. IoT Monitoring actúa como supplier proporcionando eventos generados por las lecturas NFC, como CardTapEvent o ReaderEvent. Academic Attendance utiliza estos eventos para identificar una interacción física y posteriormente aplicar sus propias reglas relacionadas con matrícula, horario y sesión académica.
 
-+ Customer/Supplier entre Identification Context y Space & Facility Context. Identification proporciona la identidad y estado de la tarjeta, mientras que Space & Facility utiliza estos datos para determinar si el usuario puede realizar una reserva, acceder a un ambiente o registrar la ocupación de un espacio.
++ Customer/Supplier entre IoT Monitoring Context y Space and Facility Context. IoT Monitoring proporciona los eventos generados por los lectores instalados en accesos, cubículos y otros ambientes, mientras que Space and Facility utiliza esta información para ejecutar sus reglas relacionadas con reservas, accesos y ocupación de espacios.
 
-+ Event-Driven Consistency entre Academic Attendance Context y Analytics & IoT Data Context. Cuando se producen eventos como AttendanceRecorded, AttendanceRejected o LateAttendanceDetected, estos pueden ser consumidos de manera asíncrona por Analytics & IoT Data para actualizar indicadores de asistencia sin acoplar directamente ambos modelos de dominio.
++ Event-Driven Consistency entre Academic Attendance Context y Data Management Context. Cuando se generan eventos como AttendanceRecorded o AttendanceRejected, estos son consumidos de manera asíncrona por Data Management para actualizar información histórica, estadísticas y reportes de asistencia sin acoplar directamente ambos modelos de dominio.
 
-+ Event-Driven Consistency entre Space & Facility Context y Analytics & IoT Data Context, mediante eventos como ReservationCreated, SpaceOccupied o SpaceReleased. Esto permite actualizar métricas de utilización y ocupación de espacios sin que el contexto de reservas tenga conocimiento de la lógica interna del módulo analítico.
++ Event-Driven Consistency entre Space and Facility Context y Data Management Context, mediante eventos como ReservationCreated, SpaceOccupied o SpaceReleased. Estos eventos permiten actualizar métricas de utilización, disponibilidad y ocupación de espacios sin que Space and Facility tenga conocimiento de la lógica interna utilizada para generar los reportes.
 
-+ Event-Driven Consistency entre Identification Context y Analytics & IoT Data Context, donde eventos como CardValidated y CardRejected pueden utilizarse para analizar flujos de usuarios, accesos y frecuencia de interacción de las tarjetas con los lectores distribuidos en el campus.
++ Event-Driven Consistency entre IoT Monitoring Context y Data Management Context. Eventos como TelemetryCaptured, DeviceHealthUpdated o DeviceOfflineDetected son utilizados para mantener información histórica sobre el funcionamiento de los lectores y generar indicadores relacionados con la disponibilidad y estado de la infraestructura IoT.
 
-+ Anti-Corruption Layer (ACL) en el límite entre los dispositivos físicos NFC/IoT y los bounded contexts de TarjePAFI. Los lectores generan identificadores, telemetría y eventos en formatos propios del dispositivo, por lo que una capa de adaptación transforma esta información antes de ingresarla al modelo de dominio de Identification o Analytics & IoT Data. De esta forma, cambios en el protocolo o fabricante del dispositivo no afectan directamente las reglas del negocio.
++ Anti-Corruption Layer (ACL) en el límite entre los dispositivos físicos NFC/IoT y IoT Monitoring Context. Los lectores pueden utilizar protocolos, identificadores y formatos específicos del fabricante, por lo que una capa de adaptación transforma dichos datos antes de incorporarlos al modelo de dominio de TarjePAFI. De esta manera, cambios en los dispositivos o protocolos de comunicación no afectan directamente las reglas del negocio.
 
-El patrón Shared Kernel también fue considerado para compartir elementos como User, Card, Space o sus identificadores entre los diferentes bounded contexts. Sin embargo, se decidió no utilizarlo, ya que compartir directamente modelos de dominio incrementaría el acoplamiento. En su lugar, cada contexto mantiene su propio modelo y comparte únicamente identificadores, contratos y eventos necesarios para la integración.
+El patrón Shared Kernel también fue considerado para compartir elementos como User, Reader, Space o sus identificadores entre los diferentes bounded contexts. Sin embargo, se decidió no utilizarlo, ya que compartir directamente modelos de dominio incrementaría el acoplamiento entre los contextos. En su lugar, cada bounded context mantiene su propio modelo y comparte únicamente identificadores, contratos, consultas y eventos necesarios para la integración.
 
-El Context Map resultante posiciona a Identification Context como el punto central para las interacciones realizadas mediante las credenciales NFC, proporcionando identidad validada a Academic Attendance y Space & Facility. IAM actúa como un servicio transversal encargado de autenticación y autorización, mientras que Academic Attendance Context y Space & Facility Context concentran las principales reglas de negocio relacionadas con asistencia y gestión de espacios. Finalmente, Analytics & IoT Data Context funciona como un contexto de soporte que consume los eventos generados por los demás contextos y por la infraestructura IoT para transformarlos en indicadores, reportes y dashboards orientados a la toma de decisiones de los administradores.
+El Context Map resultante posiciona a IoT Monitoring Context como el punto de integración entre los dispositivos físicos NFC/IoT y los procesos del dominio que necesitan utilizar sus lecturas. IAM Context actúa como un servicio transversal encargado de autenticación y autorización, mientras que Academic Attendance Context y Space and Facility Context concentran las principales reglas de negocio relacionadas con asistencia y gestión de espacios. Finalmente, Data Management Context funciona como un contexto de soporte que consume los eventos generados por los demás bounded contexts para transformarlos en información histórica, indicadores, reportes y dashboards orientados a la toma de decisiones de los administradores.
 
 <p align="center">
   <img src="assets/context_mapping.png" alt="context-mapping" width="750">
@@ -1888,6 +1957,137 @@ Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes component
 <p align="center">
   <img src="assets/contextdia.jpeg" alt="System-Landscape" width="750">
 </p>
+
+
+# Capítulo V: Tactical-Level Software Design
+
+## 5.1. Bounded Context: IAM Context
+
+### 5.1.1. Domain Layer
+
+### 5.1.2. Interface Layer
+
+### 5.1.3. Application Layer
+
+### 5.1.4. Infrastructure Layer
+
+### 5.1.6. Bounded Context Software Architecture Component Level Diagrams
+
+### 5.1.7. Bounded Context Software Architecture Code Level Diagrams
+
+#### 5.1.7.1. Bounded Context Domain Layer Class Diagrams
+
+#### 5.1.7.2. Bounded Context Database Design Diagram
+
+
+## 5.2. Bounded Context: Academic Attendance Context
+
+### 5.2.1. Domain Layer
+
+### 5.2.2. Interface Layer
+
+### 5.2.3. Application Layer
+
+### 5.2.4. Infrastructure Layer
+
+### 5.2.6. Bounded Context Software Architecture Component Level Diagrams
+
+### 5.2.7. Bounded Context Software Architecture Code Level Diagrams
+
+#### 5.2.7.1. Bounded Context Domain Layer Class Diagrams
+
+#### 5.2.7.2. Bounded Context Database Design Diagram
+
+
+## 5.3. Bounded Context: Space and Facility Context
+
+### 5.3.1. Domain Layer
+
+### 5.3.2. Interface Layer
+
+### 5.3.3. Application Layer
+
+### 5.3.4. Infrastructure Layer
+
+### 5.3.6. Bounded Context Software Architecture Component Level Diagrams
+
+### 5.3.7. Bounded Context Software Architecture Code Level Diagrams
+
+#### 5.3.7.1. Bounded Context Domain Layer Class Diagrams
+
+#### 5.3.7.2. Bounded Context Database Design Diagram
+
+
+## 5.4. Bounded Context: IoT Monitoring Context
+
+### 5.4.1. Domain Layer
+
+### 5.4.2. Interface Layer
+
+### 5.4.3. Application Layer
+
+### 5.4.4. Infrastructure Layer
+
+### 5.4.6. Bounded Context Software Architecture Component Level Diagrams
+
+### 5.4.7. Bounded Context Software Architecture Code Level Diagrams
+
+#### 5.4.7.1. Bounded Context Domain Layer Class Diagrams
+
+#### 5.4.7.2. Bounded Context Database Design Diagram
+
+
+## 5.5. Bounded Context: Data Management Context
+
+### 5.5.1. Domain Layer
+
+### 5.5.2. Interface Layer
+
+### 5.5.3. Application Layer
+
+### 5.5.4. Infrastructure Layer
+
+### 5.5.6. Bounded Context Software Architecture Component Level Diagrams
+
+### 5.5.7. Bounded Context Software Architecture Code Level Diagrams
+
+#### 5.5.7.1. Bounded Context Domain Layer Class Diagrams
+
+#### 5.5.7.2. Bounded Context Database Design Diagram
+
+
+# Capítulo VI: Solution UX Design
+
+## 6.1. Style Guidelines
+
+### 6.1.1. General Style Guidelines
+
+### 6.1.2. Web, Mobile & Devices Style Guidelines
+
+
+## 6.2. Information Architecture
+
+### 6.2.2. Labeling Systems
+
+### 6.2.3. Searching Systems
+
+### 6.2.4. SEO Tags and Meta Tags
+
+### 6.2.5. Navigation Systems
+
+
+## 6.3. Landing Page UI Design
+
+### 6.3.1. Landing Page Wireframe
+
+### 6.3.2. Landing Page Mock-up
+
+
+## 6.4. Applications UX/UI Design
+
+### 6.4.1. Applications Wireframes
+
+### 6.4.2. Applications Wireflow Diagrams
 
 # Conclusiones
 
