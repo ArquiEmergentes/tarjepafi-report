@@ -2020,21 +2020,599 @@ Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes component
 
 ## 5.4. Bounded Context: IoT Monitoring Context
 
+El **IoT Monitoring Context** concentra las responsabilidades relacionadas con la gestión y supervisión de los lectores NFC y dispositivos IoT distribuidos dentro del campus universitario. Este bounded context permite registrar los dispositivos, asociarlos a una ubicación, configurar sus parámetros de funcionamiento, conocer su estado operativo y procesar la telemetría generada durante su funcionamiento.
+
+Asimismo, funciona como la capa de integración entre los dispositivos físicos y los demás bounded contexts de TarjePAFI. Las lecturas producidas por los lectores NFC son recibidas y transformadas en eventos comprensibles para el dominio, evitando que **Academic Attendance Context** y **Space and Facility Context** dependan directamente de los protocolos o formatos específicos utilizados por el hardware.
+
+Para mantener aislado el dominio de los detalles propios de los dispositivos, se aplica una **Anti-Corruption Layer (ACL)** encargada de adaptar los mensajes recibidos desde los lectores NFC/IoT antes de que sean procesados por la aplicación. De esta forma, cambios futuros en el fabricante, protocolo o estructura de mensajes de los dispositivos no afectan directamente las reglas de negocio del sistema.
+
+Este bounded context mantiene relaciones principalmente con **IAM Context**, para validar los permisos de los administradores que gestionan dispositivos; con **Academic Attendance Context** y **Space and Facility Context**, a los cuales proporciona eventos generados por las lecturas físicas; y con **Data Management Context**, al que publica información de telemetría y estado de los dispositivos para la generación de reportes e indicadores.
+
+
 ### 5.4.1. Domain Layer
+
+La **Domain Layer** representa el núcleo del IoT Monitoring Context y contiene las clases responsables de modelar los lectores IoT, su configuración, estado operativo y reglas asociadas al monitoreo de dispositivos. Esta capa permanece independiente de tecnologías específicas como Spring Boot, PostgreSQL o RabbitMQ, concentrándose únicamente en las reglas propias del dominio.
+
+Las principales clases identificadas para esta capa son las siguientes.
+
+#### Aggregate Root
+
+##### IoTReader
+
+`IoTReader` constituye el **Aggregate Root** principal del bounded context. Representa un lector NFC o dispositivo IoT registrado en TarjePAFI y mantiene el estado consistente de toda la información relacionada con dicho dispositivo.
+
+**Propósito:** gestionar el ciclo de vida de un lector IoT, su configuración, ubicación, estado operativo y las principales acciones permitidas sobre el dispositivo.
+
+**Atributos principales:**
+
+- `readerId`: identificador único del lector.
+- `name`: nombre asignado al dispositivo.
+- `deviceType`: tipo de dispositivo registrado.
+- `location`: ubicación dentro del campus.
+- `configurationProfile`: configuración actualmente aplicada.
+- `status`: estado operativo actual del lector.
+- `registeredAt`: fecha y hora de registro.
+- `lastSeenAt`: fecha y hora de la última comunicación recibida.
+- `health`: información sobre el estado de funcionamiento del dispositivo.
+
+**Métodos principales:**
+
+- `register()`: registra el dispositivo dentro del sistema.
+- `activate()`: cambia el dispositivo a estado activo.
+- `deactivate()`: desactiva el lector.
+- `configure(ConfigurationProfile profile)`: aplica una nueva configuración.
+- `updateLastSeen()`: actualiza la fecha de la última comunicación recibida.
+- `updateHealth(DeviceHealth health)`: actualiza el estado de salud del dispositivo.
+- `markOffline()`: establece el dispositivo como desconectado.
+- `canProcessEvents()`: determina si el dispositivo se encuentra habilitado para generar eventos.
+
+`IoTReader` controla las reglas que garantizan que únicamente dispositivos registrados, correctamente configurados y en estado operativo puedan participar en los procesos del sistema.
+
+
+#### Entities
+
+##### DeviceTelemetry
+
+`DeviceTelemetry` representa una observación generada por un dispositivo IoT durante su funcionamiento.
+
+**Propósito:** mantener la información operativa enviada periódicamente por los lectores para supervisar su conectividad y comportamiento.
+
+**Atributos principales:**
+
+- `telemetryId`: identificador único de la lectura.
+- `readerId`: identificador del dispositivo que produjo la información.
+- `capturedAt`: fecha y hora de captura.
+- `signalStrength`: intensidad de la señal reportada.
+- `uptime`: tiempo de funcionamiento del dispositivo.
+- `firmwareVersion`: versión de firmware reportada.
+- `status`: estado comunicado por el dispositivo.
+
+**Métodos principales:**
+
+- `isRecent()`: determina si la telemetría corresponde a un periodo reciente.
+- `indicatesFailure()`: identifica condiciones que pueden representar una falla.
+- `belongsTo(ReaderId readerId)`: valida la relación de la telemetría con un lector determinado.
+
+
+##### DeviceIncident
+
+`DeviceIncident` representa una anomalía detectada durante el funcionamiento de un lector.
+
+**Propósito:** registrar de forma trazable situaciones como pérdida de conectividad, errores de lectura o funcionamiento degradado.
+
+**Atributos principales:**
+
+- `incidentId`: identificador del incidente.
+- `readerId`: lector relacionado con la incidencia.
+- `incidentType`: tipo de anomalía detectada.
+- `detectedAt`: momento en que fue identificada.
+- `description`: descripción del problema.
+- `resolvedAt`: fecha de resolución, cuando corresponda.
+
+**Métodos principales:**
+
+- `resolve()`: marca el incidente como solucionado.
+- `isResolved()`: indica si la incidencia continúa activa.
+
+
+#### Value Objects
+
+##### ReaderId
+
+`ReaderId` representa el identificador único e inmutable de un lector IoT dentro de TarjePAFI.
+
+Su responsabilidad es asegurar que todo dispositivo se encuentre correctamente identificado y evitar la utilización de identificadores vacíos o inválidos.
+
+
+##### DeviceLocation
+
+`DeviceLocation` representa la ubicación física donde se encuentra instalado un lector.
+
+Puede contener información como:
+
+- `campus`
+- `building`
+- `floor`
+- `spaceId`
+- `description`
+
+Este Value Object permite conocer el lugar desde el cual se genera una lectura y relacionarla posteriormente con procesos de asistencia, acceso o utilización de espacios.
+
+
+##### ConfigurationProfile
+
+`ConfigurationProfile` representa el conjunto de parámetros utilizados para configurar un dispositivo.
+
+Puede incluir atributos como:
+
+- `readerMode`
+- `communicationInterval`
+- `heartbeatInterval`
+- `firmwareVersion`
+
+Su propósito es garantizar que una configuración sea tratada como una unidad consistente antes de ser asignada a un lector.
+
+
+##### DeviceHealth
+
+`DeviceHealth` representa el estado de funcionamiento observado de un dispositivo.
+
+Contiene información necesaria para determinar si el lector se encuentra funcionando normalmente, presenta degradación o requiere mantenimiento.
+
+
+#### Enumerations
+
+##### DeviceStatus
+
+Representa los posibles estados operativos de un lector:
+
+- `REGISTERED`
+- `ACTIVE`
+- `INACTIVE`
+- `OFFLINE`
+- `DEGRADED`
+- `MAINTENANCE`
+
+##### IncidentType
+
+Representa los principales tipos de incidencias detectadas:
+
+- `CONNECTIVITY_FAILURE`
+- `READ_ERROR`
+- `DEVICE_OFFLINE`
+- `CONFIGURATION_ERROR`
+- `HARDWARE_FAILURE`
+
+
+#### Repository Interfaces
+
+##### IoTReaderRepository
+
+`IoTReaderRepository` define la abstracción utilizada por el dominio para recuperar y persistir los lectores registrados.
+
+**Métodos principales:**
+
+- `save(IoTReader reader)`
+- `findById(ReaderId readerId)`
+- `existsById(ReaderId readerId)`
+- `findByStatus(DeviceStatus status)`
+- `findByLocation(DeviceLocation location)`
+
+La interfaz se define en la Domain Layer, mientras que su implementación concreta se ubica en Infrastructure Layer.
+
+
+##### DeviceTelemetryRepository
+
+`DeviceTelemetryRepository` define las operaciones necesarias para consultar y almacenar información de telemetría.
+
+**Métodos principales:**
+
+- `save(DeviceTelemetry telemetry)`
+- `findLatestByReaderId(ReaderId readerId)`
+- `findByReaderId(ReaderId readerId)`
+- `findByReaderIdAndPeriod(ReaderId readerId, DateRange period)`
+
+
+##### DeviceIncidentRepository
+
+`DeviceIncidentRepository` abstrae la persistencia de las incidencias detectadas en los dispositivos.
+
+**Métodos principales:**
+
+- `save(DeviceIncident incident)`
+- `findActiveByReaderId(ReaderId readerId)`
+- `findByReaderId(ReaderId readerId)`
+
+
+#### Domain Services
+
+##### DeviceMonitoringDomainService
+
+`DeviceMonitoringDomainService` concentra reglas que involucran información de monitoreo y que no pertenecen de manera natural a una única Entity.
+
+Sus principales responsabilidades son:
+
+- `evaluateDeviceHealth()`: evaluar el estado operativo de un dispositivo a partir de su última comunicación y telemetría.
+- `determineConnectivity()`: determinar si un lector continúa conectado.
+- `detectAbnormalCondition()`: detectar condiciones anómalas.
+- `shouldGenerateIncident()`: determinar si una anomalía requiere generar una incidencia.
+
+Este servicio permite mantener las reglas de monitoreo independientes de los mecanismos técnicos utilizados para obtener la información.
+
 
 ### 5.4.2. Interface Layer
 
+La **Interface Layer** proporciona los puntos de entrada mediante los cuales otros actores, sistemas y dispositivos pueden interactuar con IoT Monitoring Context. En esta capa se encuentran tanto los controladores REST utilizados por la aplicación administrativa como los consumidores responsables de recibir mensajes provenientes de la infraestructura IoT.
+
+Esta capa recibe las solicitudes externas y las transforma en commands o queries que son enviados hacia Application Layer, evitando exponer directamente los objetos internos del dominio.
+
+
+#### IoTMonitoringController
+
+`IoTMonitoringController` expone las operaciones utilizadas por los administradores para consultar y gestionar los dispositivos registrados.
+
+**Responsabilidades principales:**
+
+- registrar nuevos lectores IoT;
+- consultar el estado de un lector;
+- activar o desactivar dispositivos;
+- modificar la configuración de un lector;
+- consultar telemetría reciente;
+- consultar el historial de funcionamiento.
+
+Entre los endpoints considerados se encuentran:
+
+- `POST /api/v1/iot/readers`
+- `GET /api/v1/iot/readers/{readerId}`
+- `PATCH /api/v1/iot/readers/{readerId}/configuration`
+- `POST /api/v1/iot/readers/{readerId}/activate`
+- `POST /api/v1/iot/readers/{readerId}/deactivate`
+- `GET /api/v1/iot/readers/{readerId}/telemetry`
+- `GET /api/v1/iot/readers/{readerId}/health`
+
+
+#### DeviceEventConsumer
+
+`DeviceEventConsumer` recibe los mensajes provenientes de los lectores NFC e IoT mediante el mecanismo de mensajería definido por la solución.
+
+Su responsabilidad consiste en recibir eventos como:
+
+- lecturas de tarjetas NFC;
+- heartbeats de los lectores;
+- información de telemetría;
+- notificaciones de error.
+
+Antes de que estos mensajes ingresen a la lógica de aplicación, son transformados a un formato interno mediante la Anti-Corruption Layer correspondiente.
+
+
+#### DevicePayloadAdapter
+
+`DevicePayloadAdapter` funciona como parte de la **Anti-Corruption Layer (ACL)** entre los dispositivos físicos y el modelo interno de TarjePAFI.
+
+Su función consiste en convertir los mensajes específicos enviados por los dispositivos a commands y objetos que puedan ser entendidos por Application Layer.
+
+Entre sus operaciones principales se encuentran:
+
+- `toCardTapCommand()`
+- `toTelemetryCommand()`
+- `toHeartbeatCommand()`
+- `toDeviceErrorCommand()`
+
+De esta manera, la aplicación evita depender directamente del protocolo o estructura de mensajes implementada por los lectores.
+
+
 ### 5.4.3. Application Layer
+
+La **Application Layer** coordina los casos de uso del IoT Monitoring Context. Esta capa no contiene las reglas centrales del dominio, sino que organiza la interacción entre los objetos de Domain Layer, repositorios y servicios de infraestructura necesarios para completar cada operación.
+
+Para ello se utilizan Commands, Command Handlers, Queries, Query Handlers y Event Handlers.
+
+
+#### Commands
+
+Los Commands representan solicitudes que producen un cambio en el estado del bounded context.
+
+##### RegisterReaderCommand
+
+Solicita registrar un nuevo dispositivo dentro del sistema.
+
+**Datos principales:**
+
+- `readerId`
+- `name`
+- `deviceType`
+- `location`
+- `configurationProfile`
+
+
+##### ConfigureReaderCommand
+
+Solicita modificar la configuración de un lector existente.
+
+**Datos principales:**
+
+- `readerId`
+- `configurationProfile`
+
+
+##### ActivateReaderCommand
+
+Solicita habilitar un dispositivo para comenzar a operar.
+
+**Datos principales:**
+
+- `readerId`
+
+
+##### DeactivateReaderCommand
+
+Solicita desactivar temporalmente un dispositivo.
+
+**Datos principales:**
+
+- `readerId`
+
+
+##### ProcessTelemetryCommand
+
+Representa la recepción de información de telemetría enviada por un dispositivo.
+
+**Datos principales:**
+
+- `readerId`
+- `capturedAt`
+- `signalStrength`
+- `uptime`
+- `firmwareVersion`
+- `status`
+
+
+##### ProcessCardTapCommand
+
+Representa una interacción producida cuando una credencial NFC es detectada por uno de los lectores.
+
+**Datos principales:**
+
+- `readerId`
+- `cardUid`
+- `timestamp`
+
+
+#### Command Handlers
+
+##### RegisterReaderCommandHandler
+
+Valida que el identificador del dispositivo no se encuentre registrado, crea el Aggregate `IoTReader`, aplica su configuración inicial y utiliza `IoTReaderRepository` para persistirlo.
+
+Una vez completado el proceso, puede generar el evento `ReaderRegistered`.
+
+
+##### ConfigureReaderCommandHandler
+
+Recupera el lector correspondiente, valida la nueva configuración mediante las reglas del dominio y actualiza el `ConfigurationProfile`.
+
+Como resultado puede producir el evento `DeviceConfigured`.
+
+
+##### ActivateReaderCommandHandler
+
+Recupera el dispositivo solicitado y ejecuta la operación `activate()` sobre el Aggregate.
+
+Al finalizar correctamente publica `DeviceActivated`.
+
+
+##### DeactivateReaderCommandHandler
+
+Coordina la desactivación controlada del lector y publica el evento `DeviceDeactivated`.
+
+
+##### ProcessTelemetryCommandHandler
+
+Procesa la información recibida desde un dispositivo, actualiza su última comunicación, almacena la telemetría y utiliza `DeviceMonitoringDomainService` para evaluar su estado.
+
+Cuando se detecta una condición anómala puede generar eventos como:
+
+- `DeviceHealthUpdated`
+- `DeviceOfflineDetected`
+
+
+##### ProcessCardTapCommandHandler
+
+Procesa una lectura física de una tarjeta NFC e identifica el dispositivo que originó la interacción.
+
+Después de validar que el lector se encuentra registrado y operativo, genera un evento `CardTapEvent`, que puede ser consumido posteriormente por **Academic Attendance Context** o **Space and Facility Context**, según el punto del campus donde se produjo la lectura.
+
+
+#### Queries
+
+Las Queries permiten recuperar información sin modificar el estado del dominio.
+
+Se consideran principalmente:
+
+- `GetReaderByIdQuery`
+- `GetDeviceStatusQuery`
+- `GetReaderTelemetryQuery`
+- `GetReaderConfigurationQuery`
+- `GetDeviceHealthQuery`
+- `GetActiveIncidentsQuery`
+
+
+#### Query Handlers
+
+##### GetDeviceStatusQueryHandler
+
+Recupera el lector solicitado y devuelve su estado operativo actual.
+
+
+##### GetReaderTelemetryQueryHandler
+
+Obtiene la información histórica de telemetría registrada para un dispositivo.
+
+
+##### GetReaderConfigurationQueryHandler
+
+Devuelve la configuración actualmente asignada al lector.
+
+
+##### GetDeviceHealthQueryHandler
+
+Obtiene la información necesaria para mostrar el estado de salud del dispositivo y su última comunicación registrada.
+
+
+##### GetActiveIncidentsQueryHandler
+
+Obtiene las incidencias que permanecen abiertas para un lector específico.
+
+
+#### Event Handlers
+
+##### DeviceOfflineDetectedEventHandler
+
+Procesa un evento de pérdida de conectividad y registra la incidencia correspondiente para el dispositivo.
+
+
+##### DeviceHealthUpdatedEventHandler
+
+Gestiona los cambios relevantes producidos en el estado de salud de un lector y coordina su publicación hacia otros bounded contexts interesados.
+
+
+##### CardTapEventHandler
+
+Coordina la publicación del evento originado por una lectura NFC para permitir que los bounded contexts consumidores utilicen dicha interacción sin conectarse directamente al dispositivo físico.
+
 
 ### 5.4.4. Infrastructure Layer
 
+La **Infrastructure Layer** contiene las implementaciones concretas necesarias para persistir información, interactuar con el sistema de mensajería y comunicarse con componentes externos. De esta manera, implementa las abstracciones definidas en Domain Layer y permite mantener las reglas de negocio independientes de tecnologías específicas.
+
+Para TarjePAFI, esta capa utiliza principalmente **PostgreSQL** para persistencia, **RabbitMQ** para comunicación asíncrona y mecanismos de integración con los lectores NFC/IoT.
+
+
+#### Repository Implementations
+
+##### JpaIoTReaderRepository
+
+`JpaIoTReaderRepository` implementa la interfaz `IoTReaderRepository` definida en Domain Layer.
+
+Su responsabilidad es traducir las operaciones del dominio a operaciones de persistencia sobre PostgreSQL utilizando Spring Data JPA.
+
+Permite:
+
+- registrar dispositivos;
+- recuperar lectores por identificador;
+- consultar dispositivos por estado;
+- consultar dispositivos instalados en una determinada ubicación;
+- actualizar la configuración y estado operativo.
+
+
+##### JpaDeviceTelemetryRepository
+
+Implementa `DeviceTelemetryRepository` y almacena la información histórica de telemetría recibida desde cada lector.
+
+Permite realizar consultas temporales utilizadas para monitoreo y diagnóstico del dispositivo.
+
+
+##### JpaDeviceIncidentRepository
+
+Implementa `DeviceIncidentRepository` y permite almacenar y recuperar las incidencias relacionadas con el funcionamiento de los dispositivos.
+
+
+#### Messaging Infrastructure
+
+##### RabbitMQDeviceEventConsumer
+
+`RabbitMQDeviceEventConsumer` es responsable de consumir desde RabbitMQ los mensajes generados por los lectores o por la capa de integración de dispositivos.
+
+Entre los mensajes que puede recibir se encuentran:
+
+- `CardTapped`
+- `ReaderHeartbeatReceived`
+- `TelemetryCaptured`
+- `DeviceErrorDetected`
+
+El contenido recibido es enviado posteriormente al `DevicePayloadAdapter` antes de ingresar a Application Layer.
+
+
+##### RabbitMQDomainEventPublisher
+
+`RabbitMQDomainEventPublisher` implementa el mecanismo utilizado por IoT Monitoring Context para publicar eventos hacia otros bounded contexts.
+
+Entre los principales eventos publicados se encuentran:
+
+- `ReaderRegistered`
+- `DeviceConfigured`
+- `DeviceActivated`
+- `DeviceDeactivated`
+- `DeviceOfflineDetected`
+- `DeviceHealthUpdated`
+- `CardTapEvent`
+
+Gracias a este mecanismo, Academic Attendance Context, Space and Facility Context y Data Management Context pueden reaccionar a los eventos producidos sin generar dependencias directas con las clases internas de IoT Monitoring Context.
+
+
+#### External Integration Services
+
+##### IAMAuthorizationClient
+
+`IAMAuthorizationClient` permite consultar a **IAM Context** cuando una operación administrativa requiere validar los permisos del usuario que intenta gestionar un dispositivo.
+
+Entre sus operaciones se consideran:
+
+- `getAdministratorRole()`
+- `validateDeviceManagementPermission()`
+
+La comunicación se realiza utilizando contratos definidos entre ambos bounded contexts.
+
+
+##### DeviceCommunicationGateway
+
+`DeviceCommunicationGateway` abstrae las operaciones que requieren comunicación hacia los dispositivos físicos.
+
+Puede utilizarse para ejecutar operaciones como:
+
+- `requestRestart()`
+- `sendConfiguration()`
+- `requestHealthCheck()`
+
+Esta abstracción evita que Application Layer dependa directamente del protocolo utilizado por los dispositivos.
+
+
+#### Anti-Corruption Layer
+
+##### DeviceProtocolAdapter
+
+`DeviceProtocolAdapter` implementa la transformación entre los mensajes propios de los lectores y los objetos utilizados internamente por TarjePAFI.
+
+Su responsabilidad es aislar al dominio frente a diferencias relacionadas con:
+
+- formato de payload;
+- protocolo utilizado;
+- estructura de identificadores;
+- versión del firmware;
+- fabricante del dispositivo.
+
+De esta manera, el bounded context mantiene un modelo consistente independientemente de los cambios que puedan producirse posteriormente en la infraestructura física.
+
 ### 5.4.6. Bounded Context Software Architecture Component Level Diagrams
+
+<p align="center">
+  <img src="assets/images/bd-diagramas-iot/IoTMonitoringComponentDiagram.png" alt="Software Architecture Component Level Diagrams" width="850">
+</p>
+
 
 ### 5.4.7. Bounded Context Software Architecture Code Level Diagrams
 
 #### 5.4.7.1. Bounded Context Domain Layer Class Diagrams
 
+<p align="center">
+  <img src="assets/images/bd-diagramas-iot/IotMonitoringClassDiagram.png" alt="Class Diagram iot" width="850">
+</p>
+
 #### 5.4.7.2. Bounded Context Database Design Diagram
+
+<p align="center">
+  <img src="assets/images/bd-diagramas-iot/IoTMonitoringDatabaseDiagram.png" alt="Class Diagram iot" width="850">
+</p>
 
 
 ## 5.5. Bounded Context: Data Management Context
