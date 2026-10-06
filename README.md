@@ -1982,13 +1982,322 @@ Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes component
 
 ## 5.2. Bounded Context: Academic Attendance Context
 
+El Academic Attendance Context es el bounded context núcleo (*core*) encargado de registrar y validar la asistencia académica de estudiantes y docentes a partir de las interacciones NFC, los horarios académicos, las ventanas de asistencia y las reglas de negocio de la universidad. Su responsabilidad es garantizar que cada asistencia quede registrada una sola vez, con la hora original de la lectura, y que las lecturas fuera de ventana o de usuarios no autorizados sean rechazadas o marcadas como tardías.
+ 
+**Reglas de negocio principales**
+ 
+- La asistencia solo es válida para sesiones programadas y, en el caso de estudiantes, con matrícula activa en el curso.
+- Una lectura fuera de la ventana de asistencia se rechaza o se marca como tardía.
+- No se permiten registros de asistencia duplicados para el mismo usuario y la misma sesión.
+- Docentes y estudiantes siguen reglas distintas según su rol. El primer registro válido del docente abre la ventana de asistencia de la sesión.
+**Datos externos simulados**
+ 
+Los horarios, cursos y matrículas pertenecen al Sistema Académico UPC. En esta etapa se simulan mediante datos semilla en PostgreSQL, accedidos a través de un puerto de salida (`AcademicDirectoryPort`) con un adaptador simulado. Cuando exista la integración real, solo se reemplaza el adaptador por uno REST/HTTPS sin modificar el dominio.
+ 
+**Integración con IoT Monitoring Context**
+ 
+Las lecturas NFC no llegan directamente desde los lectores. El IoT Monitoring Context las recibe, las traduce mediante su Anti-Corruption Layer y publica el evento `CardTapEvent` (lector, UID de tarjeta y hora de la lectura). Academic Attendance consume ese evento, resuelve la identidad del titular consultando a Identification Context y evalúa la marcación. De esta forma el dominio de asistencia no conoce el protocolo ni el formato de mensajes de los dispositivos. El `spaceId` de la ubicación del lector (`DeviceLocation`) equivale al aula (`classroomId`) de la sesión de clase.
+
+
 ### 5.2.1. Domain Layer
+
+
+En esta capa se encapsulan las reglas de negocio de la asistencia: el ciclo de vida de la ventana de asistencia de una sesión de clase y la evaluación de cada marcación (*check-in*) para decidir si queda como presente, tardía o rechazada.
+ 
+**Aggregate: `ClassSession`**
+ 
+Representa una sesión de clase programada y controla su ventana de asistencia. Se crea a partir de los datos académicos (simulados) cuando se recibe el evento `ClassSessionStarted`.
+ 
+| Atributos | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| id | Long | Private | Identificador único de la sesión. |
+| externalSessionCode | String | Private | Código de la sesión en el sistema académico. Es único. |
+| courseId | CourseId | Private | Curso al que pertenece la sesión. |
+| teacherId | CardHolderId | Private | Docente asignado a la sesión. |
+| classroomId | ClassroomId | Private | Aula donde se dicta la sesión. Se usa para ubicar la sesión a partir del lector. |
+| scheduledStart | Instant | Private | Hora programada de inicio. |
+| scheduledEnd | Instant | Private | Hora programada de fin. |
+| toleranceWindow | ToleranceWindow | Private | Minutos de tolerancia, contados desde el inicio, para considerar la asistencia a tiempo. |
+| windowStatus | WindowStatus | Private | Estado de la ventana: `SCHEDULED`, `OPEN` o `CLOSED`. |
+| windowOpenedAt | Instant | Private | Instante de apertura de la ventana. Es nulo si aún no se abrió. |
+| windowClosedAt | Instant | Private | Instante de cierre de la ventana. Es nulo si aún no se cerró. |
+ 
+| Métodos | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| getX() | — | Public | Getters de cada atributo (`getId()`, `getCourseId()`, `getTeacherId()`, `getClassroomId()`, `getWindowStatus()`, etc.). |
+| ClassSession(CreateClassSessionCommand) | Constructor | Public | Crea una sesión en estado `SCHEDULED`. |
+| openAttendanceWindow(Instant) | void | Public | Abre la ventana y registra `windowOpenedAt`. Lanza excepción si la ventana ya fue cerrada. Es idempotente si ya está abierta. |
+| closeAttendanceWindow(Instant) | void | Public | Cierra la ventana y registra `windowClosedAt`. Lanza excepción si nunca se abrió. |
+| coversInstant(Instant) | boolean | Public | Indica si un instante cae dentro de `[windowOpenedAt, windowClosedAt]`. Si la ventana sigue abierta, el límite superior es abierto. |
+| isWithinTolerance(Instant) | boolean | Public | Indica si un instante es menor o igual a `scheduledStart + tolerancia`. |
+ 
+**Aggregate: `AttendanceRecord`**
+ 
+Representa la evidencia de que un usuario realizó (o intentó realizar) su marcación en una sesión. Los rechazos también se persisten para auditoría.
+ 
+| Atributos | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| id | Long | Private | Identificador único del registro. |
+| eventId | ReaderEventId | Private | Identificador único del evento de lectura. Garantiza la idempotencia. |
+| classSessionId | ClassSessionId | Private | Sesión a la que corresponde el registro. |
+| cardHolderId | CardHolderId | Private | Titular de la tarjeta (estudiante o docente). |
+| participantRole | ParticipantRole | Private | Rol del participante: `STUDENT` o `TEACHER`. |
+| cardUid | CardUid | Private | UID de la tarjeta NFC utilizada. |
+| checkInTime | Instant | Private | Hora original de la lectura, generada por el lector (no la de recepción). |
+| receivedAt | Instant | Private | Hora en que el backend procesó el evento. |
+| status | AttendanceStatus | Private | `PRESENT`, `LATE`, `REJECTED` o `JUSTIFIED`. |
+| rejectionReason | RejectionReason | Private | Motivo del rechazo. Es nulo si el registro no fue rechazado. |
+| justification | Justification | Private | Justificación aprobada. Es nula si no aplica. |
+ 
+| Métodos | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| getX() | — | Public | Getters de cada atributo. |
+| AttendanceRecord(RegisterAttendanceCommand, AttendanceDecision) | Constructor | Public | Crea el registro con el estado y motivo resueltos por la política de asistencia. |
+| AttendanceRecord(JustifyAbsenceCommand) | Constructor | Public | Crea un registro `JUSTIFIED` para un usuario que no tiene registro en la sesión. |
+| justify(Justification) | void | Public | Convierte un registro `REJECTED` en `JUSTIFIED`. Lanza `InvalidJustificationException` si el registro ya es `PRESENT` o `LATE`. |
+| isAttended() | boolean | Public | Indica si el registro cuenta como asistencia (`PRESENT` o `LATE`). |
+ 
+**Domain Service: `AttendancePolicy`**
+ 
+Concentra la decisión de negocio sobre una marcación, que no pertenece a un único agregado porque combina sesión, rol y matrícula.
+ 
+| Método | Descripción |
+|---|---|
+| evaluate(ClassSession, ParticipantRole, CardHolderId, Instant, boolean) | Devuelve un `AttendanceDecision` con el estado y el motivo de rechazo. El booleano indica si el usuario está autorizado (matrícula activa para estudiantes). |
+ 
+Reglas que aplica, en orden:
+ 
+1. **Estudiante sin matrícula activa:** `REJECTED` con `NOT_ENROLLED`.
+2. **Docente que no es el asignado a la sesión:** `REJECTED` con `NOT_ASSIGNED_TO_SESSION`.
+3. **Estudiante con la ventana aún sin abrir:** `REJECTED` con `WINDOW_NOT_OPEN`.
+4. **Marcación posterior al cierre de la ventana:** `REJECTED` con `WINDOW_CLOSED`.
+5. **Marcación dentro de la tolerancia:** `PRESENT`.
+6. **Marcación posterior a la tolerancia pero dentro de la ventana:** `LATE`.
+La evaluación usa la hora original de la lectura (`checkInTime`), por lo que las lecturas retenidas offline en el ESP32 se evalúan con la hora real en que ocurrieron.
+ 
+**Value Objects**
+ 
+| Value Object | Descripción |
+|---|---|
+| ClassSessionId | Registro que representa el identificador de una sesión. Valida que no sea nulo ni menor o igual a cero. |
+| CardHolderId | Registro que representa el identificador del titular de una tarjeta. Valida que no sea nulo ni menor o igual a cero. |
+| CourseId | Registro que representa el código de un curso. Valida que no sea nulo ni esté en blanco. |
+| ClassroomId | Registro que representa el código de un aula. Valida que no sea nulo ni esté en blanco. |
+| CardUid | Registro que representa el UID de una tarjeta NFC. Valida formato hexadecimal y longitud máxima de 32 caracteres. |
+| ReaderEventId | Registro que envuelve el `UUID` que identifica una lectura NFC (incluido en el `CardTapEvent` de IoT Monitoring). Sirve como llave de idempotencia. |
+| ToleranceWindow | Registro con los minutos de tolerancia. Valida que sea mayor o igual a 0 y menor o igual a 60. |
+| Justification | Registro con `reason`, `approvedBy` y `approvedAt`. Valida que el motivo no esté en blanco y no exceda 255 caracteres. |
+| AttendanceDecision | Registro con el `AttendanceStatus` resuelto y el `RejectionReason` opcional. |
+| ParticipantRole | Enumeración: `STUDENT`, `TEACHER`. |
+| WindowStatus | Enumeración: `SCHEDULED`, `OPEN`, `CLOSED`. |
+| AttendanceStatus | Enumeración: `PRESENT`, `LATE`, `REJECTED`, `JUSTIFIED`. |
+| RejectionReason | Enumeración: `NOT_ENROLLED`, `NOT_ASSIGNED_TO_SESSION`, `WINDOW_NOT_OPEN`, `WINDOW_CLOSED`, `NO_ACTIVE_SESSION`, `CARD_NOT_VALID`. Los dos últimos solo se publican en `AttendanceRejected`; no se persisten porque no hay sesión o titular al cual asociar el registro. |
+ 
+**Domain Events (publicados)**
+ 
+| Evento | Se publica cuando | Datos principales |
+|---|---|---|
+| AttendanceRecorded | Se registra una asistencia `PRESENT` o `JUSTIFIED`. | recordId, classSessionId, cardHolderId, role, checkInTime. |
+| LateAttendanceDetected | Se registra una asistencia `LATE`. | recordId, classSessionId, cardHolderId, checkInTime, minutosDeRetraso. |
+| AttendanceRejected | Una marcación es rechazada. | eventId, cardUid, cardHolderId (nulo si la tarjeta no es válida), classSessionId (puede ser nulo), rejectionReason. |
+| AttendanceWindowOpened | Se abre la ventana de una sesión. | classSessionId, windowOpenedAt. |
+ 
+**Excepciones de Dominio**
+ 
+| Excepción | Descripción |
+|---|---|
+| ClassSessionNotFoundException | Se lanza cuando no se encuentra una sesión por su ID o por aula. |
+| AttendanceRecordNotFoundException | Se lanza cuando no se encuentra un registro de asistencia. |
+| AttendanceWindowStateException | Se lanza ante una transición inválida de la ventana (abrir una ventana cerrada, cerrar una que nunca se abrió). |
+| DuplicateAttendanceException | Se lanza cuando ya existe un registro válido para el mismo usuario y sesión, o cuando el `eventId` ya fue procesado. |
+| InvalidJustificationException | Se lanza cuando se intenta justificar un registro que ya es asistencia, o con un motivo inválido. |
+ 
+**Interfaz: `ClassSessionCommandService`**
+ 
+| Método | Descripción |
+|---|---|
+| handle(CreateClassSessionCommand) | Crea una sesión en estado `SCHEDULED` y retorna su ID. |
+| handle(OpenAttendanceWindowCommand) | Abre la ventana de asistencia de la sesión. |
+| handle(CloseAttendanceWindowCommand) | Cierra la ventana de asistencia de la sesión. |
+ 
+**Interfaz: `AttendanceRecordCommandService`**
+ 
+| Método | Descripción |
+|---|---|
+| handle(RegisterAttendanceCommand) | Evalúa la marcación, persiste el registro (incluidos los rechazos) y publica el evento correspondiente. Retorna el registro o vacío si el evento ya fue procesado. |
+| handle(JustifyAbsenceCommand) | Registra o convierte un registro en `JUSTIFIED`. |
+ 
+**Interfaz: `AttendanceRecordQueryService`**
+ 
+| Método | Descripción |
+|---|---|
+| handle(GetAttendanceBySessionQuery) | Recupera todos los registros de una sesión. |
+| handle(GetAttendanceHistoryQuery) | Recupera el historial de un titular en un rango de fechas. |
+| handle(GetAttendanceStatusQuery) | Obtiene el estado de asistencia de un titular en una sesión. |
+
 
 ### 5.2.2. Interface Layer
 
+
+La capa de interfaz expone controladores REST y consumidores de mensajería. La entrada principal de las marcaciones NFC no es REST sino el consumidor de RabbitMQ, que convierte los eventos en comandos. Los endpoints están protegidos con JWT y los roles se validan contra IAM.
+ 
+**Controlador: `ClassSessionCommandController`**
+ 
+Gestiona el ciclo de vida de la ventana de asistencia.
+ 
+| Método | Ruta | Acceso | Descripción |
+|---|---|---|---|
+| openAttendanceWindow | POST /api/v1/class-sessions/{sessionId}/attendance-window/open | TEACHER, ADMIN | Abre la ventana de asistencia de una sesión. |
+| closeAttendanceWindow | POST /api/v1/class-sessions/{sessionId}/attendance-window/close | TEACHER, ADMIN | Cierra la ventana de asistencia de una sesión. |
+ 
+**Controlador: `AttendanceRecordCommandController`**
+ 
+| Método | Ruta | Acceso | Descripción |
+|---|---|---|---|
+| registerAttendance | POST /api/v1/attendance-records | ADMIN | Registra una marcación de forma manual. Se usa para pruebas con Postman; el flujo real ingresa por RabbitMQ. |
+| justifyAbsence | POST /api/v1/class-sessions/{sessionId}/justifications | TEACHER, ADMIN | Registra una justificación de inasistencia para un titular. |
+ 
+**Controlador: `AttendanceQueryController`**
+ 
+| Método | Ruta | Acceso | Descripción |
+|---|---|---|---|
+| getAttendanceBySession | GET /api/v1/class-sessions/{sessionId}/attendance | TEACHER, ADMIN | Lista los registros de asistencia de una sesión. |
+| getAttendanceHistory | GET /api/v1/card-holders/{cardHolderId}/attendance-history?from=&to= | TEACHER, ADMIN | Devuelve el historial de asistencia de un titular. |
+| getAttendanceStatus | GET /api/v1/class-sessions/{sessionId}/card-holders/{cardHolderId}/attendance-status | TEACHER, ADMIN | Devuelve el estado de asistencia de un titular en una sesión. |
+ 
+**Consumidores de mensajería (inbound)**
+ 
+| Consumidor | Cola / Routing key | Descripción |
+|---|---|---|
+| CardTapEventConsumer | `attendance.card-tap.queue` / `iot.card-tap` | Recibe `CardTapEvent` desde IoT Monitoring, lo traduce a `RegisterAttendanceCommand` y delega al servicio de comandos. |
+| ClassSessionLifecycleEventConsumer | `attendance.class-session.queue` / `academic.class-session-started`, `academic.class-session-ended` | `ClassSessionStarted` genera un `CreateClassSessionCommand`. `ClassSessionEnded` genera un `CloseAttendanceWindowCommand`. |
+ 
+**Recursos (DTOs)**
+ 
+| Recurso | Descripción |
+|---|---|
+| RegisterAttendanceResource | Datos de una marcación manual: eventId, cardUid, classroomId, checkInTime. El titular se resuelve igual que en el flujo por mensajería. |
+| JustifyAbsenceResource | Datos de una justificación: cardHolderId, reason. |
+| AttendanceRecordResource | Respuesta de un registro: id, classSessionId, cardHolderId, role, status, rejectionReason, checkInTime, justification. |
+| AttendanceStatusResource | Respuesta del estado de un titular: cardHolderId, classSessionId, status, checkInTime. |
+| ClassSessionResource | Respuesta de una sesión: id, courseId, classroomId, windowStatus, windowOpenedAt, windowClosedAt. |
+| CardTapEventResource | Mensaje entrante de IoT Monitoring: eventId, readerId, spaceId, cardUid, tappedAt. |
+| ClassSessionEventResource | Mensaje entrante del ciclo de vida de la sesión: externalSessionCode, courseId, teacherId, classroomId, scheduledStart, scheduledEnd. |
+ 
+**Assemblers (Transformadores)**
+ 
+| Assembler | Descripción |
+|---|---|
+| RegisterAttendanceCommandFromResourceAssembler | Convierte un `RegisterAttendanceResource` en un `RegisterAttendanceCommand`. |
+| RegisterAttendanceCommandFromEventAssembler | Convierte un `CardTapEventResource` en un `RegisterAttendanceCommand`. Traduce `spaceId` a `classroomId` y `tappedAt` a `checkInTime`. |
+| JustifyAbsenceCommandFromResourceAssembler | Convierte un `JustifyAbsenceResource` y el `sessionId` de la ruta en un `JustifyAbsenceCommand`. |
+| CreateClassSessionCommandFromEventAssembler | Convierte un `ClassSessionEventResource` en un `CreateClassSessionCommand`. |
+| AttendanceRecordResourceFromEntityAssembler | Convierte la entidad `AttendanceRecord` en un `AttendanceRecordResource`. |
+| AttendanceStatusResourceFromEntityAssembler | Convierte un `AttendanceRecord` en un `AttendanceStatusResource`. |
+| ClassSessionResourceFromEntityAssembler | Convierte la entidad `ClassSession` en un `ClassSessionResource`. |
+
+
 ### 5.2.3. Application Layer
 
+
+Los servicios internos orquestan la validación de la sesión y de la matrícula, aplican la política de asistencia, garantizan la idempotencia, coordinan la persistencia y publican los eventos de dominio.
+ 
+**Clase: `ClassSessionCommandServiceImpl`**
+ 
+| Título | ClassSessionCommandServiceImpl |
+|---|---|
+| Descripción | Implementación del servicio de comandos para crear sesiones y abrir o cerrar la ventana de asistencia. Al abrir una ventana publica `AttendanceWindowOpened`. |
+ 
+| Dependencia | Descripción |
+|---|---|
+| ClassSessionRepository | Persistencia de sesiones. |
+| AttendanceEventPublisher | Puerto de salida para publicar eventos de dominio. |
+ 
+**Clase: `AttendanceRecordCommandServiceImpl`**
+ 
+| Título | AttendanceRecordCommandServiceImpl |
+|---|---|
+| Descripción | Implementación del servicio de comandos de asistencia. Flujo de `RegisterAttendanceCommand`: (1) descarta el evento si su `eventId` ya fue procesado; (2) resuelve el titular y su rol con `IdentificationContextFacade.validateCardTap(cardUid)`; si la tarjeta no es válida, publica `AttendanceRejected` con `CARD_NOT_VALID` y termina sin persistir; (3) ubica la sesión por aula y hora de lectura; si no hay sesión, publica `AttendanceRejected` con `NO_ACTIVE_SESSION` y termina; (4) obtiene la autorización del titular (matrícula activa para estudiantes); (5) evalúa con `AttendancePolicy`; (6) si es un docente con registro válido y la ventana no está abierta, la abre; (7) persiste el registro; (8) publica el evento correspondiente. |
+ 
+| Dependencia | Descripción |
+|---|---|
+| AttendanceRecordRepository | Persistencia de registros de asistencia. |
+| ClassSessionRepository | Consulta de sesiones. |
+| AttendancePolicy | Servicio de dominio con las reglas de asistencia. |
+| IdentificationContextFacade | Puerto ACL hacia Identification (`validateCardTap`, `getCardHolderProfile`). |
+| AcademicDirectoryPort | Puerto ACL hacia el sistema académico (`getEnrollmentData`, `getCourseSchedule`). |
+| AttendanceEventPublisher | Puerto de salida para publicar eventos de dominio. |
+ 
+**Clase: `AttendanceRecordQueryServiceImpl`**
+ 
+| Título | AttendanceRecordQueryServiceImpl |
+|---|---|
+| Descripción | Implementación del servicio de consultas de asistencia por sesión, historial y estado. |
+ 
+| Dependencia | Descripción |
+|---|---|
+| AttendanceRecordRepository | Acceso de lectura a los registros. |
+ 
+**Puertos de salida (Anti-Corruption Layer)**
+ 
+| Puerto | Descripción |
+|---|---|
+| IdentificationContextFacade | Interfaz hacia Identification Context. Evita que el modelo de tarjetas se filtre al dominio de asistencia. |
+| AcademicDirectoryPort | Interfaz hacia el sistema académico UPC: `getCourseSchedule(courseId)`, `getEnrollmentData(studentId, courseId)`. |
+| AttendanceEventPublisher | Interfaz para publicar `AttendanceRecorded`, `AttendanceRejected`, `LateAttendanceDetected` y `AttendanceWindowOpened`. |
+
+
+
 ### 5.2.4. Infrastructure Layer
+
+
+
+Esta capa implementa la persistencia con JPA y Spring Data JPA, la mensajería con RabbitMQ y los adaptadores hacia otros contextos y sistemas.
+ 
+**Clase: `ClassSessionRepository`**
+ 
+| Título | ClassSessionRepository |
+|---|---|
+| Descripción | Interfaz de persistencia para sesiones de clase. |
+ 
+| Método | Descripción |
+|---|---|
+| findById(Long) | Recupera una sesión por su ID. |
+| findByExternalSessionCode(String) | Recupera una sesión por su código en el sistema académico. |
+| findByClassroomIdAndInstant(ClassroomId, Instant) | Recupera la sesión del aula cuyo rango programado contiene el instante indicado. |
+| existsByExternalSessionCode(String) | Verifica si la sesión ya fue creada. |
+| save(ClassSession) | Persiste o actualiza la sesión. |
+ 
+**Clase: `AttendanceRecordRepository`**
+ 
+| Título | AttendanceRecordRepository |
+|---|---|
+| Descripción | Interfaz de persistencia para registros de asistencia. |
+ 
+| Método | Descripción |
+|---|---|
+| findById(Long) | Recupera un registro por su ID. |
+| existsByEventId(ReaderEventId) | Verifica si un evento de lectura ya fue procesado (idempotencia). |
+| findByClassSessionId(ClassSessionId) | Recupera los registros de una sesión. |
+| findByClassSessionIdAndCardHolderId(ClassSessionId, CardHolderId) | Recupera el registro de un titular en una sesión. |
+| findByCardHolderIdAndCheckInTimeBetween(CardHolderId, Instant, Instant) | Recupera el historial de un titular en un rango. |
+| save(AttendanceRecord) | Persiste o actualiza el registro. |
+ 
+**Adaptadores y mensajería**
+ 
+| Clase | Descripción |
+|---|---|
+| RabbitMqAttendanceConfig | Declara el exchange `tarjepafi.events` (topic), las colas de entrada con su *dead-letter queue* y los bindings. |
+| RabbitAttendanceEventPublisher | Implementa `AttendanceEventPublisher`; publica los eventos con las routing keys `attendance.recorded`, `attendance.rejected`, `attendance.late-detected` y `attendance.window-opened`. |
+| IdentificationContextFacadeImpl | Implementa `IdentificationContextFacade` hacia Identification Context. |
+| SimulatedAcademicDirectoryAdapter | Implementa `AcademicDirectoryPort` consultando las tablas `enrollments` y `course_schedule`, cargadas con datos semilla. Se reemplazará por un adaptador REST/HTTPS al Sistema Académico UPC. |
+ 
+**Decisiones de infraestructura**
+ 
+- La idempotencia se garantiza con una restricción `UNIQUE` sobre `event_id`, además de la consulta previa `existsByEventId`.
+- La unicidad de asistencia válida por usuario y sesión se garantiza con un índice único parcial que excluye los registros `REJECTED`.
+- Los mensajes malformados o que no se pueden procesar tras los reintentos se envían a la *dead-letter queue* sin afectar al resto. Una tarjeta no válida no es un error técnico: se resuelve con `AttendanceRejected` (`CARD_NOT_VALID`).
+
 
 ### 5.2.6. Bounded Context Software Architecture Component Level Diagrams
 
