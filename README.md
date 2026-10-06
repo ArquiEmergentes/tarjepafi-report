@@ -2640,8 +2640,197 @@ De esta manera, el bounded context mantiene un modelo consistente independientem
 
 ### 6.1.1. General Style Guidelines
 
+**Branding:**
+
+La identidad de marca de TarjePAFI combina los conceptos de tecnología conectada, seguridad física e innovación en la gestión universitaria. El nombre sintetiza el núcleo del producto: "Tarje" (credencial física inteligente como llave maestra del campus) y "PAFI" (acrónimo identitario de la startup PafiSolutions).
+
+- **Logotipo e Isotipo:**
+
+  **Símbolo (Isotipo):** Está compuesto por la silueta estilizada de una credencial inteligente en perspectiva isométrica, cruzada por ondas concéntricas y nodos que forman la letra "P", simbolizando la interacción fluida entre el hardware de campo y la nube.   
+  
+  **Tipotipo (Wordmark):** Se presenta en caja alta y baja con tipografía sans-serif geométrica personalizada, resaltando la palabra "Tarje" en un peso semibold neutro y "PAFI" en un peso bold con el tono azul institucional, transmitiendo dinamismo y solidez tecnológica.  
+  
+  **Tamaños:** Su tamaño mínimo digital es de 120 × 32 px en interfaces web y 24 × 24 px para la variante de isotipo simplificado.
+  
+  **Valores de Marca:** Eficiencia operativa, transparencia y fiabilidad de datos, agilidad en la interacción cotidiana y modernización inclusiva de la infraestructura académica.
+
+<p align="center">
+  <img src="assets/logotio.jpg" alt="Class Diagram iot" width="850">
+</p>
+
+**Typography:**
+
+- **Tipografía Primaria (Display y Títulos): Plus Jakarta Sans**
+
+Es una fuente geométrica contemporánea con aperturas amplias y alturas de x generosas, lo que proporciona una presencia moderna en títulos, paneles analíticos y tarjetas de métricas sin perder sobriedad corporativa.
+
+- **Tipografía Secundaria (Cuerpo de Texto e Interfaces UI): Inter**
+
+Diseñada específicamente para interfaces digitales computacionales, cuenta con distinción refinada entre caracteres ambiguos, permitiendo una lectura descansada en tablas de datos extensas, listas de asistencia y formularios administrativos.
+
+<p align="center">
+  <img src="assets/tipografia.jpg" alt="Class Diagram iot" width="850">
+</p>
+
+| Nivel Jerárquico | Fuente | Peso (Weight) | Tamaño (px / rem) | Uso Principal |
+| :--- | :--- | :--- | :--- | :--- |
+|Display 1 | Plus Jakarta Sans | Bold |48 px |Hero titles en Landing Page|
+|Display 2 | Plus Jakarta Sans | SemiBold |36 px |Títulos de secciones principales|
+|Heading 1| Plus Jakarta Sans | SemiBold |28 px |Títulos de vistas y módulos en Web App|
+|Heading 2 | Plus Jakarta Sans | Medium |22 px |Subtítulos y cabeceras de tarjetas (Cards)|
+|Heading 3 | Inter | SemiBold |18 px |Títulos de modales y diálogos de alerta|
+|Body Large | Inter | Regular |16 px |Texto corrido principal y descripciones|
+|Body Medium | Inter | Regular |14 px px |Registros de tablas, menús y formularios|
+|Body Small| Inter | Medium |12 px |Leyendas, timestamps de lecturas IoT y tooltips |
+|Label / Button| Inter | SemiBold |14 px |Botones de acción, badges y chips de estado|
+
+**Colors:**
+
+La paleta cromática de TarjePAFI equilibra la seriedad institucional de una entidad educativa de prestigio con el dinamismo tecnológico del Internet de las Cosas (IoT) y la infraestructura conectada.
+
+<p align="center">
+  <img src="assets/colors.jpg" alt="Class Diagram iot" width="850">
+</p>
+
+- **Colores Primarios:**
+
+  **Primary Navy (#0A2540):** Azul institucional profundo. Representa autoridad administrativa, ciberseguridad, persistencia transaccional y solidez del campus. Utilizado en barras de navegación principales, cabeceras del sistema y acentos estructurales.
+
+  **Electric Cyan (#0284C7):** Azul cian tecnológico. Simboliza comunicación inalámbrica, interactividad IoT y flujos continuos de datos en tiempo real. Empleado en botones de acción primaria (CTA), estados activos, vínculos e indicadores de sincronización.
+
+  **Brand Light (#E0F2FE):** Azul de tonalidad suave para estados de hover, resaltado de filas seleccionadas y fondos de contenedores de ayuda.
+
+- **Colores Neutros y Superficies:**
+
+  **Surface Dark / Text Primary (#0F172A):** Pizarra oscura para titulares y textos de máxima jerarquía.
+
+  **Text Muted / Secondary (#475569):** Gris intermedio de alto contraste para descripciones secundarias y metadatos.
+
+  **Border / Divider (#CBD5E1):** Gris perla para delimitación de celdas de tabla, divisores y contornos de tarjetas.
+
+  **Surface Background (#F8FAFC):** Fondo general de la plataforma web y vistas de analítica, reduciendo la fatiga visual.
+
+  **Surface White (#FFFFFF):** Blanco puro para contenedores modulares, campos de formulario y tarjetas elevadas.
+
+- **Colores Semánticos / Funcionales:**
+
+  **Success Green (#059669):** Utilizado para confirmaciones de "Asistencia registrada", "Acceso concedido", cubículo validado presencialmente y lectores IoT en estado Online.
+  
+  **Warning Amber (#D97706):** Indica estados de advertencia, como la cuenta regresiva de la Regla de Tolerancia de 10 minutos para reservas de estudio no ocupadas o dispositivos en modo de lectura offline retenida en buffer.   
+  
+  **Error Red (#DC2626):** Señala fallos críticos, eventos denegados, tarjetas dadas de baja/bloqueadas, desocupación forzosa por inasistencia y lectores desconectados (Offline).   
+  
+  **Info Blue (#2563EB):** Empleado en avisos informativos, resúmenes estadísticos y recordatorios de horario de clase. 
+
+**Spacing**
+
+La disposición espacial responde a una cuadrícula modular basada en múltiplos del número 8, con una subdivisión atómica de 4 px para microespaciados. Teniendo esto en cuenta en TarjePafi se a utilizado un espaciado optimizado para no provocar sobrecarga visual y mejorar la visualización al momento de navegar. Todo el diseño del espaciado esta hecho para que se pueda observar de manera organizada y equilibrado.
+
+**Tono de Comunicación y Lenguaje**
+
+El tono de voz y estilo editorial de TarjePAFI está sustentado en las cuatro dimensiones de tono de voz, calibradas específicamente para un entorno universitario donde interactúan autoridades, docentes y estudiantes:
+
+<p align="center">
+  <img src="assets/seriedad.png" alt="Class Diagram iot" width="850">
+</p>
+
+**Inclinación Serio:** TarjePAFI gestiona eventos de seguridad física, cumplimiento laboral docente, control de accesos a zonas restringidas y registros académicos oficiales. La redacción mantiene una sobriedad ejecutiva y técnica. Se evitan bromas, coloquialismos o jerga juvenil en los productos digitales, asegurando rigor y confiabilidad de auditoría.
+
+**Inclinación Formal:** La comunicación es profesional y concisa, pero desprovista de burocracia verbal innecesaria. Se emplea la segunda persona gramatical neutra ("Consulta tu historial", "Configura los lectores", "Selecciona el ambiente") para mantener cercanía sin perder el orden institucional.
+
+**Inclinación Respetuoso:** Se respeta la investidura de las autoridades universitarias y la privacidad de los estudiantes y colaboradores. Los mensajes de alerta jamás culpabilizan al usuario ante un error.
+
+**Inclinación Sereno:** En situaciones operativas como picos de afluencia o cancelaciones automáticas, la plataforma comunica tranquilidad mediante datos claros, directos y con rutas de acción inmediatas.
+
 ### 6.1.2. Web, Mobile & Devices Style Guidelines
 
+**Responsive Web:**
+
+  **Landing Page Institucional:**
+
+  Desarrollada con diseño fluido. Dispone de un encabezado fijo con el logotipo en el extremo superior izquierdo, anclas de navegación directa (Beneficios, Ecosistema IoT, Testimonios y Contacto) y un botón de llamada a la acción destacado ("Acceso Administrativo" o "Contactarnos").
+
+  **Web App Administrativa:**
+
+  **Barra Superior:** Muestra el contexto de sede universitaria (ej. Sede San Miguel), buscador rápido global, selector de idioma (EN/ES), notificaciones críticas y perfil del usuario autenticado con token JWT.
+
+  **Navegación Lateral:** Menú colapsable a la izquierda con enlaces a los módulos centrales correspondientes a los Bounded Contexts:
+
+  - Dashboard General / Aforo en Vivo
+
+  - Control de Asistencia Académica 
+    
+  - Gestión de Espacios y Cubículos
+  
+  - Monitoreo de Infraestructura IoT   
+  
+  - Administración de Credenciales y Tarjetas   
+  
+  - Reportes Analíticos y Auditoría
+
+**Mobile Applications (iOS y Android)**
+
+- Adopta una barra de navegación inferior (Tab Bar) de 4 a 5 pestañas principales (Inicio, Mi Horario, Mis Reservas, Historial de Asistencia y Perfil)
+
+- Todos los botones de confirmación, campos de interacción primaria y selectores de fecha se ubican en el tercio inferior de la pantalla, evitando que el usuario deba estirar el pulgar hacia la zona superior durante su desplazamiento por el campus.
+
+- Para la creación rápida de reservas de cubículos, se utiliza un botón de acción flotante anclado en la esquina inferior derecha.
+
+**Componentes de Interacción y Estados del Sistema**
+
+Para preservar la consistencia entre los artefactos UX y la implementación final del software, se especifican los siguientes estándares de componentes:
+
+**Botones de Acción (Buttons)**
+
+  - Botón Primario: Electric Cyan (#0284C7), texto en blanco puro, esquinas redondeadas de 8 px (border-radius), altura fija de 40 px en web y 48 px en móvil. Para acciones principales (ej. "Iniciar Sesión", "Confirmar Reserva", "Dar de Alta Lector").
+
+  - Botón Secundario: Borde de 1.5 px en Electric Cyan (#0284C7), fondo transparente, texto en color Electric Cyan (#0284C7). Para acciones secundarias o de exploración (ej. "Descargar Reporte", "Ver Historial", "Filtrar Resultados")
+
+  - Botón Destructivo / Peligro: Crimson Error (#DC2626), texto en blanco. Para operaciones críticas irreversibles (ej. "Dar de Baja Tarjeta", "Cancelar Reserva", "Desactivar Dispositivo IoT").
+
+<p align="center">
+  <img src="assets/botones.jpg" alt="Class Diagram iot" width="850">
+</p>
+
+**Campos de Formulario y Entradas de Datos**
+
+- El contenedor posee una altura de 52 px con un radio de curvatura de 8 px y un contorno neutro (#CBD5E1).
+
+- Etiqueta Flotante: Se mantiene visible en la parte superior del marco al recibir foco o contener datos, evitando que el usuario olvide qué dato se solicita.
+
+- Mensajes de Validación y Error: Los mensajes de advertencia se sitúan a 4 px por debajo del campo en color rojo (#DC2626), acompañados de un icono vectorial explicativo que especifica el formato requerido sin ambigüedades
+
+<p align="center">
+  <img src="assets/capos.jpg" alt="Class Diagram iot" width="850">
+</p>
+
+**Notificaciones, Diálogos y Estados de Carga**
+
+- Modales y Diálogos de Confirmación:
+
+  - Requeridos para acciones de impacto sobre los Bounded Contexts (ej. dar de baja la credencial de un estudiante retirado).
+
+  - Fondo oscurecido con velo semitransparente (Backdrop overlay en 50% de opacidad) que bloquea la interacción de fondo y enfoca la toma de decisiones consciente.
+
+- Notificaciones Toast:
+
+  - Mensajes emergentes no intrusivos que aparecen en la esquina inferior derecha en escritorio o en la parte inferior central en móvil.
+
+  - Desaparecen automáticamente tras 4 segundos y cuentan con opción manual de cierre y botón de acción directa (ej. "Cubiculo cancelado por tolerancia de 10 min.").
+
+- Estados de Carga y Skeleton Screens:
+
+  Ante consultas analíticas o sincronizaciones asíncronas con RabbitMQ, se prohíbe el uso de pantallas en blanco. Se emplean pantallas esqueleto animadas con gradiente gris fluctuante (Skeleton Loaders), comunicando la disposición previa de las tablas o gráficos mientras finaliza la llamada a la API.
+
+<p align="center">
+  <img src="assets/noti1.png" alt="Class Diagram iot" width="850">
+</p>
+
+<br>
+
+<p align="center">
+  <img src="assets/noti2.png" alt="Class Diagram iot" width="850">
+</p>
 
 ## 6.2. Information Architecture
 
