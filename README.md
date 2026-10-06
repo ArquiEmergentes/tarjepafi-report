@@ -1452,8 +1452,10 @@ En esta sección se define el Ubiquitous Language del dominio de TarjePAFI, con 
 
 En esta sección se presenta un análisis detallado de la situación actual (TO-BE) para los diferentes segmentos.
 
-Se puede visualizar con más detalle en el siguiente enlace:
- https://lucid.app/lucidchart/248d5465-d381-4cde-87f1-66bdedbebb72/edit?viewport_loc=-6954%2C-757%2C1795%2C1049%2C0_0&invitationId=inv_8bc3eada-8980-4183-a77e-ef736ec53050
+Se puede visualizar con más detalle en los siguientes enlaces:
+https://lucid.app/lucidchart/e783a818-e492-46c5-a564-6fa8156b94c4/edit?viewport_loc=-6948%2C-760%2C1641%2C1152%2C0_0&invitationId=inv_c15e615c-d91a-4f21-8b21-2f41676eda3d
+
+https://lucid.app/lucidchart/5faf305b-e9be-4dc4-ae03-fc4b32774beb/edit?viewport_loc=-6883%2C-709%2C1823%2C1152%2C0_0&invitationId=inv_702058e1-7362-4405-ae1f-4b4cead42fbd
 
 <td align="center"><img src="assets/images/user-personas/to-be1.png" alt="TO BE 1" ></td>
 
@@ -1467,10 +1469,16 @@ Se puede visualizar con más detalle en el siguiente enlace:
 <td align="center"><img src="assets/images/user-personas/to-be2.png" alt="TO BE 2" ></td>
 
 <div align = center>
-
-
-
 </div>
+
+<td align="center"><img src="assets/images/user-personas/to-be3.png" alt="TO BE 2" ></td>
+
+<div align = center>
+</div>
+
+<td align="center"><img src="assets/images/user-personas/to-be4.png" alt="TO BE 2" ></td>
+
+
 
 ## 3.2. User Stories.
 
@@ -1484,40 +1492,40 @@ En esta sección detallaremos la existencia, escenarios y diferentes User Storie
 |EP03    |Registro de Asistencia| Como usuario de TarjePafi, quiero registrar correctamente la asistencia de alumnos mediante los sensores para acelerar los procesos de asistencia.|
 |EP04    |Gestión de Espacios y Servicios|Como usuario estudiante de TarjePafi, quiero activar mis reservas con la tarjeta para evitar usar otros medios que atrasen el proceso.|
 |EP05    |Administración y Control| Como usuario administrativo de TarjePafi, quiero tener control administrativo para acceder y controlar las funcionalidades diseñadas de las tarjetas.|
-|EP06    |Diseño y Usabilidad| Como usuario de TarjePafi, quiero ver un trabajo de diseño tanto fisico y digital para que sea agradable usar el producto.|
+
 
 
 Una vez concluidas las épicas, ahora podemos proceder a encapsular las múltiples historias de usuario que poseemos para definir los requerimientos de nuestra aplicación y saber cómo desarrollarla correctamente
 
-| Epic / Story ID | Titulo | Descripción | Criterios de Aceptación | Epic ID | 
-|-----------------|--------|-------------|-------------------------|--------------------------|
-| **US01** | Registro de Asistencia Estudiantil | Como estudiante, quiero poder pasar mi tarjeta por un lector al entrar al salón de clases, para que mi asistencia sea registrada automáticamente. | **Scenario:** Registro de asistencia en clase.<br>Dado que el estudiante pasa su tarjeta por el lector, y la clase ha comenzado, cuando la tarjeta es leída, entonces su asistencia se registra automáticamente. | **EP03** |
-| **US02** | Confirmación de Asistencia | Como estudiante, quiero que el lector muestre un mensaje de "Asistencia tomada" en la pantalla, para que sepa que mi asistencia ha sido registrada. | **Scenario:** Mensaje de confirmación.<br>Dado que el estudiante pasa su tarjeta, y la asistencia ha sido registrada, cuando el lector procesa la tarjeta, entonces se muestra el mensaje "Asistencia tomada". | **EP03** |
-| **US03** | Reserva de Espacios de Estudio | Como estudiante, quiero usar mi tarjeta para acceder a mis reservas para usarlas | **Scenario:** Activación de una reserva.<br>Dado que el estudiante quiere activar la reserva de un espacio, y tiene su tarjeta, cuando pasa la tarjeta por el lector en el área de reserva, entonces se activará la reserva. | **EP04** |
-| **US04** | Visualización de reportes | Como personal administrativo, quiero que la página muestre reportes administrativos con la información recolectada para administrar y tener datos útiles. | **Scenario:** Ver el reporte.<br>Dado que el administrador ingresa a la página, y está registrado, cuando ingrese a la sección de "Ver Reporte", entonces verá un reporte que use las horas recolectadas y de sugerencias. | **EP05** |
-| **US05** | Diseño Atractivo de la Tarjeta | Como estudiante, quiero que la tarjeta tenga un diseño atractivo y fácil de identificar, para que me sienta orgulloso de usarla. | **Scenario:** Diseño de tarjeta.<br>Dado que un estudiante recibe su tarjeta, y la observa, cuando la tarjeta es presentada, entonces tiene un diseño atractivo y fácil de identificar. | **EP06** |
-| **US06** | Acceso Multicentro con la Tarjeta | Como estudiante, quiero que la tarjeta funcione en múltiples puntos de acceso, como bibliotecas y laboratorios, para facilitar mi acceso a los recursos. | **Scenario:** Acceso a múltiples áreas.<br>Dado que el estudiante usa la tarjeta en diferentes puntos, y está autorizado para acceder, cuando pasa la tarjeta por el lector, entonces se le permite el acceso. | **EP04** |
+| User Story ID | Título | Descripción | Criterios de aceptación | Relacionado con (Epic ID) |
+| :--- | :--- | :--- | :--- | :--- |
+| **US01** | Registro de Asistencia Estudiantil | Como estudiante, quiero poder pasar mi tarjeta por un lector al entrar al salón de clases, para que mi asistencia sea registrada automáticamente. | **Scenario:** Registro de asistencia en clase.<br>Dado que el estudiante pasa su tarjeta por el lector, y la clase ha comenzado, cuando la tarjeta es leída, entonces su asistencia se registra automáticamente. <br> **Scenario:** Tarjeta no registrada. Dado que el estudiante pasa una tarjeta no registrada, cuando el lector la procesa, entonces se muestra un mensaje de error y no se registra la asistencia. <br> **Scenario:** Asistencia duplicada. Dado que el estudiante ya registró su asistencia, cuando vuelve a pasar la tarjeta, entonces el sistema evita duplicar el registro.|**EP03**|
+| **US02** | Confirmación de Asistencia | Como estudiante, quiero que el lector muestre un mensaje de "Asistencia tomada" en la pantalla, para que sepa que mi asistencia ha sido registrada.| **Scenario:** Mensaje de confirmación.<br>Dado que el estudiante pasa su tarjeta, y la asistencia ha sido registrada, cuando el lector procesa la tarjeta, entonces se muestra el mensaje "Asistencia tomada". | **EP03** |
+| **US03** | Reserva de Espacios de Estudio | Como estudiante, quiero poder usar mi tarjeta para reservar espacios de estudio en la universidad, de modo que pueda planificar mejor mi tiempo. | **Scenario:** Reserva de un espacio.<br>Dado que el estudiante quiere reservar un espacio, y tiene su tarjeta, cuando pasa la tarjeta por el lector en el área de reserva, entonces se confirma la reserva en la pantalla. **Scenario:** Espacio no disponible.<br>Dado que el estudiante intenta reservar un espacio ocupado, cuando pasa su tarjeta, entonces se muestra un mensaje indicando que el espacio no está disponible. | **EP04** |
+| **US04** | Visualización del Horario de Clase | Como estudiante, quiero que la tarjeta me muestre el horario de la clase en la pantalla del lector al pasarla, para confirmar la información antes de entrar. | **Scenario:** Confirmación del horario.<br>Dado que el estudiante pasa su tarjeta, y está registrado para una clase, cuando la tarjeta es leída, entonces el horario de la clase se muestra en el lector. | **EP04** |
+| **US05** | Uso en dispositivos mobiles | Como visitante, quiero un diseño de la Landing Page funcional en dispositivos moviles, para visitar la pagina desde mi celular. | **Scenario:** Visualizacion en celulares.<br>Dado que el visitante ingresa desde un dispositivo móvil, cuando navega por la Landing Page, entonces el contenido se adapta correctamente al tamaño de la pantalla. | **EP01** |
+| **US06** | Acceso Multicentro con la Tarjeta | Como estudiante, quiero que la tarjeta funcione en múltiples puntos de acceso, como bibliotecas y laboratorios, para facilitar mi acceso a los recursos. | **Scenario:** Acceso a múltiples áreas.<br>Dado que el estudiante usa la tarjeta en diferentes puntos, y está autorizado para acceder, cuando pasa la tarjeta por el lector, entonces se le permite el acceso.**Scenario:** Acceso no autorizado.<br> Dado que el estudiante no tiene permisos, cuando pasa su tarjeta, entonces se deniega el acceso. | **EP04** |
 | **US07** | Participación en Eventos Universitarios | Como estudiante, quiero que la tarjeta me permita acceder a eventos universitarios, para participar en actividades extracurriculares. | **Scenario:** Acceso a eventos.<br>Dado que hay un evento universitario, y el estudiante tiene su tarjeta, cuando pasa la tarjeta por el lector en la entrada, entonces se permite su entrada al evento. | **EP04** |
 | **US08** | Identificación Estudiantil | Como estudiante, quiero que la tarjeta funcione como una forma de identificación, para ser reconocido fácilmente por el personal académico. | **Scenario:** Identificación al personal.<br>Dado que el estudiante presenta su tarjeta, y es abordado por el personal, cuando la tarjeta es leída, entonces su identidad es verificada. | **EP02** |
-| **US09** | Durabilidad de la Tarjeta | Como estudiante, quiero que la tarjeta esté diseñada para ser resistente al desgaste, para que pueda usarla durante todo el año académico sin problemas. | **Scenario:** Uso prolongado.<br>Dado que el estudiante utiliza su tarjeta frecuentemente, y la tarjeta es de buena calidad, cuando transcurre un año académico, entonces la tarjeta se encuentra en buen estado. | **EP06** |
-| **US10** | Baja de Tarjeta para Estudiantes Retirados | Como administrador, quiero poder dar de baja una tarjeta de un estudiante que se ha retirado de la universidad, para asegurar que ya no tenga acceso a los servicios. | **Scenario:** Baja de tarjeta.<br>Dado que un estudiante se ha retirado, y el administrador lo registra, cuando se da de baja la tarjeta, entonces el acceso a los servicios se cancela. | **EP05** |
-| **US11** | Vinculación a Base de Datos | Como administrador, quiero que la tarjeta esté vinculada a la base de datos de estudiantes, para poder gestionar fácilmente su estado. | **Scenario:** Gestión de tarjetas.<br>Dado que la tarjeta está vinculada a un estudiante, y se actualiza la base de datos, cuando se registra un cambio, entonces la información de la tarjeta se actualiza automáticamente. | **EP05** |
-| **US12** | Control de Acceso en Áreas Restringidas | Como administrador, quiero que la tarjeta proporcione un mensaje en el lector cuando un estudiante accede a un área restringida, para garantizar que solo los autorizados ingresen. | **Scenario:** Control de acceso.<br>Dado que un estudiante intenta acceder a un área restringida, y su tarjeta es leída, cuando no tiene permiso, entonces se muestra un mensaje de "Acceso denegado". | **EP05** |
+| **US09** | Sección de Preguntas Frecuentes (FAQ) | Como visitante, quiero consultar una sección de Preguntas Frecuentes en la Landing Page, para resolver dudas comunes sobre el funcionamiento y los costos de TarjePAFI de manera inmediata. | **Scenario:** Resolución de dudas autónoma.<br>Dado que el visitante tiene dudas sobre la implementación, cuando hace clic en una pregunta de la sección FAQ, entonces se despliega la respuesta correspondiente de forma clara y concisa. | **EP01** |
+| **US10** | Baja de Tarjeta para Estudiantes Retirados | Como administrador, quiero poder dar de baja una tarjeta de un estudiante que se ha retirado de la universidad, para asegurar que ya no tenga acceso a los servicios. | **Scenario:** Baja de tarjeta.<br>Dado que un estudiante se ha retirado, y el administrador lo registra, cuando se da de baja la tarjeta, entonces el acceso a los servicios se cancela.<br>**Scenario:** Tarjeta desactivada.<br>Dado que el administrador da de baja una tarjeta, cuando el estudiante intenta utilizarla, entonces el sistema rechaza el acceso.<br>**Scenario:** Confirmación de baja.<br>Dado que el administrador confirma la operación, cuando se procesa la baja, entonces el estado de la tarjeta cambia a "Desactivada". | **EP05** |
+| **US11** | Vinculación a Base de Datos | Como administrador, quiero que la tarjeta esté vinculada a la base de datos de estudiantes, para poder gestionar fácilmente su estado. | **Scenario:** Gestión de tarjetas.<br>Dado que la tarjeta está vinculada a un estudiante, y se actualiza la base de datos, cuando se registra un cambio, entonces la información de la tarjeta se actualiza automáticamente.<br> **Scenario:** Estudiante no encontrado.<br> Dado que la tarjeta no está vinculada a un estudiante, cuando se intenta actualizar la información, entonces el sistema muestra un mensaje de error.| **EP05** |
+| **US12** | Control de Acceso en Áreas Restringidas | Como administrador, quiero que la tarjeta proporcione un mensaje en el lector cuando un estudiante accede a un área restringida, para garantizar que solo los autorizados ingresen. | **Scenario:** Control de acceso.<br>Dado que un estudiante intenta acceder a un área restringida, y su tarjeta es leída, cuando no tiene permiso, entonces se muestra un mensaje de "Acceso denegado".<br>**Scenario:** Acceso autorizado.<br> Dado que el estudiante tiene permiso para ingresar, cuando pasa su tarjeta, entonces se muestra el mensaje "Acceso concedido". | **EP05** |
 | **US13** | Reactivación de Tarjetas | Como administrador, quiero tener la opción de reactivar una tarjeta si un estudiante vuelve a inscribirse, para facilitar su regreso. | **Scenario:** Reactivación de tarjeta.<br>Dado que un estudiante se reincorpora, y la tarjeta fue desactivada, cuando el administrador la reactiva, entonces el estudiante puede usarla nuevamente. | **EP05** |
-| **US14** | Personalización de Permisos de Acceso | Como administrador, quiero poder personalizar los permisos de acceso de cada tarjeta según el rol, para mantener un control adecuado. | **Scenario:** Permisos de acceso.<br>Dado que el administrador personaliza los permisos, y los asigna a una tarjeta, cuando la tarjeta es leída, entonces se verifica el acceso según los permisos. | **EP05** |
-| **US15** | Desactivación Automática de Tarjetas | Como administrador, quiero que las tarjetas se desactiven automáticamente si un estudiante no completa su matrícula a tiempo, para mantener la seguridad. | **Scenario:** Desactivación automática.<br>Dado que un estudiante no completa su matrícula, y la fecha límite ha pasado, cuando el sistema verifica la matrícula, entonces la tarjeta se desactiva automáticamente. | **EP05** |
-| **US16** | Registro de Asistencia Docente | Como profesor, quiero que la tarjeta registre automáticamente la asistencia de los estudiantes al pasarla por el lector, para ahorrar tiempo en el proceso de toma de asistencia. | **Scenario:** Registro de asistencia docente.<br>Dado que el profesor pasa su tarjeta al inicio de clase, y los estudiantes están presentes, cuando la tarjeta es leída, entonces se registra automáticamente la asistencia. | **EP03** |
-| **US17** | Registro de Horas de Trabajo | Como trabajador, quiero que al finalizar la jornada, al pasar de nuevo mi tarjeta por el lector, se registre mi salida, para tener un registro completo de mis horas trabajadas. | **Scenario:** Registro de horas trabajadas.<br>Dado que el trabajador pasa su tarjeta al finalizar su jornada laboral, y el lector está activo, cuando la tarjeta es leída, entonces se registra la hora de salida. | **EP03** |
+| **US14** | Personalización de Permisos de Acceso | Como administrador, quiero poder personalizar los permisos de acceso de cada tarjeta según el rol, para mantener un control adecuado. | **Scenario:** Permisos de acceso.<br>Dado que el administrador personaliza los permisos, y los asigna a una tarjeta, cuando la tarjeta es leída, entonces se verifica el acceso según los permisos.<br>**Scenario:** Permiso actualizado.<br> Dado que el administrador modifica los permisos de una tarjeta, cuando guarda los cambios, entonces los nuevos permisos se aplican.<br>**Scenario:** Usuario sin permiso.<br>Dado que el usuario no tiene autorización para un área, cuando intenta ingresar, entonces el sistema rechaza el acceso. | **EP05** |
+| **US15** | Desactivación Automática de Tarjetas | Como administrador, quiero que las tarjetas se desactiven automáticamente si un estudiante no completa su matrícula a tiempo, para mantener la seguridad. | **Scenario:** Desactivación automática.<br>Dado que un estudiante no completa su matrícula, y la fecha límite ha pasado, cuando el sistema verifica la matrícula, entonces la tarjeta se desactiva automáticamente.<br>**Scenario:** Matrícula completada.<br>Dado que el estudiante completa su matrícula antes de la fecha límite, cuando el sistema verifica su estado, entonces la tarjeta permanece activa. | **EP05** |
+| **US16** | Registro de Asistencia Docente | Como profesor, quiero que la tarjeta guarde automáticamente la asistencia de los estudiantes que pasaron su tarjeta previamente cuando pase mi tarjeta por el lector, para ahorrar tiempo en el proceso de toma de asistencia. | **Scenario:** Registro de asistencia docente.<br>Dado que el profesor pasa su tarjeta al inicio de clase, y los estudiantes están presentes, cuando la tarjeta es leída, entonces se registra automáticamente la asistencia.<br>**Scenario:** Sin estudiantes registrados.<br> Dado que ningún estudiante pasó su tarjeta, cuando el profesor inicia la sesión, entonces el sistema informa que no existen asistencias registradas. | **EP03** |
+| **US17** | Registro de Horas de Trabajo | Como profesor, quiero que al finalizar la clase, al pasar de nuevo mi tarjeta por el lector, se registre mi salida, para tener un registro completo de mis horas trabajadas. | **Scenario:** Registro de horas trabajadas.<br>Dado que el profesor pasa su tarjeta al finalizar la clase, y el lector está activo, cuando la tarjeta es leída, entonces se registra la hora de salida.<br>**Scenario:** Registro de salida.<br> Dado que el profesor registró su entrada, cuando pasa nuevamente su tarjeta al finalizar la clase, entonces se registra la hora de salida.<br>**Scenario:** Sin registro de entrada.<br> Dado que el profesor no registró su entrada, cuando intenta registrar su salida, entonces el sistema muestra un mensaje de error. | **EP03** |
 | **US18** | Confirmación de Registro de Asistencia | Como profesor, quiero que el sistema muestre un mensaje que confirme que mi asistencia ha sido registrada, para tener la seguridad de que el proceso se ha completado. | **Scenario:** Confirmación de asistencia.<br>Dado que el profesor pasa su tarjeta, y la asistencia ha sido registrada, cuando el lector procesa la tarjeta, entonces se muestra un mensaje de confirmación. | **EP03** |
-| **US19** | Visualización de Horas Acumuladas en espacios| Como administraor, quiero ver que tantas horas se usan diferentes espacios, para poder revisar y gestionar mejor los recursos. | **Scenario:** Revisión de horas.<br>Dado que se pasan las tarjetas, y el lector tiene acceso a datos acumulados, cuando la tarjeta es leída, entonces se muestran las horas y personas en ese espacio. | **EP03** |
-| **US20** | Historial de Asistencia Docente | Como profesor, quiero que se registre la hora y fecha exacta en que escaneo mi tarjeta, para tener un historial preciso de mi asistencia. | **Scenario:** Registro de asistencia docente.<br>Dado que el profesor escanea su tarjeta, y se registra la hora y fecha, cuando se consulta el historial, entonces se muestra el registro de asistencia. | **EP03** |
+| **US19** | Consulta de Horas Trabajadas | Como trabajador, quiero que el lector muestre mis horas acumuladas de trabajo al final de cada semana, para poder revisar y gestionar mejor mi tiempo. | **Scenario:** Revisión de horas.<br>Dado que el trabajador pasa su tarjeta, y el lector tiene acceso a datos acumulados, cuando la tarjeta sea leída, entonces se muestran las horas acumuladas de trabajo.<br>**Scenario:** Consulta sin registros.<br>Dado que el trabajador no tiene horas registradas, cuando consulta su resumen semanal, entonces el sistema indica que no existen registros. | **EP03** |
+| **US20** | Historial de Asistencia Docente | Como profesor, quiero que se registre la hora y fecha exacta en que escaneo mi tarjeta, para tener un historial preciso de mi asistencia. | **Scenario:** Registro de asistencia docente.<br>Dado que el profesor escanea su tarjeta, y se registra la hora y fecha, cuando se consulta el historial, entonces se muestra el registro de asistencia.<br>**Scenario:** Historial vacío.<br> Dado que no existen registros, cuando el profesor consulta su historial, entonces se muestra un mensaje indicando que no hay información disponible. | **EP03** |
 | **US21** | Registro de Asistencia en Reuniones | Como profesor, quiero que mi tarjeta me permita marcar mi asistencia a reuniones o capacitaciones, para llevar un control integral de mi tiempo. | **Scenario:** Registro en reuniones.<br>Dado que el profesor asiste a una reunión, y pasa su tarjeta al inicio, cuando la tarjeta es leída, entonces se registra su asistencia a la reunión. | **EP03** |
-| **US22** | Registro de Llegada a Clases | Como profesor, quiero que, al pasar mi tarjeta por el lector al inicio de la clase, se registre automáticamente mi llegada, para llevar un control de mis horas de trabajo. | **Scenario:** Registro de llegada.<br>Dado que el profesor pasa su tarjeta al inicio de la clase, y el lector está activo, cuando la tarjeta es leída, entonces se registra la hora de llegada. | **EP03** |
+| **US22** | Registro de Llegada a Clases | Como profesor, quiero que, al pasar mi tarjeta por el lector al inicio de la clase, se registre automáticamente mi llegada, para llevar un control de mis horas de trabajo. | **Scenario:** Registro de llegada.<br>Dado que el profesor pasa su tarjeta al inicio de la clase, y el lector está activo, cuando la tarjeta es leída, entonces se registra la hora de llegada.<br>**Scenario:** Fuera del horario.<br>Dado que no existe una clase programada, cuando el profesor pasa su tarjeta, entonces el sistema muestra un mensaje informativo. | **EP03** |
 | **US23** | Registro de Duración de Clases | Como profesor, quiero que, al pasar la tarjeta por el lector, se registre automáticamente la duración de la clase, para tener un control más preciso sobre el tiempo de enseñanza. | **Scenario:** Duración de la clase.<br>Dado que el profesor pasa su tarjeta al inicio y al final, y el lector registra ambas, cuando se procesa la información, entonces se calcula la duración de la clase. | **EP03** |
-| **US24** | Control de Entrada y Salida | Como profesor, quiero que la tarjeta muestre una foto cuando un estudiante registra su asistencia en la clase, para llevar un registro claro de su presencia. | **Scenario:** Foto para la entrada.<br>Dado que un estudiante pasa su tarjeta al entrar, y el lector está activo, cuando se lee la tarjeta, entonces se muestra una foto. | **EP03** |
-| **US25** | Registro de Curso y Materia | Como profesor, quiero que, al escanear mi tarjeta, se registre automáticamente el nombre del curso y la materia que imparto, para llevar un control más detallado. | **Scenario:** Registro de curso.<br>Dado que el profesor escanea su tarjeta, y está vinculado a un curso específico, cuando se procesa la lectura, entonces se registra automáticamente el curso y la materia. | **EP03** |
-| **US26** | Visualización de Funcionalidades | Como visitante de la web, quiero ver una sección clara con las funcionalidades principales de TarjePafi en la Landing Page, para entender rápidamente qué ofrece el producto antes de adquirirlo. | **Scenario:** Exploración de características.<br>Dado que el visitante entra a la Landing Page, cuando navega hacia la sección de beneficios, entonces puede leer un resumen claro de las funciones del sistema. | **EP01** |
-| **US27** | Acceso a Contacto y Soporte | Como usuario interesado, quiero tener un botón de contacto visible en la Landing Page, para poder enviar mis dudas al equipo de TarjePafi de manera rápida. | **Scenario:** Envío de consultas.<br>Dado que el usuario tiene dudas sobre el servicio, cuando hace clic en el botón de contacto, entonces se despliega un formulario o enlace directo para comunicarse con el equipo. | **EP01** |
+| **US24** | Cierre de turno | Como trabajador, quiero que la tarjeta sirva como herramienta de registro e salida del trabajo, para llevar un registro exacto de mis horas trabajadas | **Scenario:** Mensajes de salida.<br>Dado que un trabajador pasa su tarjeta al salir de su espacio de trabajo, y el lector está activo, cuando se lea la tarjeta, entonces contaran las horas desde que paso la tarjeta en su entrada hasta ese momento.<br>**Scenario:** Salida duplicada.<br>Dado que el trabajador ya registró su salida, cuando vuelve a pasar su tarjeta, entonces el sistema evita duplicar el registro. | **EP03** |
+| **US25** | Registro de Curso y Materia | Como profesor, quiero que, al escanear mi tarjeta, se registre automáticamente el nombre del curso y la materia que imparto, para llevar un control más detallado. | **Scenario:** Registro de curso.<br>Dado que el profesor escanea su tarjeta, y está vinculado a un curso específico, cuando se procesa la lectura, entonces se registra automáticamente el curso y la materia.<br>**Scenario:** Sin curso asignado.<br>Dado que el profesor no tiene un curso asignado, cuando escanea su tarjeta, entonces el sistema muestra un mensaje informativo. | **EP03** |
+| **US26** | Visualización de Funcionalidades | Como visitante de la web, quiero ver una sección clara con las funcionalidades principales de TarjePAFI en la Landing Page, para entender rápidamente qué ofrece el producto antes de adquirirlo. | **Scenario:** Exploración de características.<br>Dado que el visitante entra a la Landing Page, cuando navega hacia la sección de beneficios, entonces puede leer un resumen claro de las funciones del sistema. | **EP01** |
+| **US27** | Acceso a Contacto y Soporte | Como visitante, quiero tener un botón de contacto visible en la Landing Page, para poder enviar mis dudas al equipo de TarjePAFI de manera rápida. | **Scenario:** Envío de consultas.<br>Dado que el usuario tiene dudas sobre el servicio, cuando hace clic en el botón de contacto, entonces se despliega un formulario o enlace directo para comunicarse con el equipo. | **EP01** |
 
 ## 3.3. Impact Mapping.
 
@@ -1964,20 +1972,172 @@ Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes component
 ## 5.1. Bounded Context: IAM Context
 
 ### 5.1.1. Domain Layer
+La Domain Layer representa el núcleo del IAM (Identity and Access Management) Context y contiene las clases responsables de modelar la identidad, credenciales y control de acceso de los administradores del sistema. A diferencia de otros contextos, no contiene lógica de negocio operativa transversal, sino que se centra en la validación de identidad. Esta capa permanece independiente de tecnologías específicas como Entity Framework, JWT o algoritmos criptográficos, concentrándose únicamente en las reglas propias del dominio.
+Las principales clases identificadas para esta capa son las siguientes.
+
+**Aggregate Root**
+
+**User**
+`User` constituye el Aggregate Root principal del bounded context. Representa a un administrador del sistema y mantiene el estado consistente de sus credenciales, perfil básico y marcas de tiempo de auditoría. Hereda de una clase base `AuditableEntity` para manejar automáticamente `CreatedAt` y `UpdatedAt`.
+**Propósito:** gestionar el ciclo de vida de la cuenta de un administrador, asegurando que siempre posea credenciales válidas, un correo con formato correcto y el rol adecuado para operar el sistema.
+**Atributos principales:**
+- `userId`: identificador único del usuario.
+- `email`: dirección de correo electrónico (Value Object).
+- `password`: contraseña cifrada (Value Object).
+- `role`: rol de acceso (estrictamente administrador).
+- `status`: estado actual de la cuenta.
+- `createdAt`: fecha y hora de creación de la cuenta.
+- `updatedAt`: fecha y hora de la última modificación.
+**Métodos principales:**
+- `createAdmin()`: Factory Method estático que inicializa la cuenta asegurando la asignación del rol de administrador.
+- `updatePassword(EncryptedPassword newPassword)`: actualiza la credencial de acceso.
+- `deactivate()`: deshabilita el acceso del usuario al sistema.
+- `verifyPassword(EncryptedPassword input)`: compara una credencial entrante con la almacenada.
+
+**Value Objects**
+
+**EmailAddress**
+`EmailAddress` representa el correo electrónico del administrador.
+Su responsabilidad es validar mediante expresiones regulares en su constructor que la cadena de texto proporcionada posea un formato de correo electrónico válido, evitando que estados inválidos ingresen al dominio.
+
+**EncryptedPassword**
+`EncryptedPassword` representa la credencial de acceso del usuario de forma segura.
+Su propósito es garantizar que el dominio jamás maneje ni exponga contraseñas en texto plano. Encapsula el hash criptográfico generado.
+
+**Enumerations**
+
+**UserStatus**
+Representa el estado operativo de la cuenta:
+- `ACTIVE`
+- `INACTIVE`
+- `SUSPENDED`
+
+**Repository & Outbound Interfaces**
+
+**IUserRepository**
+`IUserRepository` define la abstracción utilizada por el dominio para recuperar y persistir las cuentas de usuario.
+**Métodos principales:**
+- `save(User user)`
+- `findById(UserId userId)`
+- `findByEmailAsync(EmailAddress email)`
+- `existsByEmail(EmailAddress email)`
+
+**ITokenGeneratorService & IHashingService**
+Interfaces que definen contratos críticos hacia el exterior (Outbound Services). `IHashingService` abstrae el cifrado de contraseñas, e `ITokenGeneratorService` abstrae la generación de credenciales de acceso (tokens), manteniendo al dominio agnóstico de implementaciones como BCrypt o JWT.
 
 ### 5.1.2. Interface Layer
+La Interface Layer proporciona los puntos de entrada mediante los cuales los clientes web o móviles interactúan con el IAM Context para autenticarse. Esta capa recibe las solicitudes externas HTTP, extrae los datos y los transforma en commands o queries que son enviados hacia Application Layer.
+
+**AuthController**
+`AuthController` expone las operaciones de autenticación. Su superficie es intencionalmente reducida, ya que no existe un proceso de registro público; las cuentas son provisionadas directamente.
+**Responsabilidades principales:**
+- procesar el inicio de sesión de administradores;
+- validar tokens activos;
+- consultar el perfil básico autenticado.
+**Entre los endpoints considerados se encuentran:**
+- `POST /api/v1/auth/sign-in` (Público - `[AllowAnonymous]`)
+- `GET /api/v1/auth/me` (Protegido - `[Authorize]`)
+
+**Data Transfer Objects (DTOs)**
+Estructuras de datos utilizadas para la comunicación externa.
+- **SignInResource:** recibe el correo y la contraseña en texto plano.
+- **TokenResource:** devuelve el token generado de forma segura.
+- **UserResource:** devuelve la información pública del usuario (omitiendo contraseñas).
+
+**Transform Layer (Assemblers)**
+Los *Assemblers* desacoplan el modelo expuesto en la API REST de los objetos internos.
+**Entre sus operaciones principales se encuentran:**
+- `toSignInCommandFromResource()`
+- `toUserResourceFromEntity()`
 
 ### 5.1.3. Application Layer
+La Application Layer coordina los flujos de autenticación y aprovisionamiento bajo el patrón CQRS. Esta capa orquesta el modelo de dominio con los servicios externos de cifrado y generación de tokens.
+
+**Commands**
+Los Commands representan solicitudes que producen un cambio o acción principal.
+
+**CreateAdminCommand**
+Solicita el aprovisionamiento de una nueva cuenta administrativa (usado por procesos internos o *seeders*, no expuesto por REST).
+**Datos principales:**
+- `email`
+- `rawPassword`
+- `name`
+- `status`
+- `CreatedAt`
+- `UpdatedAt`
+
+**SignInCommand**
+Solicita la validación de credenciales para iniciar una sesión en el sistema.
+**Datos principales:**
+- `email`
+- `rawPassword`
+
+**Command Handlers**
+
+**CreateAdminCommandHandler**
+Valida que el correo no esté registrado utilizando `IUserRepository`, orquesta la llamada a `IHashingService` para cifrar el `rawPassword`, instancia la entidad mediante `User.createAdmin()` y persiste el objeto.
+
+**SignInCommandHandler**
+Recupera el usuario correspondiente mediante su correo electrónico. Si existe, verifica que el `rawPassword` coincida con el hash almacenado. Tras una validación exitosa, solicita a `ITokenGeneratorService` la emisión de las credenciales de sesión.
+
+**Queries**
+Las Queries permiten recuperar información sin modificar el estado.
+
+**GetUserProfileQuery**
+Solicita la información básica de un usuario autenticado.
+**Datos principales:**
+- `userId`
+
+**Query Handlers**
+
+**GetUserProfileQueryHandler**
+Recupera el `User` solicitado de la base de datos y lo devuelve listo para ser mapeado, facilitando la extracción del perfil sin exponer lógica de dominio.
 
 ### 5.1.4. Infrastructure Layer
+La Infrastructure Layer contiene las implementaciones concretas necesarias para persistir datos, aplicar criptografía real y manejar la seguridad del entorno HTTP. Implementa las abstracciones de Domain Layer.
 
-### 5.1.6. Bounded Context Software Architecture Component Level Diagrams
+**Repository Implementations**
 
-### 5.1.7. Bounded Context Software Architecture Code Level Diagrams
+**JpaUserRepository** (o `EntityFrameworkUserRepository`)
+Implementa la interfaz `IUserRepository` definida en Domain Layer.
+Su responsabilidad es traducir las operaciones del dominio a operaciones de persistencia sobre la base de datos (ej. PostgreSQL o SQL Server). Se apoya en interceptores del ORM para poblar automáticamente los campos de auditoría (`CreatedAt`, `UpdatedAt`) al insertar o actualizar registros.
 
-#### 5.1.7.1. Bounded Context Domain Layer Class Diagrams
+**Security & Cryptography Infrastructure**
 
-#### 5.1.7.2. Bounded Context Database Design Diagram
+**BcryptHashingService**
+Implementa `IHashingService`. Utiliza el algoritmo BCrypt para generar y verificar hashes seguros de las contraseñas, evitando el almacenamiento en texto plano.
+
+**JwtTokenGeneratorService**
+Implementa `ITokenGeneratorService`. Implementa la creación de JSON Web Tokens (JWT) firmados algorítmicamente (ej. HS256). Inyecta *claims* esenciales como `sub` (userId), `email` y `role=ADMIN` para permitir una autorización sin estado (*stateless*).
+
+**System Initialization**
+
+**AdminDataSeeder**
+Dado que el negocio no permite el registro público de usuarios, este componente de infraestructura se ejecuta durante el despliegue o inicialización del sistema. Se encarga de inyectar directamente en la base de datos las credenciales de los administradores primarios, ejecutando internamente el flujo de creación segura.
+
+**Middleware**
+
+**JwtAuthenticationMiddleware**
+Se integra en el pipeline HTTP del servidor web.
+**Su responsabilidad consiste en:**
+- interceptar las peticiones entrantes;
+- extraer el token de la cabecera `Authorization: Bearer`;
+- validar criptográficamente la firma del JWT;
+- inyectar el contexto de identidad (claims) en la solicitud actual para habilitar atributos como `[Authorize]`.
+
+### 5.1.5. Bounded Context Software Architecture Component Level Diagrams
+
+<img src="assets/IAM_component.png" alt="EventStorming Image"><br>
+
+### 5.1.6. Bounded Context Software Architecture Code Level Diagrams
+
+#### 5.1.6.1. Bounded Context Domain Layer Class Diagrams
+
+<img src="assets/IAM_Class.png" alt="EventStorming Image"><br>
+
+#### 5.1.6.2. Bounded Context Database Design Diagram
+
+<img src="assets/IAM_dataclass.png" alt="EventStorming Image"><br>
 
 
 ## 5.2. Bounded Context: Academic Attendance Context
