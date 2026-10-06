@@ -1503,7 +1503,7 @@ Una vez concluidas las épicas, ahora podemos proceder a encapsular las múltipl
 | **US02** | Confirmación de Asistencia | Como estudiante, quiero que el lector muestre un mensaje de "Asistencia tomada" en la pantalla, para que sepa que mi asistencia ha sido registrada.| **Scenario:** Mensaje de confirmación.<br>Dado que el estudiante pasa su tarjeta, y la asistencia ha sido registrada, cuando el lector procesa la tarjeta, entonces se muestra el mensaje "Asistencia tomada". | **EP03** |
 | **US03** | Reserva de Espacios de Estudio | Como estudiante, quiero poder usar mi tarjeta para reservar espacios de estudio en la universidad, de modo que pueda planificar mejor mi tiempo. | **Scenario:** Reserva de un espacio.<br>Dado que el estudiante quiere reservar un espacio, y tiene su tarjeta, cuando pasa la tarjeta por el lector en el área de reserva, entonces se confirma la reserva en la pantalla. **Scenario:** Espacio no disponible.<br>Dado que el estudiante intenta reservar un espacio ocupado, cuando pasa su tarjeta, entonces se muestra un mensaje indicando que el espacio no está disponible. | **EP04** |
 | **US04** | Visualización del Horario de Clase | Como estudiante, quiero que la tarjeta me muestre el horario de la clase en la pantalla del lector al pasarla, para confirmar la información antes de entrar. | **Scenario:** Confirmación del horario.<br>Dado que el estudiante pasa su tarjeta, y está registrado para una clase, cuando la tarjeta es leída, entonces el horario de la clase se muestra en el lector. | **EP04** |
-| **US05** | Uso en dispositivos mobiles | Como visitante, quiero un diseño de la Landing Page funcional en dispositivos moviles, para visitar la pagina desde mi celular. | **Scenario:** Visualizacion en celulares.<br>Dado que el visitante ingresa desde un dispositivo móvil, cuando navega por la Landing Page, entonces el contenido se adapta correctamente al tamaño de la pantalla. | **EP01** |
+| **US05** | Uso en dispositivos moviles | Como visitante, quiero un diseño de la Landing Page funcional en dispositivos moviles, para visitar la pagina desde mi celular. | **Scenario:** Visualizacion en celulares.<br>Dado que el visitante ingresa desde un dispositivo móvil, cuando navega por la Landing Page, entonces el contenido se adapta correctamente al tamaño de la pantalla. | **EP01** |
 | **US06** | Acceso Multicentro con la Tarjeta | Como estudiante, quiero que la tarjeta funcione en múltiples puntos de acceso, como bibliotecas y laboratorios, para facilitar mi acceso a los recursos. | **Scenario:** Acceso a múltiples áreas.<br>Dado que el estudiante usa la tarjeta en diferentes puntos, y está autorizado para acceder, cuando pasa la tarjeta por el lector, entonces se le permite el acceso.**Scenario:** Acceso no autorizado.<br> Dado que el estudiante no tiene permisos, cuando pasa su tarjeta, entonces se deniega el acceso. | **EP04** |
 | **US07** | Participación en Eventos Universitarios | Como estudiante, quiero que la tarjeta me permita acceder a eventos universitarios, para participar en actividades extracurriculares. | **Scenario:** Acceso a eventos.<br>Dado que hay un evento universitario, y el estudiante tiene su tarjeta, cuando pasa la tarjeta por el lector en la entrada, entonces se permite su entrada al evento. | **EP04** |
 | **US08** | Identificación Estudiantil | Como estudiante, quiero que la tarjeta funcione como una forma de identificación, para ser reconocido fácilmente por el personal académico. | **Scenario:** Identificación al personal.<br>Dado que el estudiante presenta su tarjeta, y es abordado por el personal, cuando la tarjeta es leída, entonces su identidad es verificada. | **EP02** |
@@ -1526,6 +1526,7 @@ Una vez concluidas las épicas, ahora podemos proceder a encapsular las múltipl
 | **US25** | Registro de Curso y Materia | Como profesor, quiero que, al escanear mi tarjeta, se registre automáticamente el nombre del curso y la materia que imparto, para llevar un control más detallado. | **Scenario:** Registro de curso.<br>Dado que el profesor escanea su tarjeta, y está vinculado a un curso específico, cuando se procesa la lectura, entonces se registra automáticamente el curso y la materia.<br>**Scenario:** Sin curso asignado.<br>Dado que el profesor no tiene un curso asignado, cuando escanea su tarjeta, entonces el sistema muestra un mensaje informativo. | **EP03** |
 | **US26** | Visualización de Funcionalidades | Como visitante de la web, quiero ver una sección clara con las funcionalidades principales de TarjePAFI en la Landing Page, para entender rápidamente qué ofrece el producto antes de adquirirlo. | **Scenario:** Exploración de características.<br>Dado que el visitante entra a la Landing Page, cuando navega hacia la sección de beneficios, entonces puede leer un resumen claro de las funciones del sistema. | **EP01** |
 | **US27** | Acceso a Contacto y Soporte | Como visitante, quiero tener un botón de contacto visible en la Landing Page, para poder enviar mis dudas al equipo de TarjePAFI de manera rápida. | **Scenario:** Envío de consultas.<br>Dado que el usuario tiene dudas sobre el servicio, cuando hace clic en el botón de contacto, entonces se despliega un formulario o enlace directo para comunicarse con el equipo. | **EP01** |
+| **US28** | Liberacion de Reserva | Como administrador, quiero que los espacios reservados se liberen luego de 10 minutos, para que sean usados por un estudiante usuario que quiera reservar el espacio | **Scenario:** Espacio liberao.<br>Dado que el estudiante no llegue a tiempo a su reserva, cuando pasen 10 minutos desde su inicio, entonces el sistema liberar automaticamente el espacio resevrado. | **EP04** |
 
 ## 3.3. Impact Mapping.
 
@@ -3303,9 +3304,49 @@ Para preservar la consistencia entre los artefactos UX y la implementación fina
 
 ## 6.2. Information Architecture
 
+La arquitectura de información de TarjePafi se diseñó con el propósito de facilitar la comprensión y navegación tanto en la Landing Page como en la aplicación web. Se prioriza la simplicidad, accesibilidad y consistencia visual, asegurando que usuarios finales encuentren rápidamente lo que necesitan.
+
 ### 6.2.2. Labeling Systems
 
+A continuación, se presenta el sistema de etiquetado que permitirá dar a los visitantes de la Landing Page y la Plataforma Web un vistazo claro y organizado de lo que ofrecemos.
+
+
+**Landing Page**
+<br>
+
+La landing page cuenta con 4 headings ubicados en la parte superior:
+
+|Heading|Description|
+|-------|-----------|
+|Servicios|Sección seleccionada por defecto donde los usuarios observarán los distintos servicios que ofrecemos.|
+|Contactos|Sección donde el usuario podrá contactarnos directamente mediante un formulario.|
+|FAQ|Sección enfocada en mostrar las preguntas comunes al descubrir el servicio junto a sus respuestas|
+|Equipo|Sección donde se mostrara el equipo detras e TarjePafi para mayor transparencia con los clientes.|
+
+**Plataforma Web**
+<br>
+
+La landing page cuenta con 3 headings ubicados en la parte superior:
+
+|Heading|Description|
+|-------|-----------|
+|Inicio|Sección que actuara como dashboard para mantener la informacion general al alcance.|
+|Reportes|Sección donde se generaran los reportes con la data transferia.|
+|Ajustes|Sección enfocada en modificar aspectos del perfil o las prefrencias de usuario.|
+
+
 ### 6.2.3. Searching Systems
+
+El sistema de búsqueda de TarjePafi se diseñó para evitar que los usuarios se sientan perdidos entre la gran cantidad de información generada (reportes, tablas, graficos, informacion suelta). El objetivo es ofrecer métodos simples y potentes de búsqueda que permitan localizar datos en pocos pasos.
+
+**Opciones de Filtros**
+- **Por orden alfabetico:** Busqueda por orden alfabetico en los reportes, tablas o informacion recolectada en sus titulos
+- **Por orden cronologico:** Busqueda por fecha cronologica de orden creciente o decreciente
+- **Por orden numerico:** Busqueda numerica en los resultados de los analisis 
+
+**Presentacion de Resultados**
+- **Reportes:** Reportes ordenados en lista que puede ser filtrada en su propia seccion para guardar una base de datos de estos reportes
+- **Datos cuantitativos:** Graficos o tablas que guardan la informacion cualitativa recolectada por la tarjeta en el dashboard de Inicio
 
 ### 6.2.4. SEO Tags and Meta Tags
 
