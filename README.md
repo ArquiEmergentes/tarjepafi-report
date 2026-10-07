@@ -2468,385 +2468,425 @@ Esta capa implementa la persistencia con JPA y Spring Data JPA, la mensajería c
 
 ## 5.3. Bounded Context: Space and Facility Context
 
-El Space and Facility Context es el bounded context núcleo (*core*) responsable de gestionar la administración, disponibilidad, reserva, ocupación y control de acceso físico a los ambientes e instalaciones del campus universitario (aulas, cubículos de estudio, laboratorios, bibliotecas, oficinas y áreas de acceso restringido). Su propósito fundamental es optimizar la utilización de la infraestructura universitaria mediante la interacción con las credenciales NFC y los lectores IoT, eliminando el acaparamiento indebido de ambientes de estudio y garantizando que el acceso y la ocupación física correspondan fielmente a la realidad operativa del campus
+El Space and Facility Context es el bounded context núcleo (*core*) encargado de administrar la infraestructura física del campus universitario (aulas, laboratorios, cubículos de estudio, oficinas y torniquetes de acceso), regular la ocupación y aforo en tiempo real, validar los permisos de paso físico y gestionar la activación presencial de reservas de ambientes mediante interacciones NFC y lectores IoT. Su propósito principal es garantizar la seguridad física del recinto, evitar el acaparamiento de espacios de estudio asegurando un uso equitativo y mantener una correspondencia estricta entre la presencia física real y el estado del campus.
+
+En la arquitectura de TarjePAFI, los estudiantes, docentes y trabajadores no acceden a aplicaciones web ni móviles para reservar o consultar disponibilidad. Su interacción con este contexto es estrictamente física, aproximando su credencial física NFC a los lectores ESP32 ubicados en torniquetes de ingreso, puertas restringidas y mesas de cubículos. La única interfaz digital existente es la Web App responsive (Angular), reservada de forma exclusiva para el Personal Administrativo (`ADMIN`) para dar de alta espacios, configurar políticas y supervisar métricas de ocupación en vivo.
 
 **Reglas de negocio principales**
 
-- **Regla de oro de liberación automática de 10 minutos (Anti-acaparamiento):** Toda reserva de espacio de estudio (cubículo o laboratorio) dispone de un intervalo de tolerancia estricto de diez (10) minutos contabilizados desde su hora programada de inicio. Si el titular de la reserva no valida su presencia física aproximando su tarjeta física NFC al lector de la mesa antes de que expire dicho temporizador, el sistema cancela automáticamente la reserva, marca al usuario como ausente (*no-show*), libera inmediatamente el espacio para otros estudiantes y dispara una notificación transaccional vía correo electrónico.
+- **Flujo de ingreso y salida general del campus:** Toda persona que ingrese o salga del recinto universitario debe presentar su credencial física en los torniquetes. El sistema valida la vigencia de la tarjeta contra el registro institucional; si es válida, emite `ActivarEntrada` (`AccesoConcedido`) y franquea el paso. Al salir, el lector registra `ActivarSalida`, actualizando dinámicamente el conteo de personas presentes en la institución. Intentos con credenciales dadas de baja o suspendidas son rechazados con `AccesoDenegado`.
 
-- **Validación de aforo y capacidad máxima:** Un ambiente universitario no puede admitir accesos que sobrepasen su capacidad nominal declarada (`capacity`). Las transiciones de ocupación se gestionan en tiempo real para mantener la integridad del aforo.
+- **Flujo de control de zonas restringidas y exclusivas:** Las puertas de ambientes especializados (oficinas docentes, laboratorios de investigación, almacenes o salas de servidores) evalúan el rol institucional (`STUDENT`, `TEACHER`, `STAFF`, `ADMIN`) y los permisos de la credencial. Si un estudiante intenta franquear una puerta exclusiva para trabajadores o docentes, se genera `AccesoDenegado`. Los trabajadores con rol asignado reciben `AccesoConcedido`.
 
-- **Acceso según zonificación y permisos:** El acceso físico a áreas restringidas o de trabajo (laboratorios especializados, almacenes, zonas administrativas) se evalúa en función del rol institucional del portador (`STUDENT`, `TEACHER`, `STAFF`, `ADMIN`) y de los permisos específicos asignados a la credencial.
+- **Flujo de activación de reservas y regla de oro de los 10 minutos (Anti-acaparamiento):** Las reservas de cubículos y laboratorios son programadas por la administración o provienen de la planificación institucional. Para hacer uso del ambiente, el estudiante titular debe presentarse físicamente y aproximar su tarjeta al lector ESP32 de la mesa del cubículo (`ActivarReserva`). Si la tarjeta coincide con la reserva vigente, se emite `ReservaActivada` y el espacio cambia su estado a ocupado. Si la tarjeta no coincide con la reserva, se detecta espacio incorrecto y se emite `ActivacionFallida` (`RechazarReserva`). Si transcurren los primeros diez (10) minutos de la franja horaria sin que el titular valide su presencia física (`Ausencia del espacio reservado`), el sistema cancela automáticamente la reserva, emite `ReservaPerdida` (`ReservationForfeited`), libera el cubículo para su reaprovechamiento y despacha un correo de notificación al titular.
 
-- **No solapamiento de reservas:** Un mismo espacio físico no puede admitir reservas en franjas horarias concurrentes (*overlapping time slots*). Asimismo, un estudiante no puede mantener dos reservas activas simultáneas dentro del campus.
+- **Validación de aforo y capacidad máxima:** Ningún espacio físico puede admitir ingresos que excedan su capacidad declarada (`capacity`).
 
-- **Registro integral de accesos y auditoría:** Todo intento de aproximación (*tap*) para acceso a un ambiente o activación de cubículo genera un registro inmutable de acceso (`AccessRecord`), registrando si fue concedido o denegado junto con su motivo específico para fines de trazabilidad y seguridad institucional.
+- **Auditoría inmutable de accesos:** Todo contacto físico de una tarjeta genera un registro inmutable de auditoría (`AccessRecord`), capturando el instante original, lector, espacio, titular, decisión y motivo de rechazo.
+
+**Datos externos simulados**
+
+Los espacios físicos, sus lectores asignados y las reservas programadas se inicializan mediante datos semilla en PostgreSQL. Cuando exista la integración plena con el Sistema de Infraestructura y Horarios de la UPC, solo se requerirá implementar el adaptador REST/HTTPS correspondiente sin alterar el núcleo de dominio.
 
 **Integración con IoT Monitoring Context**
 
-Las lecturas físicas no se reciben de manera directa desde las antenas de los lectores ESP32. El IoT Monitoring Context procesa las tramas de hardware, las normaliza mediante su Anti-Corruption Layer (ACL) y publica el evento de integración `CardTapEvent` a través de RabbitMQ. El Space and Facility Context consume este evento desacoplado, mapea la ubicación del dispositivo (`spaceId`) con su entidad de espacio físico correspondiente, resuelve la identidad del titular con el Identity & Access Management (IAM) / Identification Context y procede a ejecutar la lógica de activación de reserva o evaluación de acceso en el torniquete/cerradura inteligente.
-
-**Integración con Data Management Context y Servicios de Notificación**
-
-Cada transición relevante en la disponibilidad de la infraestructura física (`ReservationCreated`, `ReservationCheckedIn`, `ReservationForfeited`, `SpaceOccupied`, `SpaceReleased`, `AccessGranted`, `AccessDenied`) se publica hacia el bus de eventos de RabbitMQ. El Data Management Context consume estos eventos de forma asíncrona para alimentar los mapas de calor, los tableros de afluencia y los reportes de utilización de espacios en tiempo real. Asimismo, la expiración de la regla de los 10 minutos orquesta una llamada asíncrona hacia el puerto de notificaciones para remitir el correo al estudiante sin bloquear las operaciones del dominio.
+Las lecturas físicas no se reciben de manera directa desde las antenas de los lectores ESP32. El IoT Monitoring Context procesa las tramas de hardware, las normaliza mediante su Anti-Corruption Layer (ACL) y publica el evento desacoplado `CardTapEvent` a través de RabbitMQ. El Space and Facility Context consume este evento, mapea la ubicación del dispositivo (`spaceId`) con el ambiente correspondiente, resuelve la identidad del titular consultando a IAM / Identification Context y aplica la política de acceso o activación.
 
 ### 5.3.1. Domain Layer
 
-La capa de dominio modela las entidades fundamentales, agregados, objetos de valor y políticas que gobiernan la reserva de instalaciones y el control de accesos a los ambientes del campus.
+En esta capa se encapsulan las reglas de negocio de la infraestructura: la gestión de espacios, la activación y pérdida de reservas por inasistencia, y la evaluación de acceso físico según zonificación y aforo.
 
 **Aggregate: `Space`**
 
-Representa un ambiente o instalación física gestionada dentro del campus universitario y controla su aforo, estado operativo y las reglas de zonificación.
+Representa un ambiente o punto de control físico del campus (aula, cubículo, laboratorio, torniquete de ingreso) y controla su capacidad, aforo en vivo y estado operativo.
 
 | Atributos | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| id | Long | Private | Identificador único interno del espacio físico. |
-| spaceCode | SpaceCode | Private | Código identificador institucional del espacio (ej. "SAN-CUB-204", "PUB-LAB-01"). |
-| name | String | Private | Nombre representativo del ambiente. |
-| spaceType | SpaceType | Private | Tipo de instalación: `STUDY_CUBICLE`, `CLASSROOM`, `LABORATORY`, `AUDITORIUM`, `RESTRICTED_OFFICE`. |
-| location | SpaceLocation | Private | Objeto de valor con campus, pabellón y número de piso. |
+| id | Long | Private | Identificador único del espacio. |
+| spaceCode | SpaceCode | Private | Código institucional del ambiente (ej. "SM-ENT-01", "SM-CUB-204"). Es único. |
+| name | String | Private | Nombre descriptivo del ambiente o punto de acceso. |
+| spaceType | SpaceType | Private | Tipo: `CAMPUS_ENTRANCE`, `STUDY_CUBICLE`, `CLASSROOM`, `LABORATORY`, `RESTRICTED_OFFICE`. |
+| location | SpaceLocation | Private | Ubicación física: campus, pabellón, piso y detalle referencia. |
 | capacity | Capacity | Private | Capacidad máxima autorizada de personas. |
-| currentOccupancy | OccupancyCount | Private | Conteo actual de ocupantes en tiempo real. |
-| status | SpaceStatus | Private | Estado operativo: `AVAILABLE`, `OCCUPIED`, `MAINTENANCE`, `RESERVED`. |
-| accessPolicy | AccessPolicyType | Private | Política de ingreso: `OPEN_ACCESS`, `RESERVATION_REQUIRED`, `RESTRICTED_STAFF_ONLY`. |
+| currentOccupancy | OccupancyCount | Private | Conteo de personas presentes en tiempo real. |
+| status | SpaceStatus | Private | Estado del espacio: `AVAILABLE`, `OCCUPIED`, `MAINTENANCE`, `RESERVED`. |
+| accessPolicy | AccessPolicyType | Private | Política: `OPEN_CAMPUS`, `RESERVATION_REQUIRED`, `RESTRICTED_STAFF_ONLY`. |
 
 | Métodos | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| getX() | — | Public | Métodos consultores (getters) de los atributos del agregado. |
-| Space(CreateSpaceCommand) | Constructor | Public | Inicializa un nuevo espacio físico con ocupación 0 y estado `AVAILABLE`. |
-| occupy() | void | Public | Incrementa la ocupación y cambia el estado a `OCCUPIED`. Lanza `CapacityExceededException` si supera la capacidad. |
-| release() | void | Public | Reduce la ocupación actual. Si llega a 0, transiciona el estado a `AVAILABLE`. |
-| reserve() | void | Public | Marca el espacio como `RESERVED`. Lanza `SpaceNotAvailableException` si el estado no es `AVAILABLE`. |
-| cancelReservationState() | void | Public | Restaura el estado a `AVAILABLE` cuando una reserva es cancelada o desestimada. |
-| canAccommodate(int) | boolean | Public | Valida si un incremento determinado no viola la capacidad nominal del ambiente. |
-| setMaintenance(boolean) | void | Public | Conmuta el estado del espacio a `MAINTENANCE` o lo restaura a `AVAILABLE`. |
+| getX() | — | Public | Getters de cada atributo (`getId()`, `getSpaceCode()`, `getStatus()`, `getCapacity()`, etc.). |
+| Space(CreateSpaceCommand) | Constructor | Public | Inicializa un espacio en estado `AVAILABLE` con ocupación en 0. |
+| incrementOccupancy() | void | Public | Incrementa el conteo de personas y conmuta a `OCCUPIED`. Lanza `CapacityExceededException` si excede la capacidad. |
+| decrementOccupancy() | void | Public | Reduce el conteo de ocupantes. Si llega a 0, conmuta el estado a `AVAILABLE`. |
+| markAsReserved() | void | Public | Establece el espacio en estado `RESERVED`. Lanza `SpaceNotAvailableException` si no está disponible. |
+| releaseReservation() | void | Public | Conmuta el estado de `RESERVED` a `AVAILABLE` cuando se cancela o pierde una reserva. |
+| setMaintenance(boolean) | void | Public | Establece o retira el estado de mantenimiento (`MAINTENANCE`). |
+| canAccommodate(int) | boolean | Public | Valida si un nuevo ingreso no transgrede el límite de capacidad. |
 
 **Aggregate: `SpaceReservation`**
 
-Controla el ciclo de vida de la reserva de un espacio, la franja horaria pactada y la exigencia de presencia física basada en la ventana de tolerancia de 10 minutos.
+Controla el ciclo de vida de una reserva programada en un ambiente de estudio y gobierna la regla de tolerancia presencial de 10 minutos.
 
 | Atributos | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
 | id | Long | Private | Identificador único de la reserva. |
-| reservationCode | ReservationCode | Private | Código único autogenerado de la reserva (ej. "RES-2026-98741"). |
-| spaceId | SpaceId | Private | Referencia al espacio físico reservado. |
-| cardHolderId | CardHolderId | Private | Titular solicitante de la reserva (estudiante o docente). |
+| reservationCode | ReservationCode | Private | Código único de la reserva asignada (ej. "RES-2026-10492"). |
+| spaceId | SpaceId | Private | Espacio físico reservado (ej. cubículo o laboratorio). |
+| cardHolderId | CardHolderId | Private | Titular al que fue asignado el espacio. |
 | timeSlot | TimeSlot | Private | Franja horaria que encapsula `startTime` y `endTime`. |
-| status | ReservationStatus | Private | `PENDING`, `CONFIRMED`, `CHECKED_IN`, `COMPLETED`, `CANCELLED`, `FORFEITED`. |
-| checkInWindowEnd | Instant | Private | Límite de tiempo máximo para marcación física (`startTime + 10 minutos`). |
-| checkedInAt | Instant | Private | Instante exacto en que la tarjeta fue validada en el lector de la mesa. |
-| createdAt | Instant | Private | Fecha y hora en que se creó la reserva. |
+| status | ReservationStatus | Private | Estado: `CONFIRMED`, `CHECKED_IN`, `COMPLETED`, `CANCELLED`, `FORFEITED`. |
+| checkInWindowEnd | Instant | Private | Límite máximo para marcación presencial con tarjeta (`startTime + 10 minutos`). |
+| checkedInAt | Instant | Private | Instante de lectura física de la tarjeta en la mesa del cubículo. Nulo si no se marcó. |
+| createdAt | Instant | Private | Fecha y hora en que se registró la reserva. |
 
 | Métodos | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| getX() | — | Public | Getters de cada atributo del agregado. |
+| getX() | — | Public | Getters de cada atributo. |
 | SpaceReservation(CreateReservationCommand) | Constructor | Public | Crea la reserva en estado `CONFIRMED` y computa `checkInWindowEnd = startTime + 10 min`. |
-| checkIn(Instant, CardHolderId) | void | Public | Realiza el check-in presencial. Valida titularidad y ventana. Pasa estado a `CHECKED_IN`. |
-| cancelByUser(CardHolderId) | void | Public | Cancela la reserva a solicitud del usuario titular. Pasa estado a `CANCELLED`. |
-| forfeit(Instant) | void | Public | Cancela la reserva por vencimiento de los 10 minutos sin presencia física. Pasa estado a `FORFEITED`. |
-| isCheckInExpired(Instant) | boolean | Public | Evalúa si el instante actual superó `checkInWindowEnd` sin marcación efectiva. |
-| isActiveAt(Instant) | boolean | Public | Verifica si un instante cae dentro de la franja horaria programada. |
+| checkIn(Instant, CardHolderId) | void | Public | Activa presencialmente la reserva (`ReservaActivada`). Lanza excepción si el titular no coincide o si la ventana expiró. |
+| forfeit(Instant) | void | Public | Da por perdida la reserva (`ReservaPerdida`) por vencimiento de los 10 minutos sin tap físico. |
+| cancel(Instant) | void | Public | Cancela administrativamente la reserva. |
+| isCheckInExpired(Instant) | boolean | Public | Evalúa si el instante actual superó `checkInWindowEnd` sin que exista marcación física. |
+| coversInstant(Instant) | boolean | Public | Indica si un instante cae dentro de la franja programada `[startTime, endTime]`. |
 
-**Entity: `AccessRecord`**
+**Aggregate: `AccessRecord`**
 
-Evidencia histórica e inmutable de un intento de acceso a un ambiente o activación en un lector IoT. Permite la auditoría de accesos concedidos y denegados.
+Representa la evidencia inmutable de que un titular aproximó su credencial a un lector de torniquete, puerta o mesa. Almacena tanto accesos concedidos como denegados para auditoría de seguridad.
 
 | Atributos | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
 | id | Long | Private | Identificador único del registro de acceso. |
-| eventId | ReaderEventId | Private | Identificador único del evento emitido por el lector (clave de idempotencia). |
-| spaceId | SpaceId | Private | Espacio físico donde se encuentra instalado el lector. |
-| cardHolderId | CardHolderId | Private | Titular que aproximó la credencial física. |
-| cardUid | CardUid | Private | Identificador hexadecimal único de la tarjeta NFC. |
-| attemptedAt | Instant | Private | Marca de tiempo física generada en el dispositivo IoT. |
-| decision | AccessDecision | Private | Resultado: `GRANTED` o `DENIED`. |
-| denialReason | DenialReason | Private | Causa de la denegación (`NONE`, `UNAUTHORIZED_ROLE`, `OUTSIDE_RESERVATION_WINDOW`, `CAPACITY_FULL`, etc.). |
+| eventId | ReaderEventId | Private | Identificador único del evento de lectura. Garantiza la idempotencia. |
+| spaceId | SpaceId | Private | Espacio físico o punto de control donde ocurrió el tap. |
+| cardHolderId | CardHolderId | Private | Titular de la credencial física (resuelto vía IAM). Nulo si la tarjeta no es válida. |
+| cardUid | CardUid | Private | UID hexadecimal de la tarjeta NFC física utilizada. |
+| attemptedAt | Instant | Private | Hora física original generada por el lector ESP32 (no la de recepción). |
+| accessType | AccessType | Private | Tipo de interacción: `CAMPUS_ENTRY`, `CAMPUS_EXIT`, `RESTRICTED_ACCESS`, `CUBICLE_CHECK_IN`. |
+| decision | AccessDecision | Private | Decisión tomada por el sistema: `GRANTED` o `DENIED`. |
+| denialReason | DenialReason | Private | Motivo del rechazo. Es nulo si el acceso fue concedido. |
 
 | Métodos | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| getX() | — | Public | Getters de acceso a los atributos. |
-| AccessRecord(LogAccessCommand, AccessDecision, DenialReason) | Constructor | Public | Instancia el registro persistente de auditoría de acceso. |
+| getX() | — | Public | Getters de cada atributo. |
+| AccessRecord(CreateAccessRecordCommand, AccessDecision, DenialReason) | Constructor | Public | Inicializa el registro persistente de auditoría con la decisión resuelta. |
 
 **Domain Service: `SpaceAccessPolicy`**
 
-Encapsula la lógica de autorización de acceso físico que no concierne exclusivamente a una entidad, integrando el rol del titular, el estado del espacio y la existencia de reservas vigentes.
+Concentra las reglas de negocio de seguridad física y activación presencial, combinando las políticas del ambiente, el rol del titular, el aforo y la existencia de reservas vigentes.
 
 | Método | Descripción |
 |---|---|
-| evaluateAccess(Space, CardHolderId, ParticipantRole, Optional<SpaceReservation>, Instant) | Resuelve si se autoriza el paso o check-in devolviendo un `AccessDecisionResult` con el resultado y el motivo de rechazo en caso denegado. |
+| evaluateAccess(Space, CardHolderId, ParticipantRole, AccessType, Optional<SpaceReservation>, Instant) | Devuelve un `AccessDecisionResult` con la decisión (`GRANTED` o `DENIED`) y el motivo de rechazo en caso denegado. |
 
-Reglas aplicadas por el servicio en orden de precedencia:
+Reglas que aplica, en orden:
 
-1. **Espacio en mantenimiento:** `DENIED` con `SPACE_IN_MAINTENANCE`.
-2. **Espacio de acceso restringido exclusivo para personal:** Si el rol es `STUDENT` y la política es `RESTRICTED_STAFF_ONLY`, `DENIED` con `UNAUTHORIZED_ROLE`.
-3. **Ambiente sujeto a reserva (ej. cubículo de estudio):** Si requiere reserva y el usuario no cuenta con una reserva activa o es un tercero no asociado, `DENIED` con `NO_ACTIVE_RESERVATION`.
-4. **Reserva con ventana de tolerancia de 10 minutos expirada:** Si el instante supera la ventana sin check-in previo, `DENIED` con `CHECK_IN_WINDOW_EXPIRED`
-5. **Aforo completo:** Si la capacidad del ambiente se encuentra saturada al 100%, `DENIED` con `CAPACITY_FULL`.
-6. **Validación satisfactoria:** `GRANTED` con `NONE`.
+1. **Espacio en mantenimiento:** Si el ambiente está en `MAINTENANCE`, `DENIED` con `SPACE_IN_MAINTENANCE`.
+2. **Tarjeta no válida o suspendida:** Si el titular no está activo en IAM, `DENIED` con `CARD_INACTIVE`.
+3. **Paso por puerta restringida / exclusiva:** Si la política es `RESTRICTED_STAFF_ONLY` y el rol es `STUDENT`, `DENIED` con `UNAUTHORIZED_ROLE`.
+4. **Activación de reserva de cubículo (mesa):**
+   - Si no existe reserva activa para esa franja horaria: `DENIED` con `NO_ACTIVE_RESERVATION`.
+   - Si la reserva pertenece a otro usuario: `DENIED` con `WRONG_RESERVATION_HOLDER` (`Espacio reservado incorrecto`).
+   - Si el instante supera los 10 minutos de tolerancia: `DENIED` con `CHECK_IN_WINDOW_EXPIRED` (`Ausencia del espacio reservado`).
+5. **Control de capacidad máxima:** Si el espacio está al 100% de aforo y el evento es de entrada, `DENIED` con `CAPACITY_FULL`.
+6. **Validación exitosa de torniquete o puerta:** Si cumple todas las condiciones, `GRANTED` con `NONE`.
 
 **Value Objects**
 
 | Value Object | Descripción |
 |---|---|
-| SpaceId | Registro inmutable que envuelve el identificador único del espacio. Valida que no sea nulo ni menor o igual a cero. |
+| SpaceId | Registro que envuelve el identificador único del espacio. Valida que no sea nulo ni menor o igual a cero. |
 | ReservationId | Registro que representa el identificador único de una reserva. Valida identificador positivo. |
-| SpaceCode | Código alfanumérico estandarizado del ambiente dentro de la sede (ej. "SM-A101", "SM-CUB-12"). |
-| ReservationCode | Código alfanumérico representativo de la reserva para el usuario. |
-| CardHolderId | Registro que encapsula el identificador del titular de la credencial en el campus. |
-| CardUid | Registro con el identificador hexadecimal único de la credencial NFC física. |
-| ReaderEventId | Envoltorio del UUID generado por el lector para garantizar idempotencia en la ingesta. |
-| TimeSlot | Encapsula el rango temporal `startTime` y `endTime`. Valida que el fin sea estrictamente posterior al inicio y que no exceda las 4 horas por turno. |
-| Capacity | Registro que define la capacidad máxima de personas autorizadas (entero positivo mayor a 0). |
-| OccupancyCount | Registro que administra el conteo de personas presentes en un instante (entero > 0). |
+| SpaceCode | Código institucional del espacio (ej. "SM-TOR-01", "SM-CUB-10"). Valida que no esté en blanco. |
+| ReservationCode | Código alfanumérico único representativo de una reserva. Valida formato estandarizado. |
+| CardHolderId | Registro que representa el identificador del titular de la credencial en el campus. |
+| CardUid | Registro con el UID hexadecimal de la tarjeta física. Valida formato y longitud máxima de 32 caracteres. |
+| ReaderEventId | Envoltorio del UUID generado por el lector IoT para garantizar idempotencia en la ingesta. |
+| TimeSlot | Encapsula el rango temporal `startTime` y `endTime`. Valida que el fin sea posterior al inicio. |
+| Capacity | Registro que define la capacidad máxima de personas autorizadas (entero mayor a cero). |
+| OccupancyCount | Registro con el conteo de personas presentes en un instante (entero mayor o igual a cero). |
 | SpaceLocation | Registro estructurado con `campus`, `building`, `floorNumber` y `referenceDescription`. |
-| SpaceType | Enumeración: `STUDY_CUBICLE`, `CLASSROOM`, `LABORATORY`, `AUDITORIUM`, `RESTRICTED_OFFICE`. |
+| SpaceType | Enumeración: `CAMPUS_ENTRANCE`, `STUDY_CUBICLE`, `CLASSROOM`, `LABORATORY`, `RESTRICTED_OFFICE`. |
 | SpaceStatus | Enumeración: `AVAILABLE`, `OCCUPIED`, `MAINTENANCE`, `RESERVED`. |
 | ReservationStatus | Enumeración: `CONFIRMED`, `CHECKED_IN`, `COMPLETED`, `CANCELLED`, `FORFEITED`. |
-| AccessPolicyType | Enumeración: `OPEN_ACCESS`, `RESERVATION_REQUIRED`, `RESTRICTED_STAFF_ONLY`. |
+| AccessPolicyType | Enumeración: `OPEN_CAMPUS`, `RESERVATION_REQUIRED`, `RESTRICTED_STAFF_ONLY`. |
+| AccessType | Enumeración: `CAMPUS_ENTRY`, `CAMPUS_EXIT`, `RESTRICTED_ACCESS`, `CUBICLE_CHECK_IN`. |
 | AccessDecision | Enumeración: `GRANTED`, `DENIED`. |
-| DenialReason | Enumeración: `NONE`, `UNAUTHORIZED_ROLE`, `NO_ACTIVE_RESERVATION`, `CHECK_IN_WINDOW_EXPIRED`, `CAPACITY_FULL`, `SPACE_IN_MAINTENANCE`, `CARD_INACTIVE`. |
+| DenialReason | Enumeración: `NONE`, `UNAUTHORIZED_ROLE`, `NO_ACTIVE_RESERVATION`, `WRONG_RESERVATION_HOLDER`, `CHECK_IN_WINDOW_EXPIRED`, `CAPACITY_FULL`, `SPACE_IN_MAINTENANCE`, `CARD_INACTIVE`. |
 
 **Domain Events (publicados)**
 
 | Evento | Se publica cuando | Datos principales |
 |---|---|---|
-| SpaceReservationCreated | Se confirma una nueva reserva de espacio de estudio. | reservationId, reservationCode, spaceId, cardHolderId, startTime, endTime, checkInWindowEnd. |
-| ReservationCheckedIn | El usuario valida su presencia física mediante su tarjeta en el cubículo. | reservationId, spaceId, cardHolderId, checkedInAt. |
-| ReservationForfeited | Se cancela la reserva automáticamente al cumplirse los 10 minutos sin marcación. | reservationId, spaceId, cardHolderId, forfeitedAt, reason. |
-| ReservationCancelled | El usuario titular o un administrador cancela voluntariamente la reserva. | reservationId, spaceId, cardHolderId, cancelledAt. |
-| SpaceOccupied | El aforo de un espacio se incrementa y/o cambia de estado a ocupado. | spaceId, currentOccupancy, occupiedAt. |
-| SpaceReleased | Un espacio se desocupa y vuelve a estar libre para el campus. | spaceId, currentOccupancy, releasedAt. |
-| AccessGranted | Se autoriza y franquea el acceso físico a través de una puerta o torniquete. | eventId, spaceId, cardHolderId, cardUid, timestamp. |
-| AccessDenied | Se bloquea el acceso por incumplimiento de políticas de seguridad física. | eventId, spaceId, cardHolderId, denialReason, timestamp. |
+| CampusEntryGranted | Se valida el acceso en torniquetes de entrada (`ActivarEntrada`). | eventId, spaceId, cardHolderId, cardUid, timestamp. |
+| CampusExitRecorded | Se registra la salida física del campus (`ActivarSalida`). | eventId, spaceId, cardHolderId, cardUid, timestamp. |
+| SpaceAccessDenied | Se bloquea el acceso en una puerta o torniquete (`AccesoDenegado`). | eventId, spaceId, cardHolderId, denialReason, timestamp. |
+| ReservationActivated | El titular valida su tarjeta en el cubículo (`ReservaActivada`). | reservationId, spaceId, cardHolderId, checkedInAt. |
+| ReservationActivationFailed | Se pasa una tarjeta no autorizada en el cubículo (`ActivacionFallida`). | eventId, spaceId, cardUid, denialReason, timestamp. |
+| ReservationForfeited | Se cancela la reserva a los 10 min por inasistencia (`ReservaPerdida`). | reservationId, spaceId, cardHolderId, forfeitedAt. |
+| SpaceOccupied | El aforo de un ambiente se incrementa o pasa a ocupado. | spaceId, currentOccupancy, timestamp. |
+| SpaceReleased | Un ambiente se desocupa y vuelve a quedar libre. | spaceId, currentOccupancy, timestamp. |
 
 **Excepciones de Dominio**
 
 | Excepción | Descripción |
 |---|---|
-| SpaceNotFoundException | Se lanza al no localizar un ambiente por su identificador o código institucional. |
-| ReservationNotFoundException | Se lanza al solicitar una reserva inexistente en el sistema. |
-| SpaceNotAvailableException | Se lanza al intentar reservar un ambiente que se encuentra ocupado o en mantenimiento. |
-| ReservationConflictException | Se lanza si la franja horaria solicitada colisiona con otra reserva previamente agendada. |
-| CheckInWindowExpiredException | Se lanza al intentar hacer check-in presencial habiendo superado los 10 minutos de tolerancia. |
-| CapacityExceededException | Se lanza si una marcación pretende superar el aforo máximo físico permitido. |
-| UnauthorizedSpaceAccessException | Se lanza ante un intento no permitido de acceso o de reserva por parte de un usuario sin facultades. |
+| SpaceNotFoundException | Se lanza cuando no se encuentra un ambiente por su ID o por su código. |
+| ReservationNotFoundException | Se lanza cuando no se encuentra la reserva solicitada. |
+| SpaceNotAvailableException | Se lanza al intentar programar o activar un ambiente no disponible o en mantenimiento. |
+| ReservationConflictException | Se lanza cuando dos reservas colisionan en la misma franja horaria. |
+| CapacityExceededException | Se lanza ante un intento de ingreso que sobrepase la capacidad máxima del ambiente. |
+| UnauthorizedSpaceAccessException | Se lanza ante intentos de ingreso a áreas prohibidas o sin credencial válida. |
+| DuplicateAccessEventException | Se lanza cuando el `eventId` de la lectura ya fue procesado previamente. |
 
 **Interfaz: `SpaceCommandService`**
 
 | Método | Descripción |
 |---|---|
-| handle(CreateSpaceCommand) | Da de alta un nuevo espacio físico en el campus y retorna su identificador asignado. |
-| handle(UpdateSpaceStatusCommand) | Modifica el estado operativo de un espacio (ej. paso a mantenimiento o disponibilidad). |
-| handle(RecordSpaceExitCommand) | Registra la salida física de ocupantes, disminuyendo el aforo y liberando el espacio si queda vacío. |
+| handle(CreateSpaceCommand) | Crea un nuevo ambiente en el catálogo y retorna su identificador. |
+| handle(UpdateSpaceStatusCommand) | Modifica el estado del espacio (disponible, mantenimiento). |
 
 **Interfaz: `SpaceReservationCommandService`**
 
 | Método | Descripción |
 |---|---|
-| handle(CreateReservationCommand) | Valida no solapamientos, persiste la reserva y publica `SpaceReservationCreated`. |
-| handle(CheckInReservationCommand) | Valida el tap de la credencial en el lector del cubículo, activa la reserva y ocupa el espacio. |
-| handle(CancelReservationCommand) | Cancela la reserva voluntariamente y libera el espacio asignado. |
-| handle(ForfeitExpiredReservationsCommand) | Ejecuta el barrido programado de reservas que superaron los 10 minutos sin check-in presencial. |
+| handle(CreateReservationCommand) | Registra administrativamente una reserva programada en el sistema. |
+| handle(CancelReservationCommand) | Cancela administrativamente una reserva vigente. |
+| handle(ForfeitExpiredReservationsCommand) | Ejecuta el barrido y cancelación de reservas que superaron los 10 min sin tap presencial. |
+
+**Interfaz: `AccessRecordCommandService`**
+
+| Método | Descripción |
+|---|---|
+| handle(ProcessCardTapAccessCommand) | Procesa la lectura NFC física: evalúa la política, registra la entrada/salida o check-in de cubículo, persiste el `AccessRecord` y publica el evento de dominio. |
 
 **Interfaz: `SpaceQueryService`**
 
 | Método | Descripción |
 |---|---|
-| handle(GetSpaceByIdQuery) | Obtiene los detalles de un espacio físico por su identificador. |
-| handle(GetAvailableSpacesQuery) | Devuelve los espacios disponibles que cumplen con un tipo, campus y franja horaria solicitada. |
-| handle(GetSpaceOccupancyQuery) | Consulta el aforo y porcentaje de ocupación actual de un ambiente en tiempo real. |
+| handle(GetSpaceByIdQuery) | Obtiene los detalles de un espacio físico por su ID. |
+| handle(GetAllSpacesQuery) | Retorna el listado completo de espacios y su estado para la plataforma administrativa. |
+| handle(GetSpaceOccupancyQuery) | Consulta el aforo actual y nivel de ocupación en tiempo real. |
 
 **Interfaz: `SpaceReservationQueryService`**
 
 | Método | Descripción |
 |---|---|
 | handle(GetReservationByIdQuery) | Recupera los datos de una reserva por su identificador. |
-| handle(GetReservationsByCardHolderQuery) | Obtiene el histórico y reservas activas pertenecientes a un titular. |
-| handle(GetActiveReservationBySpaceQuery) | Obtiene la reserva vigente programada para un ambiente específico. |
+| handle(GetActiveReservationsBySpaceQuery) | Obtiene la reserva vigente programada para un ambiente específico. |
 
 ### 5.3.2. Interface Layer
 
-La Interface Layer expone controladores RESTful para la interacción con la Web App (Angular) del campus y consumidores de RabbitMQ para los eventos emitidos por la infraestructura de hardware IoT.
+La capa de interfaz expone controladores RESTful destinados **exclusivamente al personal administrativo (`ADMIN`)** autenticado mediante tokens JWT emitidos por IAM, y consumidores de RabbitMQ responsables de recibir todas las interacciones físicas de las tarjetas de los usuarios.
 
 **Controlador: `SpaceCommandController`**
 
+Permite a la administración gestionar la infraestructura del campus.
+
 | Método | Ruta | Acceso | Descripción |
 |---|---|---|---|
-| createSpace | POST /api/v1/spaces | ADMIN | Registra una nueva instalación física en el catálogo del campus. |
-| updateSpaceStatus | PATCH /api/v1/spaces/{spaceId}/status | ADMIN | Actualiza el estado operativo del espacio (ej. mantenimiento). |
+| createSpace | POST /api/v1/admin/spaces | ADMIN | Registra una nueva instalación física o punto de control. |
+| updateSpaceStatus | PATCH /api/v1/admin/spaces/{spaceId}/status | ADMIN | Cambia el estado operativo de un espacio (ej. mantenimiento). |
 
 **Controlador: `SpaceReservationCommandController`**
 
+Permite a la administración cargar y programar reservas en el campus.
+
 | Método | Ruta | Acceso | Descripción |
 |---|---|---|---|
-| createReservation | POST /api/v1/spaces/{spaceId}/reservations | STUDENT, TEACHER, ADMIN | Crea una reserva de espacio de estudio (cubículo o laboratorio). |
-| cancelReservation | POST /api/v1/reservations/{reservationId}/cancel | STUDENT, TEACHER, ADMIN | Cancela una reserva vigente solicitada por el usuario. |
-| manualCheckIn | POST /api/v1/reservations/{reservationId}/check-in | ADMIN | Permite el check-in manual para contingencias o pruebas de integración. |
+| createReservation | POST /api/v1/admin/spaces/{spaceId}/reservations | ADMIN | Registra una reserva programada para un titular. |
+| cancelReservation | POST /api/v1/admin/reservations/{reservationId}/cancel | ADMIN | Cancela administrativamente una reserva programada. |
 
 **Controlador: `SpaceQueryController`**
 
+Expone consultas para los tableros administrativos de supervisión.
+
 | Método | Ruta | Acceso | Descripción |
 |---|---|---|---|
-| getSpaceById | GET /api/v1/spaces/{spaceId} | Permiso público/autenticado | Retorna los detalles técnicos y de capacidad de un ambiente. |
-| getAvailableSpaces | GET /api/v1/spaces/available?type=&startTime=&endTime= | Permiso autenticado | Retorna los espacios libres en una franja horaria determinada. |
-| getSpaceOccupancy | GET /api/v1/spaces/{spaceId}/occupancy | Permiso autenticado | Retorna el aforo en tiempo real de una instalación. |
+| getAllSpaces | GET /api/v1/admin/spaces | ADMIN | Lista la totalidad de espacios físicos y puntos de control. |
+| getSpaceById | GET /api/v1/admin/spaces/{spaceId} | ADMIN | Devuelve el detalle y especificaciones de un espacio. |
+| getSpaceOccupancy | GET /api/v1/admin/spaces/{spaceId}/occupancy | ADMIN | Retorna el aforo en tiempo real y el porcentaje de ocupación. |
 
 **Controlador: `SpaceReservationQueryController`**
 
 | Método | Ruta | Acceso | Descripción |
 |---|---|---|---|
-| getReservationById | GET /api/v1/reservations/{reservationId} | Permiso autenticado | Retorna el estado y datos de una reserva por identificador. |
-| getReservationsByHolder | GET /api/v1/card-holders/{cardHolderId}/reservations | Permiso autenticado | Lista las reservas activas e históricas de un estudiante/docente. |
+| getReservationById | GET /api/v1/admin/reservations/{reservationId} | ADMIN | Devuelve la información detallada de una reserva. |
+| getActiveReservations | GET /api/v1/admin/reservations/active | ADMIN | Lista las reservas actualmente en curso en el campus. |
 
 **Consumidores de mensajería (inbound)**
 
+Es el canal de entrada por el cual los estudiantes, docentes y trabajadores interactúan con este contexto.
+
 | Consumidor | Cola / Routing key | Descripción |
 |---|---|---|
-| SpaceCardTapEventConsumer | `space.card-tap.queue` / `iot.card-tap` | Consume lecturas físicas de tarjetas emitidas por IoT Monitoring. Si el lector está en una mesa de cubículo, traduce a `CheckInReservationCommand`; si está en una puerta o torniquete, traduce a `ValidateAccessCommand`. |
+| SpaceCardTapEventConsumer | `space.card-tap.queue` / `iot.card-tap` | Recibe `CardTapEvent` desde IoT Monitoring. Identifica la naturaleza del punto de lectura (`spaceType`) y lo traduce en un `ProcessCardTapAccessCommand` para que la capa de aplicación evalúe la entrada, salida, acceso a zona restringida o check-in presencial en cubículo. |
 
 **Recursos (DTOs)**
 
 | Recurso | Descripción |
 |---|---|
-| CreateSpaceResource | Datos de registro de un ambiente: spaceCode, name, spaceType, campus, building, floorNumber, capacity, accessPolicy. |
-| CreateReservationResource | Payload de solicitud: cardHolderId, startTime, endTime. |
-| SpaceResource | Datos de respuesta: id, spaceCode, name, spaceType, location, capacity, currentOccupancy, status, accessPolicy. |
+| CreateSpaceResource | Datos de alta de ambiente: spaceCode, name, spaceType, campus, building, floorNumber, capacity, accessPolicy. |
+| CreateReservationResource | Datos de registro de reserva: reservationCode, cardHolderId, startTime, endTime. |
+| SpaceResource | Respuesta de espacio: id, spaceCode, name, spaceType, location, capacity, currentOccupancy, status, accessPolicy. |
 | SpaceReservationResource | Respuesta de reserva: id, reservationCode, spaceId, cardHolderId, startTime, endTime, status, checkInWindowEnd, checkedInAt. |
-| AccessRecordResource | Respuesta de auditoría de acceso: id, spaceId, cardHolderId, decision, denialReason, attemptedAt. |
-| SpaceCardTapEventResource | Mensaje entrante de IoT Monitoring: eventId, readerId, spaceId, cardUid, tappedAt. |
+| SpaceOccupancyResource | Respuesta de aforo: spaceId, spaceCode, capacity, currentOccupancy, status, isFull. |
+| CardTapEventResource | Mensaje entrante de hardware: eventId, readerId, spaceId, cardUid, tappedAt. |
 
 **Assemblers (Transformadores)**
 
 | Assembler | Descripción |
 |---|---|
-| CreateSpaceCommandFromResourceAssembler | Convierte `CreateSpaceResource` en `CreateSpaceCommand`. |
-| CreateReservationCommandFromResourceAssembler | Convierte `CreateReservationResource` y `spaceId` en `CreateReservationCommand`. |
-| CheckInReservationCommandFromEventAssembler | Transforma `SpaceCardTapEventResource` en `CheckInReservationCommand` resolviendo el titular mediante el UID. |
-| SpaceResourceFromEntityAssembler | Convierte la entidad de agregado `Space` en `SpaceResource`. |
-| SpaceReservationResourceFromEntityAssembler | Transforma `SpaceReservation` en `SpaceReservationResource`. |
-| AccessRecordResourceFromEntityAssembler | Transforma `AccessRecord` en `AccessRecordResource`. |
+| CreateSpaceCommandFromResourceAssembler | Convierte un `CreateSpaceResource` en un `CreateSpaceCommand`. |
+| CreateReservationCommandFromResourceAssembler | Convierte un `CreateReservationResource` en un `CreateReservationCommand`. |
+| ProcessCardTapAccessCommandFromEventAssembler | Convierte un `CardTapEventResource` entrante de RabbitMQ en un `ProcessCardTapAccessCommand`. |
+| SpaceResourceFromEntityAssembler | Convierte la entidad de agregado `Space` en un `SpaceResource`. |
+| SpaceReservationResourceFromEntityAssembler | Convierte la entidad `SpaceReservation` en un `SpaceReservationResource`. |
+| SpaceOccupancyResourceFromEntityAssembler | Convierte el estado de un `Space` en un `SpaceOccupancyResource`. |
 
 ### 5.3.3. Application Layer
 
-La Application Layer implementa los casos de uso, orquesta las transacciones entre los agregados del dominio, invoca puertos de salida hacia otros bounded contexts (IAM, IoT Monitoring y Notificaciones), garantiza la idempotencia y publica los eventos de negocio.
+Los servicios internos orquestan la validación de identidades, aplican la política de accesos, garantizan la idempotencia de las lecturas físicas, coordinan la persistencia en PostgreSQL y publican los eventos de dominio hacia RabbitMQ.
+
+**Clase: `AccessRecordCommandServiceImpl`**
+
+| Título | AccessRecordCommandServiceImpl |
+|---|---|
+| Descripción | Implementación del servicio de comandos para procesar los taps físicos. Flujo de `ProcessCardTapAccessCommand`: (1) verifica idempotencia con `eventId` en `AccessRecordRepository`; si ya fue procesado, descarta la lectura; (2) consulta `IdentificationContextFacade.validateCardTap(cardUid)` para resolver la titularidad, rol institucional (`STUDENT`, `TEACHER`, `STAFF`) y vigencia de la tarjeta; (3) recupera la entidad `Space` asociada al lector; (4) si el espacio es un cubículo (`STUDY_CUBICLE`), recupera la reserva activa programada; (5) evalúa la marcación mediante `SpaceAccessPolicy`; (6) si es denegado, persiste el `AccessRecord` con `DENIED` y motivo, y publica `SpaceAccessDenied` o `ReservationActivationFailed`; (7) si es concedido: en torniquete de ingreso incrementa el aforo del campus y publica `CampusEntryGranted` (`ActivarEntrada`); en torniquete de salida reduce el aforo y publica `CampusExitRecorded` (`ActivarSalida`); en puerta restringida franquea el paso y publica `AccessGranted`; en cubículo ejecuta `reservation.checkIn()`, cambia el espacio a `OCCUPIED` y publica `ReservationActivated` (`ReservaActivada`); (8) persiste el `AccessRecord` para auditoría. |
+
+| Dependencia | Descripción |
+|---|---|
+| AccessRecordRepository | Persistencia de registros de acceso y validación de idempotencia. |
+| SpaceRepository | Persistencia y modificación de estado y aforo de los espacios físicos. |
+| SpaceReservationRepository | Consulta y actualización de estado de reservas. |
+| SpaceAccessPolicy | Servicio de dominio con las reglas de acceso y check-in. |
+| IdentificationContextFacade | Puerto de salida (ACL) hacia IAM / Identification Context. |
+| SpaceEventPublisher | Puerto de salida para publicar eventos de dominio hacia RabbitMQ. |
 
 **Clase: `SpaceReservationCommandServiceImpl`**
 
 | Título | SpaceReservationCommandServiceImpl |
 |---|---|
-| Descripción | Servicio de aplicación que implementa la orquestación del ciclo de vida de reservas y el cumplimiento de la regla de 10 minutos. Flujo para `CheckInReservationCommand`: (1) verifica idempotencia con `eventId` en `AccessRecordRepository`; (2) resuelve titular y rol vía `IdentificationContextFacade.validateCardTap(cardUid)`[cite: 70]; (3) localiza la reserva activa para el cubículo y titular; (4) valida vigencia con `SpaceAccessPolicy`; si el tiempo superó los 10 minutos, cancela por tolerancia, persiste el rechazo con `DenialReason.CHECK_IN_WINDOW_EXPIRED`, marca la reserva como `FORFEITED` y notifica; (5) si la validación es positiva, ejecuta `reservation.checkIn()`, actualiza el estado del espacio a `OCCUPIED` vía `space.occupy()`, persiste ambas entidades y publica `ReservationCheckedIn` y `SpaceOccupied`. |
+| Descripción | Servicio que orquesta el alta y cancelación administrativa de reservas, así como la ejecución del barrido por inasistencia (Regla de 10 minutos). Para `ForfeitExpiredReservationsCommand`: recupera todas las reservas en estado `CONFIRMED` cuyo `checkInWindowEnd` sea anterior a la hora actual sin marcación física; invoca `reservation.forfeit()`, libera el cubículo (`space.releaseReservation()`), persiste los cambios, publica `ReservationForfeited` (`ReservaPerdida`) y ordena el despacho del correo de aviso vía `NotificationServicePort`. |
 
 | Dependencia | Descripción |
 |---|---|
-| SpaceReservationRepository | Persistencia y consulta transaccional de reservas de espacios. |
-| SpaceRepository | Persistencia y modificación de estado del espacio físico. |
-| AccessRecordRepository | Registro de auditoría de cada intento de acceso o activación presencial. |
-| SpaceAccessPolicy | Servicio de dominio con las reglas de acceso y check-in. |
-| IdentificationContextFacade | Puerto de salida (ACL) hacia IAM / Identification Context para resolver la identidad. |
-| SpaceEventPublisher | Puerto de salida para publicar eventos de dominio hacia RabbitMQ. |
-| NotificationServicePort | Puerto de salida para despachar correos transaccionales ante desocupaciones. |
+| SpaceReservationRepository | Persistencia transaccional de reservas. |
+| SpaceRepository | Actualización de disponibilidad de los cubículos. |
+| SpaceEventPublisher | Publicación del evento `ReservationForfeited` hacia RabbitMQ[cite: 48, 59]. |
+| NotificationServicePort | Puerto de salida para el envío asíncrono de correos transaccionales. |
 
 **Clase: `SpaceCommandServiceImpl`**
 
 | Título | SpaceCommandServiceImpl |
 |---|---|
-| Descripción | Servicio que gestiona la creación de espacios, salidas de ocupantes y cambios de estado operativo de las instalaciones. |
+| Descripción | Implementación para el registro administrativo y actualización de estado operativo de las instalaciones del campus. |
 
 | Dependencia | Descripción |
 |---|---|
-| SpaceRepository | Persistencia y recuperación de agregados `Space`. |
-| SpaceEventPublisher | Publicación de eventos de cambio de estado y desocupación (`SpaceReleased`). |
+| SpaceRepository | Persistencia de espacios físicos. |
 
 **Clase: `SpaceQueryServiceImpl` y `SpaceReservationQueryServiceImpl`**
 
 | Título | SpaceQueryServiceImpl / SpaceReservationQueryServiceImpl |
 |---|---|
-| Descripción | Implementaciones de lectura optimizadas para consultas de disponibilidad, ocupación y búsqueda histórica de reservas por usuario. |
+| Descripción | Servicios encargados de responder consultas sobre aforos, disponibilidad e inventario de espacios para la plataforma web administrativa. |
 
 | Dependencia | Descripción |
 |---|---|
-| SpaceRepository | Acceso de lectura a las tablas de espacios. |
-| SpaceReservationRepository | Acceso de lectura a las reservas registradas. |
+| SpaceRepository | Acceso de lectura a espacios. |
+| SpaceReservationRepository | Acceso de lectura a reservas. |
 
-**Puertos de salida (Anti-Corruption Layer e Integraciones)**
+**Puertos de salida (Anti-Corruption Layer)**
 
 | Puerto | Descripción |
 |---|---|
-| IdentificationContextFacade | Interfaz hacia Identification / IAM Context para obtener el `CardHolderProfile` y verificar la validez y rol de la credencial sin acoplar el modelo de tarjetas. |
-| SpaceEventPublisher | Interfaz para publicar `SpaceReservationCreated`, `ReservationCheckedIn`, `ReservationForfeited`, `SpaceOccupied`, `SpaceReleased`, `AccessGranted` y `AccessDenied`. |
-| NotificationServicePort | Interfaz de mensajería para el envío de correos electrónicos automáticos cuando una reserva es dada de baja por inasistencia (Regla de 10 min). |
+| IdentificationContextFacade | Interfaz hacia Identification / IAM Context para consultar la vigencia de la credencial y el rol del titular sin acoplar el modelo interno de usuarios. |
+| SpaceEventPublisher | Interfaz para publicar `CampusEntryGranted`, `CampusExitRecorded`, `SpaceAccessDenied`, `ReservationActivated`, `ReservationForfeited`, `SpaceOccupied` y `SpaceReleased`. |
+| NotificationServicePort | Interfaz hacia el servicio de correo transaccional para notificar al estudiante sobre la pérdida del cubículo por inasistencia. |
 
 ### 5.3.4. Infrastructure Layer
 
-Esta capa implementa la persistencia física en PostgreSQL mediante Spring Data JPA, el broker de mensajería RabbitMQ, las tareas programadas (*Scheduled Jobs*) para la regla de los 10 minutos y los adaptadores de salida.
+Esta capa implementa la persistencia mediante Spring Data JPA sobre PostgreSQL, la mensajería asíncrona con RabbitMQ, la tarea programada para la regla de los 10 minutos y los adaptadores de salida.
 
 **Clase: `SpaceRepository`**
 
 | Título | SpaceRepository |
 |---|---|
-| Descripción | Interfaz de persistencia para el agregado de espacios físicos. |
+| Descripción | Interfaz de persistencia para espacios físicos e infraestructura. |
 
 | Método | Descripción |
 |---|---|
-| findById(Long) | Obtiene un espacio por su clave primaria. |
-| findBySpaceCode(SpaceCode) | Busca un espacio por su código alfanumérico institucional. |
-| findAvailableSpaces(SpaceType, Instant, Instant) | Recupera espacios disponibles para un tipo y rango horario sin colisión de reservas. |
-| save(Space) | Inserta o actualiza un registro de espacio en PostgreSQL. |
+| findById(Long) | Recupera un espacio por su ID. |
+| findBySpaceCode(SpaceCode) | Recupera un espacio por su código institucional. |
+| findAll() | Retorna la totalidad de ambientes registrados. |
+| save(Space) | Persiste o actualiza el espacio en PostgreSQL. |
 
 **Clase: `SpaceReservationRepository`**
 
 | Título | SpaceReservationRepository |
 |---|---|
-| Descripción | Interfaz de persistencia para el agregado de reservas de espacios. |
+| Descripción | Interfaz de persistencia para reservas de ambientes. |
 
 | Método | Descripción |
 |---|---|
-| findById(Long) | Recupera una reserva por identificador. |
-| findByReservationCode(ReservationCode) | Busca una reserva por su código único de confirmación. |
-| findActiveBySpaceAndInstant(SpaceId, Instant) | Localiza la reserva confirmada de un ambiente en un momento dado. |
-| findExpiredPendingReservations(Instant) | Retorna reservas en estado `CONFIRMED` cuyo `checkInWindowEnd` es anterior al instante y no tienen marcación presencial. |
-| hasConflictingReservation(SpaceId, Instant, Instant) | Comprueba la existencia de reservas superpuestas para evitar doble asignación. |
-| save(SpaceReservation) | Persiste el estado de la reserva. |
+| findById(Long) | Recupera una reserva por su ID. |
+| findActiveBySpaceAndInstant(SpaceId, Instant) | Localiza la reserva vigente de un espacio en un instante dado. |
+| findExpiredPendingReservations(Instant) | Retorna las reservas en estado `CONFIRMED` cuyo `checkInWindowEnd` es menor al instante actual. |
+| save(SpaceReservation) | Persiste o actualiza la reserva. |
 
 **Clase: `AccessRecordRepository`**
 
 | Título | AccessRecordRepository |
 |---|---|
-| Descripción | Interfaz de persistencia para auditoría y comprobación de idempotencia de accesos. |
+| Descripción | Interfaz de persistencia para el registro de auditoría de accesos. |
 
 | Método | Descripción |
 |---|---|
-| existsByEventId(ReaderEventId) | Verifica si un UUID de lectura NFC ya fue procesado en el sistema. |
-| save(AccessRecord) | Inserta de forma inmutable el registro del evento de acceso. |
+| findById(Long) | Recupera un registro por su ID. |
+| existsByEventId(ReaderEventId) | Verifica si una lectura NFC ya fue procesada (idempotencia). |
+| save(AccessRecord) | Persiste el registro inmutable de acceso. |
 
 **Adaptadores, infraestructura y tareas en segundo plano**
 
 | Clase | Descripción |
 |---|---|
-| RabbitMqSpaceConfig | Configura el exchange `tarjepafi.events`, las colas `space.card-tap.queue`, bindings de enrutamiento y dead-letter exchange (DLX) para mensajes descartados o con fallos de deserialización. |
-| RabbitSpaceEventPublisher | Implementación de `SpaceEventPublisher` que publica eventos hacia el topic exchange con las routing keys `space.reservation.created`, `space.reservation.checked-in`, `space.reservation.forfeited`, `space.occupied`, etc. |
-| IdentificationContextFacadeImpl | Adaptador que implementa `IdentificationContextFacade` consultando internamente el contrato de Identity and Access Management (IAM). |
-| EmailNotificationAdapter | Implementa `NotificationServicePort` integrando Spring Mail / SendGrid para despachar el correo de aviso de liberación del cubículo. |
-| ReservationToleranceScheduler | Tarea programada en segundo plano (`@Scheduled(cron = "0 * * * * *")`) ejecutada cada 60 segundos. Invoca `handle(ForfeitExpiredReservationsCommand)`, detecta reservas caducadas por inasistencia a los 10 minutos, las da de baja en base de datos, libera el cubículo y dispara la alerta. |
+| RabbitMqSpaceConfig | Declara el exchange `tarjepafi.events` (topic), la cola `space.card-tap.queue`, bindings de enrutamiento con la routing key `iot.card-tap` y la *dead-letter queue* para contingencias. |
+| RabbitSpaceEventPublisher | Implementa `SpaceEventPublisher`; publica los eventos hacia RabbitMQ con routing keys específicas (`space.campus-entry.granted`, `space.access.denied`, `space.reservation.activated`, `space.reservation.forfeited`, etc.). |
+| IdentificationContextFacadeImpl | Implementa `IdentificationContextFacade` consultando internamente el contrato de IAM / Identification. |
+| EmailNotificationAdapter | Implementa `NotificationServicePort` integrando Spring Mail / SendGrid para despachar el correo de aviso cuando un cubículo es liberado por inasistencia. |
+| ReservationToleranceScheduler | Tarea programada en segundo plano (`@Scheduled(fixedRate = 60000)`) que se ejecuta cada minuto. Invoca `ForfeitExpiredReservationsCommand`, localiza reservas sin presencia física pasados los 10 minutos, cancela la reserva, libera el cubículo y dispara la alerta. |
 
 **Decisiones de infraestructura**
 
-- **Garantía estricta de idempotencia:** Se establece una restricción `UNIQUE` en la columna `event_id` de la tabla `access_records`, combinada con la verificación anticipada mediante `existsByEventId` para prevenir doble imputación por reintentos de red.
-- **Bloqueo pesimista / Optimistic Locking en reservas:** Se incluye control de versiones (`@Version`) en `Space` y `SpaceReservation` para evitar condiciones de carrera donde dos estudiantes intenten reservar la misma sala en el mismo milisegundo.
-- **Tolerancia a fallos en notificaciones:** El envío de correos electrónicos se aísla mediante `@Async` o eventos de aplicación de Spring, garantizando que una caída del servidor SMTP no revierta la transacción de liberación del espacio en PostgreSQL.
+- **Garantía absoluta de idempotencia:** Se establece una restricción `UNIQUE` sobre la columna `event_id` en la tabla `access_records`, respaldada por la verificación previa `existsByEventId` en el consumidor.
+- **Bloqueo optimista (@Version):** Se implementa control de concurrencia optimista en `Space` y `SpaceReservation` para proteger el aforo y evitar colisiones de asignación de espacios ante peticiones concurrentes.
+- **Aislamiento en notificaciones:** El envío de correos ante reservas desestimadas se ejecuta de forma asíncrona (`@Async`), garantizando que una indisponibilidad temporal del servidor SMTP no interrumpa la transacción de liberación del espacio en PostgreSQL.
 
 ### 5.3.6. Bounded Context Software Architecture Component Level Diagrams
 
-A continuación se presenta la descomposición en componentes del contenedor **Backend API (Spring Boot)** para el **Space and Facility Context**, modelada bajo el estándar C4 Model Component Level en lenguaje **Structurizr DSL**
+A continuación se presenta la descomposición en componentes del contenedor Backend API para el Space and Facility Context, modelada bajo el estándar C4 Model Component Level en lenguaje Structurizr DSL.
 
-
+<p align="center">
+  <img src="assets/SpaceFacilityComponent.png" alt="Class Diagram iot" width="850">
+</p>
 
 ### 5.3.7. Bounded Context Software Architecture Code Level Diagrams
 
 #### 5.3.7.1. Bounded Context Domain Layer Class Diagrams
 
+A continuación se presenta el diagrama de clases del modelo de dominio del Space and Facility Context, modelado en PlantUML con sus agregados, entidades, value objects, domain services, interfaces de repositorio y relaciones estructuradas con visibilidad y multiplicidad.
+
+<p align="center">
+  <img src="assets/SpaceFacilitydiagram.png" alt="Class Diagram iot" width="850">
+</p>
+
 #### 5.3.7.2. Bounded Context Database Design Diagram
 
+A continuación se presenta el diseño de base de datos relacional para PostgreSQL especificado en sintaxis DBML (dbdiagram.io). Incluye las restricciones de unicidad sobre event_id para garantizar idempotencia, control de concurrencia optimista (version) y los índices necesarios para soportar la regla de tolerancia de 10 minutos.
+
+<p align="center">
+  <img src="assets/SpaceFacilitydatabase.png" alt="Class Diagram iot" width="850">
+</p>
 
 ## 5.4. Bounded Context: IoT Monitoring Context
 
