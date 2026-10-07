@@ -3828,6 +3828,26 @@ La arquitectura de navegación mantiene una experiencia coherente entre platafor
 
 ### 6.3.1. Landing Page Wireframe
 
+Vista en Figma: https://www.figma.com/design/W9XxjWGcq2EJTGAfVEb9y9/TarjePAFI---Landing-Page-Wireframes?t=BQT2ghWNgYivk97B-1
+
+
+
+
+
+#### Landing Page Desktop Wireframes 
+<img src="assets/images/design/wireframes/landing_desktop.png" alt="landing desktop 1"><br>
+
+
+<img src="assets/images/design/wireframes/landing_desktop_2.png" alt="landing desktop 2"><br>
+
+
+#### Landing Page Mobile Wireframes 
+<img src="assets/images/design/wireframes/landing_mobile_1.png" alt="landing mobile  1"><br>
+
+
+<img src="assets/images/design/wireframes/landing_mobile_2.png" alt="landing mobile  2"><br>
+
+
 ### 6.3.2. Landing Page Mock-up
 
 
