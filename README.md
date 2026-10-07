@@ -3793,6 +3793,36 @@ Los Meta Tags transmiten información técnica a navegadores y motores de búsqu
 
 ### 6.2.5. Navigation Systems
 
+Los sistemas de navegación de TarjePAFI permiten que visitantes y administradores universitarios lleguen rápido a las funcionalidades clave, sin conocimientos técnicos avanzados. En la Landing Page, la navegación guía al visitante hacia las funcionalidades del producto (US26) y hacia el contacto con el equipo (US27).
+
+### Landing Page 
+
+| Elemento de Navegación | Descripción |
+|---|---|
+| Navbar superior fijo | Logo de TarjePAFI y enlaces a Funcionalidades, Cómo funciona, Segmentos y Contacto. Permanece visible al hacer scroll. |
+| Scroll guiado (anclajes) | Desplazamiento suave entre secciones mediante anclas internas (`#funcionalidades`, `#como-funciona`, `#segmentos`, `#contacto`). |
+| Botón de contacto (CTA) | Botón destacado en el color de marca, visible en el navbar y en el hero. Al hacer clic abre el formulario de contacto o lleva a la sección `#contacto`. |
+| Sección de funcionalidades | Grid de tarjetas con ícono, título y descripción corta de cada función principal, accesible desde el navbar. |
+| Navegación jerárquica visual | Los encabezados H1 a H3 guían al visitante desde la propuesta de valor hasta el detalle de cada función. |
+| Botón flotante de contacto | Acceso rápido al formulario de consultas desde cualquier punto de la página, sobre todo en móvil. |
+| Menú hamburguesa (móvil) | El navbar se colapsa en un ícono de menú que despliega los mismos enlaces en un panel vertical. |
+| Retroalimentación visual | Los enlaces del navbar cambian de color al pasar el cursor o al estar activa su sección, y el formulario muestra una confirmación tras el envío. |
+| Footer navegable | Enlaces secundarios a contacto, políticas de privacidad y redes sociales oficiales de PAFI Solutions. |
+
+### Aplicación Web 
+
+| Elemento de Navegación | Descripción |
+|---|---|
+| Menú lateral persistente | Acceso permanente a Dashboard, Asistencia, Accesos, Reservas de espacios, Aforo, Lectores IoT y Reportes. Se mantiene fijo en todas las vistas. |
+| Dashboard centralizado | Vista principal con indicadores de asistencia, ocupación por espacio y últimos eventos de acceso. |
+| Navegación contextual | Acciones como "Ver detalle de asistencia" o "Exportar reporte" aparecen junto a los datos relevantes, sin navegación adicional. |
+| Navegación matricial | Distribución en grid para el panel de estado de lectores IoT y los listados de espacios. |
+| Filtros y búsqueda | Filtros por fecha, curso, espacio o estado dentro de cada módulo. |
+| Breadcrumbs | Indican la ubicación actual. Ejemplo: Dashboard > Asistencia > Curso > Detalle de sesión. |
+| Indicadores visuales de estado | Colores verde, amarillo y rojo para comunicar aforo y estado de los lectores de un vistazo. |
+
+La arquitectura de navegación mantiene una experiencia coherente entre plataformas. La Landing Page prioriza la claridad y la conversión (entender el producto y contactar al equipo), mientras que la plataforma web prioriza la gestión centralizada y la lectura rápida de datos.
+
 
 ## 6.3. Landing Page UI Design
 
