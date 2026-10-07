@@ -3747,6 +3747,50 @@ El sistema de búsqueda de TarjePafi se diseñó para evitar que los usuarios se
 
 ### 6.2.4. SEO Tags and Meta Tags
 
+
+Los SEO Tags y Meta Tags permiten que instituciones educativas y áreas de gestión universitaria encuentren la solución a través de motores de búsqueda. La Landing Page es el principal punto de entrada orgánico y está optimizada para posicionar a TarjePAFI como un ecosistema de credenciales NFC e IoT para la gestión de asistencia, accesos y aforo en campus universitarios.
+
+#### SEO Tags
+Title Tag: define el título que se muestra en los resultados de búsqueda.
+
+```
+<title>TarjePAFI - Credenciales NFC e IoT para la Gestión Universitaria</title>
+```
+
+Meta Description: resume el contenido de la página en unos 155 caracteres.
+
+```
+<meta name="description" content="TarjePAFI integra credenciales NFC y lectores IoT para automatizar la asistencia, controlar accesos y monitorear el aforo en universidades, con dashboards en tiempo real." />
+```
+
+Header Tags: establecen la jerarquía semántica del contenido.
+
+```
+<h1>Asistencia, accesos y aforo en una sola credencial</h1>
+<h2>Credenciales NFC y lectores IoT para tu universidad</h2>
+<h3>Funcionalidades principales de TarjePAFI</h3>
+<h3>Contáctanos y resuelve tus dudas</h3>
+```
+
+
+#### Meta Tags
+
+
+
+Los Meta Tags transmiten información técnica a navegadores y motores de búsqueda, y mejoran la accesibilidad, el rendimiento y el SEO técnico de la Landing Page de TarjePAFI.
+
+| Meta Tag | Código | Propósito |
+|---|---|---|
+| Idioma | `<html lang="es">` | Indica el idioma principal del contenido. |
+| Charset | `<meta charset="UTF-8">` | Soporte de tildes y caracteres especiales. |
+| Viewport | `<meta name="viewport" content="width=device-width, initial-scale=1.0">` | Diseño adaptable a móvil, tablet y escritorio. |
+| Robots | `<meta name="robots" content="index, follow">` | Permite indexar la página y seguir sus enlaces. |
+| Canonical | `<link rel="canonical" href="https://tarjepafi.com/">` | Evita contenido duplicado. |
+| Author | `<meta name="author" content="PAFI Solutions">` | Identifica al equipo responsable. |
+| Keywords | `<meta name="keywords" content="credenciales NFC, asistencia universitaria, control de accesos, aforo, IoT universidades, TarjePAFI, gestión universitaria">` | Términos clave del producto. |
+| Theme color | `<meta name="theme-color" content="#000000">` | Color de marca en la barra del navegador móvil. |
+
+
 ### 6.2.5. Navigation Systems
 
 
