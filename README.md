@@ -1182,9 +1182,18 @@ En esta sección, se presenta el análisis detallado de las necesidades, dolores
 
 </div>
 
-#### Segmento 2: Usuarios de Credencial
+#### Segmento 2: Usuarios de Credencial (Estudiantes)
 
 <td align="center"><img src="assets/images/user-personas/Jair Tello Magro.png" alt="User persona 1" ></td>
+
+
+#### Segmento 2: Usuarios de Credencial (Docentes)
+
+<td align="center"><img src="assets/images/user-personas/Luis Quispe Salazar.png" alt="User persona 3" ></td>
+
+#### Segmento 2: Usuarios de Credencial (Personal Operativo)
+
+<td align="center"><img src="assets/images/user-personas/Jorge Huamán Flores.png" alt="User persona 4" ></td>
 
 
 
@@ -1197,8 +1206,8 @@ Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan 
   <thead>
     <tr>
       <th rowspan="2">Tareas</th>
-      <th colspan="2">María Fernanda (Administradora)</th>
-      <th colspan="2">Bruno (Estudiante)</th>
+      <th colspan="2">Andrea (Administradora)</th>
+      <th colspan="2">Jair (Estudiante)</th>
     </tr>
     <tr>
       <th>Frecuencia</th>
@@ -1282,9 +1291,17 @@ Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan 
 
 </div>
 
-#### Segmento 2: Usuarios de Credencial
+#### Segmento 2: Usuarios de Credencial (Estudiantes)
 
 <td align="center"><img src="assets/images/user-personas/Empathy map jair.png" alt="Empathy Map 2" ></td>
+
+#### Segmento 2: Usuarios de Credencial (Docentes)
+
+<td align="center"><img src="assets/images/user-personas/Empathy map luis.png" alt="Empathy Map 2" ></td>
+
+#### Segmento 2: Usuarios de Credencial (Personal operativo)
+
+<td align="center"><img src="assets/images/user-personas/Empathy map jorge.png" alt="Empathy Map 2" ></td>
 
 
 
