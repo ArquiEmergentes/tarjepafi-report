@@ -2148,10 +2148,10 @@ Para esta sección nuestro objetivo fue visualizar cómo los bounded contexts co
 
 
 
-<img src="assets/images/bounded contexts/modeling_1.png" alt="DomainMessage Model 1"><br>
+<img src="assets/images/bounded contexts/story_1.png" alt="DomainMessage Model 1"><br>
 
 
-<img src="assets/images/bounded contexts/modeling_2.png" alt="DomainMessage Model 1"><br>
+<img src="assets/images/bounded contexts/story_2.png" alt="DomainMessage Model 1"><br>
 
 
 ### 4.2.4. Bounded Context Canvases
