@@ -1174,7 +1174,7 @@ En esta sección, se presenta el análisis detallado de las necesidades, dolores
 
 #### Segmento 1: Administradores y Responsables de Gestión Universitaria
 
-<td align="center"><img src="assets/images/user-personas/Andrea Abanto Begazo.png" alt="User persona 2"></td>
+<td align="center"><img src="assets/images/user-personas/Andrea Persona.png" alt="User persona 2"></td>
 
 <div align = center>
 
@@ -1184,7 +1184,7 @@ En esta sección, se presenta el análisis detallado de las necesidades, dolores
 
 #### Segmento 2: Usuarios de Credencial (Estudiantes)
 
-<td align="center"><img src="assets/images/user-personas/Jair Tello Magro.png" alt="User persona 1" ></td>
+<td align="center"><img src="assets/images/user-personas/Jair Tello.png" alt="User persona 1" ></td>
 
 
 #### Segmento 2: Usuarios de Credencial (Docentes)
