@@ -1674,6 +1674,36 @@ Una vez concluidas las épicas, ahora podemos proceder a encapsular las múltipl
 | **US26** | Visualización de Funcionalidades | Como visitante de la web, quiero ver una sección clara con las funcionalidades principales de TarjePAFI en la Landing Page, para entender rápidamente qué ofrece el producto antes de adquirirlo. | **Scenario:** Exploración de características.<br>Dado que el visitante entra a la Landing Page, cuando navega hacia la sección de beneficios, entonces puede leer un resumen claro de las funciones del sistema. | **EP01** |
 | **US27** | Acceso a Contacto y Soporte | Como visitante, quiero tener un botón de contacto visible en la Landing Page, para poder enviar mis dudas al equipo de TarjePAFI de manera rápida. | **Scenario:** Envío de consultas.<br>Dado que el usuario tiene dudas sobre el servicio, cuando hace clic en el botón de contacto, entonces se despliega un formulario o enlace directo para comunicarse con el equipo. | **EP01** |
 | **US28** | Liberacion de Reserva | Como administrador, quiero que los espacios reservados se liberen luego de 10 minutos, para que sean usados por un estudiante usuario que quiera reservar el espacio | **Scenario:** Espacio liberao.<br>Dado que el estudiante no llegue a tiempo a su reserva, cuando pasen 10 minutos desde su inicio, entonces el sistema liberar automaticamente el espacio resevrado. | **EP04** |
+| **TS01** | Aprovisionamiento de cuentas administrativas | Como developer, quiero que el sistema cree automáticamente las cuentas administrativas iniciales al desplegarse, para que exista acceso a la plataforma sin un registro público. | **Scenario:** Creación inicial de administradores.<br>Dado que la base de datos no contiene cuentas administrativas, cuando se inicia la aplicación, entonces el AdminDataSeeder crea las cuentas con la contraseña cifrada en BCrypt y el rol ADMIN.<br>**Scenario:** Cuenta ya existente.<br>Dado que ya existe una cuenta con el mismo correo, cuando se inicia la aplicación, entonces el seeder omite su creación y no se generan duplicados. | **EP02** |
+| **TS02** | Endpoint de inicio de sesión | Como developer, quiero implementar el endpoint POST /api/v1/auth/sign-in, para que los administradores obtengan un token JWT con el que consumir la API. | **Scenario:** Credenciales válidas.<br>Dado que el administrador envía un correo y una contraseña registrados, cuando se procesa la solicitud, entonces la API responde 200 OK con un TokenResource que contiene el JWT.<br>**Scenario:** Credenciales inválidas.<br>Dado que la contraseña no coincide con el hash almacenado o el correo no existe, cuando se procesa la solicitud, entonces la API responde 401 Unauthorized sin indicar cuál de los datos es incorrecto.<br>**Scenario:** Correo con formato inválido.<br>Dado que el correo enviado no cumple el formato de EmailAddress, cuando se procesa la solicitud, entonces la API responde 400 Bad Request. | **EP02** |
+| **TS03** | Filtro de autenticación y autorización JWT | Como developer, quiero un filtro de seguridad que valide el JWT y el rol en cada endpoint protegido, para que solo el personal autorizado acceda a las operaciones administrativas. | **Scenario:** Token válido con rol permitido.<br>Dado que la solicitud incluye un JWT válido en la cabecera Authorization: Bearer con un rol permitido, cuando llega a un endpoint protegido, entonces la solicitud se procesa normalmente.<br>**Scenario:** Token ausente o expirado.<br>Dado que la solicitud no incluye token o este expiró, cuando llega a un endpoint protegido, entonces la API responde 401 Unauthorized.<br>**Scenario:** Rol no permitido.<br>Dado que el token es válido pero su rol no tiene acceso a la operación, cuando llega al endpoint, entonces la API responde 403 Forbidden. | **EP02** |
+| **TS04** | Endpoint de perfil autenticado | Como developer, quiero implementar el endpoint GET /api/v1/auth/me, para que la aplicación web muestre los datos del administrador que inició sesión. | **Scenario:** Consulta de perfil.<br>Dado que el administrador tiene un token válido, cuando consulta GET /api/v1/auth/me, entonces la API responde 200 OK con un UserResource que no incluye la contraseña.<br>**Scenario:** Cuenta desactivada.<br>Dado que la cuenta del token tiene estado INACTIVE o SUSPENDED, cuando se consulta el perfil, entonces la API responde 403 Forbidden. | **EP02** |
+| **TS05** | Endpoint de registro de lectores IoT | Como developer, quiero implementar el endpoint POST /api/v1/iot/readers, para que los administradores den de alta los lectores NFC instalados en el campus. | **Scenario:** Registro exitoso.<br>Dado que el administrador envía readerId, name, deviceType, location y configurationProfile válidos, cuando se procesa la solicitud, entonces la API responde 201 Created con el lector registrado y se publica ReaderRegistered.<br>**Scenario:** Lector duplicado.<br>Dado que ya existe un lector con el mismo readerId, cuando se procesa la solicitud, entonces la API responde 409 Conflict.<br>**Scenario:** Datos incompletos.<br>Dado que falta la ubicación o el tipo de dispositivo, cuando se procesa la solicitud, entonces la API responde 400 Bad Request. | **EP05** |
+| **TS06** | Endpoint de consulta de lector IoT | Como developer, quiero implementar el endpoint GET /api/v1/iot/readers/{readerId}, para que los administradores consulten el estado y la ubicación de un lector. | **Scenario:** Lector existente.<br>Dado que el lector está registrado, cuando se consulta por su readerId, entonces la API responde 200 OK con su estado, ubicación y última comunicación (lastSeenAt).<br>**Scenario:** Lector inexistente.<br>Dado que el readerId no existe, cuando se consulta, entonces la API responde 404 Not Found. | **EP05** |
+| **TS07** | Endpoint de configuración de lector IoT | Como developer, quiero implementar el endpoint PATCH /api/v1/iot/readers/{readerId}/configuration, para que los administradores actualicen los parámetros de funcionamiento de un lector. | **Scenario:** Configuración válida.<br>Dado que el lector existe y el ConfigurationProfile enviado es válido, cuando se procesa la solicitud, entonces la API responde 200 OK con la nueva configuración y se publica DeviceConfigured.<br>**Scenario:** Configuración inválida.<br>Dado que el perfil enviado no cumple las reglas del dominio, cuando se procesa la solicitud, entonces la API responde 400 Bad Request y la configuración anterior se mantiene. | **EP05** |
+| **TS08** | Endpoints de activación y desactivación de lectores | Como developer, quiero implementar los endpoints POST /api/v1/iot/readers/{readerId}/activate y /deactivate, para que los administradores habiliten o retiren lectores de operación. | **Scenario:** Activación.<br>Dado que el lector está inactivo, cuando se invoca /activate, entonces la API responde 200 OK, el lector pasa a estado activo y se publica DeviceActivated.<br>**Scenario:** Desactivación.<br>Dado que el lector está activo, cuando se invoca /deactivate, entonces la API responde 200 OK, se publica DeviceDeactivated y sus lecturas posteriores dejan de generar CardTapEvent.<br>**Scenario:** Lector inexistente.<br>Dado que el readerId no existe, cuando se invoca cualquiera de los endpoints, entonces la API responde 404 Not Found. | **EP05** |
+| **TS09** | Endpoints de telemetría y salud de lectores | Como developer, quiero implementar los endpoints GET /api/v1/iot/readers/{readerId}/telemetry y /health, para que los administradores supervisen el funcionamiento de cada lector. | **Scenario:** Consulta de telemetría.<br>Dado que el lector tiene telemetría registrada, cuando se consulta /telemetry, entonces la API responde 200 OK con la lista ordenada por capturedAt.<br>**Scenario:** Sin telemetría.<br>Dado que el lector no ha enviado telemetría, cuando se consulta /telemetry, entonces la API responde 200 OK con una lista vacía.<br>**Scenario:** Consulta de salud.<br>Dado que el lector existe, cuando se consulta /health, entonces la API responde 200 OK con su estado de salud y su última comunicación. | **EP05** |
+| **TS10** | Ingesta de lecturas NFC mediante RabbitMQ y ACL | Como developer, quiero que el DeviceEventConsumer reciba las lecturas de los lectores desde RabbitMQ y las traduzca con el DevicePayloadAdapter, para publicar un CardTapEvent independiente del hardware. | **Scenario:** Lectura válida.<br>Dado que un lector registrado y activo publica una lectura CardTapped, cuando el consumidor la procesa, entonces se publica un CardTapEvent con eventId, readerId, spaceId, cardUid y tappedAt en la routing key iot.card-tap.<br>**Scenario:** Lector no habilitado.<br>Dado que la lectura proviene de un lector no registrado o desactivado, cuando el consumidor la procesa, entonces la lectura se descarta, se registra la incidencia y no se publica CardTapEvent.<br>**Scenario:** Mensaje malformado.<br>Dado que el payload no puede ser interpretado por el adaptador, cuando fallan los reintentos, entonces el mensaje se envía a la dead-letter queue sin bloquear la cola. | **EP03** |
+| **TS11** | Procesamiento de heartbeats y detección de lectores desconectados | Como developer, quiero procesar los heartbeats y la telemetría de los lectores, para detectar automáticamente cuándo un lector deja de comunicarse. | **Scenario:** Heartbeat recibido.<br>Dado que un lector envía un heartbeat o telemetría, cuando se procesa el mensaje, entonces se actualiza su lastSeenAt y su estado de salud.<br>**Scenario:** Lector sin comunicación.<br>Dado que un lector supera el umbral de tiempo sin enviar heartbeats, cuando se evalúa su conectividad, entonces se marca como desconectado, se registra una incidencia y se publica DeviceOfflineDetected. | **EP05** |
+| **TS12** | Creación y cierre de sesiones de clase desde eventos académicos | Como developer, quiero consumir los eventos ClassSessionStarted y ClassSessionEnded, para que las sesiones de clase existan en el sistema antes de que se registren las marcaciones. | **Scenario:** Sesión iniciada.<br>Dado que llega un ClassSessionStarted con un externalSessionCode nuevo, cuando el consumidor lo procesa, entonces se crea una ClassSession en estado SCHEDULED.<br>**Scenario:** Evento repetido.<br>Dado que ya existe una sesión con el mismo externalSessionCode, cuando llega el mismo evento, entonces no se crea una sesión duplicada.<br>**Scenario:** Sesión finalizada.<br>Dado que llega un ClassSessionEnded de una sesión con ventana abierta, cuando el consumidor lo procesa, entonces la ventana de asistencia se cierra. | **EP03** |
+| **TS13** | Registro de asistencia a partir de CardTapEvent | Como developer, quiero que el CardTapEventConsumer de Academic Attendance convierta cada CardTapEvent en un RegisterAttendanceCommand, para registrar la asistencia sin intervención manual. | **Scenario:** Marcación válida.<br>Dado que un estudiante matriculado pasa su tarjeta dentro de la tolerancia de una sesión con ventana abierta, cuando se procesa el evento, entonces se persiste un AttendanceRecord PRESENT y se publica AttendanceRecorded.<br>**Scenario:** Marcación tardía.<br>Dado que la lectura ocurre después de la tolerancia pero con la ventana abierta, cuando se procesa el evento, entonces el registro queda LATE y se publica LateAttendanceDetected.<br>**Scenario:** Evento duplicado.<br>Dado que el eventId ya fue procesado, cuando el evento llega nuevamente, entonces se descarta sin crear otro registro.<br>**Scenario:** Tarjeta no válida o sin sesión.<br>Dado que la tarjeta no es válida o no hay sesión en el aula a esa hora, cuando se procesa el evento, entonces se publica AttendanceRejected con CARD_NOT_VALID o NO_ACTIVE_SESSION. | **EP03** |
+| **TS14** | Endpoints de apertura y cierre de la ventana de asistencia | Como developer, quiero implementar los endpoints POST /api/v1/class-sessions/{sessionId}/attendance-window/open y /close, para controlar manualmente la ventana de asistencia cuando sea necesario. | **Scenario:** Apertura de ventana.<br>Dado que la sesión está en estado SCHEDULED, cuando se invoca /open, entonces la API responde 200 OK con windowStatus OPEN y se publica AttendanceWindowOpened.<br>**Scenario:** Transición inválida.<br>Dado que se intenta cerrar una ventana que nunca se abrió o abrir una ventana cerrada, cuando se procesa la solicitud, entonces la API responde 409 Conflict.<br>**Scenario:** Sesión inexistente.<br>Dado que el sessionId no existe, cuando se invoca el endpoint, entonces la API responde 404 Not Found. | **EP03** |
+| **TS15** | Endpoint de registro manual de asistencia | Como developer, quiero implementar el endpoint POST /api/v1/attendance-records, para registrar marcaciones manuales y probar el flujo sin depender de un lector físico. | **Scenario:** Registro manual exitoso.<br>Dado que un administrador envía eventId, cardUid, classroomId y checkInTime válidos, cuando se procesa la solicitud, entonces la API responde 201 Created con el AttendanceRecordResource.<br>**Scenario:** Asistencia ya registrada.<br>Dado que el titular ya tiene una asistencia válida en la sesión, cuando se envía otra marcación, entonces la API responde 409 Conflict.<br>**Scenario:** Usuario no administrador.<br>Dado que el token no tiene rol ADMIN, cuando se invoca el endpoint, entonces la API responde 403 Forbidden. | **EP03** |
+| **TS16** | Endpoint de justificación de inasistencias | Como developer, quiero implementar el endpoint POST /api/v1/class-sessions/{sessionId}/justifications, para registrar justificaciones aprobadas de inasistencia. | **Scenario:** Justificación de una inasistencia.<br>Dado que el titular no tiene registro o tiene un registro REJECTED en la sesión, cuando se envía cardHolderId y reason, entonces la API responde 201 Created con el registro en estado JUSTIFIED.<br>**Scenario:** Registro ya asistido.<br>Dado que el registro del titular está PRESENT o LATE, cuando se intenta justificar, entonces la API responde 409 Conflict.<br>**Scenario:** Motivo inválido.<br>Dado que el motivo está vacío o supera los 255 caracteres, cuando se procesa la solicitud, entonces la API responde 400 Bad Request. | **EP03** |
+| **TS17** | Endpoints de consulta de asistencia | Como developer, quiero implementar los endpoints GET de asistencia por sesión, historial por titular y estado por titular, para que la aplicación web muestre la información registrada. | **Scenario:** Asistencia por sesión.<br>Dado que la sesión existe, cuando se consulta GET /api/v1/class-sessions/{sessionId}/attendance, entonces la API responde 200 OK con la lista de registros.<br>**Scenario:** Historial por rango.<br>Dado que se envían parámetros from y to válidos, cuando se consulta GET /api/v1/card-holders/{cardHolderId}/attendance-history, entonces la API responde 200 OK con los registros del rango, o una lista vacía si no hay registros.<br>**Scenario:** Rango inválido.<br>Dado que from es posterior a to, cuando se consulta el historial, entonces la API responde 400 Bad Request. | **EP03** |
+| **TS18** | Endpoints de gestión de espacios | Como developer, quiero implementar los endpoints POST /api/v1/admin/spaces y PATCH /api/v1/admin/spaces/{spaceId}/status, para que la administración registre espacios y cambie su estado operativo. | **Scenario:** Alta de espacio.<br>Dado que el administrador envía un CreateSpaceResource válido con un spaceType permitido (incluidos CAMPUS_EXIT y EVENT_VENUE), cuando se procesa la solicitud, entonces la API responde 201 Created con el espacio en estado AVAILABLE y ocupación 0.<br>**Scenario:** Código duplicado o capacidad inválida.<br>Dado que el spaceCode ya existe o la capacidad es menor o igual a 0, cuando se procesa la solicitud, entonces la API responde 409 Conflict o 400 Bad Request respectivamente.<br>**Scenario:** Cambio a mantenimiento.<br>Dado que el espacio existe, cuando se envía un UpdateSpaceStatusResource con estado MAINTENANCE, entonces la API responde 200 OK y las lecturas posteriores en ese espacio se deniegan con SPACE_IN_MAINTENANCE.<br>**Scenario:** Espacio inexistente.<br>Dado que el spaceId no existe, cuando se envía el cambio de estado, entonces la API responde 404 Not Found. | **EP05** |
+| **TS19** | Endpoints de consulta de espacios y aforo | Como developer, quiero implementar los endpoints GET /api/v1/admin/spaces, /{spaceId} y /{spaceId}/occupancy, para que la administración supervise los espacios y su ocupación en tiempo real. | **Scenario:** Listado de espacios.<br>Dado que existen espacios registrados, cuando se consulta GET /api/v1/admin/spaces, entonces la API responde 200 OK con todos los espacios y su estado.<br>**Scenario:** Consulta de aforo.<br>Dado que el espacio existe, cuando se consulta /occupancy, entonces la API responde 200 OK con capacity, currentOccupancy e isFull.<br>**Scenario:** Espacio inexistente.<br>Dado que el spaceId no existe, cuando se consulta, entonces la API responde 404 Not Found. | **EP04** |
+| **TS20** | Endpoints de registro y cancelación de reservas | Como developer, quiero implementar los endpoints POST /api/v1/admin/spaces/{spaceId}/reservations y POST /api/v1/admin/reservations/{reservationId}/cancel, para que la administración programe y cancele reservas. | **Scenario:** Reserva registrada.<br>Dado que el espacio tiene política RESERVATION_REQUIRED, el titular tiene una credencial vigente y la franja es futura y está libre, cuando se envía un CreateReservationResource válido, entonces la API responde 201 Created con la reserva CONFIRMED y checkInWindowEnd igual a startTime + 10 minutos, y se publica ReservationCreated.<br>**Scenario:** Cruce de franja.<br>Dado que ya existe una reserva del mismo espacio que se cruza con la franja, cuando se procesa la solicitud, entonces la API responde 409 Conflict.<br>**Scenario:** Espacio no reservable o titular inválido.<br>Dado que el espacio está en MAINTENANCE o no tiene política RESERVATION_REQUIRED, o el titular no tiene una credencial vigente, cuando se procesa la solicitud, entonces la API responde 422 Unprocessable Entity.<br>**Scenario:** Cancelación.<br>Dado que la reserva está CONFIRMED, cuando se invoca /cancel, entonces la API responde 200 OK con estado CANCELLED y se publica ReservationCancelled.<br>**Scenario:** Cancelación inválida.<br>Dado que la reserva está CHECKED_IN, COMPLETED, FORFEITED o CANCELLED, cuando se invoca /cancel, entonces la API responde 409 Conflict. | **EP04** |
+| **TS21** | Endpoints de consulta de reservas | Como developer, quiero implementar los endpoints GET /api/v1/admin/reservations/{reservationId}, /api/v1/admin/reservations/active y /api/v1/admin/spaces/{spaceId}/reservations, para que la administración consulte las reservas programadas, las que están en curso y el historial por espacio. | **Scenario:** Reserva existente.<br>Dado que la reserva existe, cuando se consulta por su ID, entonces la API responde 200 OK con su estado, franja y checkedInAt.<br>**Scenario:** Reservas activas.<br>Dado que hay reservas CONFIRMED o CHECKED_IN dentro de su franja, cuando se consulta /active, entonces la API responde 200 OK con las reservas de todo el campus, o una lista vacía si no hay ninguna.<br>**Scenario:** Historial por espacio.<br>Dado que se envían parámetros from y to válidos, cuando se consulta /api/v1/admin/spaces/{spaceId}/reservations, entonces la API responde 200 OK con las reservas del espacio en ese rango.<br>**Scenario:** Recurso inexistente o rango inválido.<br>Dado que el reservationId o el spaceId no existe, o from es posterior a to, cuando se consulta, entonces la API responde 404 Not Found o 400 Bad Request respectivamente. | **EP04** |
+| **TS22** | Control de acceso, permanencia y activación de reservas a partir de CardTapEvent | Como developer, quiero que el SpaceCardTapEventConsumer procese cada CardTapEvent según el tipo y la política del espacio, para validar ingresos, salidas, accesos a ambientes y check-in de reservas. | **Scenario:** Ingreso al campus.<br>Dado que un titular con credencial vigente pasa por un torniquete CAMPUS_ENTRANCE con aforo disponible, cuando se procesa el evento, entonces se incrementa la ocupación, se abre una CampusPresence, se guarda un AccessRecord GRANTED y se publica CampusEntryGranted.<br>**Scenario:** Salida del campus.<br>Dado que el titular tiene una permanencia abierta y pasa por un torniquete CAMPUS_EXIT, cuando se procesa el evento, entonces se reduce la ocupación, se cierra la permanencia y se publica CampusExitRecorded con la duración.<br>**Scenario:** Salida sin ingreso.<br>Dado que el titular no tiene una permanencia abierta, cuando pasa por un torniquete CAMPUS_EXIT, entonces se concede la salida sin calcular duración y se publica ExitWithoutEntryDetected.<br>**Scenario:** Zona restringida.<br>Dado que un estudiante pasa su tarjeta en un espacio RESTRICTED_STAFF_ONLY, cuando se procesa el evento, entonces se guarda un AccessRecord DENIED con UNAUTHORIZED_ROLE y se publica SpaceAccessDenied.<br>**Scenario:** Check-in de reserva.<br>Dado que el titular de una reserva CONFIRMED pasa su tarjeta en un espacio RESERVATION_REQUIRED dentro de los 10 minutos, cuando se procesa el evento, entonces la reserva pasa a CHECKED_IN, el espacio a OCCUPIED y se publican ReservationActivated y SpaceOccupied.<br>**Scenario:** Lectura fuera de alcance.<br>Dado que el lector pertenece a un aula (CLASSROOM), cuando se procesa el evento, entonces se descarta sin AccessRecord; si el lector no tiene un espacio asociado, el mensaje se envía a la dead-letter queue.<br>**Scenario:** Evento duplicado.<br>Dado que el eventId ya fue procesado, cuando el evento llega otra vez, entonces se descarta sin modificar el aforo. | **EP04** |
+| **TS23** | Liberación automática y cierre de reservas | Como developer, quiero un proceso programado que se ejecute cada minuto, dé por perdidas las reservas sin check-in tras 10 minutos y complete las reservas cuya franja terminó, para evitar el acaparamiento y mantener actualizado el estado de los espacios. | **Scenario:** Reserva vencida.<br>Dado que una reserva CONFIRMED superó su checkInWindowEnd sin check-in, cuando se ejecuta el ReservationToleranceScheduler, entonces la reserva pasa a FORFEITED, su franja queda disponible y se publica ReservationForfeited.<br>**Scenario:** Envío de correo.<br>Dado que una reserva fue dada por perdida, cuando termina la transacción, entonces se envía de forma asíncrona un correo de aviso al correo del titular obtenido del directorio.<br>**Scenario:** Falla del servicio de correo.<br>Dado que el servicio de correo no está disponible, cuando se intenta enviar el aviso, entonces la reserva se mantiene como FORFEITED y el error queda registrado.<br>**Scenario:** Reserva finalizada.<br>Dado que una reserva CHECKED_IN llegó a su endTime, cuando se ejecuta el scheduler, entonces la reserva pasa a COMPLETED, el espacio vuelve a AVAILABLE y se publica SpaceReleased. | **EP04** |
+| **TS24** | Ingesta de eventos al historial de datos | Como developer, quiero que Data Management consuma los eventos de IoT Monitoring, Academic Attendance y Space and Facility, para almacenarlos como registros históricos inmutables. | **Scenario:** Evento válido.<br>Dado que llega un evento de asistencia, acceso o lectura con todos sus datos, cuando el consumidor lo procesa, entonces se persiste un DataRecord REGISTERED con su sourceContext y dataType y se publica DataRegistered.<br>**Scenario:** Evento duplicado.<br>Dado que el eventId ya existe en data_records, cuando el evento llega otra vez, entonces se descarta sin crear otro registro.<br>**Scenario:** Evento inconsistente.<br>Dado que la combinación de sourceContext y dataType no es coherente o faltan datos obligatorios, cuando se procesa el evento, entonces se publica DataRegistrationError y el registro no se usa en reportes. | **EP05** |
+| **TS25** | Endpoints de consulta de registros históricos | Como developer, quiero implementar los endpoints GET /api/v1/data-records, /{dataRecordId}, /period y /type/{dataType}, para que el dashboard consulte la información almacenada. | **Scenario:** Consulta por periodo.<br>Dado que se envía un rango de fechas válido, cuando se consulta /period, entonces la API responde 200 OK con los registros cuyo occurredAt está dentro del rango.<br>**Scenario:** Tipo de dato inválido.<br>Dado que el dataType no pertenece a la enumeración, cuando se consulta /type/{dataType}, entonces la API responde 400 Bad Request.<br>**Scenario:** Registro inexistente.<br>Dado que el dataRecordId no existe, cuando se consulta, entonces la API responde 404 Not Found. | **EP05** |
+| **TS26** | Endpoints de generación de reportes | Como developer, quiero implementar los endpoints POST /api/v1/reports/weekly, /monthly y /semester, para que la administración solicite reportes consolidados. | **Scenario:** Solicitud aceptada.<br>Dado que el administrador envía un periodo válido, cuando se procesa la solicitud, entonces la API responde 202 Accepted con el reporte en estado GENERATING.<br>**Scenario:** Reporte completado.<br>Dado que la consolidación termina correctamente, cuando se completa la generación, entonces el reporte pasa a GENERATED con su summary y totalRecords, y se publica el evento del tipo de reporte.<br>**Scenario:** Periodo inválido.<br>Dado que periodStart es posterior a periodEnd, cuando se procesa la solicitud, entonces la API responde 400 Bad Request. | **EP05** |
+| **TS27** | Endpoints de consulta de reportes | Como developer, quiero implementar los endpoints GET /api/v1/reports, /{reportId}, /weekly, /monthly y /semester, para que el dashboard muestre los reportes generados. | **Scenario:** Listado de reportes.<br>Dado que existen reportes generados, cuando se consulta GET /api/v1/reports, entonces la API responde 200 OK con la lista ordenada por periodo.<br>**Scenario:** Detalle de reporte.<br>Dado que el reporte existe, cuando se consulta por su reportId, entonces la API responde 200 OK con su summary y estado.<br>**Scenario:** Reporte inexistente.<br>Dado que el reportId no existe, cuando se consulta, entonces la API responde 404 Not Found. | **EP05** |
+| **TS28** | Endpoint de cambio de política de acceso de un espacio | Como developer, quiero implementar el endpoint PATCH /api/v1/admin/spaces/{spaceId}/access-policy, para que la administración personalice qué roles pueden acceder a cada espacio. | **Scenario:** Cambio de política.<br>Dado que el espacio existe, cuando el administrador envía un UpdateSpaceAccessPolicyResource con una política válida, entonces la API responde 200 OK con la nueva accessPolicy y las lecturas posteriores se evalúan con ella.<br>**Scenario:** Política inválida.<br>Dado que la política enviada no pertenece a AccessPolicyType, cuando se procesa la solicitud, entonces la API responde 400 Bad Request y se mantiene la política anterior.<br>**Scenario:** Espacio inexistente.<br>Dado que el spaceId no existe, cuando se procesa la solicitud, entonces la API responde 404 Not Found. | **EP05** |
+| **TS29** | Adaptador del directorio de titulares | Como developer, quiero implementar el CardHolderDirectoryPort con un adaptador simulado sobre la tabla card_holders, para que Space and Facility resuelva el titular, su rol, su correo y la vigencia de su credencial sin depender de otro bounded context. | **Scenario:** Tarjeta registrada y vigente.<br>Dado que el cardUid existe en card_holders con credential_active verdadero, cuando se invoca findByCardUid, entonces se retorna un CardHolderSnapshot con cardHolderId, role, email y credentialActive verdadero.<br>**Scenario:** Credencial no vigente.<br>Dado que la credencial del titular está desactivada, cuando se invoca findByCardUid, entonces se retorna el CardHolderSnapshot con credentialActive falso y la política deniega el acceso con CARD_INACTIVE.<br>**Scenario:** Tarjeta no registrada.<br>Dado que el cardUid no existe en el directorio, cuando se invoca findByCardUid, entonces se retorna un resultado vacío y la lectura se registra como DENIED con CARD_INACTIVE. | **EP04** |
+| **TS30** | Endpoint de consulta de permanencias en el campus | Como developer, quiero implementar el endpoint GET /api/v1/admin/card-holders/{cardHolderId}/campus-presences, para que la administración consulte las entradas y salidas de un titular y sus horas acumuladas. | **Scenario:** Consulta por rango.<br>Dado que el titular tiene permanencias registradas, cuando se consulta con parámetros from y to válidos, entonces la API responde 200 OK con la lista de permanencias, la duración de cada una y el total de minutos de las permanencias cerradas.<br>**Scenario:** Permanencia abierta.<br>Dado que el titular aún no registra su salida, cuando se consulta el rango, entonces la permanencia aparece con estado OPEN y sin duración, y no se suma al total.<br>**Scenario:** Sin registros.<br>Dado que el titular no tiene permanencias en el rango, cuando se consulta, entonces la API responde 200 OK con una lista vacía y total 0.<br>**Scenario:** Rango inválido.<br>Dado que from es posterior a to, cuando se consulta, entonces la API responde 400 Bad Request. | **EP03** |
 
 ## 3.3. Impact Mapping.
 
@@ -1688,31 +1718,62 @@ Una vez concluidas las épicas, ahora podemos proceder a encapsular las múltipl
 | :---: | :--- | :--- | :--- | :---: |
 | **1** | **US26** | Visualización de Funcionalidades | Como visitante de la web, quiero ver una sección clara con las funcionalidades principales de TarjePafi en la Landing Page, para entender rápidamente qué ofrece el producto antes de adquirirlo. | 2 |
 | **2** | **US27** | Acceso a Contacto y Soporte | Como usuario interesado, quiero tener un botón de contacto visible en la Landing Page, para poder enviar mis dudas al equipo de TarjePafi de manera rápida. | 2 |
-| **3** | **US01** | Registro de Asistencia Estudiantil | Como estudiante, quiero poder pasar mi tarjeta por un lector al entrar al salón de clases, para que mi asistencia sea registrada automáticamente. | 5 |
-| **4** | **US02** | Confirmación de Asistencia | Como estudiante, quiero que el lector muestre un mensaje de "Asistencia tomada" en la pantalla, para que sepa que mi asistencia ha sido registrada. | 2 |
-| **5** | **US16** | Registro de Asistencia Docente | Como profesor, quiero que la tarjeta registre automáticamente la asistencia de los estudiantes al pasarla por el lector, para ahorrar tiempo en el proceso de toma de asistencia. | 5 |
-| **6** | **US18** | Confirmación de Registro de Asistencia Docente | Como profesor, quiero que el sistema muestre un mensaje que confirme que mi asistencia ha sido registrada, para tener la seguridad de que el proceso se ha completado. | 2 |
-| **7** | **US22** | Registro de Llegada a Clases | Como profesor, quiero que, al pasar mi tarjeta por el lector al inicio de la clase, se registre automáticamente mi llegada, para llevar un control de mis horas de trabajo. | 3 |
-| **8** | **US25** | Registro de Curso y Materia | Como profesor, quiero que, al escanear mi tarjeta, se registre automáticamente el nombre del curso y la materia que imparto, para llevar un control más detallado. | 3 |
-| **9** | **US03** | Reserva y Activación de Espacios de Estudio | Como estudiante, quiero usar mi tarjeta para acceder a mis reservas para usarlas y confirmar mi presencia física en el cubículo. | 5 |
-| **10** | **US06** | Acceso Multicentro con la Tarjeta | Como estudiante, quiero que la tarjeta funcione en múltiples puntos de acceso, como bibliotecas y laboratorios, para facilitar mi acceso a los recursos. | 3 |
-| **11** | **US19** | Visualización de Horas Acumuladas en Espacios | Como administrador, quiero ver qué tantas horas se usan diferentes espacios, para poder revisar y gestionar mejor los recursos. | 3 |
-| **12** | **US23** | Registro de Duración de Clases | Como profesor, quiero que, al pasar la tarjeta por el lector al inicio y fin, se registre automáticamente la duración de la clase, para tener un control más preciso sobre el tiempo de enseñanza. | 3 |
-| **13** | **US20** | Historial de Asistencia Docente | Como profesor, quiero que se registre la hora y fecha exacta en que escaneo mi tarjeta, para tener un historial preciso de mi asistencia. | 3 |
-| **14** | **US17** | Registro de Horas de Trabajo del Personal | Como trabajador, quiero que al finalizar la jornada, al pasar de nuevo mi tarjeta por el lector, se registre mi salida, para tener un registro completo de mis horas trabajadas. | 3 |
-| **15** | **US21** | Registro de Asistencia en Reuniones | Como profesor, quiero que mi tarjeta me permita marcar mi asistencia a reuniones o capacitaciones, para llevar un control integral de mi tiempo. | 2 |
-| **16** | **US24** | Control Visual de Entrada y Salida | Como profesor, quiero que la plataforma muestre una foto cuando un estudiante registra su asistencia en la clase, para llevar un registro claro de su presencia. | 3 |
-| **17** | **US07** | Participación en Eventos Universitarios | Como estudiante, quiero que la tarjeta me permita acceder a eventos universitarios, para participar en actividades extracurriculares. | 3 |
-| **18** | **US08** | Identificación Estudiantil | Como estudiante, quiero que la tarjeta funcione como una forma de identificación, para ser reconocido fácilmente por el personal académico. | 2 |
-| **19** | **US04** | Visualización de Reportes Administrativos | Como personal administrativo, quiero que la página muestre reportes administrativos con la información recolectada para administrar y tener datos útiles de afluencia. | 5 |
-| **20** | **US11** | Vinculación a Base de Datos | Como administrador, quiero que la tarjeta esté vinculada a la base de datos de estudiantes, para poder gestionar fácilmente su estado. | 3 |
-| **21** | **US14** | Personalización de Permisos de Acceso | Como administrador, quiero poder personalizar los permisos de acceso de cada tarjeta según el rol, para mantener un control adecuado de ambientes. | 3 |
-| **22** | **US12** | Control de Acceso en Áreas Restringidas | Como administrador, quiero que la tarjeta proporcione un mensaje en el lector cuando un estudiante accede a un área restringida, para garantizar que solo los autorizados ingresen. | 3 |
-| **23** | **US10** | Baja de Tarjeta para Estudiantes Retirados | Como administrador, quiero poder dar de baja una tarjeta de un estudiante que se ha retirado de la universidad, para asegurar que ya no tenga acceso a los servicios. | 2 |
-| **24** | **US13** | Reactivación de Tarjetas | Como administrador, quiero tener la opción de reactivar una tarjeta si un estudiante vuelve a inscribirse, para facilitar su regreso. | 2 |
-| **25** | **US15** | Desactivación Automática de Tarjetas | Como administrador, quiero que las tarjetas se desactiven automáticamente si un estudiante no completa su matrícula a tiempo, para mantener la seguridad. | 5 |
-| **26** | **US05** | Diseño Atractivo de la Tarjeta | Como estudiante, quiero que la tarjeta tenga un diseño atractivo y fácil de identificar, para que me sienta orgulloso de usarla. | 1 |
-| **27** | **US09** | Durabilidad y Calidad Física de la Tarjeta | Como estudiante, quiero que la tarjeta esté diseñada para ser resistente al desgaste, para que pueda usarla durante todo el año académico sin problemas. | 1 |
+| **3** | **US05** | Uso en Dispositivos Móviles | Como visitante, quiero un diseño de la Landing Page funcional en dispositivos móviles, para visitar la página desde mi celular. | 2 |
+| **4** | **US09** | Sección de Preguntas Frecuentes (FAQ) | Como visitante, quiero consultar una sección de Preguntas Frecuentes en la Landing Page, para resolver dudas comunes sobre el funcionamiento y los costos de TarjePAFI de manera inmediata. | 2 |
+| **5** | **TS05** | Endpoint de registro de lectores IoT | Como developer, quiero implementar el endpoint POST /api/v1/iot/readers, para que los administradores den de alta los lectores NFC instalados en el campus. | 5 |
+| **6** | **TS10** | Ingesta de lecturas NFC mediante RabbitMQ y ACL | Como developer, quiero que el DeviceEventConsumer reciba las lecturas de los lectores desde RabbitMQ y las traduzca con el DevicePayloadAdapter, para publicar un CardTapEvent independiente del hardware. | 8 |
+| **7** | **TS12** | Creación y cierre de sesiones de clase desde eventos académicos | Como developer, quiero consumir los eventos ClassSessionStarted y ClassSessionEnded, para que las sesiones de clase existan en el sistema antes de que se registren las marcaciones. | 3 |
+| **8** | **TS13** | Registro de asistencia a partir de CardTapEvent | Como developer, quiero que el CardTapEventConsumer de Academic Attendance convierta cada CardTapEvent en un RegisterAttendanceCommand, para registrar la asistencia sin intervención manual. | 8 |
+| **9** | **US01** | Registro de Asistencia Estudiantil | Como estudiante, quiero poder pasar mi tarjeta por un lector al entrar al salón de clases, para que mi asistencia sea registrada automáticamente. | 5 |
+| **10** | **US02** | Confirmación de Asistencia | Como estudiante, quiero que el lector muestre un mensaje de "Asistencia tomada" en la pantalla, para que sepa que mi asistencia ha sido registrada. | 2 |
+| **11** | **US16** | Registro de Asistencia Docente | Como profesor, quiero que la tarjeta registre automáticamente la asistencia de los estudiantes al pasarla por el lector, para ahorrar tiempo en el proceso de toma de asistencia. | 5 |
+| **12** | **US18** | Confirmación de Registro de Asistencia Docente | Como profesor, quiero que el sistema muestre un mensaje que confirme que mi asistencia ha sido registrada, para tener la seguridad de que el proceso se ha completado. | 2 |
+| **13** | **US22** | Registro de Llegada a Clases | Como profesor, quiero que, al pasar mi tarjeta por el lector al inicio de la clase, se registre automáticamente mi llegada, para llevar un control de mis horas de trabajo. | 3 |
+| **14** | **US25** | Registro de Curso y Materia | Como profesor, quiero que, al escanear mi tarjeta, se registre automáticamente el nombre del curso y la materia que imparto, para llevar un control más detallado. | 3 |
+| **15** | **TS01** | Aprovisionamiento de cuentas administrativas | Como developer, quiero que el sistema cree automáticamente las cuentas administrativas iniciales al desplegarse, para que exista acceso a la plataforma sin un registro público. | 2 |
+| **16** | **TS02** | Endpoint de inicio de sesión | Como developer, quiero implementar el endpoint POST /api/v1/auth/sign-in, para que los administradores obtengan un token JWT con el que consumir la API. | 3 |
+| **17** | **TS03** | Filtro de autenticación y autorización JWT | Como developer, quiero un filtro de seguridad que valide el JWT y el rol en cada endpoint protegido, para que solo el personal autorizado acceda a las operaciones administrativas. | 3 |
+| **18** | **TS18** | Endpoints de gestión de espacios | Como developer, quiero implementar los endpoints POST /api/v1/admin/spaces y PATCH /api/v1/admin/spaces/{spaceId}/status, para que la administración registre espacios y cambie su estado operativo. | 3 |
+| **19** | **TS29** | Adaptador del directorio de titulares | Como developer, quiero implementar el CardHolderDirectoryPort con un adaptador simulado sobre la tabla card_holders, para que Space and Facility resuelva el titular, su rol, su correo y la vigencia de su credencial sin depender de otro bounded context. | 3 |
+| **20** | **TS20** | Endpoints de registro y cancelación de reservas | Como developer, quiero implementar los endpoints POST /api/v1/admin/spaces/{spaceId}/reservations y POST /api/v1/admin/reservations/{reservationId}/cancel, para que la administración programe y cancele reservas. | 5 |
+| **21** | **TS22** | Control de acceso, permanencia y activación de reservas a partir de CardTapEvent | Como developer, quiero que el SpaceCardTapEventConsumer procese cada CardTapEvent según el tipo y la política del espacio, para validar ingresos, salidas, accesos a ambientes y check-in de reservas. | 8 |
+| **22** | **US03** | Reserva y Activación de Espacios de Estudio | Como estudiante, quiero usar mi tarjeta para acceder a mis reservas para usarlas y confirmar mi presencia física en el cubículo. | 5 |
+| **23** | **TS23** | Liberación automática y cierre de reservas | Como developer, quiero un proceso programado que se ejecute cada minuto, dé por perdidas las reservas sin check-in tras 10 minutos y complete las reservas cuya franja terminó, para evitar el acaparamiento y mantener actualizado el estado de los espacios. | 5 |
+| **24** | **US28** | Liberación de Reserva | Como administrador, quiero que los espacios reservados se liberen luego de 10 minutos, para que sean usados por un estudiante usuario que quiera reservar el espacio. | 3 |
+| **25** | **US06** | Acceso Multicentro con la Tarjeta | Como estudiante, quiero que la tarjeta funcione en múltiples puntos de acceso, como bibliotecas y laboratorios, para facilitar mi acceso a los recursos. | 3 |
+| **26** | **TS19** | Endpoints de consulta de espacios y aforo | Como developer, quiero implementar los endpoints GET /api/v1/admin/spaces, /{spaceId} y /{spaceId}/occupancy, para que la administración supervise los espacios y su ocupación en tiempo real. | 2 |
+| **27** | **TS21** | Endpoints de consulta de reservas | Como developer, quiero implementar los endpoints GET /api/v1/admin/reservations/{reservationId}, /api/v1/admin/reservations/active y /api/v1/admin/spaces/{spaceId}/reservations, para que la administración consulte las reservas programadas, las que están en curso y el historial por espacio. | 3 |
+| **28** | **TS24** | Ingesta de eventos al historial de datos | Como developer, quiero que Data Management consuma los eventos de IoT Monitoring, Academic Attendance y Space and Facility, para almacenarlos como registros históricos inmutables. | 5 |
+| **29** | **TS25** | Endpoints de consulta de registros históricos | Como developer, quiero implementar los endpoints GET /api/v1/data-records, /{dataRecordId}, /period y /type/{dataType}, para que el dashboard consulte la información almacenada. | 3 |
+| **30** | **US19** | Visualización de Horas Acumuladas en Espacios | Como administrador, quiero ver qué tantas horas se usan diferentes espacios, para poder revisar y gestionar mejor los recursos. | 3 |
+| **31** | **TS14** | Endpoints de apertura y cierre de la ventana de asistencia | Como developer, quiero implementar los endpoints POST /api/v1/class-sessions/{sessionId}/attendance-window/open y /close, para controlar manualmente la ventana de asistencia cuando sea necesario. | 3 |
+| **32** | **US23** | Registro de Duración de Clases | Como profesor, quiero que, al pasar la tarjeta por el lector al inicio y fin, se registre automáticamente la duración de la clase, para tener un control más preciso sobre el tiempo de enseñanza. | 3 |
+| **33** | **TS17** | Endpoints de consulta de asistencia | Como developer, quiero implementar los endpoints GET de asistencia por sesión, historial por titular y estado por titular, para que la aplicación web muestre la información registrada. | 3 |
+| **34** | **US20** | Historial de Asistencia Docente | Como profesor, quiero que se registre la hora y fecha exacta en que escaneo mi tarjeta, para tener un historial preciso de mi asistencia. | 3 |
+| **35** | **TS30** | Endpoint de consulta de permanencias en el campus | Como developer, quiero implementar el endpoint GET /api/v1/admin/card-holders/{cardHolderId}/campus-presences, para que la administración consulte las entradas y salidas de un titular y sus horas acumuladas. | 3 |
+| **36** | **US17** | Registro de Horas de Trabajo del Personal | Como trabajador, quiero que al finalizar la jornada, al pasar de nuevo mi tarjeta por el lector, se registre mi salida, para tener un registro completo de mis horas trabajadas. | 3 |
+| **37** | **US21** | Registro de Asistencia en Reuniones | Como profesor, quiero que mi tarjeta me permita marcar mi asistencia a reuniones o capacitaciones, para llevar un control integral de mi tiempo. | 2 |
+| **38** | **US24** | Cierre de Turno | Como trabajador, quiero que la tarjeta sirva como herramienta de registro de salida del trabajo, para llevar un registro exacto de mis horas trabajadas. | 3 |
+| **39** | **TS15** | Endpoint de registro manual de asistencia | Como developer, quiero implementar el endpoint POST /api/v1/attendance-records, para registrar marcaciones manuales y probar el flujo sin depender de un lector físico. | 2 |
+| **40** | **TS16** | Endpoint de justificación de inasistencias | Como developer, quiero implementar el endpoint POST /api/v1/class-sessions/{sessionId}/justifications, para registrar justificaciones aprobadas de inasistencia. | 3 |
+| **41** | **US07** | Participación en Eventos Universitarios | Como estudiante, quiero que la tarjeta me permita acceder a eventos universitarios, para participar en actividades extracurriculares. | 3 |
+| **42** | **US08** | Identificación Estudiantil | Como estudiante, quiero que la tarjeta funcione como una forma de identificación, para ser reconocido fácilmente por el personal académico. | 2 |
+| **43** | **TS26** | Endpoints de generación de reportes | Como developer, quiero implementar los endpoints POST /api/v1/reports/weekly, /monthly y /semester, para que la administración solicite reportes consolidados. | 5 |
+| **44** | **TS27** | Endpoints de consulta de reportes | Como developer, quiero implementar los endpoints GET /api/v1/reports, /{reportId}, /weekly, /monthly y /semester, para que el dashboard muestre los reportes generados. | 2 |
+| **45** | **US04** | Visualización de Reportes Administrativos | Como personal administrativo, quiero que la página muestre reportes administrativos con la información recolectada para administrar y tener datos útiles de afluencia. | 5 |
+| **46** | **TS04** | Endpoint de perfil autenticado | Como developer, quiero implementar el endpoint GET /api/v1/auth/me, para que la aplicación web muestre los datos del administrador que inició sesión. | 1 |
+| **47** | **US11** | Vinculación a Base de Datos | Como administrador, quiero que la tarjeta esté vinculada a la base de datos de estudiantes, para poder gestionar fácilmente su estado. | 3 |
+| **48** | **TS28** | Endpoint de cambio de política de acceso de un espacio | Como developer, quiero implementar el endpoint PATCH /api/v1/admin/spaces/{spaceId}/access-policy, para que la administración personalice qué roles pueden acceder a cada espacio. | 2 |
+| **49** | **US14** | Personalización de Permisos de Acceso | Como administrador, quiero poder personalizar los permisos de acceso de cada tarjeta según el rol, para mantener un control adecuado de ambientes. | 3 |
+| **50** | **US12** | Control de Acceso en Áreas Restringidas | Como administrador, quiero que la tarjeta proporcione un mensaje en el lector cuando un estudiante accede a un área restringida, para garantizar que solo los autorizados ingresen. | 3 |
+| **51** | **US10** | Baja de Tarjeta para Estudiantes Retirados | Como administrador, quiero poder dar de baja una tarjeta de un estudiante que se ha retirado de la universidad, para asegurar que ya no tenga acceso a los servicios. | 2 |
+| **52** | **US13** | Reactivación de Tarjetas | Como administrador, quiero tener la opción de reactivar una tarjeta si un estudiante vuelve a inscribirse, para facilitar su regreso. | 2 |
+| **53** | **US15** | Desactivación Automática de Tarjetas | Como administrador, quiero que las tarjetas se desactiven automáticamente si un estudiante no completa su matrícula a tiempo, para mantener la seguridad. | 5 |
+| **54** | **TS06** | Endpoint de consulta de lector IoT | Como developer, quiero implementar el endpoint GET /api/v1/iot/readers/{readerId}, para que los administradores consulten el estado y la ubicación de un lector. | 1 |
+| **55** | **TS07** | Endpoint de configuración de lector IoT | Como developer, quiero implementar el endpoint PATCH /api/v1/iot/readers/{readerId}/configuration, para que los administradores actualicen los parámetros de funcionamiento de un lector. | 3 |
+| **56** | **TS08** | Endpoints de activación y desactivación de lectores | Como developer, quiero implementar los endpoints POST /api/v1/iot/readers/{readerId}/activate y /deactivate, para que los administradores habiliten o retiren lectores de operación. | 2 |
+| **57** | **TS09** | Endpoints de telemetría y salud de lectores | Como developer, quiero implementar los endpoints GET /api/v1/iot/readers/{readerId}/telemetry y /health, para que los administradores supervisen el funcionamiento de cada lector. | 3 |
+| **58** | **TS11** | Procesamiento de heartbeats y detección de lectores desconectados | Como developer, quiero procesar los heartbeats y la telemetría de los lectores, para detectar automáticamente cuándo un lector deja de comunicarse. | 5 |
 
 <br>
 
@@ -1825,18 +1886,125 @@ Sustento de Priorización del Backlog
 
 ### 4.1.4. Architectural Design Decisions
 
-En esta sección se detalla el proceso sistemático aplicado por el equipo de TarjePAFI para evaluar, descartar y seleccionar las tácticas y patrones arquitectónicos que dan soporte a los requerimientos del sistema. La toma de decisiones siguió las fases del *Quality Attribute Workshop* (QAW), analizando en cada iteración los *Architectural Drivers* priorizados, debatiendo alternativas tecnológicas y contrastando ventajas frente a desventajas técnicas para evitar la sobreingeniería en las etapas iniciales del proyecto.
+En esta sección se detalla el proceso aplicado por el equipo de TarjePAFI para tomar las decisiones de diseño de la solución, siguiendo los stages del Quality Attribute Workshop (QAW): presentación de los objetivos de negocio, presentación del plan arquitectónico, identificación de los architectural drivers, lluvia de ideas de escenarios, consolidación, priorización y refinamiento. A partir del Architectural Drivers Backlog priorizado, el equipo trabajó en iteraciones; en cada una seleccionó un grupo de drivers, evaluó tres tácticas o patrones candidatos y eligió uno según criterios explícitos.
 
-Para cada decisión arquitectónica clave, se formuló una matriz de evaluación (*Candidate Pattern Evaluation Matrix*) en la que se contrastan tres patrones candidatos representativos, documentando sus respectivos pros y contras hasta justificar el patrón seleccionado.
+**Constraints tomados como entradas fijas**
+
+Antes de evaluar alternativas, el equipo separó los drivers que corresponden a constraints. Al ser características no negociables impuestas por el cliente o por el negocio, no se sometieron a evaluación: se tomaron como entradas fijas que limitan el espacio de diseño de cada iteración.
+
+| Constraint | Driver relacionado | Restricción impuesta |
+| :--- | :--- | :--- |
+| TS-CON01 | AD15 | Backend en Java con Spring Boot desplegado en Microsoft Azure (Azure App Services). |
+| TS-CON02 | — | Aplicación web administrativa en Angular. |
+| TS-CON03 | AD17 | Landing Page en HTML5, CSS3 y JavaScript con internacionalización y accesibilidad. |
+| TS-CON04 | AD10 | Persistencia relacional en PostgreSQL alojado en Azure. |
+| TS-CON05 | AD09 | Autenticación administrativa con tokens JWT. |
+| TS-CON06 | AD02 | Buffer de almacenamiento local en los lectores ESP32 ante cortes de red. |
+| TS-CON07 | AD11 | Servicio externo de correo para notificar la liberación de espacios. |
+| TS-CON08 | AD14 | Cumplimiento de la Ley N° 29733 de Protección de Datos Personales. |
+| TS-CON09 | AD05 | RabbitMQ como message broker entre los dispositivos IoT y el backend. |
+
+En consecuencia, las decisiones de esta sección no eligen la base de datos, el broker, el proveedor cloud ni el mecanismo de autenticación. Lo que definen es cómo se estructura la solución y cómo se usan esos elementos para satisfacer los quality attribute drivers y functional drivers restantes: AD01, AD03, AD04, AD06, AD07, AD08, AD12 y AD13.
+
+**Iteración 1 – Estilo arquitectónico**
+
+- **Drivers considerados:** AD06 (alta disponibilidad), AD07 (escalabilidad horizontal de puntos de lectura) y AD01 (procesamiento concurrente de eventos NFC), con AD15, AD10 y AD05 como restricciones.
+- **Patrones evaluados:** monolito modular organizado por bounded contexts, microservicios por bounded context y monolito en capas tradicional.
+- **Criterios:**
+  - Tamaño del equipo y plazo del proyecto (un ciclo académico).
+  - Costo y complejidad operativa en Azure.
+  - Compatibilidad con la restricción de una base de datos PostgreSQL (TS-CON04).
+  - Aislamiento de los modelos de dominio definidos con DDD.
+  - Capacidad de escalar horizontalmente sin rediseño.
+- **Decisión:** monolito modular. Se despliega un único Backend API en Spring Boot con un módulo por bounded context (IAM, Academic Attendance, Space and Facility, IoT Monitoring y Data Management). Cada módulo tiene sus propias capas y sus propias tablas, y solo se comunica con los demás mediante eventos en RabbitMQ o mediante fachadas y puertos ACL; ningún módulo accede a las tablas de otro.
+
+  La instancia es stateless, porque la sesión viaja en el JWT, así que AD07 se cumple agregando instancias en Azure App Services y consumidores de RabbitMQ. Los microservicios se descartaron porque exigen una base de datos por servicio, pipelines y monitoreo distribuido que no se justifican en esta etapa. Como los límites entre módulos ya están definidos, cualquier bounded context puede extraerse más adelante como microservicio sin rediseñar su dominio.
+
+**Iteración 2 – Ingesta y distribución de lecturas NFC**
+
+- **Drivers considerados:** AD01 (ingesta de al menos 200 lecturas por minuto sin pérdidas), AD04 (registro de la asistencia en 1 segundo o menos) y AD13 (cero registros duplicados), con AD05 y AD02 como restricciones.
+- **Patrones evaluados:**
+  - Publicación/suscripción con un topic exchange y una cola por bounded context.
+  - Cola única con un consumidor central en IoT Monitoring que reenvía cada lectura a los demás módulos por invocación directa.
+  - Cola punto a punto por tipo de lector, en la que el dispositivo decide el destino.
+- **Criterios:**
+  - Desacoplamiento entre bounded contexts.
+  - Posibilidad de añadir consumidores sin modificar al productor.
+  - Absorción de picos al inicio de clases.
+  - Aislamiento de fallos: la caída de un consumidor no debe bloquear a los demás.
+  - Independencia del firmware respecto a la lógica de negocio.
+- **Decisión:** publicación/suscripción. IoT Monitoring publica CardTapEvent en el exchange tarjepafi.events con la routing key iot.card-tap, y Academic Attendance, Space and Facility y Data Management la consumen desde colas propias, escalables con competing consumers.
+
+  Se complementa con estas tácticas:
+  - Idempotencia por eventId mediante una restricción UNIQUE sobre event_id (AD13).
+  - Dead-letter queue para los mensajes que no pueden procesarse.
+  - Evaluación con la hora original de la lectura (tappedAt), de modo que las lecturas retenidas offline por el ESP32 se procesen correctamente.
+
+**Iteración 3 – Aislamiento del hardware IoT respecto del dominio**
+
+- **Drivers considerados:** AD07 (incorporación de nuevos puntos de lectura sin rediseño) y AD01, con AD02 como restricción.
+- **Patrones evaluados:**
+  - Anti-Corruption Layer en IoT Monitoring Context.
+  - Relación Conformist, en la que los contextos de negocio usan directamente el formato del fabricante.
+  - Shared Kernel con un modelo de lectura compartido por todos los contextos.
+- **Criterios:**
+  - Impacto de un cambio de fabricante, firmware o protocolo sobre las reglas de negocio.
+  - Acoplamiento entre contextos.
+  - Esfuerzo para incorporar nuevos tipos de lectores.
+- **Decisión:** Anti-Corruption Layer. El DevicePayloadAdapter de IoT Monitoring traduce los mensajes de los lectores a CardTapEvent, de modo que Academic Attendance y Space and Facility no conocen el protocolo de los dispositivos. Con el mismo criterio, Space and Facility y Academic Attendance consultan los datos institucionales mediante puertos ACL (CardHolderDirectoryPort y AcademicDirectoryPort), que hoy se resuelven con datos semilla y mañana con un adaptador REST, sin modificar el dominio.
+
+**Iteración 4 – Consolidación de información para reportes**
+
+- **Drivers considerados:** AD12 (métricas históricas de afluencia), AD13 y AD06.
+- **Patrones evaluados:**
+  - Consistencia eventual dirigida por eventos, con un modelo propio en Data Management.
+  - Lectura directa de las tablas de los demás contextos (base de datos compartida).
+  - Consultas síncronas a la API de cada contexto al momento de generar el reporte.
+- **Criterios:**
+  - No afectar la disponibilidad ni el rendimiento de los contextos operativos durante las horas punta.
+  - Respetar los límites de cada módulo definidos en la Iteración 1.
+  - Tolerancia a la consistencia eventual, aceptable para reportes semanales, mensuales y semestrales.
+  - Trazabilidad del dato.
+- **Decisión:** consistencia eventual dirigida por eventos. Data Management consume los eventos publicados por los demás contextos (AttendanceRecorded, CampusEntryGranted, ReservationForfeited, entre otros) y los persiste como DataRecord inmutables, con idempotencia por eventId. Los reportes se generan sobre ese modelo propio, sin consultar a los contextos operativos.
+
+**Iteración 5 – Liberación automática de espacios a los 10 minutos**
+
+- **Drivers considerados:** AD03 (liberación de espacios no ocupados), con AD11 como restricción.
+- **Patrones evaluados:**
+  - Barrido programado en la aplicación, con una tarea @Scheduled cada 60 segundos.
+  - Mensaje diferido por reserva usando un TTL y un dead-letter exchange de RabbitMQ.
+  - Tarea en la base de datos mediante pg_cron o triggers.
+- **Criterios:**
+  - Precisión requerida: un margen de hasta 1 minuto es aceptable.
+  - Tolerancia a reinicios y a cancelaciones de reservas.
+  - Mantener las reglas de negocio en el dominio y no en la base de datos.
+  - Simplicidad de operación.
+- **Decisión:** barrido programado. El ReservationToleranceScheduler recalcula en cada ejecución las reservas vencidas a partir del estado persistido, por lo que no pierde trabajo ante un reinicio ni necesita retirar mensajes cuando una reserva se cancela o se activa, como ocurriría con los mensajes diferidos. El correo al titular se envía de forma asíncrona (@Async) para que una falla del servicio externo no revierta la liberación.
+
+**Iteración 6 – Control de acceso físico y concurrencia sobre aforo y reservas**
+
+- **Drivers considerados:** AD08 (validación inmediata de credenciales y registro del 100 % de los intentos), AD13 y AD01.
+- **Patrones evaluados:**
+  - Bloqueo optimista con versión (@Version) y restricciones de unicidad.
+  - Bloqueo pesimista mediante SELECT … FOR UPDATE.
+  - Contador de aforo en una caché distribuida en memoria.
+- **Criterios:**
+  - Nivel de contención esperado: las lecturas simultáneas suelen ocurrir en espacios distintos.
+  - Latencia de la validación.
+  - No incorporar infraestructura no contemplada en los constraints.
+  - Consistencia del aforo y de las reservas.
+- **Decisión:** bloqueo optimista. Space y SpaceReservation usan @Version, y ante un conflicto la operación se reintenta. Las restricciones UNIQUE sobre event_id evitan procesar dos veces una misma lectura. Cada intento, concedido o denegado, se persiste como AccessRecord para auditoría.
 
 #### Candidate Pattern Evaluation Matrix
 
-| Driver ID | Título de Driver | Patrón 1 (Elegido) | Patrón 2 | Patrón 3 |
+| Driver ID | Título de Driver | Patrón 1 (elegido) | Patrón 2 | Patrón 3 |
 | :--- | :--- | :--- | :--- | :--- |
-| **D01** | **Comunicación e Ingesta de Eventos IoT** | **Message Broker Asíncrono (RabbitMQ)**<br><br>**Pro:** Desacopla por completo la captura en hardware del procesamiento backend; absorbe ráfagas masivas de concurrencia al inicio de clases mediante colas de retención y garantiza tolerancia a fallos si la base de datos o el backend sufren saturación temporal.<br><br>**Contra:** Incorpora un componente adicional de infraestructura que requiere configuración, monitoreo y consumo de recursos en la nube. | **Comunicación Síncrona Punto a Punto (REST API Directa)**<br><br>**Pro:** Implementación simple y directa; bajo costo cognitivo para pruebas unitarias y monitoreo inicial mediante herramientas como Postman.<br><br>**Contra:** Alto acoplamiento temporal; si el servicio backend o la base de datos se saturan durante el pico de asistencia, las peticiones HTTP fallan por timeout, bloqueando las lecturas en los lectores físicos ESP32. | **Conexiones Persistentes Bidireccionales (WebSockets)**<br><br>**Pro:** Establece canales de comunicación bidireccionales continuos y de baja latencia entre clientes y servidor.<br><br>**Contra:** Demanda un consumo excesivo de memoria y sockets de red abiertos en los microcontroladores ESP32, requiriendo mecanismos complejos de reconexión ante fluctuaciones de la red WiFi del campus. |
-| **D02** | **Gestión de Identidades y Autenticación (IAM)** | **Autenticación con Tokens JWT (Spring Security)**<br><br>**Pro:** La validación criptográfica de identidad y roles administrativos se realiza en memoria sin consultar la base de datos en cada petición HTTP.<br><br>**Contra:** La invalidación inmediata de un token puede hacer más lento el ingreso por la generacion del token y revision de la autenticidad del mismo. | **Servidor de Identidad Completo (OAuth 2.0 / Keycloak)**<br><br>**Pro:** Estándar robusto de la industria; delega la seguridad, ciclo de vida de credenciales y auditoría de accesos a una solución empresarial consolidada.<br><br>**Contra:** Curva de aprendizaje empinada y sobreingeniería operativa para un sistema cuyo alcance de autenticación se restringe a personal administrativo de la universidad. | **Sesiones Tradicionales con Estado en Base de Datos**<br><br>**Pro:** Control centralizado absoluto; revocar o cerrar la sesión de un usuario administrativo es tan directo como eliminar el registro correspondiente en la tabla de sesiones.<br><br>**Contra:** Genera consultas constantes a la base de datos relacional por cada solicitud HTTP, limitando el rendimiento y la concurrencia en horas pico. |
-| **D03** | **Persistencia de Dominio y Trazabilidad del Campus** | **Base de Datos Relacional SQL (PostgreSQL en Azure)**<br><br>**Pro:** Garantiza consistencia estricta e integridad transaccional mediante soporte ACID; el uso de restricciones y llaves foráneas previene la duplicación de asistencias y el acaparamiento simultáneo de un mismo cubículo.<br><br>**Contra:** Esquemas de datos estructurados y rígidos que demandan migraciones de base de datos. | **Base de Datos Documental NoSQL (MongoDB / Azure Cosmos DB)**<br><br>**Pro:** Alta flexibilidad de esquemas; ideal para almacenar payloads variables de telemetría de dispositivos IoT y lecturas desestructuradas.<br><br>**Contra:** Dificultad para garantizar transacciones ACID distribuidas entre usuarios, matrículas y reservas de ambientes, aumentando el riesgo de inconsistencia de datos. | **Event Sourcing Puro**<br><br>**Pro:** Mantiene un registro inmutable de todos los eventos ocurridos en el campus (tarjeta leída, acceso concedido, cubículo liberado), permitiendo auditoría temporal perfecta.<br><br>**Contra:** Introduce una elevada complejidad de diseño del backend y es una forma de programar con dificultad elevada.|
-| **D04** | **Estrategia de Despliegue e Infraestructura Cloud** | **Contenedores Docker en Plataforma PaaS (Azure App Services)**<br><br>**Pro:** Despliegue automatizado, empaquetado hermético de componentes (Spring Boot, Angular y RabbitMQ) y escalabilidad gestionada por el proveedor sin requerir administración manual de servidores.<br><br>**Contra:** Menor control sobre la infraestructura profunda de red y costos operativos sujetos al tier de servicio configurado. | **Orquestación con Kubernetes (Azure Kubernetes Service - AKS)**<br><br>**Pro:** Máximo control, resiliencia y autoescalado elástico a nivel de contenedores individuales ante variaciones drásticas de demanda.<br><br>**Contra:** Complejidad operativa excesiva para la fase del proyecto; demanda configuración de clústeres, ingress controllers y mantenimiento DevOps especializado. | **Máquina Virtual Única IaaS (Azure Virtual Machine)**<br><br>**Pro:** Entorno sencillo y predecible; aprovisionamiento rápido mediante Docker Compose sobre una única instancia de bajo costo.<br><br>**Contra:** Cualquier saturación o reinicio de la máquina virtual interrumpe la totalidad de los servicios del campus. |
+| AD06, AD07, AD01 | Estilo arquitectónico de la solución | **Monolito modular por bounded contexts**<br>**Pro:** Un solo despliegue y una sola base de datos, coherentes con TS-CON01 y TS-CON04. Los módulos aíslan el dominio y se comunican por eventos, la instancia stateless escala horizontalmente y cualquier módulo puede extraerse luego como microservicio.<br>**Con:** Todos los módulos comparten el ciclo de despliegue, y un error grave en un módulo puede afectar la instancia completa. | **Microservicios por bounded context**<br>**Pro:** Despliegue y escalado independientes por contexto, con aislamiento total de fallos.<br>**Con:** Exige una base de datos por servicio, en conflicto con TS-CON04, además de pipelines, monitoreo distribuido y manejo de transacciones distribuidas, lo que es desproporcionado para el equipo y el plazo. | **Monolito en capas tradicional**<br>**Pro:** Es el estilo más simple de construir y desplegar.<br>**Con:** Organiza el código por capas técnicas y no por dominio, lo que mezcla los modelos de asistencia, espacios y dispositivos, aumenta el acoplamiento e impide una extracción futura. |
+| AD01, AD04, AD13 | Ingesta y distribución de lecturas NFC | **Publicación/suscripción con topic exchange y una cola por contexto**<br>**Pro:** Cada contexto consume a su ritmo, se pueden añadir consumidores sin tocar al productor y los picos se absorben con competing consumers. La caída de un consumidor no bloquea a los demás.<br>**Con:** Requiere idempotencia y una dead-letter queue en cada consumidor, y la misma lectura se procesa en varios contextos. | **Cola única con consumidor central que reenvía a los módulos**<br>**Pro:** Hay un único punto de entrada, fácil de monitorear y depurar.<br>**Con:** El consumidor central se acopla a todos los contextos y se convierte en cuello de botella. Si un módulo falla, el reenvío se bloquea o se pierde la lectura. | **Cola punto a punto por tipo de lector**<br>**Pro:** El enrutamiento es simple y cada cola tiene un único consumidor.<br>**Con:** El dispositivo decide el destino, lo que filtra lógica de negocio al firmware, y para que un nuevo contexto reciba lecturas hay que reconfigurar los lectores. |
+| AD07, AD01 | Aislamiento del hardware IoT respecto del dominio | **Anti-Corruption Layer en IoT Monitoring**<br>**Pro:** Un cambio de fabricante, firmware o protocolo solo afecta al adaptador, y los contextos de negocio reciben un CardTapEvent estable.<br>**Con:** Agrega una capa de traducción que debe mantenerse con cada nuevo tipo de dispositivo. | **Conformist (formato del fabricante en el dominio)**<br>**Pro:** No requiere traducción, por lo que la implementación inicial es más rápida.<br>**Con:** Cualquier cambio en el hardware obliga a modificar las reglas de asistencia y de espacios, lo que contradice AD07. | **Shared Kernel con un modelo de lectura común**<br>**Pro:** Todos los contextos comparten las mismas clases de lectura.<br>**Con:** Acopla los modelos de todos los contextos y obliga a coordinar cada cambio entre equipos. |
+| AD12, AD13, AD06 | Consolidación de información para reportes | **Consistencia eventual dirigida por eventos**<br>**Pro:** Los reportes no cargan a los contextos operativos en horas punta, cada dato conserva su origen y la idempotencia por eventId evita duplicados.<br>**Con:** Los reportes reflejan los datos con un ligero retraso y la información se almacena dos veces. | **Lectura directa de las tablas de otros contextos**<br>**Pro:** No hay que duplicar datos y la información siempre está actualizada.<br>**Con:** Rompe los límites de los módulos definidos en la Iteración 1: un cambio de esquema en un contexto rompe los reportes, y las consultas pesadas compiten con la operación diaria. | **Consultas síncronas a la API de cada contexto**<br>**Pro:** Respeta los límites de cada contexto y no duplica datos.<br>**Con:** Generar un reporte depende de que todos los contextos estén disponibles, y la consolidación de grandes volúmenes por HTTP es lenta. |
+| AD03 | Liberación automática de espacios a los 10 minutos | **Barrido programado (@Scheduled cada 60 s)**<br>**Pro:** Recalcula desde el estado persistido, por lo que tolera reinicios, cancelaciones y activaciones sin lógica adicional, y mantiene la regla en el dominio.<br>**Con:** La liberación puede demorar hasta 1 minuto después de vencida la tolerancia, y el barrido consulta la base de datos aunque no haya reservas vencidas. | **Mensaje diferido por reserva (TTL + dead-letter exchange)**<br>**Pro:** Libera la reserva en el instante exacto, sin consultas periódicas.<br>**Con:** Si la reserva se cancela o se activa antes, el mensaje sigue en la cola y debe descartarse. Además, cambiar la tolerancia exige reprogramar los mensajes ya encolados. | **Tarea en la base de datos (pg_cron o triggers)**<br>**Pro:** Se ejecuta aun si la aplicación está detenida.<br>**Con:** Traslada la regla de negocio a SQL, fuera del dominio, y no puede publicar eventos ni enviar el correo de TS-CON07 sin una integración adicional. |
+| AD08, AD13, AD01 | Control de acceso físico y concurrencia sobre aforo y reservas | **Bloqueo optimista (@Version) con restricciones UNIQUE**<br>**Pro:** No bloquea filas durante la lectura, mantiene una latencia baja con poca contención y detecta los conflictos de aforo y de reservas.<br>**Con:** Ante conflictos, la operación debe reintentarse. | **Bloqueo pesimista (SELECT … FOR UPDATE)**<br>**Pro:** Garantiza el acceso exclusivo al registro durante la transacción.<br>**Con:** Serializa las lecturas sobre un mismo espacio, aumenta la latencia en el torniquete en horas punta y añade riesgo de bloqueos mutuos. | **Contador de aforo en caché distribuida**<br>**Pro:** Incrementa y decrementa el aforo de forma muy rápida.<br>**Con:** Agrega una infraestructura no contemplada en los constraints y obliga a sincronizar el contador con PostgreSQL, con riesgo de inconsistencias ante fallos. |
 
 ### 4.1.5. Quality Attribute Scenario Refinements
 
@@ -2631,407 +2799,506 @@ Esta capa implementa la persistencia con JPA y Spring Data JPA, la mensajería c
 
 ## 5.3. Bounded Context: Space and Facility Context
 
-El Space and Facility Context es el bounded context núcleo (*core*) encargado de administrar la infraestructura física del campus universitario (aulas, laboratorios, cubículos de estudio, oficinas y torniquetes de acceso), regular la ocupación y aforo en tiempo real, validar los permisos de paso físico y gestionar la activación presencial de reservas de ambientes mediante interacciones NFC y lectores IoT. Su propósito principal es garantizar la seguridad física del recinto, evitar el acaparamiento de espacios de estudio asegurando un uso equitativo y mantener una correspondencia estricta entre la presencia física real y el estado del campus.
+El Space and Facility Context es el bounded context núcleo (core) encargado de administrar la infraestructura física del campus universitario (aulas, laboratorios, cubículos de estudio, oficinas, auditorios de eventos y torniquetes de acceso), regular la ocupación y el aforo en tiempo real, validar los permisos de paso físico y gestionar la activación presencial de reservas de ambientes mediante interacciones NFC y lectores IoT. Su propósito principal es garantizar la seguridad física del recinto, evitar el acaparamiento de espacios de estudio asegurando un uso equitativo y mantener una correspondencia estricta entre la presencia física real y el estado del campus.
 
-En la arquitectura de TarjePAFI, los estudiantes, docentes y trabajadores no acceden a aplicaciones web ni móviles para reservar o consultar disponibilidad. Su interacción con este contexto es estrictamente física, aproximando su credencial física NFC a los lectores ESP32 ubicados en torniquetes de ingreso, puertas restringidas y mesas de cubículos. La única interfaz digital existente es la Web App responsive (Angular), reservada de forma exclusiva para el Personal Administrativo (`ADMIN`) para dar de alta espacios, configurar políticas y supervisar métricas de ocupación en vivo.
+En la arquitectura de TarjePAFI, la interacción de los estudiantes, docentes y trabajadores es estrictamente física: aproximan su credencial NFC a los lectores ESP32 ubicados en torniquetes de ingreso y salida, puertas restringidas y mesas de cubículos. La única interfaz digital existente es la Web App responsive (Angular), reservada de forma exclusiva para el Personal Administrativo (ADMIN) para dar de alta espacios, programar reservas, configurar políticas de acceso y supervisar métricas de ocupación en vivo.
 
 **Reglas de negocio principales**
 
-- **Flujo de ingreso y salida general del campus:** Toda persona que ingrese o salga del recinto universitario debe presentar su credencial física en los torniquetes. El sistema valida la vigencia de la tarjeta contra el registro institucional; si es válida, emite `ActivarEntrada` (`AccesoConcedido`) y franquea el paso. Al salir, el lector registra `ActivarSalida`, actualizando dinámicamente el conteo de personas presentes en la institución. Intentos con credenciales dadas de baja o suspendidas son rechazados con `AccesoDenegado`.
+- **Flujo de ingreso y salida general del campus:** Toda persona que ingrese o salga del recinto universitario debe presentar su credencial física en los torniquetes. En los torniquetes de entrada (CAMPUS_ENTRANCE) el sistema valida la vigencia de la tarjeta contra el registro institucional; si es válida, emite ActivarEntrada (AccesoConcedido), franquea el paso e incrementa el conteo de personas presentes. Los intentos con credenciales dadas de baja, suspendidas o no registradas son rechazados con AccesoDenegado. En los torniquetes de salida (CAMPUS_EXIT) el lector registra ActivarSalida y reduce el conteo; la salida siempre se concede para no retener a ninguna persona dentro del campus.
 
-- **Flujo de control de zonas restringidas y exclusivas:** Las puertas de ambientes especializados (oficinas docentes, laboratorios de investigación, almacenes o salas de servidores) evalúan el rol institucional (`STUDENT`, `TEACHER`, `STAFF`, `ADMIN`) y los permisos de la credencial. Si un estudiante intenta franquear una puerta exclusiva para trabajadores o docentes, se genera `AccesoDenegado`. Los trabajadores con rol asignado reciben `AccesoConcedido`.
+- **Flujo de control de zonas restringidas y exclusivas:** Las puertas de ambientes especializados (oficinas docentes, laboratorios de investigación, almacenes o salas de servidores) evalúan el rol institucional del titular (STUDENT, TEACHER, STAFF) y la política de acceso configurada para el ambiente. Si un estudiante intenta franquear una puerta exclusiva para trabajadores o docentes, se genera AccesoDenegado. Los titulares con rol autorizado reciben AccesoConcedido.
 
-- **Flujo de activación de reservas y regla de oro de los 10 minutos (Anti-acaparamiento):** Las reservas de cubículos y laboratorios son programadas por la administración o provienen de la planificación institucional. Para hacer uso del ambiente, el estudiante titular debe presentarse físicamente y aproximar su tarjeta al lector ESP32 de la mesa del cubículo (`ActivarReserva`). Si la tarjeta coincide con la reserva vigente, se emite `ReservaActivada` y el espacio cambia su estado a ocupado. Si la tarjeta no coincide con la reserva, se detecta espacio incorrecto y se emite `ActivacionFallida` (`RechazarReserva`). Si transcurren los primeros diez (10) minutos de la franja horaria sin que el titular valide su presencia física (`Ausencia del espacio reservado`), el sistema cancela automáticamente la reserva, emite `ReservaPerdida` (`ReservationForfeited`), libera el cubículo para su reaprovechamiento y despacha un correo de notificación al titular.
+- **Flujo de activación de reservas y regla de oro de los 10 minutos (anti-acaparamiento):** Las reservas de cubículos y laboratorios son programadas por la administración o provienen de la planificación institucional. Solo se pueden registrar en espacios con política RESERVATION_REQUIRED, en una franja horaria futura, para un titular con credencial vigente y sin cruzarse con otra reserva del mismo espacio. Para hacer uso del ambiente, el titular debe presentarse físicamente y aproximar su tarjeta al lector ESP32 de la mesa (ActivarReserva). Si la tarjeta coincide con la reserva vigente, se emite ReservaActivada y el espacio cambia su estado a ocupado. Si la tarjeta no coincide con la reserva, se emite ActivacionFallida (RechazarReserva). Si transcurren los primeros diez (10) minutos de la franja horaria sin que el titular valide su presencia física, el sistema cancela automáticamente la reserva, emite ReservaPerdida (ReservationForfeited), deja la franja disponible para su reaprovechamiento y despacha un correo de notificación al titular. Al finalizar la franja de una reserva activada, la reserva se da por completada y el espacio vuelve a quedar disponible.
 
-- **Validación de aforo y capacidad máxima:** Ningún espacio físico puede admitir ingresos que excedan su capacidad declarada (`capacity`).
+- **Flujo de acceso a eventos universitarios:** Los auditorios y ambientes de eventos se registran como EVENT_VENUE y su entrada se valida con la misma política de acceso configurada para el ambiente (abierta o restringida por rol).
 
-- **Auditoría inmutable de accesos:** Todo contacto físico de una tarjeta genera un registro inmutable de auditoría (`AccessRecord`), capturando el instante original, lector, espacio, titular, decisión y motivo de rechazo.
+- **Validación de aforo y capacidad máxima:** Ningún espacio físico puede admitir ingresos que excedan su capacidad declarada (capacity). El aforo en tiempo real se controla en los puntos que cuentan con torniquete de entrada y de salida.
+
+- **Control de permanencia en el campus:** Cada ingreso por torniquete abre una permanencia (CampusPresence) del titular y cada salida la cierra, calculando el tiempo transcurrido. Para el personal (STAFF) este tiempo corresponde a su jornada de trabajo. Si un titular registra una salida sin tener una permanencia abierta (salida duplicada o sin ingreso previo), el torniquete permite el paso por seguridad, pero no se calcula una duración y se emite ExitWithoutEntryDetected para su revisión.
+
+- **Auditoría inmutable de accesos:** Todo contacto físico de una tarjeta en un punto de control de este contexto genera un registro inmutable de auditoría (AccessRecord), que captura el instante original, el lector, el espacio, el titular, la decisión y el motivo de rechazo.
+
+- **Lecturas fuera del alcance del contexto:** Las lecturas realizadas en aulas (CLASSROOM) son procesadas por Academic Attendance Context y se ignoran en este contexto. Las lecturas de lectores sin espacio asociado se descartan y se envían a la dead-letter queue para su revisión.
 
 **Datos externos simulados**
 
-Los espacios físicos, sus lectores asignados y las reservas programadas se inicializan mediante datos semilla en PostgreSQL. Cuando exista la integración plena con el Sistema de Infraestructura y Horarios de la UPC, solo se requerirá implementar el adaptador REST/HTTPS correspondiente sin alterar el núcleo de dominio.
+Los espacios físicos, sus lectores asignados, las reservas programadas y el directorio de titulares (UID de la tarjeta, titular, rol institucional, correo y vigencia de la credencial) se inicializan mediante datos semilla en PostgreSQL. El directorio de titulares se consulta a través del puerto de salida CardHolderDirectoryPort con un adaptador simulado. Cuando exista la integración plena con el Sistema Académico UPC y su registro institucional de credenciales, solo se requerirá implementar el adaptador REST/HTTPS correspondiente, sin alterar el núcleo de dominio.
 
-**Integración con IoT Monitoring Context**
+**Integración con otros Bounded Contexts**
 
-Las lecturas físicas no se reciben de manera directa desde las antenas de los lectores ESP32. El IoT Monitoring Context procesa las tramas de hardware, las normaliza mediante su Anti-Corruption Layer (ACL) y publica el evento desacoplado `CardTapEvent` a través de RabbitMQ. El Space and Facility Context consume este evento, mapea la ubicación del dispositivo (`spaceId`) con el ambiente correspondiente, resuelve la identidad del titular consultando a IAM / Identification Context y aplica la política de acceso o activación.
+- **IoT Monitoring Context:** Las lecturas físicas no se reciben de manera directa desde las antenas de los lectores ESP32. IoT Monitoring Context procesa las tramas de hardware, las normaliza mediante su Anti-Corruption Layer (ACL) y publica el evento desacoplado CardTapEvent a través de RabbitMQ. Space and Facility Context consume este evento, ubica el espacio a partir del spaceId del lector, resuelve la identidad del titular mediante CardHolderDirectoryPort y aplica la política de acceso o de activación.
+- **IAM Context:** Los endpoints REST administrativos se protegen con el token JWT emitido por IAM Context y solo admiten el rol ADMIN. IAM no participa en la validación de las tarjetas físicas, ya que gestiona exclusivamente las cuentas administrativas.
+- **Data Management Context:** Los eventos de acceso, reservas y ocupación se publican en el exchange tarjepafi.events y Data Management Context los consume para construir el historial y los reportes de uso de espacios.
 
 ### 5.3.1. Domain Layer
 
-En esta capa se encapsulan las reglas de negocio de la infraestructura: la gestión de espacios, la activación y pérdida de reservas por inasistencia, y la evaluación de acceso físico según zonificación y aforo.
+En esta capa se encapsulan las reglas de negocio de la infraestructura: la gestión de espacios, el ciclo de vida de las reservas (activación, pérdida por inasistencia y cierre) y la evaluación del acceso físico según zonificación, rol y aforo.
 
-**Aggregate: `Space`**
+**Aggregate: Space**
 
-Representa un ambiente o punto de control físico del campus (aula, cubículo, laboratorio, torniquete de ingreso) y controla su capacidad, aforo en vivo y estado operativo.
+Representa un ambiente o punto de control físico del campus (aula, cubículo, laboratorio, auditorio de eventos, torniquete de entrada o de salida) y controla su capacidad, su aforo en vivo, su estado operativo y su política de acceso.
 
 | Atributos | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
+| :--- | :--- | :--- | :--- |
 | id | Long | Private | Identificador único del espacio. |
 | spaceCode | SpaceCode | Private | Código institucional del ambiente (ej. "SM-ENT-01", "SM-CUB-204"). Es único. |
 | name | String | Private | Nombre descriptivo del ambiente o punto de acceso. |
-| spaceType | SpaceType | Private | Tipo: `CAMPUS_ENTRANCE`, `STUDY_CUBICLE`, `CLASSROOM`, `LABORATORY`, `RESTRICTED_OFFICE`. |
-| location | SpaceLocation | Private | Ubicación física: campus, pabellón, piso y detalle referencia. |
+| spaceType | SpaceType | Private | Tipo: CAMPUS_ENTRANCE, CAMPUS_EXIT, STUDY_CUBICLE, CLASSROOM, LABORATORY, RESTRICTED_OFFICE, EVENT_VENUE. |
+| location | SpaceLocation | Private | Ubicación física: campus, pabellón, piso y detalle de referencia. |
 | capacity | Capacity | Private | Capacidad máxima autorizada de personas. |
 | currentOccupancy | OccupancyCount | Private | Conteo de personas presentes en tiempo real. |
-| status | SpaceStatus | Private | Estado del espacio: `AVAILABLE`, `OCCUPIED`, `MAINTENANCE`, `RESERVED`. |
-| accessPolicy | AccessPolicyType | Private | Política: `OPEN_CAMPUS`, `RESERVATION_REQUIRED`, `RESTRICTED_STAFF_ONLY`. |
+| status | SpaceStatus | Private | Estado operativo del espacio: AVAILABLE, OCCUPIED, MAINTENANCE. |
+| accessPolicy | AccessPolicyType | Private | Política: OPEN_CAMPUS, RESERVATION_REQUIRED, RESTRICTED_STAFF_ONLY. |
 
 | Métodos | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| getX() | — | Public | Getters de cada atributo (`getId()`, `getSpaceCode()`, `getStatus()`, `getCapacity()`, etc.). |
-| Space(CreateSpaceCommand) | Constructor | Public | Inicializa un espacio en estado `AVAILABLE` con ocupación en 0. |
-| incrementOccupancy() | void | Public | Incrementa el conteo de personas y conmuta a `OCCUPIED`. Lanza `CapacityExceededException` si excede la capacidad. |
-| decrementOccupancy() | void | Public | Reduce el conteo de ocupantes. Si llega a 0, conmuta el estado a `AVAILABLE`. |
-| markAsReserved() | void | Public | Establece el espacio en estado `RESERVED`. Lanza `SpaceNotAvailableException` si no está disponible. |
-| releaseReservation() | void | Public | Conmuta el estado de `RESERVED` a `AVAILABLE` cuando se cancela o pierde una reserva. |
-| setMaintenance(boolean) | void | Public | Establece o retira el estado de mantenimiento (`MAINTENANCE`). |
+| :--- | :--- | :--- | :--- |
+| getX() | — | Public | Getters de cada atributo (getId(), getSpaceCode(), getStatus(), getCapacity(), etc.). |
+| Space(CreateSpaceCommand) | Constructor | Public | Inicializa un espacio en estado AVAILABLE con ocupación en 0. |
+| incrementOccupancy() | void | Public | Incrementa el conteo de personas presentes. Lanza CapacityExceededException si se excede la capacidad. |
+| decrementOccupancy() | void | Public | Reduce el conteo de personas presentes sin bajar de 0. |
+| occupy() | void | Public | Cambia el estado de AVAILABLE a OCCUPIED tras el check-in de una reserva. Lanza SpaceNotAvailableException si el espacio está en MAINTENANCE. |
+| release() | void | Public | Cambia el estado de OCCUPIED a AVAILABLE cuando termina el uso del espacio. |
+| setMaintenance(boolean) | void | Public | Establece o retira el estado de mantenimiento (MAINTENANCE). |
+| changeAccessPolicy(AccessPolicyType) | void | Public | Actualiza la política de acceso del espacio. |
 | canAccommodate(int) | boolean | Public | Valida si un nuevo ingreso no transgrede el límite de capacidad. |
 
-**Aggregate: `SpaceReservation`**
+**Aggregate: SpaceReservation**
 
-Controla el ciclo de vida de una reserva programada en un ambiente de estudio y gobierna la regla de tolerancia presencial de 10 minutos.
+Controla el ciclo de vida de una reserva programada en un ambiente con política RESERVATION_REQUIRED y gobierna la regla de tolerancia presencial de 10 minutos.
 
 | Atributos | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
+| :--- | :--- | :--- | :--- |
 | id | Long | Private | Identificador único de la reserva. |
 | reservationCode | ReservationCode | Private | Código único de la reserva asignada (ej. "RES-2026-10492"). |
 | spaceId | SpaceId | Private | Espacio físico reservado (ej. cubículo o laboratorio). |
 | cardHolderId | CardHolderId | Private | Titular al que fue asignado el espacio. |
-| timeSlot | TimeSlot | Private | Franja horaria que encapsula `startTime` y `endTime`. |
-| status | ReservationStatus | Private | Estado: `CONFIRMED`, `CHECKED_IN`, `COMPLETED`, `CANCELLED`, `FORFEITED`. |
-| checkInWindowEnd | Instant | Private | Límite máximo para marcación presencial con tarjeta (`startTime + 10 minutos`). |
-| checkedInAt | Instant | Private | Instante de lectura física de la tarjeta en la mesa del cubículo. Nulo si no se marcó. |
+| timeSlot | TimeSlot | Private | Franja horaria que encapsula startTime y endTime. |
+| status | ReservationStatus | Private | Estado: CONFIRMED, CHECKED_IN, COMPLETED, CANCELLED, FORFEITED. |
+| checkInWindowEnd | Instant | Private | Límite máximo para la marcación presencial con tarjeta (startTime + 10 minutos). |
+| checkedInAt | Instant | Private | Instante de lectura física de la tarjeta en la mesa. Es nulo si no se marcó. |
 | createdAt | Instant | Private | Fecha y hora en que se registró la reserva. |
 
 | Métodos | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
+| :--- | :--- | :--- | :--- |
 | getX() | — | Public | Getters de cada atributo. |
-| SpaceReservation(CreateReservationCommand) | Constructor | Public | Crea la reserva en estado `CONFIRMED` y computa `checkInWindowEnd = startTime + 10 min`. |
-| checkIn(Instant, CardHolderId) | void | Public | Activa presencialmente la reserva (`ReservaActivada`). Lanza excepción si el titular no coincide o si la ventana expiró. |
-| forfeit(Instant) | void | Public | Da por perdida la reserva (`ReservaPerdida`) por vencimiento de los 10 minutos sin tap físico. |
-| cancel(Instant) | void | Public | Cancela administrativamente la reserva. |
-| isCheckInExpired(Instant) | boolean | Public | Evalúa si el instante actual superó `checkInWindowEnd` sin que exista marcación física. |
-| coversInstant(Instant) | boolean | Public | Indica si un instante cae dentro de la franja programada `[startTime, endTime]`. |
+| SpaceReservation(CreateReservationCommand) | Constructor | Public | Crea la reserva en estado CONFIRMED y calcula checkInWindowEnd = startTime + 10 min. |
+| checkIn(Instant, CardHolderId) | void | Public | Activa presencialmente la reserva (ReservaActivada) y la pasa a CHECKED_IN. Lanza excepción si el titular no coincide, si la ventana expiró o si la reserva no está CONFIRMED. |
+| forfeit(Instant) | void | Public | Da por perdida la reserva (FORFEITED) por vencimiento de los 10 minutos sin lectura física. Solo aplica a reservas CONFIRMED. |
+| complete(Instant) | void | Public | Marca como COMPLETED una reserva CHECKED_IN cuya franja horaria ya terminó. |
+| cancel(Instant) | void | Public | Cancela administrativamente la reserva. Lanza InvalidReservationStateException si no está CONFIRMED. |
+| isCheckInExpired(Instant) | boolean | Public | Evalúa si el instante superó checkInWindowEnd sin que exista marcación física. |
+| coversInstant(Instant) | boolean | Public | Indica si un instante cae dentro de la franja programada [startTime, endTime]. |
+| overlaps(TimeSlot) | boolean | Public | Indica si la franja de la reserva se cruza con otra franja. |
 
-**Aggregate: `AccessRecord`**
+**Aggregate: AccessRecord**
 
-Representa la evidencia inmutable de que un titular aproximó su credencial a un lector de torniquete, puerta o mesa. Almacena tanto accesos concedidos como denegados para auditoría de seguridad.
+Representa la evidencia inmutable de que un titular aproximó su credencial a un lector de torniquete, puerta o mesa. Almacena tanto los accesos concedidos como los denegados para la auditoría de seguridad.
 
 | Atributos | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
+| :--- | :--- | :--- | :--- |
 | id | Long | Private | Identificador único del registro de acceso. |
 | eventId | ReaderEventId | Private | Identificador único del evento de lectura. Garantiza la idempotencia. |
-| spaceId | SpaceId | Private | Espacio físico o punto de control donde ocurrió el tap. |
-| cardHolderId | CardHolderId | Private | Titular de la credencial física (resuelto vía IAM). Nulo si la tarjeta no es válida. |
-| cardUid | CardUid | Private | UID hexadecimal de la tarjeta NFC física utilizada. |
+| spaceId | SpaceId | Private | Espacio físico o punto de control donde ocurrió la lectura. |
+| cardHolderId | CardHolderId | Private | Titular de la credencial, resuelto mediante CardHolderDirectoryPort. Es nulo si la tarjeta no está registrada. |
+| cardUid | CardUid | Private | UID hexadecimal de la tarjeta NFC utilizada. |
 | attemptedAt | Instant | Private | Hora física original generada por el lector ESP32 (no la de recepción). |
-| accessType | AccessType | Private | Tipo de interacción: `CAMPUS_ENTRY`, `CAMPUS_EXIT`, `RESTRICTED_ACCESS`, `CUBICLE_CHECK_IN`. |
-| decision | AccessDecision | Private | Decisión tomada por el sistema: `GRANTED` o `DENIED`. |
-| denialReason | DenialReason | Private | Motivo del rechazo. Es nulo si el acceso fue concedido. |
+| accessType | AccessType | Private | Tipo de interacción: CAMPUS_ENTRY, CAMPUS_EXIT, SPACE_ACCESS, RESERVATION_CHECK_IN. |
+| decision | AccessDecision | Private | Decisión tomada por el sistema: GRANTED o DENIED. |
+| denialReason | DenialReason | Private | Motivo del rechazo. Es NONE si el acceso fue concedido. |
 
 | Métodos | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
+| :--- | :--- | :--- | :--- |
 | getX() | — | Public | Getters de cada atributo. |
 | AccessRecord(CreateAccessRecordCommand, AccessDecision, DenialReason) | Constructor | Public | Inicializa el registro persistente de auditoría con la decisión resuelta. |
 
-**Domain Service: `SpaceAccessPolicy`**
+**Aggregate: CampusPresence**
 
-Concentra las reglas de negocio de seguridad física y activación presencial, combinando las políticas del ambiente, el rol del titular, el aforo y la existencia de reservas vigentes.
+Representa la permanencia de un titular dentro del campus, desde su ingreso hasta su salida. Permite calcular las horas de permanencia y, en el caso del personal, sus horas trabajadas.
+
+| Atributos | Tipo de dato | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| id | Long | Private | Identificador único de la permanencia. |
+| cardHolderId | CardHolderId | Private | Titular de la tarjeta. |
+| holderRole | ParticipantRole | Private | Rol del titular: STUDENT, TEACHER o STAFF. |
+| entryEventId | ReaderEventId | Private | Lectura que abrió la permanencia. |
+| enteredAt | Instant | Private | Hora original del ingreso. |
+| exitedAt | Instant | Private | Hora original de la salida. Es nula mientras la permanencia está abierta. |
+| status | PresenceStatus | Private | Estado de la permanencia: OPEN o CLOSED. |
+
+| Métodos | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| getX() | — | Public | Getters de cada atributo. |
+| CampusPresence(OpenPresenceCommand) | Constructor | Public | Abre la permanencia en estado OPEN. |
+| close(Instant) | void | Public | Registra exitedAt y cambia a CLOSED. Lanza PresenceStateException si ya está CLOSED o si la salida es anterior al ingreso. |
+| getDuration() | Duration | Public | Devuelve exitedAt − enteredAt. Solo es válido si la permanencia está CLOSED. |
+
+**Domain Service: SpaceAccessPolicy**
+
+Concentra las reglas de negocio de seguridad física y activación presencial, combinando la política del ambiente, el rol y la vigencia de la credencial del titular, el aforo y la existencia de reservas vigentes.
 
 | Método | Descripción |
-|---|---|
-| evaluateAccess(Space, CardHolderId, ParticipantRole, AccessType, Optional<SpaceReservation>, Instant) | Devuelve un `AccessDecisionResult` con la decisión (`GRANTED` o `DENIED`) y el motivo de rechazo en caso denegado. |
+| :--- | :--- |
+| evaluateAccess(Space, Optional\<CardHolderSnapshot\>, AccessType, Optional\<SpaceReservation\>, Instant) | Devuelve un AccessDecisionResult con la decisión (GRANTED o DENIED) y el motivo de rechazo en caso de denegación. |
 
 Reglas que aplica, en orden:
 
-1. **Espacio en mantenimiento:** Si el ambiente está en `MAINTENANCE`, `DENIED` con `SPACE_IN_MAINTENANCE`.
-2. **Tarjeta no válida o suspendida:** Si el titular no está activo en IAM, `DENIED` con `CARD_INACTIVE`.
-3. **Paso por puerta restringida / exclusiva:** Si la política es `RESTRICTED_STAFF_ONLY` y el rol es `STUDENT`, `DENIED` con `UNAUTHORIZED_ROLE`.
-4. **Activación de reserva de cubículo (mesa):**
-   - Si no existe reserva activa para esa franja horaria: `DENIED` con `NO_ACTIVE_RESERVATION`.
-   - Si la reserva pertenece a otro usuario: `DENIED` con `WRONG_RESERVATION_HOLDER` (`Espacio reservado incorrecto`).
-   - Si el instante supera los 10 minutos de tolerancia: `DENIED` con `CHECK_IN_WINDOW_EXPIRED` (`Ausencia del espacio reservado`).
-5. **Control de capacidad máxima:** Si el espacio está al 100% de aforo y el evento es de entrada, `DENIED` con `CAPACITY_FULL`.
-6. **Validación exitosa de torniquete o puerta:** Si cumple todas las condiciones, `GRANTED` con `NONE`.
+1. **Salida del campus:** Si el tipo de acceso es CAMPUS_EXIT, GRANTED con NONE (la salida siempre se registra).
+2. **Espacio en mantenimiento:** Si el ambiente está en MAINTENANCE, DENIED con SPACE_IN_MAINTENANCE.
+3. **Tarjeta no válida o suspendida:** Si la tarjeta no está registrada en el directorio de titulares o la credencial no está vigente, DENIED con CARD_INACTIVE.
+4. **Paso por puerta restringida o exclusiva (SPACE_ACCESS):** Si la política es RESTRICTED_STAFF_ONLY y el rol es STUDENT, DENIED con UNAUTHORIZED_ROLE.
+5. **Activación de reserva (política RESERVATION_REQUIRED):**
+   - Si no existe reserva vigente para esa franja horaria: DENIED con NO_ACTIVE_RESERVATION.
+   - Si la reserva pertenece a otro titular: DENIED con WRONG_RESERVATION_HOLDER.
+   - Si el instante supera los 10 minutos de tolerancia: DENIED con CHECK_IN_WINDOW_EXPIRED.
+6. **Control de capacidad máxima:** Si el tipo de acceso es CAMPUS_ENTRY y el campus está al 100 % de aforo, DENIED con CAPACITY_FULL.
+7. **Validación exitosa:** Si cumple todas las condiciones, GRANTED con NONE.
 
 **Value Objects**
 
 | Value Object | Descripción |
-|---|---|
+| :--- | :--- |
 | SpaceId | Registro que envuelve el identificador único del espacio. Valida que no sea nulo ni menor o igual a cero. |
-| ReservationId | Registro que representa el identificador único de una reserva. Valida identificador positivo. |
+| ReservationId | Registro que representa el identificador único de una reserva. Valida que sea un identificador positivo. |
 | SpaceCode | Código institucional del espacio (ej. "SM-TOR-01", "SM-CUB-10"). Valida que no esté en blanco. |
-| ReservationCode | Código alfanumérico único representativo de una reserva. Valida formato estandarizado. |
+| ReservationCode | Código alfanumérico único de una reserva. Valida el formato estandarizado. |
 | CardHolderId | Registro que representa el identificador del titular de la credencial en el campus. |
-| CardUid | Registro con el UID hexadecimal de la tarjeta física. Valida formato y longitud máxima de 32 caracteres. |
-| ReaderEventId | Envoltorio del UUID generado por el lector IoT para garantizar idempotencia en la ingesta. |
-| TimeSlot | Encapsula el rango temporal `startTime` y `endTime`. Valida que el fin sea posterior al inicio. |
+| CardUid | Registro con el UID hexadecimal de la tarjeta física. Valida el formato y una longitud máxima de 32 caracteres. |
+| ReaderEventId | Envoltorio del UUID generado por el lector IoT para garantizar la idempotencia en la ingesta. |
+| CardHolderSnapshot | Registro inmutable con cardHolderId, role (ParticipantRole), email y credentialActive, obtenido del directorio de titulares. |
+| TimeSlot | Encapsula el rango temporal startTime y endTime. Valida que el fin sea posterior al inicio. |
 | Capacity | Registro que define la capacidad máxima de personas autorizadas (entero mayor a cero). |
 | OccupancyCount | Registro con el conteo de personas presentes en un instante (entero mayor o igual a cero). |
-| SpaceLocation | Registro estructurado con `campus`, `building`, `floorNumber` y `referenceDescription`. |
-| SpaceType | Enumeración: `CAMPUS_ENTRANCE`, `STUDY_CUBICLE`, `CLASSROOM`, `LABORATORY`, `RESTRICTED_OFFICE`. |
-| SpaceStatus | Enumeración: `AVAILABLE`, `OCCUPIED`, `MAINTENANCE`, `RESERVED`. |
-| ReservationStatus | Enumeración: `CONFIRMED`, `CHECKED_IN`, `COMPLETED`, `CANCELLED`, `FORFEITED`. |
-| AccessPolicyType | Enumeración: `OPEN_CAMPUS`, `RESERVATION_REQUIRED`, `RESTRICTED_STAFF_ONLY`. |
-| AccessType | Enumeración: `CAMPUS_ENTRY`, `CAMPUS_EXIT`, `RESTRICTED_ACCESS`, `CUBICLE_CHECK_IN`. |
-| AccessDecision | Enumeración: `GRANTED`, `DENIED`. |
-| DenialReason | Enumeración: `NONE`, `UNAUTHORIZED_ROLE`, `NO_ACTIVE_RESERVATION`, `WRONG_RESERVATION_HOLDER`, `CHECK_IN_WINDOW_EXPIRED`, `CAPACITY_FULL`, `SPACE_IN_MAINTENANCE`, `CARD_INACTIVE`. |
+| SpaceLocation | Registro estructurado con campus, building, floorNumber y referenceDescription. |
+| ParticipantRole | Enumeración: STUDENT, TEACHER, STAFF. |
+| PresenceStatus | Enumeración: OPEN, CLOSED. |
+| SpaceType | Enumeración: CAMPUS_ENTRANCE, CAMPUS_EXIT, STUDY_CUBICLE, CLASSROOM, LABORATORY, RESTRICTED_OFFICE, EVENT_VENUE. |
+| SpaceStatus | Enumeración: AVAILABLE, OCCUPIED, MAINTENANCE. |
+| ReservationStatus | Enumeración: CONFIRMED, CHECKED_IN, COMPLETED, CANCELLED, FORFEITED. |
+| AccessPolicyType | Enumeración: OPEN_CAMPUS, RESERVATION_REQUIRED, RESTRICTED_STAFF_ONLY. |
+| AccessType | Enumeración: CAMPUS_ENTRY, CAMPUS_EXIT, SPACE_ACCESS, RESERVATION_CHECK_IN. |
+| AccessDecision | Enumeración: GRANTED, DENIED. |
+| DenialReason | Enumeración: NONE, UNAUTHORIZED_ROLE, NO_ACTIVE_RESERVATION, WRONG_RESERVATION_HOLDER, CHECK_IN_WINDOW_EXPIRED, CAPACITY_FULL, SPACE_IN_MAINTENANCE, CARD_INACTIVE. |
 
 **Domain Events (publicados)**
 
 | Evento | Se publica cuando | Datos principales |
-|---|---|---|
-| CampusEntryGranted | Se valida el acceso en torniquetes de entrada (`ActivarEntrada`). | eventId, spaceId, cardHolderId, cardUid, timestamp. |
-| CampusExitRecorded | Se registra la salida física del campus (`ActivarSalida`). | eventId, spaceId, cardHolderId, cardUid, timestamp. |
-| SpaceAccessDenied | Se bloquea el acceso en una puerta o torniquete (`AccesoDenegado`). | eventId, spaceId, cardHolderId, denialReason, timestamp. |
-| ReservationActivated | El titular valida su tarjeta en el cubículo (`ReservaActivada`). | reservationId, spaceId, cardHolderId, checkedInAt. |
-| ReservationActivationFailed | Se pasa una tarjeta no autorizada en el cubículo (`ActivacionFallida`). | eventId, spaceId, cardUid, denialReason, timestamp. |
-| ReservationForfeited | Se cancela la reserva a los 10 min por inasistencia (`ReservaPerdida`). | reservationId, spaceId, cardHolderId, forfeitedAt. |
-| SpaceOccupied | El aforo de un ambiente se incrementa o pasa a ocupado. | spaceId, currentOccupancy, timestamp. |
-| SpaceReleased | Un ambiente se desocupa y vuelve a quedar libre. | spaceId, currentOccupancy, timestamp. |
+| :--- | :--- | :--- |
+| CampusEntryGranted | Se concede el ingreso en un torniquete de entrada y se abre la permanencia (ActivarEntrada). | eventId, spaceId, cardHolderId, holderRole, cardUid, currentOccupancy, timestamp. |
+| CampusExitRecorded | Se registra la salida física del campus y se cierra la permanencia (ActivarSalida). | eventId, spaceId, cardHolderId, holderRole, cardUid, enteredAt, exitedAt, durationMinutes, currentOccupancy. |
+| ExitWithoutEntryDetected | Se registra una salida sin permanencia abierta (salida duplicada o sin ingreso previo). | eventId, spaceId, cardHolderId, cardUid, timestamp. |
+| SpaceAccessGranted | Se concede el paso por la puerta de un ambiente o auditorio de eventos (AccesoConcedido). | eventId, spaceId, cardHolderId, timestamp. |
+| SpaceAccessDenied | Se bloquea el acceso en una puerta o torniquete (AccesoDenegado). | eventId, spaceId, cardHolderId, denialReason, timestamp. |
+| ReservationCreated | La administración registra una reserva. | reservationId, spaceId, cardHolderId, startTime, endTime. |
+| ReservationCancelled | La administración cancela una reserva. | reservationId, spaceId, cardHolderId, cancelledAt. |
+| ReservationActivated | El titular valida su tarjeta en la mesa reservada (ReservaActivada). | reservationId, spaceId, cardHolderId, checkedInAt. |
+| ReservationActivationFailed | Se pasa una tarjeta no autorizada en un espacio con reserva (ActivacionFallida). | eventId, spaceId, cardUid, denialReason, timestamp. |
+| ReservationForfeited | Se pierde la reserva a los 10 minutos por inasistencia (ReservaPerdida). | reservationId, spaceId, cardHolderId, forfeitedAt. |
+| SpaceOccupied | Un espacio con reserva pasa a OCCUPIED tras el check-in. | spaceId, reservationId, timestamp. |
+| SpaceReleased | Un espacio ocupado vuelve a AVAILABLE al terminar su reserva. | spaceId, reservationId, timestamp. |
 
 **Excepciones de Dominio**
 
 | Excepción | Descripción |
-|---|---|
+| :--- | :--- |
 | SpaceNotFoundException | Se lanza cuando no se encuentra un ambiente por su ID o por su código. |
 | ReservationNotFoundException | Se lanza cuando no se encuentra la reserva solicitada. |
-| SpaceNotAvailableException | Se lanza al intentar programar o activar un ambiente no disponible o en mantenimiento. |
-| ReservationConflictException | Se lanza cuando dos reservas colisionan en la misma franja horaria. |
+| SpaceNotAvailableException | Se lanza al intentar reservar u ocupar un ambiente en mantenimiento o cuya política no admite reservas. |
+| ReservationConflictException | Se lanza cuando dos reservas del mismo espacio se cruzan en la misma franja horaria. |
+| InvalidReservationStateException | Se lanza ante una transición inválida de la reserva (cancelar una reserva perdida o completada, activar una reserva no confirmada). |
+| PresenceStateException | Se lanza ante una transición inválida de la permanencia (cerrar una permanencia ya cerrada o con salida anterior al ingreso). |
 | CapacityExceededException | Se lanza ante un intento de ingreso que sobrepase la capacidad máxima del ambiente. |
 | UnauthorizedSpaceAccessException | Se lanza ante intentos de ingreso a áreas prohibidas o sin credencial válida. |
-| DuplicateAccessEventException | Se lanza cuando el `eventId` de la lectura ya fue procesado previamente. |
+| DuplicateAccessEventException | Se lanza cuando el eventId de la lectura ya fue procesado previamente. |
 
-**Interfaz: `SpaceCommandService`**
+**Interfaz: SpaceCommandService**
 
 | Método | Descripción |
-|---|---|
+| :--- | :--- |
 | handle(CreateSpaceCommand) | Crea un nuevo ambiente en el catálogo y retorna su identificador. |
-| handle(UpdateSpaceStatusCommand) | Modifica el estado del espacio (disponible, mantenimiento). |
+| handle(UpdateSpaceStatusCommand) | Modifica el estado operativo del espacio (disponible o mantenimiento). |
+| handle(UpdateSpaceAccessPolicyCommand) | Modifica la política de acceso del espacio. |
 
-**Interfaz: `SpaceReservationCommandService`**
+**Interfaz: SpaceReservationCommandService**
 
 | Método | Descripción |
-|---|---|
+| :--- | :--- |
 | handle(CreateReservationCommand) | Registra administrativamente una reserva programada en el sistema. |
-| handle(CancelReservationCommand) | Cancela administrativamente una reserva vigente. |
-| handle(ForfeitExpiredReservationsCommand) | Ejecuta el barrido y cancelación de reservas que superaron los 10 min sin tap presencial. |
+| handle(CancelReservationCommand) | Cancela administrativamente una reserva confirmada. |
+| handle(ForfeitExpiredReservationsCommand) | Ejecuta el barrido y la pérdida de las reservas que superaron los 10 minutos sin lectura presencial. |
+| handle(CompleteFinishedReservationsCommand) | Completa las reservas activadas cuya franja horaria terminó y libera sus espacios. |
 
-**Interfaz: `AccessRecordCommandService`**
-
-| Método | Descripción |
-|---|---|
-| handle(ProcessCardTapAccessCommand) | Procesa la lectura NFC física: evalúa la política, registra la entrada/salida o check-in de cubículo, persiste el `AccessRecord` y publica el evento de dominio. |
-
-**Interfaz: `SpaceQueryService`**
+**Interfaz: AccessRecordCommandService**
 
 | Método | Descripción |
-|---|---|
+| :--- | :--- |
+| handle(ProcessCardTapAccessCommand) | Procesa la lectura NFC física: evalúa la política, registra la entrada o salida (abriendo o cerrando la permanencia), el acceso a un ambiente o el check-in de la reserva, persiste el AccessRecord y publica el evento de dominio. |
+
+**Interfaz: SpaceQueryService**
+
+| Método | Descripción |
+| :--- | :--- |
 | handle(GetSpaceByIdQuery) | Obtiene los detalles de un espacio físico por su ID. |
 | handle(GetAllSpacesQuery) | Retorna el listado completo de espacios y su estado para la plataforma administrativa. |
-| handle(GetSpaceOccupancyQuery) | Consulta el aforo actual y nivel de ocupación en tiempo real. |
+| handle(GetSpaceOccupancyQuery) | Consulta el aforo actual y el nivel de ocupación en tiempo real. |
 
-**Interfaz: `SpaceReservationQueryService`**
+**Interfaz: CampusPresenceQueryService**
 
 | Método | Descripción |
-|---|---|
+| :--- | :--- |
+| handle(GetCampusPresencesByCardHolderQuery) | Obtiene las permanencias de un titular en un rango de fechas, con la duración de cada una y el total acumulado. |
+
+**Interfaz: SpaceReservationQueryService**
+
+| Método | Descripción |
+| :--- | :--- |
 | handle(GetReservationByIdQuery) | Recupera los datos de una reserva por su identificador. |
-| handle(GetActiveReservationsBySpaceQuery) | Obtiene la reserva vigente programada para un ambiente específico. |
+| handle(GetActiveReservationsQuery) | Obtiene las reservas en curso (CONFIRMED o CHECKED_IN dentro de su franja) en todo el campus. |
+| handle(GetReservationsBySpaceQuery) | Obtiene el historial de reservas de un espacio en un rango de fechas. |
 
 ### 5.3.2. Interface Layer
 
-La capa de interfaz expone controladores RESTful destinados **exclusivamente al personal administrativo (`ADMIN`)** autenticado mediante tokens JWT emitidos por IAM, y consumidores de RabbitMQ responsables de recibir todas las interacciones físicas de las tarjetas de los usuarios.
+La capa de interfaz expone controladores RESTful destinados exclusivamente al personal administrativo (ADMIN) autenticado mediante tokens JWT emitidos por IAM Context, y un consumidor de RabbitMQ responsable de recibir todas las interacciones físicas de las tarjetas de los usuarios.
 
-**Controlador: `SpaceCommandController`**
+**Controlador: SpaceCommandController**
 
-Permite a la administración gestionar la infraestructura del campus.
+Permite a la administración gestionar la infraestructura del campus y sus políticas de acceso.
 
 | Método | Ruta | Acceso | Descripción |
-|---|---|---|---|
+| :--- | :--- | :--- | :--- |
 | createSpace | POST /api/v1/admin/spaces | ADMIN | Registra una nueva instalación física o punto de control. |
 | updateSpaceStatus | PATCH /api/v1/admin/spaces/{spaceId}/status | ADMIN | Cambia el estado operativo de un espacio (ej. mantenimiento). |
+| updateSpaceAccessPolicy | PATCH /api/v1/admin/spaces/{spaceId}/access-policy | ADMIN | Cambia la política de acceso de un espacio. |
 
-**Controlador: `SpaceReservationCommandController`**
+**Controlador: SpaceReservationCommandController**
 
 Permite a la administración cargar y programar reservas en el campus.
 
 | Método | Ruta | Acceso | Descripción |
-|---|---|---|---|
+| :--- | :--- | :--- | :--- |
 | createReservation | POST /api/v1/admin/spaces/{spaceId}/reservations | ADMIN | Registra una reserva programada para un titular. |
-| cancelReservation | POST /api/v1/admin/reservations/{reservationId}/cancel | ADMIN | Cancela administrativamente una reserva programada. |
+| cancelReservation | POST /api/v1/admin/reservations/{reservationId}/cancel | ADMIN | Cancela administrativamente una reserva confirmada. |
 
-**Controlador: `SpaceQueryController`**
+**Controlador: SpaceQueryController**
 
 Expone consultas para los tableros administrativos de supervisión.
 
 | Método | Ruta | Acceso | Descripción |
-|---|---|---|---|
+| :--- | :--- | :--- | :--- |
 | getAllSpaces | GET /api/v1/admin/spaces | ADMIN | Lista la totalidad de espacios físicos y puntos de control. |
-| getSpaceById | GET /api/v1/admin/spaces/{spaceId} | ADMIN | Devuelve el detalle y especificaciones de un espacio. |
+| getSpaceById | GET /api/v1/admin/spaces/{spaceId} | ADMIN | Devuelve el detalle y las especificaciones de un espacio. |
 | getSpaceOccupancy | GET /api/v1/admin/spaces/{spaceId}/occupancy | ADMIN | Retorna el aforo en tiempo real y el porcentaje de ocupación. |
 
-**Controlador: `SpaceReservationQueryController`**
+**Controlador: SpaceReservationQueryController**
 
 | Método | Ruta | Acceso | Descripción |
-|---|---|---|---|
+| :--- | :--- | :--- | :--- |
 | getReservationById | GET /api/v1/admin/reservations/{reservationId} | ADMIN | Devuelve la información detallada de una reserva. |
 | getActiveReservations | GET /api/v1/admin/reservations/active | ADMIN | Lista las reservas actualmente en curso en el campus. |
+| getReservationsBySpace | GET /api/v1/admin/spaces/{spaceId}/reservations?from=&to= | ADMIN | Devuelve el historial de reservas de un espacio en un rango de fechas. |
+
+**Controlador: CampusPresenceQueryController**
+
+| Método | Ruta | Acceso | Descripción |
+| :--- | :--- | :--- | :--- |
+| getCampusPresences | GET /api/v1/admin/card-holders/{cardHolderId}/campus-presences?from=&to= | ADMIN | Devuelve las permanencias de un titular en un rango de fechas y el total de horas acumuladas. |
 
 **Consumidores de mensajería (inbound)**
 
 Es el canal de entrada por el cual los estudiantes, docentes y trabajadores interactúan con este contexto.
 
 | Consumidor | Cola / Routing key | Descripción |
-|---|---|---|
-| SpaceCardTapEventConsumer | `space.card-tap.queue` / `iot.card-tap` | Recibe `CardTapEvent` desde IoT Monitoring. Identifica la naturaleza del punto de lectura (`spaceType`) y lo traduce en un `ProcessCardTapAccessCommand` para que la capa de aplicación evalúe la entrada, salida, acceso a zona restringida o check-in presencial en cubículo. |
+| :--- | :--- | :--- |
+| SpaceCardTapEventConsumer | space.card-tap.queue / iot.card-tap | Recibe CardTapEvent desde IoT Monitoring Context. Si el espacio del lector es un aula (CLASSROOM), descarta el mensaje porque lo procesa Academic Attendance Context. Si el lector no tiene un espacio asociado, envía el mensaje a la dead-letter queue. En los demás casos lo traduce en un ProcessCardTapAccessCommand para que la capa de aplicación evalúe la entrada, la salida, el acceso a una zona restringida o el check-in de la reserva. |
 
 **Recursos (DTOs)**
 
 | Recurso | Descripción |
-|---|---|
-| CreateSpaceResource | Datos de alta de ambiente: spaceCode, name, spaceType, campus, building, floorNumber, capacity, accessPolicy. |
-| CreateReservationResource | Datos de registro de reserva: reservationCode, cardHolderId, startTime, endTime. |
-| SpaceResource | Respuesta de espacio: id, spaceCode, name, spaceType, location, capacity, currentOccupancy, status, accessPolicy. |
-| SpaceReservationResource | Respuesta de reserva: id, reservationCode, spaceId, cardHolderId, startTime, endTime, status, checkInWindowEnd, checkedInAt. |
-| SpaceOccupancyResource | Respuesta de aforo: spaceId, spaceCode, capacity, currentOccupancy, status, isFull. |
+| :--- | :--- |
+| CreateSpaceResource | Datos de alta del ambiente: spaceCode, name, spaceType, campus, building, floorNumber, capacity, accessPolicy. |
+| UpdateSpaceStatusResource | Datos del cambio de estado: status (AVAILABLE o MAINTENANCE). |
+| UpdateSpaceAccessPolicyResource | Datos del cambio de política: accessPolicy. |
+| CreateReservationResource | Datos de registro de la reserva: reservationCode, cardHolderId, startTime, endTime. |
+| SpaceResource | Respuesta del espacio: id, spaceCode, name, spaceType, location, capacity, currentOccupancy, status, accessPolicy. |
+| SpaceReservationResource | Respuesta de la reserva: id, reservationCode, spaceId, cardHolderId, startTime, endTime, status, checkInWindowEnd, checkedInAt. |
+| SpaceOccupancyResource | Respuesta del aforo: spaceId, spaceCode, capacity, currentOccupancy, status, isFull. |
+| CampusPresenceResource | Respuesta de permanencia: id, cardHolderId, holderRole, enteredAt, exitedAt, status, durationMinutes. |
+| CampusPresenceSummaryResource | Respuesta de la consulta por rango: cardHolderId, from, to, totalMinutes y la lista de CampusPresenceResource. |
 | CardTapEventResource | Mensaje entrante de hardware: eventId, readerId, spaceId, cardUid, tappedAt. |
 
 **Assemblers (Transformadores)**
 
 | Assembler | Descripción |
-|---|---|
-| CreateSpaceCommandFromResourceAssembler | Convierte un `CreateSpaceResource` en un `CreateSpaceCommand`. |
-| CreateReservationCommandFromResourceAssembler | Convierte un `CreateReservationResource` en un `CreateReservationCommand`. |
-| ProcessCardTapAccessCommandFromEventAssembler | Convierte un `CardTapEventResource` entrante de RabbitMQ en un `ProcessCardTapAccessCommand`. |
-| SpaceResourceFromEntityAssembler | Convierte la entidad de agregado `Space` en un `SpaceResource`. |
-| SpaceReservationResourceFromEntityAssembler | Convierte la entidad `SpaceReservation` en un `SpaceReservationResource`. |
-| SpaceOccupancyResourceFromEntityAssembler | Convierte el estado de un `Space` en un `SpaceOccupancyResource`. |
+| :--- | :--- |
+| CreateSpaceCommandFromResourceAssembler | Convierte un CreateSpaceResource en un CreateSpaceCommand. |
+| UpdateSpaceStatusCommandFromResourceAssembler | Convierte un UpdateSpaceStatusResource y el spaceId de la ruta en un UpdateSpaceStatusCommand. |
+| UpdateSpaceAccessPolicyCommandFromResourceAssembler | Convierte un UpdateSpaceAccessPolicyResource y el spaceId de la ruta en un UpdateSpaceAccessPolicyCommand. |
+| CreateReservationCommandFromResourceAssembler | Convierte un CreateReservationResource en un CreateReservationCommand. |
+| ProcessCardTapAccessCommandFromEventAssembler | Convierte un CardTapEventResource entrante de RabbitMQ en un ProcessCardTapAccessCommand. |
+| SpaceResourceFromEntityAssembler | Convierte la entidad del agregado Space en un SpaceResource. |
+| SpaceReservationResourceFromEntityAssembler | Convierte la entidad SpaceReservation en un SpaceReservationResource. |
+| SpaceOccupancyResourceFromEntityAssembler | Convierte el estado de un Space en un SpaceOccupancyResource. |
+| CampusPresenceResourceFromEntityAssembler | Convierte la entidad CampusPresence en un CampusPresenceResource. |
 
 ### 5.3.3. Application Layer
 
-Los servicios internos orquestan la validación de identidades, aplican la política de accesos, garantizan la idempotencia de las lecturas físicas, coordinan la persistencia en PostgreSQL y publican los eventos de dominio hacia RabbitMQ.
+Los servicios internos orquestan la resolución de identidades, aplican la política de accesos, garantizan la idempotencia de las lecturas físicas, coordinan la persistencia en PostgreSQL y publican los eventos de dominio hacia RabbitMQ.
 
-**Clase: `AccessRecordCommandServiceImpl`**
+**Clase: AccessRecordCommandServiceImpl**
 
 | Título | AccessRecordCommandServiceImpl |
-|---|---|
-| Descripción | Implementación del servicio de comandos para procesar los taps físicos. Flujo de `ProcessCardTapAccessCommand`: (1) verifica idempotencia con `eventId` en `AccessRecordRepository`; si ya fue procesado, descarta la lectura; (2) consulta `IdentificationContextFacade.validateCardTap(cardUid)` para resolver la titularidad, rol institucional (`STUDENT`, `TEACHER`, `STAFF`) y vigencia de la tarjeta; (3) recupera la entidad `Space` asociada al lector; (4) si el espacio es un cubículo (`STUDY_CUBICLE`), recupera la reserva activa programada; (5) evalúa la marcación mediante `SpaceAccessPolicy`; (6) si es denegado, persiste el `AccessRecord` con `DENIED` y motivo, y publica `SpaceAccessDenied` o `ReservationActivationFailed`; (7) si es concedido: en torniquete de ingreso incrementa el aforo del campus y publica `CampusEntryGranted` (`ActivarEntrada`); en torniquete de salida reduce el aforo y publica `CampusExitRecorded` (`ActivarSalida`); en puerta restringida franquea el paso y publica `AccessGranted`; en cubículo ejecuta `reservation.checkIn()`, cambia el espacio a `OCCUPIED` y publica `ReservationActivated` (`ReservaActivada`); (8) persiste el `AccessRecord` para auditoría. |
+| :--- | :--- |
+| Descripción | Implementación del servicio de comandos para procesar las lecturas físicas. Flujo de ProcessCardTapAccessCommand: (1) verifica la idempotencia con eventId en AccessRecordRepository y, si ya fue procesado, descarta la lectura; (2) recupera la entidad Space asociada al lector; (3) consulta CardHolderDirectoryPort.findByCardUid(cardUid) para resolver la titularidad, el rol institucional (STUDENT, TEACHER, STAFF) y la vigencia de la credencial; (4) si la política del espacio es RESERVATION_REQUIRED, recupera la reserva vigente de la franja; (5) evalúa la lectura mediante SpaceAccessPolicy; (6) si es denegada, persiste el AccessRecord con DENIED y su motivo, y publica SpaceAccessDenied o ReservationActivationFailed; (7) si es concedida: en un torniquete de entrada incrementa el aforo, abre una CampusPresence y publica CampusEntryGranted (ActivarEntrada); en un torniquete de salida reduce el aforo, busca la CampusPresence abierta del titular y, si existe, la cierra y publica CampusExitRecorded (ActivarSalida) con la duración, o si no existe publica ExitWithoutEntryDetected; en la puerta de un ambiente o auditorio publica SpaceAccessGranted (AccesoConcedido); en un espacio con reserva ejecuta reservation.checkIn() y space.occupy(), y publica ReservationActivated (ReservaActivada) y SpaceOccupied; (8) persiste el AccessRecord para la auditoría. |
 
 | Dependencia | Descripción |
-|---|---|
-| AccessRecordRepository | Persistencia de registros de acceso y validación de idempotencia. |
-| SpaceRepository | Persistencia y modificación de estado y aforo de los espacios físicos. |
-| SpaceReservationRepository | Consulta y actualización de estado de reservas. |
+| :--- | :--- |
+| AccessRecordRepository | Persistencia de los registros de acceso y validación de la idempotencia. |
+| SpaceRepository | Persistencia y modificación del estado y el aforo de los espacios físicos. |
+| SpaceReservationRepository | Consulta y actualización del estado de las reservas. |
+| CampusPresenceRepository | Persistencia de las permanencias abiertas y cerradas. |
 | SpaceAccessPolicy | Servicio de dominio con las reglas de acceso y check-in. |
-| IdentificationContextFacade | Puerto de salida (ACL) hacia IAM / Identification Context. |
+| CardHolderDirectoryPort | Puerto de salida (ACL) hacia el directorio institucional de titulares. |
 | SpaceEventPublisher | Puerto de salida para publicar eventos de dominio hacia RabbitMQ. |
 
-**Clase: `SpaceReservationCommandServiceImpl`**
+**Clase: SpaceReservationCommandServiceImpl**
 
 | Título | SpaceReservationCommandServiceImpl |
-|---|---|
-| Descripción | Servicio que orquesta el alta y cancelación administrativa de reservas, así como la ejecución del barrido por inasistencia (Regla de 10 minutos). Para `ForfeitExpiredReservationsCommand`: recupera todas las reservas en estado `CONFIRMED` cuyo `checkInWindowEnd` sea anterior a la hora actual sin marcación física; invoca `reservation.forfeit()`, libera el cubículo (`space.releaseReservation()`), persiste los cambios, publica `ReservationForfeited` (`ReservaPerdida`) y ordena el despacho del correo de aviso vía `NotificationServicePort`. |
+| :--- | :--- |
+| Descripción | Servicio que orquesta el alta y la cancelación administrativa de reservas, así como los barridos automáticos. Para CreateReservationCommand: valida que el espacio exista, que su política sea RESERVATION_REQUIRED y que no esté en MAINTENANCE; verifica mediante CardHolderDirectoryPort que el titular tenga una credencial vigente; verifica que la franja sea futura y que no se cruce con otra reserva del espacio (existsOverlapping); persiste la reserva y publica ReservationCreated. Para CancelReservationCommand: cancela la reserva CONFIRMED y publica ReservationCancelled. Para ForfeitExpiredReservationsCommand: recupera las reservas CONFIRMED cuyo checkInWindowEnd sea anterior a la hora actual sin marcación física, invoca reservation.forfeit(), persiste los cambios, publica ReservationForfeited (ReservaPerdida) y ordena el envío del correo de aviso vía NotificationServicePort. Para CompleteFinishedReservationsCommand: recupera las reservas CHECKED_IN cuya franja ya terminó, invoca reservation.complete() y space.release(), persiste los cambios y publica SpaceReleased. |
 
 | Dependencia | Descripción |
-|---|---|
+| :--- | :--- |
 | SpaceReservationRepository | Persistencia transaccional de reservas. |
-| SpaceRepository | Actualización de disponibilidad de los cubículos. |
-| SpaceEventPublisher | Publicación del evento `ReservationForfeited` hacia RabbitMQ[cite: 48, 59]. |
+| SpaceRepository | Consulta del espacio y actualización de su estado. |
+| CardHolderDirectoryPort | Validación del titular y obtención de su correo para la notificación. |
+| SpaceEventPublisher | Publicación de ReservationCreated, ReservationCancelled, ReservationForfeited y SpaceReleased hacia RabbitMQ. |
 | NotificationServicePort | Puerto de salida para el envío asíncrono de correos transaccionales. |
 
-**Clase: `SpaceCommandServiceImpl`**
+**Clase: SpaceCommandServiceImpl**
 
 | Título | SpaceCommandServiceImpl |
-|---|---|
-| Descripción | Implementación para el registro administrativo y actualización de estado operativo de las instalaciones del campus. |
+| :--- | :--- |
+| Descripción | Implementación del registro administrativo de instalaciones del campus, la actualización de su estado operativo y el cambio de su política de acceso. Valida que el spaceCode no esté registrado antes de crear un espacio. |
 
 | Dependencia | Descripción |
-|---|---|
+| :--- | :--- |
 | SpaceRepository | Persistencia de espacios físicos. |
 
-**Clase: `SpaceQueryServiceImpl` y `SpaceReservationQueryServiceImpl`**
+**Clase: CampusPresenceQueryServiceImpl**
 
-| Título | SpaceQueryServiceImpl / SpaceReservationQueryServiceImpl |
-|---|---|
-| Descripción | Servicios encargados de responder consultas sobre aforos, disponibilidad e inventario de espacios para la plataforma web administrativa. |
+| Título | CampusPresenceQueryServiceImpl |
+| :--- | :--- |
+| Descripción | Servicio que responde la consulta de permanencias de un titular en un rango de fechas y calcula el total de minutos de las permanencias cerradas. |
 
 | Dependencia | Descripción |
-|---|---|
+| :--- | :--- |
+| CampusPresenceRepository | Acceso de lectura a las permanencias. |
+
+**Clase: SpaceQueryServiceImpl y SpaceReservationQueryServiceImpl**
+
+| Título | SpaceQueryServiceImpl / SpaceReservationQueryServiceImpl |
+| :--- | :--- |
+| Descripción | Servicios encargados de responder las consultas sobre aforos, disponibilidad, inventario de espacios y reservas para la plataforma web administrativa. |
+
+| Dependencia | Descripción |
+| :--- | :--- |
 | SpaceRepository | Acceso de lectura a espacios. |
 | SpaceReservationRepository | Acceso de lectura a reservas. |
 
 **Puertos de salida (Anti-Corruption Layer)**
 
 | Puerto | Descripción |
-|---|---|
-| IdentificationContextFacade | Interfaz hacia Identification / IAM Context para consultar la vigencia de la credencial y el rol del titular sin acoplar el modelo interno de usuarios. |
-| SpaceEventPublisher | Interfaz para publicar `CampusEntryGranted`, `CampusExitRecorded`, `SpaceAccessDenied`, `ReservationActivated`, `ReservationForfeited`, `SpaceOccupied` y `SpaceReleased`. |
-| NotificationServicePort | Interfaz hacia el servicio de correo transaccional para notificar al estudiante sobre la pérdida del cubículo por inasistencia. |
+| :--- | :--- |
+| CardHolderDirectoryPort | Interfaz hacia el directorio institucional de titulares (Sistema Académico UPC). Expone findByCardUid(CardUid) y findById(CardHolderId), que retornan un CardHolderSnapshot, sin acoplar el modelo de este contexto al modelo externo de usuarios. |
+| SpaceEventPublisher | Interfaz para publicar CampusEntryGranted, CampusExitRecorded, ExitWithoutEntryDetected, SpaceAccessGranted, SpaceAccessDenied, ReservationCreated, ReservationCancelled, ReservationActivated, ReservationActivationFailed, ReservationForfeited, SpaceOccupied y SpaceReleased. |
+| NotificationServicePort | Interfaz hacia el servicio de correo transaccional para notificar al titular la pérdida de su reserva por inasistencia. |
 
 ### 5.3.4. Infrastructure Layer
 
-Esta capa implementa la persistencia mediante Spring Data JPA sobre PostgreSQL, la mensajería asíncrona con RabbitMQ, la tarea programada para la regla de los 10 minutos y los adaptadores de salida.
+Esta capa implementa la persistencia mediante Spring Data JPA sobre PostgreSQL, la mensajería asíncrona con RabbitMQ, las tareas programadas de la regla de los 10 minutos y del cierre de reservas, y los adaptadores de salida.
 
-**Clase: `SpaceRepository`**
+**Clase: SpaceRepository**
 
 | Título | SpaceRepository |
-|---|---|
+| :--- | :--- |
 | Descripción | Interfaz de persistencia para espacios físicos e infraestructura. |
 
 | Método | Descripción |
-|---|---|
+| :--- | :--- |
 | findById(Long) | Recupera un espacio por su ID. |
 | findBySpaceCode(SpaceCode) | Recupera un espacio por su código institucional. |
+| existsBySpaceCode(SpaceCode) | Verifica si un código institucional ya está registrado. |
 | findAll() | Retorna la totalidad de ambientes registrados. |
 | save(Space) | Persiste o actualiza el espacio en PostgreSQL. |
 
-**Clase: `SpaceReservationRepository`**
+**Clase: SpaceReservationRepository**
 
 | Título | SpaceReservationRepository |
-|---|---|
+| :--- | :--- |
 | Descripción | Interfaz de persistencia para reservas de ambientes. |
 
 | Método | Descripción |
-|---|---|
+| :--- | :--- |
 | findById(Long) | Recupera una reserva por su ID. |
 | findActiveBySpaceAndInstant(SpaceId, Instant) | Localiza la reserva vigente de un espacio en un instante dado. |
-| findExpiredPendingReservations(Instant) | Retorna las reservas en estado `CONFIRMED` cuyo `checkInWindowEnd` es menor al instante actual. |
+| findActive(Instant) | Retorna las reservas CONFIRMED o CHECKED_IN cuya franja contiene el instante indicado. |
+| findBySpaceIdAndPeriod(SpaceId, Instant, Instant) | Retorna el historial de reservas de un espacio en un rango de fechas. |
+| existsOverlapping(SpaceId, TimeSlot) | Verifica si existe una reserva CONFIRMED o CHECKED_IN del espacio que se cruce con la franja indicada. |
+| findExpiredPendingReservations(Instant) | Retorna las reservas CONFIRMED cuyo checkInWindowEnd es menor al instante actual. |
+| findFinishedCheckedInReservations(Instant) | Retorna las reservas CHECKED_IN cuyo endTime es menor al instante actual. |
 | save(SpaceReservation) | Persiste o actualiza la reserva. |
 
-**Clase: `AccessRecordRepository`**
+**Clase: AccessRecordRepository**
 
 | Título | AccessRecordRepository |
-|---|---|
+| :--- | :--- |
 | Descripción | Interfaz de persistencia para el registro de auditoría de accesos. |
 
 | Método | Descripción |
-|---|---|
+| :--- | :--- |
 | findById(Long) | Recupera un registro por su ID. |
 | existsByEventId(ReaderEventId) | Verifica si una lectura NFC ya fue procesada (idempotencia). |
 | save(AccessRecord) | Persiste el registro inmutable de acceso. |
 
+**Clase: CampusPresenceRepository**
+
+| Título | CampusPresenceRepository |
+| :--- | :--- |
+| Descripción | Interfaz de persistencia para las permanencias en el campus. |
+
+| Método | Descripción |
+| :--- | :--- |
+| findOpenByCardHolderId(CardHolderId) | Recupera la permanencia abierta de un titular, si existe. |
+| findByCardHolderIdAndEnteredAtBetween(CardHolderId, Instant, Instant) | Recupera las permanencias de un titular en un rango. |
+| save(CampusPresence) | Persiste o actualiza la permanencia. |
+
 **Adaptadores, infraestructura y tareas en segundo plano**
 
 | Clase | Descripción |
-|---|---|
-| RabbitMqSpaceConfig | Declara el exchange `tarjepafi.events` (topic), la cola `space.card-tap.queue`, bindings de enrutamiento con la routing key `iot.card-tap` y la *dead-letter queue* para contingencias. |
-| RabbitSpaceEventPublisher | Implementa `SpaceEventPublisher`; publica los eventos hacia RabbitMQ con routing keys específicas (`space.campus-entry.granted`, `space.access.denied`, `space.reservation.activated`, `space.reservation.forfeited`, etc.). |
-| IdentificationContextFacadeImpl | Implementa `IdentificationContextFacade` consultando internamente el contrato de IAM / Identification. |
-| EmailNotificationAdapter | Implementa `NotificationServicePort` integrando Spring Mail / SendGrid para despachar el correo de aviso cuando un cubículo es liberado por inasistencia. |
-| ReservationToleranceScheduler | Tarea programada en segundo plano (`@Scheduled(fixedRate = 60000)`) que se ejecuta cada minuto. Invoca `ForfeitExpiredReservationsCommand`, localiza reservas sin presencia física pasados los 10 minutos, cancela la reserva, libera el cubículo y dispara la alerta. |
+| :--- | :--- |
+| RabbitMqSpaceConfig | Declara el exchange tarjepafi.events (topic), la cola space.card-tap.queue, los bindings con la routing key iot.card-tap y la dead-letter queue para contingencias. |
+| RabbitSpaceEventPublisher | Implementa SpaceEventPublisher y publica los eventos hacia RabbitMQ con las routing keys space.campus-entry.granted, space.campus-exit.recorded, space.exit-without-entry, space.access.granted, space.access.denied, space.reservation.created, space.reservation.cancelled, space.reservation.activated, space.reservation.activation-failed, space.reservation.forfeited, space.occupied y space.released. |
+| SimulatedCardHolderDirectoryAdapter | Implementa CardHolderDirectoryPort consultando la tabla card_holders, cargada con datos semilla (card_uid, rol, correo y vigencia de la credencial). Se reemplazará por un adaptador REST/HTTPS hacia el Sistema Académico UPC. |
+| EmailNotificationAdapter | Implementa NotificationServicePort integrando Spring Mail / SendGrid para enviar el correo de aviso cuando una reserva se pierde por inasistencia. |
+| ReservationToleranceScheduler | Tarea programada en segundo plano (@Scheduled(fixedRate = 60000)) que se ejecuta cada minuto. Invoca ForfeitExpiredReservationsCommand, que da por perdidas las reservas sin presencia física pasados los 10 minutos y dispara la alerta, y CompleteFinishedReservationsCommand, que completa las reservas cuya franja terminó y libera sus espacios. |
 
 **Decisiones de infraestructura**
 
-- **Garantía absoluta de idempotencia:** Se establece una restricción `UNIQUE` sobre la columna `event_id` en la tabla `access_records`, respaldada por la verificación previa `existsByEventId` en el consumidor.
-- **Bloqueo optimista (@Version):** Se implementa control de concurrencia optimista en `Space` y `SpaceReservation` para proteger el aforo y evitar colisiones de asignación de espacios ante peticiones concurrentes.
-- **Aislamiento en notificaciones:** El envío de correos ante reservas desestimadas se ejecuta de forma asíncrona (`@Async`), garantizando que una indisponibilidad temporal del servidor SMTP no interrumpa la transacción de liberación del espacio en PostgreSQL.
+- **Garantía absoluta de idempotencia:** Se establece una restricción UNIQUE sobre la columna event_id de la tabla access_records, respaldada por la verificación previa existsByEventId en el consumidor.
+- **Bloqueo optimista (@Version):** Se implementa control de concurrencia optimista en Space y SpaceReservation para proteger el aforo y evitar colisiones de asignación de espacios ante peticiones concurrentes.
+- **Una sola permanencia abierta por titular:** Se crea un índice único parcial sobre campus_presences(card_holder_id) WHERE status = 'OPEN', para que un titular no tenga dos permanencias abiertas a la vez.
+- **Prevención de cruces de reservas:** Se crea un índice sobre (space_id, start_time, end_time) en la tabla space_reservations para que la verificación existsOverlapping sea eficiente.
+- **Aislamiento en notificaciones:** El envío de correos ante reservas perdidas se ejecuta de forma asíncrona (@Async), de modo que una indisponibilidad temporal del servidor SMTP no interrumpa la transacción de liberación en PostgreSQL.
 
 ### 5.3.6. Bounded Context Software Architecture Component Level Diagrams
 
 A continuación se presenta la descomposición en componentes del contenedor Backend API para el Space and Facility Context, modelada bajo el estándar C4 Model Component Level en lenguaje Structurizr DSL.
 
 <p align="center">
-  <img src="assets/SpaceFacilityComponent.png" alt="Class Diagram iot" width="850">
+  <img src="assets/SpaceFacilityComponents.png" alt="Class Diagram iot" width="850">
 </p>
+
+Link de la imagen: https://drive.google.com/file/d/181UTYPuR-rar5PfjE4vqrUbAWEldpmfv/view?usp=sharing 
 
 ### 5.3.7. Bounded Context Software Architecture Code Level Diagrams
 
@@ -3040,16 +3307,20 @@ A continuación se presenta la descomposición en componentes del contenedor Bac
 A continuación se presenta el diagrama de clases del modelo de dominio del Space and Facility Context, modelado en PlantUML con sus agregados, entidades, value objects, domain services, interfaces de repositorio y relaciones estructuradas con visibilidad y multiplicidad.
 
 <p align="center">
-  <img src="assets/SpaceFacilitydiagram.png" alt="Class Diagram iot" width="850">
+  <img src="assets/space_and_facilityDiagram.png" alt="Class Diagram iot" width="850">
 </p>
+
+Link de la imagen: https://drive.google.com/file/d/13FCOf4oddVK6jNYdQtuxRXOiU0HL7ZdF/view?usp=sharing 
 
 #### 5.3.7.2. Bounded Context Database Design Diagram
 
 A continuación se presenta el diseño de base de datos relacional para PostgreSQL especificado en sintaxis DBML (dbdiagram.io). Incluye las restricciones de unicidad sobre event_id para garantizar idempotencia, control de concurrencia optimista (version) y los índices necesarios para soportar la regla de tolerancia de 10 minutos.
 
 <p align="center">
-  <img src="assets/SpaceFacilitydatabase.png" alt="Class Diagram iot" width="850">
+  <img src="assets/space_and_facilityDataBase.png" alt="Class Diagram iot" width="850">
 </p>
+
+Link de la imagen: https://drive.google.com/file/d/13Jm5BZQENzwkzdPZEVW7SYe3Voc0L28t/view?usp=sharing 
 
 ## 5.4. Bounded Context: IoT Monitoring Context
 
@@ -4535,7 +4806,7 @@ Link Figma: 'https://www.figma.com/design/O6Xg9ewnVSa8wl5v8hAGNj/TarjePAFI-%E2%8
 
 ### 6.4.2. Applications Wireflow Diagrams
 
-En esta sección se presentan los Wireflows de TarjePAFI para la Web App Administrativa y la Mobile App. Se elaboró un Wireflow por cada User goal identificado, tomando como base los Task Flows consensuados por el equipo y los User Persona de cada aplicación: el administrador universitario para la aplicación web y el estudiante para la aplicación móvil. Los diagramas se construyeron en Figma a partir de los wireframes low-fidelity. Cada flecha indica la interacción que dispara el siguiente paso, que puede ser un clic, un tap, la lectura NFC de la credencial o un evento del sistema. Cuando una interacción modifica una pantalla, se agrega un paso con el wireframe del nuevo estado; así se representan un modal de confirmación, un toast o el cambio de estado de un registro.
+En esta sección se presentan los Wireflows de TarjePAFI para la Web App Administrativa y la Mobile App. Se elaboró un Wireflow por cada User goal identificado, tomando como base los Task Flows consensuados por el equipo y los User Persona del administrador universitario para la aplicación web Los diagramas se construyeron en Figma a partir de los wireframes low-fidelity. Cada flecha indica la interacción que dispara el siguiente paso, que puede ser un clic, un tap, la lectura NFC de la credencial o un evento del sistema. Cuando una interacción modifica una pantalla, se agrega un paso con el wireframe del nuevo estado; así se representan un modal de confirmación, un toast o el cambio de estado de un registro.
 
 + **WF-01 · Revisar la asistencia de una sesión académica:**
 
