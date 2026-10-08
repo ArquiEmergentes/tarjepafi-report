@@ -2460,11 +2460,24 @@ Esta capa implementa la persistencia con JPA y Spring Data JPA, la mensajería c
 
 ### 5.2.6. Bounded Context Software Architecture Component Level Diagrams
 
+<p align="center">
+  <img src="assets/images/bd-attendance/AcademicAttendance-Components.png" alt="Class Diagram aa" width="850">
+</p>
+
 ### 5.2.7. Bounded Context Software Architecture Code Level Diagrams
 
 #### 5.2.7.1. Bounded Context Domain Layer Class Diagrams
 
+<p align="center">
+  <img src="assets/images/bd-attendance/classdiagram.PNG" alt="Class Diagram aa" >
+</p>
+
+
 #### 5.2.7.2. Bounded Context Database Design Diagram
+
+<p align="center">
+  <img src="assets/images/bd-attendance/bd-diagram.png" alt="Class Diagram aa" width="850">
+</p>
 
 
 ## 5.3. Bounded Context: Space and Facility Context
