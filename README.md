@@ -4395,6 +4395,16 @@ Vista en Figma: https://www.figma.com/design/W9XxjWGcq2EJTGAfVEb9y9/TarjePAFI---
 
 ### 6.3.2. Landing Page Mock-up
 
+**Landing Page Desktop Mock-Ups**
+<img src="assets/images/design/mockups/landing_mockup_desktop.png" alt="landing mock-up desktop 1"><br>
+
+<img src="assets/images/design/mockups/landing_mockup_desktop_2.png" alt="landing mock-up desktop 2"><br>
+
+**Landing Page Mobile Mock-Ups**
+
+<img src="assets/images/design/mockups/landing_mockup_mobile.png" alt="landing mock-up mobile 1"><br>
+
+<img src="assets/images/design/mockups/landing_mockup_mobile_2.png" alt="landing mock-up mobile 2"><br>
 
 ## 6.4. Applications UX/UI Design
 
