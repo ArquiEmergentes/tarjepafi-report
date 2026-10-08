@@ -3855,7 +3855,107 @@ Vista en Figma: https://www.figma.com/design/W9XxjWGcq2EJTGAfVEb9y9/TarjePAFI---
 
 ### 6.4.1. Applications Wireframes
 
+<p align="center">
+  <img src="assets/images/wireframes/mobileWireframes.png" alt="WireframesWeb" width="850">
+</p>
+
+<p align="center">
+  <img src="assets/images/wireframes/webWireframes.png" alt="WireframesWeb" width="850">
+</p>
+
+
+Link Figma: 'https://www.figma.com/design/O6Xg9ewnVSa8wl5v8hAGNj/TarjePAFI-%E2%80%94-Smart-Campus-Design?node-id=1-5&t=zJgz25TLECxSVttc-1'
+
 ### 6.4.2. Applications Wireflow Diagrams
+
+En esta sección se presentan los Wireflows de TarjePAFI para la Web App Administrativa y la Mobile App. Se elaboró un Wireflow por cada User goal identificado, tomando como base los Task Flows consensuados por el equipo y los User Persona de cada aplicación: el administrador universitario para la aplicación web y el estudiante para la aplicación móvil. Los diagramas se construyeron en Figma a partir de los wireframes low-fidelity. Cada flecha indica la interacción que dispara el siguiente paso, que puede ser un clic, un tap, la lectura NFC de la credencial o un evento del sistema. Cuando una interacción modifica una pantalla, se agrega un paso con el wireframe del nuevo estado; así se representan un modal de confirmación, un toast o el cambio de estado de un registro.
+
++ **WF-01 · Revisar la asistencia de una sesión académica:**
+
+<p align="center">
+  <img src="assets/images/wireframes/wireflow01.png" alt="WireframesWeb" width="850">
+</p>
+
+**User goal:** Como administrador, quiero revisar quiénes asistieron, llegaron tarde o faltaron a una sesión académica para hacer seguimiento de la asistencia.
+
+**Explicación del flujo:** El administrador inicia sesión con su correo institucional en el Login (WEB-01) y accede al Dashboard General (WEB-02), donde ve el resumen operativo de la sede. Desde la sidebar selecciona "Asistencia Académica" y llega a Control de Asistencia (WEB-03), con la lista de sesiones del día. Al aplicar los filtros de fecha, carrera y curso, la misma pantalla cambia de estado y muestra solo los resultados filtrados, lo que se representa en un paso adicional. Por último, con "Ver detalle" abre el Detalle de sesión (WEB-04). Ahí consulta los datos de la clase, los indicadores de presentes, ausentes y tardanzas, y el registro de cada estudiante con su hora y método de marcación (NFC o manual).
+
+
++ **WF-02 · Supervisar y cancelar una reserva en tolerancia**
+
+<p align="center">
+  <img src="assets/images/wireframes/wireflow02.png" alt="WireframesWeb" width="850">
+</p>
+
+**User goal:** Como administrador, quiero identificar una reserva cuya presencia no ha sido validada y cancelarla para liberar el espacio.
+
+**Explicación del flujo:** Desde el widget de reservas activas del Dashboard General (WEB-02), el administrador entra a Espacios y Cubículos (WEB-05). Allí identifica por color, icono y texto un cubículo "En tolerancia" y, al seleccionar su card, abre el Detalle de reserva (WEB-06). Esa pantalla muestra el tiempo restante para que el estudiante valide su presencia con la credencial NFC. A partir de aquí el flujo se bifurca:
+
+  + Camino A: el administrador presiona "Cancelar reserva" y la pantalla cambia de estado para mostrar un modal de confirmación destructiva. Al confirmar, vuelve a Espacios y Cubículos (WEB-05) en un nuevo estado: aparece un toast de éxito y el cubículo figura como "Disponible".
+
+  + Camino B: el administrador no interviene y el contador llega a 00:00. El sistema libera la reserva automáticamente por falta de validación en los 10 minutos de tolerancia, y el Detalle de reserva pasa al estado "Liberada automáticamente".
+
+
++ **WF-03 · Atender un lector IoT sin comunicación**
+
+<p align="center">
+  <img src="assets/images/wireframes/wireflow03.png" alt="WireframesWeb" width="850">
+</p>
+
+**User goal:** Como administrador, quiero diagnosticar un lector NFC que dejó de comunicarse para restablecerlo o retirarlo de operación.
+
+**Explicación del flujo:** El Dashboard General (WEB-02) alerta que un lector dejó de reportar. Mediante "Ir a Infraestructura IoT", el administrador abre la vista de Infraestructura IoT (WEB-07) y selecciona la fila del lector en estado Offline. Así llega al Detalle del lector (WEB-08), donde revisa su ubicación, firmware, intensidad de señal, telemetría reciente e incidencias. El flujo se bifurca:
+
+  + Camino A: ejecuta "Ejecutar health check" y el lector responde. La pantalla pasa a un nuevo estado con el lector Online y un toast que confirma la restauración de la telemetría.
+  + Camino B: el lector no se recupera y el administrador presiona "Desactivar dispositivo". Se muestra un modal de confirmación destructiva. Al confirmar, la pantalla pasa al estado Maintenance y un toast indica que el cambio quedó registrado en la auditoría.
+
+
++ **WF-04 · Bloquear una credencial y verificar la auditoría**
+
+<p align="center">
+  <img src="assets/images/wireframes/wireflow04.png" alt="WireframesWeb" width="850">
+</p>
+
+**User goal:** Como administrador de seguridad, quiero bloquear una credencial NFC y comprobar que la acción quedó registrada en la auditoría.
+
+**Explicación del flujo:** En Gestión de credenciales (WEB-09), el administrador ubica al usuario y presiona "Bloquear" en su fila. La pantalla cambia de estado y muestra un modal que explica la consecuencia: la tarjeta dejará de dar acceso y de registrar asistencia de inmediato. Tras confirmar, la misma vista pasa a un nuevo estado: la credencial figura como "Bloqueada" y un toast confirma la acción. Por último, el administrador entra a Reportes y Auditoría (WEB-10) desde la sidebar. En la tabla de eventos de auditoría verifica el nuevo registro con fecha y hora, usuario, acción, módulo y resultado, lo que garantiza la trazabilidad de la operación.
+
+
++ **WF-05 · Reservar un cubículo**
+
+<p align="center">
+  <img src="assets/images/wireframes/wireflow05.png" alt="WireframesWeb" width="850">
+</p>
+
+**User goal:** Como estudiante, quiero encontrar un cubículo disponible y reservarlo para estudiar hoy.
+
+**Explicación del flujo:** El estudiante inicia sesión en la app (MOB-01) y llega al Home (MOB-02), donde ve su próxima clase y su próxima reserva. Con el acceso rápido "Buscar espacio" abre Crear reserva (MOB-05), indica sede, tipo de espacio, fecha, hora y duración, y revisa las cards de espacios disponibles. Al presionar "Reservar", la pantalla cambia de estado y muestra un modal de confirmación con el resumen de la reserva. Ese modal recuerda que tendrá 10 minutos para validar su presencia. Al confirmar, pasa a Reservas (MOB-04) en un nuevo estado: la reserva aparece en la pestaña "Próximas" y un toast confirma la operación.
+
+
++ **WF-06 · Validar la presencia en el cubículo reservado**
+
+<p align="center">
+  <img src="assets/images/wireframes/wireflow06.png" alt="WireframesWeb" width="850">
+</p>
+
+**User goal:** Como estudiante, quiero validar mi presencia con mi credencial NFC para no perder mi reserva.
+User Persona: [Nombre del User Persona] — Estudiante.
+
+**Explicación del flujo:** Al llegar la hora de inicio, la reserva en Reservas (MOB-04) entra en tolerancia y el estudiante abre la pantalla Reserva en tolerancia (MOB-06). Allí ve el mensaje "Valida tu presencia", un contador destacado en ámbar y la instrucción de acercar su credencial al lector del cubículo. El flujo se bifurca:
+
+  + Camino A: el estudiante acerca su credencial y el lector la valida por NFC. La pantalla pasa al estado "Ocupado" y un toast confirma que la presencia fue validada.
+  + Camino B: transcurren los 10 minutos sin validación. El sistema libera la reserva y la pantalla pasa al estado "Liberada", con un mensaje que explica lo ocurrido y le indica que puede crear una nueva reserva.
+
+
++ **WF-07 · Consultar horario, asistencia y estado de la credencial**
+
+<p align="center">
+  <img src="assets/images/wireframes/wireflow07.png" alt="WireframesWeb" width="850">
+</p>
+
+**User goal:** Como estudiante, quiero revisar mi horario del día, mi historial de asistencia y el estado de mi credencial desde el celular.
+
+**Explicación del flujo:** Desde el Home (MOB-02), el estudiante usa la bottom navigation para moverse entre las secciones de consulta. En Mi horario (MOB-03) selecciona el día y ve sus clases con estado Próxima, En curso o Finalizada. En Historial de asistencia (MOB-07) revisa el resumen de sesiones, presentes, tardanzas y ausencias, y la lista de registros por curso y fecha. Finalmente, en Perfil / Credencial (MOB-08) confirma sus datos y el estado de su credencial NFC, indicado con el badge "Credencial activa". Este flujo es solo de consulta: ninguna interacción modifica el estado de una pantalla, por lo que cada paso corresponde a una pantalla distinta.
 
 # Conclusiones
 
