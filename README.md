@@ -1707,9 +1707,13 @@ Una vez concluidas las épicas, ahora podemos proceder a encapsular las múltipl
 
 ## 3.3. Impact Mapping.
 
-<img src="assets/images/bounded contexts/Impact map 1.png" alt="EventStorming Image"><br>
+<img src="assets/Impact_1.png" alt="EventStorming Image"><br>
 
-<img src="assets/images/bounded contexts/Impact map 2.png" alt="EventStorming Image"><br>
+<img src="assets/Impact_2.png" alt="EventStorming Image"><br>
+
+<img src="assets/Impact_3.png" alt="EventStorming Image"><br>
+
+<img src="assets/Impact_4.png" alt="EventStorming Image"><br>
 
 
 ## 3.4. Product Backlog.
@@ -2142,16 +2146,12 @@ Enlace al miro: `https://miro.com/app/board/uXjVHlVuyVw=/?share_link_id=48315326
 
 Para esta sección nuestro objetivo fue visualizar cómo los bounded contexts colaboran para soportar los casos de uso clave. Se aplicó Domain Storytelling para describir interacciones humanas y técnicas
 
-Enlace al Miro: `https://miro.com/app/board/uXjVHklCdSw=/?share_link_id=475456703400`
-
-<img src="assets/images/bounded contexts/InOutBC.jpg" alt="DomainMessage Model 1"><br>
 
 
+<img src="assets/images/bounded contexts/modeling_1.png" alt="DomainMessage Model 1"><br>
 
-<img src="assets/images/bounded contexts/AssitanceBc.jpg" alt="DomainMessage Model 2"><br>
 
-<img src="assets/images/bounded contexts/ReportBC.jpg" alt="DomainMessage Model 3"><br>
-
+<img src="assets/images/bounded contexts/modeling_2.png" alt="DomainMessage Model 1"><br>
 
 
 ### 4.2.4. Bounded Context Canvases
@@ -2291,155 +2291,47 @@ Este diagrama muestra cómo TarjePAFI se despliega mediante diferentes component
 La Domain Layer representa el núcleo del IAM (Identity and Access Management) Context y contiene las clases responsables de modelar la identidad, credenciales y control de acceso de los administradores del sistema. A diferencia de otros contextos, no contiene lógica de negocio operativa transversal, sino que se centra en la validación de identidad. Esta capa permanece independiente de tecnologías específicas como Entity Framework, JWT o algoritmos criptográficos, concentrándose únicamente en las reglas propias del dominio.
 Las principales clases identificadas para esta capa son las siguientes.
 
-**Aggregate Root**
-
-**User**
-`User` constituye el Aggregate Root principal del bounded context. Representa a un administrador del sistema y mantiene el estado consistente de sus credenciales, perfil básico y marcas de tiempo de auditoría. Hereda de una clase base `AuditableEntity` para manejar automáticamente `CreatedAt` y `UpdatedAt`.
-**Propósito:** gestionar el ciclo de vida de la cuenta de un administrador, asegurando que siempre posea credenciales válidas, un correo con formato correcto y el rol adecuado para operar el sistema.
-**Atributos principales:**
-- `userId`: identificador único del usuario.
-- `email`: dirección de correo electrónico (Value Object).
-- `password`: contraseña cifrada (Value Object).
-- `role`: rol de acceso (estrictamente administrador).
-- `status`: estado actual de la cuenta.
-- `createdAt`: fecha y hora de creación de la cuenta.
-- `updatedAt`: fecha y hora de la última modificación.
-**Métodos principales:**
-- `createAdmin()`: Factory Method estático que inicializa la cuenta asegurando la asignación del rol de administrador.
-- `updatePassword(EncryptedPassword newPassword)`: actualiza la credencial de acceso.
-- `deactivate()`: deshabilita el acceso del usuario al sistema.
-- `verifyPassword(EncryptedPassword input)`: compara una credencial entrante con la almacenada.
-
-**Value Objects**
-
-**EmailAddress**
-`EmailAddress` representa el correo electrónico del administrador.
-Su responsabilidad es validar mediante expresiones regulares en su constructor que la cadena de texto proporcionada posea un formato de correo electrónico válido, evitando que estados inválidos ingresen al dominio.
-
-**EncryptedPassword**
-`EncryptedPassword` representa la credencial de acceso del usuario de forma segura.
-Su propósito es garantizar que el dominio jamás maneje ni exponga contraseñas en texto plano. Encapsula el hash criptográfico generado.
-
-**Enumerations**
-
-**UserStatus**
-Representa el estado operativo de la cuenta:
-- `ACTIVE`
-- `INACTIVE`
-- `SUSPENDED`
-
-**Repository & Outbound Interfaces**
-
-**IUserRepository**
-`IUserRepository` define la abstracción utilizada por el dominio para recuperar y persistir las cuentas de usuario.
-**Métodos principales:**
-- `save(User user)`
-- `findById(UserId userId)`
-- `findByEmailAsync(EmailAddress email)`
-- `existsByEmail(EmailAddress email)`
-
-**ITokenGeneratorService & IHashingService**
-Interfaces que definen contratos críticos hacia el exterior (Outbound Services). `IHashingService` abstrae el cifrado de contraseñas, e `ITokenGeneratorService` abstrae la generación de credenciales de acceso (tokens), manteniendo al dominio agnóstico de implementaciones como BCrypt o JWT.
+| Clase / Interfaz | Tipo | Propósito / Responsabilidad | Atributos / Métodos Principales |
+| :--- | :--- | :--- | :--- |
+| **`User`** | Aggregate Root | Gestionar el ciclo de vida de la cuenta de un administrador, asegurando credenciales válidas, correo correcto y rol adecuado. | **Atributos:** `userId`, `email`, `password`, `status`, `createdAt`, `updatedAt`.<br>**Métodos:** `createAdmin()`, `updatePassword()`, `deactivate()`, `verifyPassword()`. |
+| **`EmailAddress`** | Value Object | Validar mediante expresiones regulares que la cadena tenga un formato de correo electrónico válido, evitando estados inválidos. | N/A |
+| **`EncryptedPassword`** | Value Object | Garantizar que el dominio no maneje contraseñas en texto plano, encapsulando el hash criptográfico. | N/A |
+| **`IUserRepository`** | Repository | Definir la abstracción utilizada por el dominio para recuperar y persistir cuentas de usuario. | **Métodos:** `save()`, `findById()`, `findByEmailAsync()`, `existsByEmail()`. |
+| **`ITokenGeneratorService`** | Outbound Interface | Abstraer la generación de credenciales de acceso (tokens). | N/A |
 
 ### 5.1.2. Interface Layer
 La Interface Layer proporciona los puntos de entrada mediante los cuales los clientes web o móviles interactúan con el IAM Context para autenticarse. Esta capa recibe las solicitudes externas HTTP, extrae los datos y los transforma en commands o queries que son enviados hacia Application Layer.
 
-**AuthController**
-`AuthController` expone las operaciones de autenticación. Su superficie es intencionalmente reducida, ya que no existe un proceso de registro público; las cuentas son provisionadas directamente.
-**Responsabilidades principales:**
-- procesar el inicio de sesión de administradores;
-- validar tokens activos;
-- consultar el perfil básico autenticado.
-**Entre los endpoints considerados se encuentran:**
-- `POST /api/v1/auth/sign-in` (Público - `[AllowAnonymous]`)
-- `GET /api/v1/auth/me` (Protegido - `[Authorize]`)
-
-**Data Transfer Objects (DTOs)**
-Estructuras de datos utilizadas para la comunicación externa.
-- **SignInResource:** recibe el correo y la contraseña en texto plano.
-- **TokenResource:** devuelve el token generado de forma segura.
-- **UserResource:** devuelve la información pública del usuario (omitiendo contraseñas).
-
-**Transform Layer (Assemblers)**
-Los *Assemblers* desacoplan el modelo expuesto en la API REST de los objetos internos.
-**Entre sus operaciones principales se encuentran:**
-- `toSignInCommandFromResource()`
-- `toUserResourceFromEntity()`
+| Componente | Tipo | Responsabilidades | Elementos Clave |
+| :--- | :--- | :--- | :--- |
+| **`AuthController`** | Controlador HTTP | Procesar inicio de sesión, validar tokens activos y consultar el perfil básico autenticado. | **Endpoints:**<br>- `POST /api/v1/auth/sign-in` (Público - `[AllowAnonymous]`)<br>- `GET /api/v1/auth/me` (Protegido - `[Authorize]`) |
+| **`SignInResource`** | DTO | Recibir los datos de inicio de sesión. | `correo` y `contraseña` (texto plano). |
+| **`TokenResource`** | DTO | Devolver la credencial generada. | Token generado de forma segura. |
+| **`UserResource`** | DTO | Devolver información del usuario. | Información pública (omite contraseñas). |
+| **Assemblers** | Transform Layer | Desacoplar el modelo expuesto en la API REST de los objetos internos. | **Operaciones:**<br>- `toSignInCommandFromResource()`<br>- `toUserResourceFromEntity()` |
 
 ### 5.1.3. Application Layer
 La Application Layer coordina los flujos de autenticación y aprovisionamiento bajo el patrón CQRS. Esta capa orquesta el modelo de dominio con los servicios externos de cifrado y generación de tokens.
 
-**Commands**
-Los Commands representan solicitudes que producen un cambio o acción principal.
-
-**CreateAdminCommand**
-Solicita el aprovisionamiento de una nueva cuenta administrativa (usado por procesos internos o *seeders*, no expuesto por REST).
-**Datos principales:**
-- `email`
-- `rawPassword`
-- `name`
-- `status`
-- `CreatedAt`
-- `UpdatedAt`
-
-**SignInCommand**
-Solicita la validación de credenciales para iniciar una sesión en el sistema.
-**Datos principales:**
-- `email`
-- `rawPassword`
-
-**Command Handlers**
-
-**CreateAdminCommandHandler**
-Valida que el correo no esté registrado utilizando `IUserRepository`, orquesta la llamada a `IHashingService` para cifrar el `rawPassword`, instancia la entidad mediante `User.createAdmin()` y persiste el objeto.
-
-**SignInCommandHandler**
-Recupera el usuario correspondiente mediante su correo electrónico. Si existe, verifica que el `rawPassword` coincida con el hash almacenado. Tras una validación exitosa, solicita a `ITokenGeneratorService` la emisión de las credenciales de sesión.
-
-**Queries**
-Las Queries permiten recuperar información sin modificar el estado.
-
-**GetUserProfileQuery**
-Solicita la información básica de un usuario autenticado.
-**Datos principales:**
-- `userId`
-
-**Query Handlers**
-
-**GetUserProfileQueryHandler**
-Recupera el `User` solicitado de la base de datos y lo devuelve listo para ser mapeado, facilitando la extracción del perfil sin exponer lógica de dominio.
+| Componente | Tipo | Responsabilidad | Datos / Operaciones Principales |
+| :--- | :--- | :--- | :--- |
+| **`CreateAdminCommand`** | Command | Solicitar el aprovisionamiento de una nueva cuenta administrativa (uso interno/seeders). | `email`, `rawPassword`, `name`, `status`, `CreatedAt`, `UpdatedAt`. |
+| **`SignInCommand`** | Command | Solicitar la validación de credenciales para iniciar una sesión en el sistema. | `email`, `rawPassword`. |
+| **`CreateAdminCommandHandler`**| Command Handler| Validar correo no registrado, orquestar cifrado, instanciar entidad y persistir el objeto. | Utiliza `IUserRepository`, `IHashingService` y `User.createAdmin()`. |
+| **`SignInCommandHandler`** | Command Handler| Recuperar usuario, verificar coincidencia de hash almacenado y solicitar emisión de credenciales. | Utiliza `ITokenGeneratorService`. |
+| **`GetUserProfileQuery`** | Query | Solicitar la información básica de un usuario autenticado. | `userId`. |
+| **`GetUserProfileQueryHandler`**| Query Handler | Recuperar el usuario de la base de datos para facilitar el mapeo sin exponer lógica. | N/A |
 
 ### 5.1.4. Infrastructure Layer
 La Infrastructure Layer contiene las implementaciones concretas necesarias para persistir datos, aplicar criptografía real y manejar la seguridad del entorno HTTP. Implementa las abstracciones de Domain Layer.
 
-**Repository Implementations**
-
-**JpaUserRepository** (o `EntityFrameworkUserRepository`)
-Implementa la interfaz `IUserRepository` definida en Domain Layer.
-Su responsabilidad es traducir las operaciones del dominio a operaciones de persistencia sobre la base de datos (ej. PostgreSQL o SQL Server). Se apoya en interceptores del ORM para poblar automáticamente los campos de auditoría (`CreatedAt`, `UpdatedAt`) al insertar o actualizar registros.
-
-**Security & Cryptography Infrastructure**
-
-**BcryptHashingService**
-Implementa `IHashingService`. Utiliza el algoritmo BCrypt para generar y verificar hashes seguros de las contraseñas, evitando el almacenamiento en texto plano.
-
-**JwtTokenGeneratorService**
-Implementa `ITokenGeneratorService`. Implementa la creación de JSON Web Tokens (JWT) firmados algorítmicamente (ej. HS256). Inyecta *claims* esenciales como `sub` (userId), `email` y `role=ADMIN` para permitir una autorización sin estado (*stateless*).
-
-**System Initialization**
-
-**AdminDataSeeder**
-Dado que el negocio no permite el registro público de usuarios, este componente de infraestructura se ejecuta durante el despliegue o inicialización del sistema. Se encarga de inyectar directamente en la base de datos las credenciales de los administradores primarios, ejecutando internamente el flujo de creación segura.
-
-**Middleware**
-
-**JwtAuthenticationMiddleware**
-Se integra en el pipeline HTTP del servidor web.
-**Su responsabilidad consiste en:**
-- interceptar las peticiones entrantes;
-- extraer el token de la cabecera `Authorization: Bearer`;
-- validar criptográficamente la firma del JWT;
-- inyectar el contexto de identidad (claims) en la solicitud actual para habilitar atributos como `[Authorize]`.
+| Componente | Tipo / Categoría | Responsabilidad Detallada |
+| :--- | :--- | :--- |
+| **`JpaUserRepository`** | Repository Implementation | Traducir operaciones de dominio a la base de datos y poblar campos de auditoría (`CreatedAt`, `UpdatedAt`). |
+| **`BcryptHashingService`** | Security & Cryptography | Generar y verificar hashes seguros de contraseñas utilizando el algoritmo BCrypt. |
+| **`JwtTokenGeneratorService`** | Security & Cryptography | Crear JWT firmados algorítmicamente e inyectar *claims* esenciales (`sub`, `email`, `role=ADMIN`) para autorización stateless. |
+| **`AdminDataSeeder`** | System Initialization | Inyectar directamente en la base de datos las credenciales de los administradores primarios durante el despliegue. |
+| **`JwtAuthenticationMiddleware`**| Middleware | Interceptar peticiones HTTP, extraer el token JWT de la cabecera `Authorization: Bearer`, validarlo e inyectar el contexto de identidad (claims) en la solicitud. |
 
 ### 5.1.5. Bounded Context Software Architecture Component Level Diagrams
 
