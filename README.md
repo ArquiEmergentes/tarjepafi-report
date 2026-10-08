@@ -1123,46 +1123,66 @@ Finalmente, señaló que, antes de implementar una nueva solución tecnológica,
 
 ### 2.2.3. Análisis de entrevistas.
 
+El análisis cualitativo de las entrevistas estructuradas a los segmentos de estudio permitió identificar patrones, temores y necesidades operativas clave dentro del campus. A continuación, se detallan los hallazgos especificando su frecuencia, evidencia textual e implicancias directas en los requisitos del sistema TarjePAFI.
+
+---
+
 **Segmento Objetivo 1: Administradores y Responsables de Gestión Universitaria**
 
-**Insights principales:**
+**1. Centralización y monitoreo de información en tiempo real**
+- **Frecuencia:** Mencionado por 4 de 4 entrevistados.
+- **Evidencia breve:** *"Actualmente tenemos que consolidar reportes de distintas áreas manualmente y no sabemos qué pasa en tiempo real."*
+- **Implicancia en Requisitos:** El sistema debe contar con un dashboard centralizado (Data Management Context) que consolide en tiempo real las métricas de asistencia, concurrencia y reserva de espacios en la plataforma web administrativa.
 
-- **Información centralizada:** Necesitan consultar información de asistencia, accesos y uso de espacios desde una plataforma unificada.
-- **Automatización:** Existe una oportunidad para reducir procesos manuales relacionados con el registro y seguimiento de actividades.
-- **Información confiable:** Requieren datos actualizados que faciliten el monitoreo y la toma de decisiones.
-- **Visualización de indicadores:** Los reportes y dashboards permiten identificar patrones y evaluar el funcionamiento del campus.
+**2. Automatización del control de asistencia y procesos manuales**
+- **Frecuencia:** Mencionado por 3 de 4 entrevistados.
+- **Evidencia breve:** *"Perdemos los primeros 10 a 15 minutos de clase pasando lista o registrando a los alumnos a mano."*
+- **Implicancia en Requisitos:** Requisito funcional para que la marcación mediante NFC procese la asistencia automáticamente en menos de 2 segundos, sincronizándose directamente con el Bounded Context de Academic Attendance.
 
-**Necesidades identificadas:**
+**3. Ubicación del personal y alumnos ante emergencias y evacuaciones (Hallazgo crítico)**
+- **Frecuencia:** Mencionado por 3 de 4 entrevistados.
+- **Evidencia breve:** *"Si ocurre un sismo o un accidente, no tenemos forma rápida de saber cuántas personas ingresaron a un pabellón o laboratorio específico."*
+- **Implicancia en Requisitos:** Requisito funcional de trazabilidad geográfica e indicador de aforo/ocupación instantáneo por edificio y aula en el módulo de Space & Facility Management, permitiendo emitir reportes de presencia para protocolos de seguridad y protección civil.
 
-- Reportes de asistencia y utilización de espacios.
-- Información actualizada y centralizada.
-- Automatización de procesos administrativos.
-- Integración con los sistemas universitarios existentes.
-
----
-
-**Segmento Objetivo 2: Usuarios de la Credencial TarjePAFI**
-
-**Insights principales:**
-
-- **Rapidez y simplicidad:** Estudiantes, docentes y trabajadores requieren mecanismos de identificación que no interfieran con sus actividades.
-- **Uso frecuente:** Los usuarios se desplazan constantemente por diferentes ambientes del campus y pueden interactuar varias veces al día con los lectores.
-- **Automatización del registro:** El uso de una credencial NFC permite registrar asistencia y accesos sin procesos manuales adicionales.
-- **Facilidad de uso:** La solución debe funcionar de manera rápida y sencilla para los distintos perfiles de usuarios.
-
-**Necesidades identificadas:**
-
-- Registro automático de asistencia.
-- Identificación mediante una credencial única.
-- Acceso rápido a espacios autorizados.
-- Lectores confiables y fáciles de utilizar.
-- Seguridad y privacidad de la información.
+**4. Integración con la infraestructura de TI existente**
+- **Frecuencia:** Mencionado por 2 de 4 entrevistados.
+- **Evidencia breve:** *"No queremos un sistema aislado; debe conversar con la base de datos de matrícula y el sistema académico actual."*
+- **Implicancia en Requisitos:** Requisito de arquitectura para exponer APIs REST seguras e integración con el módulo IAM para autenticación e ingesta de datos institucionales.
 
 ---
 
-**Patrones comunes entre segmentos**
+**Segmento Objetivo 2: Usuarios de la Credencial TarjePAFI (Estudiantes, Docentes y Personal)**
 
-Ambos segmentos presentan una necesidad de **automatizar y simplificar los procesos universitarios**. Los usuarios requieren un mecanismo rápido y sencillo para identificarse y registrar sus actividades, mientras que los administradores necesitan **información confiable y centralizada** para supervisar el funcionamiento del campus y apoyar la toma de decisiones.
+**1. Agilidad en el acceso y fricción en la identificación**
+- **Frecuencia:** Mencionado por 6 de 6 entrevistados.
+- **Evidencia breve:** *"Si la fila para marcar tarjeta o entrar al laboratorio demora mucho, simplemente nos genera retraso para las clases."*
+- **Implicancia en Requisitos:** Requisito no funcional de rendimiento (performance) donde el lector IoT debe validar la tarjeta NFC y retornar respuesta de acceso en un tiempo máximo aceptable ($< 1.5$ segundos).
+
+**2. Temor a la pérdida o extravío de la tarjeta física (Hallazgo crítico)**
+- **Frecuencia:** Mencionado por 5 de 6 entrevistados.
+- **Evidencia breve:** *"Me da miedo perder la tarjeta física y quedarme sin poder entrar a mis laboratorios o que alguien más la use si se la encuentra."*
+- **Implicancia en Requisitos:** Requisitos de seguridad e infraestructura que incluyen:
+  - Función de **bloqueo y devaluación inmediata** de credenciales NFC desde la aplicación/plataforma.
+  - Reglas de negocio para **idempotencia y validación de estado** de tarjeta (`ACTIVE`, `BLOCKED`) antes de conceder cualquier acceso o reserva.
+  - Opción de respaldo o autenticación alternativa mediante código QR dinámico en la Web App/Mobile.
+
+**3. Transparencia y confirmación inmediata de lectura**
+- **Frecuencia:** Mencionado por 4 de 6 entrevistados.
+- **Evidencia breve:** *"A veces pasas la tarjeta y no sabes si registró o no la asistencia hasta que el profesor te pone falta."*
+- **Implicancia en Requisitos:** Requisito de interfaz del lector IoT (señal acústica/Leds de estado) y actualización inmediata del estado de asistencia visible en el perfil del usuario.
+
+---
+
+**Patrones comunes entre segmentos y matriz de trazabilidad hacia requisitos**
+
+El análisis cruzado revela una convergencia entre la **necesidad de agilidad del usuario final** y la **necesidad de trazabilidad y seguridad de la administración**.
+
+| Hallazgo Clave | Frecuencia Total | Temor / Necesidad Raíz | Requisito Derivado |
+|---|---|---|---|
+| **Centralización y Reportes** | 4 / 4 Admins | Pobreza de datos para la toma de decisiones. | Dashboard web centralizado con exportación PDF/Excel. |
+| **Ubicación en Emergencias** | 3 / 4 Admins | Incertidumbre sobre el aforo real ante desastres o evaciación. | Módulo de monitoreo de ocupación por espacio en tiempo real. |
+| **Agilidad de Marcación** | 6 / 6 Usuarios | Filas y demoras al ingresar a recintos. | Lectura NFC sub-segunda en hardware IoT. |
+| **Temor a Pérdida de Tarjeta** | 5 / 6 Usuarios | Vulnerabilidad de acceso y suplantación de identidad. | Mecanismo de anulación inmediata de token/tarjeta en IAM. |
 
 ## 2.3. Needfinding.
 
