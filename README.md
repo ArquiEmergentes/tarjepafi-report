@@ -3488,100 +3488,51 @@ De esta manera, el bounded context mantiene un modelo consistente independientem
 
 ## 5.5. Bounded Context: Data Management Context
 
-El Data Management Context es el bounded context encargado de centralizar, almacenar,
-organizar y transformar la información generada a partir de las interacciones con las
-tarjetas IoT y los lectores distribuidos en el campus universitario. Su propósito
-principal es convertir los datos operativos generados por los diferentes bounded
-contexts en información consolidada que pueda ser consultada y analizada por el
-personal autorizado de la universidad.
+El Data Management Context es el bounded context encargado de centralizar, almacenar, organizar y transformar la información generada a partir de las interacciones con las tarjetas IoT y los lectores distribuidos en el campus universitario. Su propósito principal es convertir los datos operativos generados por los diferentes bounded contexts en información consolidada que pueda ser consultada y analizada por el personal autorizado de la universidad.
 
-Este contexto recibe información relacionada con las lecturas de las tarjetas, los
-registros de asistencia, los accesos al campus y el uso de los espacios universitarios.
-A partir de estos datos, mantiene un historial que permite generar reportes y
-visualizaciones sobre el comportamiento de las actividades realizadas dentro de la
-universidad.
+Este contexto recibe información relacionada con las lecturas de las tarjetas, los registros de asistencia, los accesos al campus y el uso de los espacios universitarios. A partir de estos datos, mantiene un historial que permite generar reportes y visualizaciones sobre el comportamiento de las actividades realizadas dentro de la universidad.
 
-La información procesada por este contexto se encuentra orientada principalmente al
-personal administrativo y responsables de la gestión universitaria. Estos usuarios
-pueden acceder a un dashboard web para consultar información consolidada mediante
-reportes e indicadores relacionados con asistencia, accesos, ocupación y utilización
-de los espacios del campus. Los estudiantes, docentes y demás usuarios que utilizan
-la tarjeta IoT no interactúan directamente con este contexto, ya que su interacción
-con el sistema se realiza mediante la credencial física y los lectores IoT.
+La información procesada por este contexto se encuentra orientada principalmente al personal administrativo y responsables de la gestión universitaria. Estos usuarios pueden acceder a un dashboard web para consultar información consolidada mediante reportes e indicadores relacionados con asistencia, accesos, ocupación y utilización de los espacios del campus. Los estudiantes, docentes y demás usuarios que utilizan la tarjeta IoT no interactúan directamente con este contexto, ya que su interacción con el sistema se realiza mediante la credencial física y los lectores IoT.
 
-### Responsabilidades principales
+**Responsabilidades principales**
 
-- Almacenar los datos generados por las interacciones de las tarjetas IoT y los
-  lectores distribuidos en el campus.
-- Consolidar información proveniente de los diferentes bounded contexts de la
-  solución.
-- Ordenar y clasificar los registros almacenados para facilitar su procesamiento y
-  consulta.
-- Mantener información histórica sobre asistencia, accesos y utilización de
-  espacios universitarios.
+- Almacenar los datos generados por las interacciones de las tarjetas IoT y los lectores distribuidos en el campus.
+- Consolidar información proveniente de los diferentes bounded contexts de la solución.
+- Ordenar y clasificar los registros almacenados para facilitar su procesamiento y consulta.
+- Mantener información histórica sobre asistencia, accesos y utilización de espacios universitarios.
 - Generar reportes periódicos sobre la información registrada.
-- Proporcionar información consolidada para la visualización mediante el dashboard
-  administrativo.
-- Detectar y registrar errores producidos durante el almacenamiento o procesamiento
-  de los datos.
+- Proporcionar información consolidada para la visualización mediante el dashboard administrativo.
+- Detectar y registrar errores producidos durante el almacenamiento o procesamiento de los datos.
 
-### Reglas de negocio principales
+**Reglas de negocio principales**
 
-- Todo dato generado por una interacción válida de una tarjeta IoT debe conservar su
-  información temporal para permitir posteriormente su análisis histórico.
-- Los registros provenientes de diferentes procesos deben conservar su contexto de
-  origen para poder distinguir información relacionada con asistencia, accesos y
-  utilización de espacios.
-- La información almacenada debe poder organizarse por diferentes periodos de
-  consulta, como semanal, mensual o semestral.
-- Los reportes generados deben utilizar información previamente registrada y procesada
-  por el sistema.
-- El acceso a los reportes y visualizaciones está restringido al personal autorizado
-  de la universidad.
-- Un error durante el registro o procesamiento de información debe ser identificado
-  para evitar que un dato inválido sea utilizado en los reportes.
-- El contexto debe conservar la información histórica necesaria para permitir el
-  análisis de tendencias y comportamiento del campus.
+- Todo dato generado por una interacción válida de una tarjeta IoT debe conservar su información temporal para permitir posteriormente su análisis histórico.
+- Los registros provenientes de diferentes procesos deben conservar su contexto de origen para poder distinguir información relacionada con asistencia, accesos y utilización de espacios.
+- La información almacenada debe poder organizarse por diferentes periodos de consulta, como semanal, mensual o semestral.
+- Los reportes generados deben utilizar información previamente registrada y procesada por el sistema.
+- El acceso a los reportes y visualizaciones está restringido al personal autorizado de la universidad.
+- Un error durante el registro o procesamiento de información debe ser identificado para evitar que un dato inválido sea utilizado en los reportes.
+- El contexto debe conservar la información histórica necesaria para permitir el análisis de tendencias y comportamiento del campus.
 
-### Integración con otros Bounded Contexts
+**Integración con otros Bounded Contexts**
 
-El Data Management Context actúa como consumidor de la información generada por los
-bounded contexts operativos de TarjePAFI. En particular, recibe información relacionada
-con las lecturas de tarjetas provenientes del IoT Monitoring Context y datos derivados
-de procesos como la asistencia académica y la utilización de espacios.
+El Data Management Context actúa como consumidor de la información generada por los bounded contexts operativos de TarjePAFI. En particular, recibe información relacionada con las lecturas de tarjetas provenientes del IoT Monitoring Context y datos derivados de procesos como la asistencia académica y la utilización de espacios.
 
-El IoT Monitoring Context constituye uno de los principales puntos de origen de
-información, debido a que procesa las interacciones físicas realizadas mediante las
-tarjetas NFC y los lectores IoT. A partir de estas interacciones se generan eventos
-que pueden ser utilizados por el Data Management Context para registrar información
-histórica.
+El IoT Monitoring Context constituye uno de los principales puntos de origen de información, debido a que procesa las interacciones físicas realizadas mediante las tarjetas NFC y los lectores IoT. A partir de estas interacciones se generan eventos que pueden ser utilizados por el Data Management Context para registrar información histórica.
 
-Asimismo, Academic Attendance Context aporta información relacionada con los
-registros de asistencia, mientras que Space and Facility Context proporciona
-información asociada al acceso y utilización de los espacios universitarios. De esta
-manera, el Data Management Context permite centralizar información que originalmente
-se encuentra distribuida entre diferentes procesos del sistema.
+Asimismo, Academic Attendance Context aporta información relacionada con los registros de asistencia, mientras que Space and Facility Context proporciona información asociada al acceso y utilización de los espacios universitarios. De esta manera, el Data Management Context permite centralizar información que originalmente se encuentra distribuida entre diferentes procesos del sistema.
 
-La información consolidada es posteriormente utilizada para generar reportes que
-pueden ser consultados por el personal administrativo mediante el dashboard web.
+La información consolidada es posteriormente utilizada para generar reportes que pueden ser consultados por el personal administrativo  mediante el dashboard web.
 
-### Acceso administrativo
+**Acceso administrativo**
 
-El acceso al Data Management Context se realiza mediante la aplicación web
-administrativa. Este acceso está destinado exclusivamente al personal autorizado de
-la universidad, debido a que los reportes contienen información consolidada sobre
-asistencia, accesos, ocupación y utilización de espacios.
+El acceso al Data Management Context se realiza mediante la aplicación web administrativa. Este acceso está destinado exclusivamente al personal autorizado de la universidad, debido a que los reportes contienen información consolidada sobre asistencia, accesos, ocupación y utilización de espacios.
 
-Los estudiantes, docentes y trabajadores que utilizan las tarjetas IoT no necesitan
-acceder directamente al dashboard ni a los mecanismos de gestión de información.
-Su participación se limita a generar los eventos y registros que posteriormente son
-procesados por el sistema.
+Los estudiantes, docentes y trabajadores que utilizan las tarjetas IoT no necesitan acceder directamente al dashboard ni a los mecanismos de gestión de información. Su participación se limita a generar los eventos y registros que posteriormente son procesados por el sistema.
 
-### Generación de reportes
+**Generación de reportes**
 
-El contexto permite generar reportes a partir de la información histórica almacenada.
-Estos reportes pueden organizarse según diferentes periodos, principalmente semanal,
-mensual y semestral.
+El contexto permite generar reportes a partir de la información histórica almacenada. Estos reportes pueden organizarse según diferentes periodos, principalmente semanal, mensual y semestral.
 
 Los reportes pueden presentar información relacionada con:
 
@@ -3592,26 +3543,461 @@ Los reportes pueden presentar información relacionada con:
 - Tendencias de utilización de los espacios.
 - Información consolidada para apoyar la toma de decisiones administrativas.
 
-Como parte de la evolución del sistema, los datos consolidados también pueden ser
-utilizados para generar reportes asistidos mediante mecanismos de análisis,
-incluyendo el reporte generado por IA representado en el modelo conceptual del
-bounded context.
+Como parte de la evolución del sistema, los datos consolidados también pueden ser utilizados para generar reportes asistidos mediante mecanismos de análisis, incluyendo el reporte generado por IA representado en el modelo conceptual del bounded context.
 
 ### 5.5.1. Domain Layer
 
+La Domain Layer encapsula las reglas de negocio relacionadas con el almacenamiento, auditoría, ordenamiento, consolidación y generación de reportes e indicadores a partir de los eventos procesados por los bounded contexts operativos de TarjePAFI.
+
+Este contexto no decide la validez de las asistencias, accesos o reservas, sino que transforma los eventos resultantes en registros históricos persistentes e inmutables y los consolida en reportes ejecutivos para el dashboard administrativo.
+
+**Aggregate: `DataRecord`**
+
+Representa un registro de información inmutable incorporado al historial de TarjePAFI a partir de un evento originado en un lector IoT o en otro Bounded Context. Mantiene la trazabilidad e idempotencia del evento procesado.
+
+| Atributos | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| id | Long | Private | Identificador único del registro en la base de datos. |
+| eventId | EventId | Private | Identificador único del evento original. Garantiza la idempotencia. |
+| sourceContext | DataSourceContext | Private | Bounded Context de origen (`IOT_MONITORING`, `ACADEMIC_ATTENDANCE`, `SPACE_AND_FACILITY`). |
+| dataType | DataType | Private | Tipo de dato registrado (`CARD_READING`, `ATTENDANCE`, `ACCESS`, `SPACE_USAGE`, `DEVICE_TELEMETRY`). |
+| subjectId | SubjectId | Private | Identificador del usuario, ambiente o dispositivo asociado al evento. |
+| occurredAt | Instant | Private | Fecha y hora exacta en la que ocurrió el evento original en la fuente. |
+| recordedAt | Instant | Private | Fecha y hora en la que fue persistido dentro del Data Management Context. |
+| payload | RecordPayload | Private | Datos estructurados en formato JSON que representan el detalle del evento. |
+| status | DataRecordStatus | Private | Estado del registro (`REGISTERED`, `PROCESSED`, `ERROR`). |
+
+| Métodos | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| getX() | — | Public | Getters de cada atributo (`getId()`, `getEventId()`, `getSourceContext()`, `getStatus()`, etc.). |
+| DataRecord(RegisterDataCommand) | Constructor | Public | Crea un nuevo registro en estado `REGISTERED` calculando `recordedAt` con el tiempo del servidor. |
+| markAsProcessed() | void | Public | Cambia el estado a `PROCESSED` tras ser clasificado e incorporado en las lecturas de reporte. |
+| markAsError(String) | void | Public | Transiciona el estado a `ERROR` si falla el procesamiento o parseo de la información. |
+| isValid() | boolean | Public | Devuelve `true` si el estado es `REGISTERED` o `PROCESSED`, apto para ser consolidado en reportes. |
+
+---
+
+**Aggregate: `Report`**
+
+Representa un reporte administrativo generado a partir de la consolidación de los datos históricos en un intervalo temporal definido.
+
+| Atributos | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| id | Long | Private | Identificador único del reporte generado. |
+| reportType | ReportType | Private | Tipo/frecuencia del reporte (`WEEKLY`, `MONTHLY`, `SEMESTER`). |
+| period | ReportPeriod | Private | Rango de fechas (`startDate`, `endDate`) considerado en la consolidación. |
+| generatedAt | Instant | Private | Fecha y hora en la que se completó la generación del reporte. |
+| status | ReportStatus | Private | Estado de generación (`GENERATING`, `GENERATED`, `ERROR`). |
+| totalRecords | Integer | Private | Cantidad total de registros `DataRecord` procesados para el reporte. |
+| summary | ReportSummary | Private | Contenido estructurado consolidado y métricas resumidas del reporte. |
+
+| Métodos | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| getX() | — | Public | Getters de cada atributo (`getId()`, `getReportType()`, `getPeriod()`, `getSummary()`, etc.). |
+| Report(GenerateReportCommand) | Constructor | Public | Inicializa la orden de reporte en estado `GENERATING`. |
+| completeGeneration(ReportSummary, Integer) | void | Public | Asigna el resumen consolidado, el total de registros e indica que el reporte está `GENERATED`. |
+| markAsError() | void | Public | Marca el reporte en estado `ERROR` ante fallas en la agregación de datos. |
+| isGenerated() | boolean | Public | Indica si el reporte se encuentra finalizado y disponible para consulta administrativa. |
+
+---
+
+**Domain Service: `DataOrganizationDomainService`**
+
+Concentra las reglas de validación, clasificación y control de duplicidad de los registros recibidos de otros contextos.
+
+| Método | Descripción |
+|---|---|
+| processIncomingRecord(EventId, DataSourceContext, DataType, SubjectId, Instant, String) | Valida que el registro contenga la información requerida, verifica la no existencia del `eventId` para evitar duplicados y clasifica el payload según el tipo de dato. |
+
+Reglas que aplica, en orden:
+
+1. **Verificación de duplicados (Idempotencia):** Si el `eventId` ya existe en el repositorio, detiene la operación para evitar registros duplicados.
+2. **Validación de integridad:** Comprueba que `occurredAt`, `sourceContext` y `subjectId` no sean nulos.
+3. **Consistencia de origen:** Verifica que la combinación de `sourceContext` y `dataType` sea coherente (ej. `ACADEMIC_ATTENDANCE` sólo puede emitir `ATTENDANCE`).
+4. **Asignación de estado inicial:** Asigna el estado `REGISTERED` y emite el evento `DataRegistered`.
+
+---
+
+**Domain Service: `ReportGenerationDomainService`**
+
+Concentra la lógica de agregación, cálculo de métricas e indicadores estadísticos a partir del conjunto de registros históricos.
+
+| Método | Descripción |
+|---|---|
+| generateReport(ReportType, ReportPeriod, List<DataRecord>) | Procesa una lista de `DataRecord` válidos comprendidos dentro del `ReportPeriod` y construye el `ReportSummary` correspondiente. |
+
+Reglas que aplica, en orden:
+
+1. **Filtrado de datos válidos:** Excluye registros que se encuentren en estado `ERROR`.
+2. **Rango estricto:** Asegura que solo se agreguen registros cuya fecha `occurredAt` caiga exactamente dentro del intervalo de `ReportPeriod`.
+3. **Agregación estadística:** Calcula índices de asistencia, aforo por espacios y volumen de lectura de tarjetas IoT.
+4. **Consolidación del resumen:** Devuelve un `ReportSummary` inmutable listo para ser asociado al agregado `Report`.
+
+---
+
+**Value Objects**
+
+| Value Object | Descripción |
+|---|---|
+| DataRecordId | Registro que representa el identificador único de un `DataRecord`. Valida que sea positivo y no nulo. |
+| EventId | Registro que envuelve el identificador único del evento original. Valida formato UUID o alfanumérico no vacío. |
+| SubjectId | Registro que identifica al usuario, espacio o dispositivo origen del registro. |
+| ReportPeriod | Registro que contiene `startDate` y `endDate`. Valida que `startDate` sea anterior o igual a `endDate`. |
+| RecordPayload | Registro inmutable que almacena la estructura JSON de los datos del evento. Valida que no supere los límites de almacenamiento. |
+| ReportSummary | Registro con la información estadística consolidada (ej. porcentaje de asistencia, concurrencia promedio, horas pico). |
+| DataSourceContext | Enumeración: `IOT_MONITORING`, `ACADEMIC_ATTENDANCE`, `SPACE_AND_FACILITY`. |
+| DataType | Enumeración: `CARD_READING`, `ATTENDANCE`, `ACCESS`, `SPACE_USAGE`, `DEVICE_TELEMETRY`. |
+| DataRecordStatus | Enumeración: `REGISTERED`, `PROCESSED`, `ERROR`. |
+| ReportType | Enumeración: `WEEKLY`, `MONTHLY`, `SEMESTER`. |
+| ReportStatus | Enumeración: `GENERATING`, `GENERATED`, `ERROR`. |
+
+---
+
+**Domain Events (publicados)**
+
+| Evento | Se publica cuando | Datos principales |
+|---|---|---|
+| DataRegistered | Se almacena correctamente un nuevo registro histórico. | dataRecordId, eventId, sourceContext, dataType, occurredAt. |
+| InformationOrganized | Un conjunto de datos ha sido clasificado y agrupado por periodo. | period, dataType, totalRecords, organizedAt. |
+| WeeklyReportGenerated | Se genera con éxito un reporte de periodicidad semanal. | reportId, period, totalRecords, generatedAt. |
+| MonthlyReportGenerated | Se genera con éxito un reporte de periodicidad mensual. | reportId, period, totalRecords, generatedAt. |
+| SemesterReportGenerated | Se genera con éxito un reporte de periodicidad semestral. | reportId, period, totalRecords, generatedAt. |
+| DataRegistrationError | Ocurre un error durante la recepción o parseo de un evento. | eventId, sourceContext, errorReason, occurredAt. |
+
+---
+
+**Excepciones de Dominio**
+
+| Excepción | Descripción |
+|---|---|
+| DataRecordNotFoundException | Se lanza cuando no se encuentra un registro por su ID o por el evento origen. |
+| ReportNotFoundException | Se lanza cuando se intenta consultar un reporte inexistente. |
+| DuplicateDataRecordException | Se lanza cuando se intenta registrar un evento cuya clave idempotente `eventId` ya fue procesada. |
+| InvalidReportPeriodException | Se lanza cuando la fecha inicial del periodo es posterior a la fecha final. |
+| ReportGenerationException | Se lanza ante un fallo en el cálculo analítico o la consolidación de métricas. |
+
+---
+
+**Interfaz: `DataRecordCommandService`**
+
+| Método | Descripción |
+|---|---|
+| handle(RegisterDataCommand) | Valida el evento entrante, garantiza la idempotencia, persiste el `DataRecord` y publica el evento `DataRegistered`. |
+| handle(OrganizeDataCommand) | Clasifica y agrupa los registros almacenados para un periodo determinado. |
+
+---
+
+**Interfaz: `ReportCommandService`**
+
+| Método | Descripción |
+|---|---|
+| handle(GenerateWeeklyReportCommand) | Coordina la consolidación de datos y la creación de un reporte semanal. |
+| handle(GenerateMonthlyReportCommand) | Coordina la consolidación de datos y la creación de un reporte mensual. |
+| handle(GenerateSemesterReportCommand) | Coordina la consolidación de datos y la creación de un reporte semestral. |
+
+---
+
+**Interfaz: `DataRecordQueryService`**
+
+| Método | Descripción |
+|---|---|
+| handle(GetDataRecordByIdQuery) | Obtiene el detalle de un registro específico por su ID. |
+| handle(GetDataRecordsByPeriodQuery) | Recupera los registros históricos comprendidos dentro de un rango de fechas. |
+| handle(GetDataRecordsByTypeQuery) | Recupera los registros filtrados por tipo de dato o contexto de origen. |
+
+---
+
+**Interfaz: `ReportQueryService`**
+
+| Método | Descripción |
+|---|---|
+| handle(GetReportByIdQuery) | Obtiene el resumen y detalle de un reporte administrativo generado. |
+| handle(ListReportsByPeriodQuery) | Lista los reportes disponibles ordenados por su periodo de consulta. |
+
 ### 5.5.2. Interface Layer
+
+La Interface Layer proporciona los puntos de entrada mediante los cuales el personal autorizado de la universidad puede consultar la información consolidada y los reportes generados por el sistema.
+
+Esta capa se encarga de recibir las solicitudes provenientes del dashboard web administrativo y transformarlas en Commands o Queries que serán procesados por la Application Layer. De esta manera, los detalles propios de HTTP, JSON y autenticación no se incorporan directamente en el modelo de dominio.
+
+Asimismo, esta capa contempla consumidores de mensajería para recibir los eventos generados por otros bounded contexts. Estos eventos permiten incorporar al Data Management Context la información relacionada con las lecturas IoT, asistencia académica y utilización de espacios.
+
+El acceso a las funcionalidades administrativas se encuentra restringido al personal autorizado de la universidad. Los estudiantes, docentes y demás usuarios que utilizan las tarjetas IoT no acceden directamente a esta capa, sino que generan información mediante sus interacciones con los lectores físicos.
+
+**DataManagementController**
+
+El `DataManagementController` expone las operaciones REST utilizadas por el dashboard administrativo para consultar los datos registrados y los reportes generados.
+
+| Método | Ruta | Acceso | Descripción |
+|---|---|---|---|
+| `GET` | `/api/v1/data-records` | `ADMIN` | Obtiene los registros almacenados en Data Management Context. |
+| `GET` | `/api/v1/data-records/{dataRecordId}` | `ADMIN` | Obtiene el detalle de un registro específico. |
+| `GET` | `/api/v1/data-records/period` | `ADMIN` | Consulta los registros correspondientes a un periodo determinado. |
+| `GET` | `/api/v1/data-records/type/{dataType}` | `ADMIN` | Consulta registros según el tipo de información almacenada. |
+| `GET` | `/api/v1/reports` | `ADMIN` | Lista los reportes disponibles. |
+| `GET` | `/api/v1/reports/{reportId}` | `ADMIN` | Obtiene el detalle de un reporte específico. |
+| `GET` | `/api/v1/reports/weekly` | `ADMIN` | Consulta reportes semanales disponibles. |
+| `GET` | `/api/v1/reports/monthly` | `ADMIN` | Consulta reportes mensuales disponibles. |
+| `GET` | `/api/v1/reports/semester` | `ADMIN` | Consulta reportes semestrales disponibles. |
+
+Las operaciones expuestas por este controlador son principalmente de consulta, ya que el objetivo principal del dashboard es permitir al personal autorizado visualizar la información consolidada y los reportes generados.
+
+**ReportCommandController**
+
+El `ReportCommandController` expone las operaciones necesarias para solicitar la generación de nuevos reportes desde el dashboard administrativo.
+
+| Método | Ruta | Acceso | Descripción |
+|---|---|---|---|
+| `POST` | `/api/v1/reports/weekly` | `ADMIN` | Solicita la generación de un reporte semanal. |
+| `POST` | `/api/v1/reports/monthly` | `ADMIN` | Solicita la generación de un reporte mensual. |
+| `POST` | `/api/v1/reports/semester` | `ADMIN` | Solicita la generación de un reporte semestral. |
+
+La solicitud recibida por este controlador no genera directamente el reporte. En su lugar, se transforma en un Command que será procesado posteriormente por la Application Layer.
+
+**Data Transfer Objects (DTOs)**
+
+Los DTOs representan las estructuras utilizadas para transportar información entre el dashboard administrativo y la API. Su objetivo es evitar que las entidades y objetos internos del dominio sean expuestos directamente.
+
+**DataRecordResource**
+
+| Campo | Tipo | Descripción |
+|---|---|---|
+| `id` | `Long` | Identificador del registro. |
+| `eventId` | `String` | Identificador del evento que originó el registro. |
+| `sourceContext` | `String` | Contexto que originó la información. |
+| `dataType` | `String` | Tipo de información registrada. |
+| `subjectId` | `String` | Identificador del usuario, espacio o dispositivo relacionado. |
+| `occurredAt` | `String` | Fecha y hora en que ocurrió el evento. |
+| `recordedAt` | `String` | Fecha y hora en que fue registrado en Data Management. |
+| `status` | `String` | Estado del registro. |
+
+**ReportResource**
+
+| Campo | Tipo | Descripción |
+|---|---|---|
+| `id` | `Long` | Identificador del reporte. |
+| `reportType` | `String` | Tipo de reporte generado. |
+| `periodStart` | `String` | Inicio del periodo analizado. |
+| `periodEnd` | `String` | Fin del periodo analizado. |
+| `generatedAt` | `String` | Fecha y hora de generación. |
+| `status` | `String` | Estado del reporte. |
+| `totalRecords` | `Integer` | Cantidad de registros utilizados. |
+| `summary` | `String` | Resumen de la información consolidada. |
+
+**GenerateReportResource**
+
+Este DTO representa la información recibida cuando un administrador solicita la generación de un reporte.
+
+| Campo | Tipo | Descripción |
+|---|---|---|
+| `reportType` | `String` | Tipo de reporte solicitado. |
+| `periodStart` | `String` | Fecha inicial del periodo. |
+| `periodEnd` | `String` | Fecha final del periodo. |
+
+**Transform Layer (Assemblers)**
+
+Los Assemblers permiten desacoplar los objetos utilizados por la API de los objetos internos del dominio y de la Application Layer.
+
+**DataRecordAssembler**
+
+| Método | Descripción |
+|---|---|
+| `toDataRecordResource(DataRecord)` | Convierte un registro del dominio en un recurso que puede ser enviado al dashboard. |
+| `toDataRecordResourceList(List<DataRecord>)` | Convierte una colección de registros en una colección de recursos. |
+
+**ReportAssembler**
+
+| Método | Descripción |
+|---|---|
+| `toReportResource(Report)` | Convierte un reporte del dominio en un recurso de respuesta. |
+| `toReportResourceList(List<Report>)` | Convierte una colección de reportes en recursos para la API. |
+
+**ReportCommandAssembler**
+
+| Método | Descripción |
+|---|---|
+| `toGenerateWeeklyReportCommand(GenerateReportResource)` | Convierte la solicitud de reporte semanal en un Command. |
+| `toGenerateMonthlyReportCommand(GenerateReportResource)` | Convierte la solicitud de reporte mensual en un Command. |
+| `toGenerateSemesterReportCommand(GenerateReportResource)` | Convierte la solicitud de reporte semestral en un Command. |
+
+**Consumidores de mensajería**
+
+Además de los controladores REST, Data Management Context recibe información proveniente de otros bounded contexts mediante eventos de dominio publicados en el bus de mensajería.
+
+Esta comunicación permite mantener desacoplados los contextos y evita que Data Management tenga que consultar directamente las clases internas de los demás bounded contexts.
+
+**CardTapEventConsumer**
+
+| Elemento | Descripción |
+|---|---|
+| Evento | `CardTapEvent` |
+| Origen | `IoT Monitoring Context` |
+| Cola | `data-management.card-tap.queue` |
+| Routing key | `iot.card-tap` |
+| Responsabilidad | Recibir información de una lectura realizada por un lector IoT y transformarla en un Command para registrar el dato. |
+
+**AttendanceEventConsumer**
+
+| Elemento | Descripción |
+|---|---|
+| Evento | Evento de asistencia generado por `Academic Attendance Context` |
+| Origen | `Academic Attendance Context` |
+| Cola | `data-management.attendance.queue` |
+| Responsabilidad | Recibir información relacionada con los registros de asistencia y enviarla a la Application Layer para su almacenamiento. |
+
+**SpaceUsageEventConsumer**
+
+| Elemento | Descripción |
+|---|---|
+| Evento | Evento relacionado con acceso o utilización de espacios |
+| Origen | `Space and Facility Context` |
+| Cola | `data-management.space.queue` |
+| Responsabilidad | Recibir información sobre accesos y utilización de espacios para incorporarla al historial de datos. |
+
+**Autorización de acceso**
+
+Las operaciones expuestas por la Interface Layer requieren autenticación y autorización previa. La identidad del usuario es validada mediante el `IAM Context`, mientras que la autorización determina si el usuario posee permisos administrativos para acceder a la información.
+
+| Usuario | Acceso al Data Management Context | Funcionalidad |
+|---|---|---|
+| Administrador | Sí | Consultar registros, visualizar reportes y solicitar generación de reportes. |
+| Personal autorizado | Sí, según permisos | Consultar la información administrativa correspondiente. |
+| Docente | No directamente | Genera información mediante sus interacciones con las tarjetas IoT. |
+| Estudiante | No directamente | Genera información mediante sus interacciones con las tarjetas IoT. |
+| Lector IoT | No | Envía eventos que posteriormente son procesados por el sistema. |
+
+De esta manera, la Interface Layer mantiene una separación entre los usuarios que generan información mediante las tarjetas IoT y los usuarios administrativos que consultan dicha información.
+
 
 ### 5.5.3. Application Layer
 
+Los servicios internos orquestan el registro y organización de la información generada
+por los demás bounded contexts, garantizan la idempotencia de los eventos recibidos,
+coordinan la persistencia de los datos históricos, gestionan la generación de reportes
+semanales, mensuales y semestrales y publican los eventos de dominio correspondientes
+hacia RabbitMQ.
+
+**\*\*Clase: `DataRecordCommandServiceImpl`\*\***
+
+| Título | DataRecordCommandServiceImpl |
+|---|---|
+| **Descripción** | Este servicio procesa comandos de otros bounded contexts: `RegisterDataCommand` valida la idempotencia por eventId, persiste y clasifica la información entrante, publicando `DataRegistered` o `DataRegistrationError` según corresponda, mientras que OrganizeDataCommand agrupa los registros del periodo solicitado mediante `DataOrganizationDomainService` y emite `InformationOrganized`. |
+
+| Dependencia | Descripción |
+|---|---|
+| `DataRecordRepository` | Persistencia de los registros históricos y validación de idempotencia mediante `eventId`. |
+| `DataOrganizationDomainService` | Servicio de dominio encargado de validar, clasificar y organizar la información registrada. |
+| `DataEventPublisher` | Puerto de salida para publicar los eventos `DataRegistered`, `InformationOrganized` y `DataRegistrationError` hacia RabbitMQ. |
+
+**\*\*Clase: `ReportCommandServiceImpl`\*\***
+
+| Título | ReportCommandServiceImpl |
+|---|---|
+| **Descripción** | Este servicio coordina la generación de reportes administrativos (`GenerateWeeklyReportCommand`, `GenerateMonthlyReportCommand` y `GenerateSemesterReportCommand`) obteniendo los registros del periodo vía `DataRecordRepository`, consolidándolos con `ReportGenerationDomainService`, y persistiendo el agregado `Report` para finalmente publicar el evento de éxito correspondiente. |
+
+| Dependencia | Descripción |
+|---|---|
+| `DataRecordRepository` | Consulta los registros históricos que sirven como fuente para la generación de reportes. |
+| `ReportRepository` | Persistencia y consulta de los reportes generados. |
+| `ReportGenerationDomainService` | Servicio de dominio encargado de consolidar, resumir y calcular la información utilizada por los reportes. |
+| `DataEventPublisher` | Puerto de salida para publicar los eventos asociados a la generación de reportes hacia RabbitMQ. |
+
+**\*\*Clase: `DataRecordQueryServiceImpl`\*\***
+
+| Título | DataRecordQueryServiceImpl |
+|---|---|
+| **Descripción** | Servicio encargado de responder las consultas relacionadas con la información histórica almacenada en Data Management Context. Permite recuperar registros individuales, consultar información por periodo y filtrar los datos según su tipo o contexto de origen para su posterior visualización en el dashboard administrativo. |
+
+| Dependencia | Descripción |
+|---|---|
+| `DataRecordRepository` | Acceso de lectura a los registros históricos almacenados. |
+
+**\*\*Clase: `ReportQueryServiceImpl`\*\***
+
+| Título | ReportQueryServiceImpl |
+|---|---|
+| **Descripción** | Servicio encargado de responder las consultas relacionadas con los reportes generados para el personal administrativo. Permite recuperar reportes individuales, listar reportes disponibles y consultar información según su periodicidad semanal, mensual o semestral. |
+
+| Dependencia | Descripción |
+|---|---|
+| `ReportRepository` | Acceso de lectura a los reportes generados. |
+
+**\*\*Puertos de salida (Anti-Corruption Layer)\*\***
+
+| Puerto | Descripción |
+|---|---|
+| `DataEventPublisher` | Interfaz utilizada para publicar los eventos de dominio generados por Data Management Context hacia RabbitMQ, incluyendo `DataRegistered`, `InformationOrganized`, `WeeklyReportGenerated`, `MonthlyReportGenerated`, `SemesterReportGenerated` y `DataRegistrationError`. |
+| `DataRecordRepository` | Interfaz de persistencia utilizada para almacenar y consultar la información histórica generada por los diferentes bounded contexts, manteniendo además la validación de idempotencia de los eventos recibidos. |
+| `ReportRepository` | Interfaz de persistencia utilizada para almacenar y consultar los reportes generados a partir de la información histórica. |
+
 ### 5.5.4. Infrastructure Layer
 
+Esta capa implementa la persistencia de datos históricos y reportes administrativos mediante Spring Data JPA sobre PostgreSQL, la mensajería asíncrona mediante RabbitMQ para la ingesta de eventos originados en otros contexts, el motor de agregación de métricas y los adaptadores de salida para exportación y notificaciones.
+
+**Clase: `DataRecordRepository`**
+
+| Título | DataRecordRepository |
+|---|---|
+| Descripción | Interfaz de persistencia para el registro histórico inmutable de eventos procesados en el campus. |
+
+| Método | Descripción |
+|---|---|
+| findById(DataRecordId) | Recupera un registro histórico por su identificador único. |
+| findByEventId(EventId) | Localiza el registro asociado a un evento original específico. |
+| existsByEventId(EventId) | Verifica si un evento ya fue procesado e incorporado para garantizar la idempotencia. |
+| findByPeriodAndType(ReportPeriod, DataType) | Recupera la colección de registros válidos dentro de un rango de fechas y tipo de dato para fines analíticos. |
+| findBySourceContext(DataSourceContext) | Retorna los registros filtrados por su bounded context de origen. |
+| save(DataRecord) | Persiste un nuevo registro o actualiza su estado de procesamiento en PostgreSQL. |
+
+**Clase: `ReportRepository`**
+
+| Título | ReportRepository |
+|---|---|
+| Descripción | Interfaz de persistencia para las entidades de reporte consolidado e indicadores ejecutivos. |
+
+| Método | Descripción |
+|---|---|
+| findById(Long) | Recupera un reporte generado por su ID. |
+| findByTypeAndPeriod(ReportType, ReportPeriod) | Localiza un reporte existente para un tipo y periodo específico. |
+| findLatestByType(ReportType) | Retorna el reporte consolidado generado más reciente según su periodicidad. |
+| findAll() | Lista la totalidad de reportes almacenados para la consulta desde la interfaz administrativa. |
+| save(Report) | Persiste o actualiza un reporte y su resumen consolidado (`ReportSummary`). |
+
+**Adaptadores, infraestructura y tareas en segundo plano**
+
+| Clase | Descripción |
+|---|---|
+| RabbitMqDataConfig | Declara las colas de ingesta `data-management.card-tap.queue`, `data-management.attendance.queue` y `data-management.space.queue`, vinculadas al exchange principal `tarjepafi.events` mediante routing keys (`iot.card-tap`, `attendance.*`, `space.*`). Configura además la *dead-letter queue* para eventos con errores de formato. |
+| RabbitDataEventPublisher | Implementa `DataEventPublisher`; publica eventos de dominio del contexto hacia RabbitMQ (`data.registered`, `data.organized`, `report.weekly.generated`, `report.monthly.generated`, `report.semester.generated`, `data.error`) para auditoría y consumo externo. |
+| PdfReportExporterAdapter | Adaptador de infraestructura que utiliza la librería iText/OpenPDF para transformar el agregado `Report` y su `ReportSummary` en un documento ejecutable en formato PDF listo para su descarga administrativa. |
+| ExcelReportExporterAdapter | Adaptador de infraestructura que utiliza Apache POI para exportar hojas de cálculo en formato Excel (`.xlsx`) con el desglose tabular de las métricas consolidadas. |
+| HistoricalDataArchiverScheduler | Tarea programada en segundo plano (`@Scheduled(cron = "0 0 2 * * *")`) ejecutada diariamente en horario nocturno. Invoca procesos de limpieza, consolidación de índices y verificación de integridad sobre registros antiguos. |
+
+**Decisiones de infraestructura**
+
+- **Garantía absoluta de idempotencia:** Se impone un índice único y restricción `UNIQUE` sobre la columna `event_id` en la tabla `data_records`. Cada evento recibido vía RabbitMQ es validado mediante `existsByEventId` en el consumidor antes de iniciar su procesamiento, evitando la duplicidad de métricas.
+- **Estrategia de indexación compuesta para rendimiento analítico:** Se crean índices compuestos sobre las columnas `(occurred_at, data_type)` y `(source_context, recorded_at)` en PostgreSQL. Esto permite acelerar sustancialmente las consultas agregadas requeridas por los procesos de generación de reportes periódicos sin degradar la base de datos.
+- **Resiliencia y desacoplamiento en exportaciones:** La compilación de reportes complejos en PDF/Excel y el envío de alertas de error de procesamiento se ejecutan de forma asíncrona mediante `@Async`, evitando bloquear el hilo de ejecución HTTP de la plataforma web administrativa durante la consulta de tableros.
+
 ### 5.5.6. Bounded Context Software Architecture Component Level Diagrams
+
+<p align="center">
+  <img src="assets/DataManagementComponentDiagram.png" alt="Component Diagram data" width="850">
+</p>
 
 ### 5.5.7. Bounded Context Software Architecture Code Level Diagrams
 
 #### 5.5.7.1. Bounded Context Domain Layer Class Diagrams
 
+<p align="center">
+  <img src="assets/DataManagementClassDiagram.png" alt="Class Diagram data" width="850">
+</p>
+
 #### 5.5.7.2. Bounded Context Database Design Diagram
+
+<p align="center">
+  <img src="assets/DataManagementDatabaseDiagram.png" alt="Database Diagram data" width="850">
+</p>
 
 
 # Capítulo VI: Solution UX Design
