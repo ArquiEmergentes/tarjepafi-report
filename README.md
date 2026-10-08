@@ -1201,15 +1201,20 @@ En esta sección, se presenta el análisis detallado de las necesidades, dolores
 
 Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan sus responsabilidades actuales, lo que nos permitirá identificar dónde nuestra solución puede aportar el mayor valor.
 
-
 <table>
   <thead>
     <tr>
       <th rowspan="2">Tareas</th>
       <th colspan="2">Andrea (Administradora)</th>
       <th colspan="2">Jair (Estudiante)</th>
+      <th colspan="2">Luis (Docente)</th>
+      <th colspan="2">Jorge (Personal operativo)</th>
     </tr>
     <tr>
+      <th>Frecuencia</th>
+      <th>Importancia</th>
+      <th>Frecuencia</th>
+      <th>Importancia</th>
       <th>Frecuencia</th>
       <th>Importancia</th>
       <th>Frecuencia</th>
@@ -1218,11 +1223,48 @@ Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan 
   </thead>
   <tbody>
     <tr>
-      <td>Esperar a que el docente pase asistencia en la plataforma web al inicio de clase</td>
+      <td>Pasar asistencia en la plataforma web al inicio de clase (docente) / esperar a que el docente la pase (estudiante)</td>
       <td>N/A</td>
       <td>N/A</td>
       <td>Alta</td>
       <td>Crítica</td>
+      <td>Alta</td>
+      <td>Crítica</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Perder minutos de clase mientras se pasa asistencia uno por uno</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Media</td>
+      <td>Alta</td>
+      <td>Alta</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Corregir el registro de asistencia por llegadas tardías o errores de marcado</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Alta</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Atender o presentar reclamos por errores en el registro de asistencia</td>
+      <td>Media</td>
+      <td>Crítica</td>
+      <td>Baja</td>
+      <td>Alta</td>
+      <td>Media</td>
+      <td>Alta</td>
+      <td>N/A</td>
+      <td>N/A</td>
     </tr>
     <tr>
       <td>Ingresar a laboratorios o biblioteca mostrando carné o registrando datos manualmente</td>
@@ -1230,13 +1272,21 @@ Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan 
       <td>N/A</td>
       <td>Alta</td>
       <td>Alta</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
     </tr>
     <tr>
-      <td>Consolidar manualmente reportes de asistencia (exportados por cada docente) y de accesos</td>
-      <td>Alta</td>
-      <td>Alta</td>
+      <td>Controlar el ingreso de personas por verificación visual o registro manual</td>
       <td>N/A</td>
       <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Crítica</td>
     </tr>
     <tr>
       <td>Verificar autorización de acceso a zonas restringidas de forma manual (lista impresa o consulta a seguridad)</td>
@@ -1244,11 +1294,52 @@ Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan 
       <td>Alta</td>
       <td>N/A</td>
       <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Alta</td>
     </tr>
     <tr>
-      <td>Atender reclamos de docentes/estudiantes por errores en el registro de asistencia</td>
-      <td>Media</td>
+      <td>Registrar manualmente la asistencia o jornada propia del trabajador (cuaderno o aviso al supervisor)</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Alta</td>
+    </tr>
+    <tr>
+      <td>Realizar rondas y revisar aulas y espacios uno por uno</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
       <td>Crítica</td>
+    </tr>
+    <tr>
+      <td>Reportar incidencias y reconstruir el reporte del turno a partir de notas manuales</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>Alta</td>
+      <td>Alta</td>
+    </tr>
+    <tr>
+      <td>Consolidar manualmente reportes de asistencia y de accesos provenientes de sistemas separados</td>
+      <td>Alta</td>
+      <td>Alta</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
       <td>N/A</td>
       <td>N/A</td>
     </tr>
@@ -1258,6 +1349,10 @@ Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan 
       <td>Alta</td>
       <td>N/A</td>
       <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
     </tr>
     <tr>
       <td>Reservar un ambiente o laboratorio por correo o solicitud presencial</td>
@@ -1265,13 +1360,10 @@ Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan 
       <td>N/A</td>
       <td>Baja</td>
       <td>Media</td>
-    </tr>
-    <tr>
-      <td>Perder minutos de clase mientras el docente pasa asistencia uno por uno</td>
-      <td>N/A</td>
-      <td>N/A</td>
-      <td>Alta</td>
       <td>Media</td>
+      <td>Media</td>
+      <td>N/A</td>
+      <td>N/A</td>
     </tr>
   </tbody>
 </table>
@@ -1313,8 +1405,12 @@ Para la sección del User Task Matrix, se analiza cómo Jair y Andrea gestionan 
 
 En esta sección se presenta un análisis detallado de la situación actual (AS-IS) para los diferentes segmentos.
 
-Se puede visualizar con más detalle en el siguiente enlace:
+Se puede visualizar con más detalle en los siguiente enlaces:
+
  https://lucid.app/lucidchart/1a5b371c-5aa4-4aef-bd8f-27a9c5132f0d/edit?viewport_loc=-8631%2C-1540%2C4493%2C2127%2C0_0&invitationId=inv_df4c245c-0fcc-4a3e-8dce-f9a24864599f
+
+
+ https://lucid.app/lucidchart/9bd0a33f-946a-41b1-bc23-6f9d67771378/edit?viewport_loc=-4339%2C-793%2C6684%2C4664%2C0_0&invitationId=inv_25361780-5978-4437-8509-cc27fa85c68d
 
 
 #### Segmento 1: Administradores y Responsables de Gestión Universitaria
@@ -1326,13 +1422,29 @@ Se puede visualizar con más detalle en el siguiente enlace:
 
 </div>
 
-#### Segmento 2: Usuarios de credencial
+#### Segmento 2: Usuarios de credencial (Estudiantes)
 
 <td align="center"><img src="assets/images/user-personas/as-is2.png" alt="AS IS 2" ></td>
 
 <div align = center>
 
+</div>
 
+
+#### Segmento 2: Usuarios de credencial (Profesores)
+
+<td align="center"><img src="assets/images/user-personas/as is profesores.png" alt="AS IS 2" ></td>
+
+<div align = center>
+
+</div>
+
+
+#### Segmento 2: Usuarios de credencial (Trabajadores)
+
+<td align="center"><img src="assets/images/user-personas/as  is trabajadores.png" alt="AS IS 2" ></td>
+
+<div align = center>
 
 </div>
 
