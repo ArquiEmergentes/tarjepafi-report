@@ -2669,6 +2669,11 @@ Esta capa implementa la persistencia con JPA y Spring Data JPA, la mensajería c
 
 ### 5.2.6. Bounded Context Software Architecture Component Level Diagrams
 
+
+A continuación se presenta la descomposición en componentes para el Academic Attendance Context, modelada bajo el estándar C4 Model Component Level.
+
+
+
 <p align="center">
   <img src="assets/images/bd-attendance/AcademicAttendance-Components.png" alt="Class Diagram aa" width="850">
 </p>
@@ -2678,11 +2683,15 @@ Esta capa implementa la persistencia con JPA y Spring Data JPA, la mensajería c
 #### 5.2.7.1. Bounded Context Domain Layer Class Diagrams
 
 <p align="center">
-  <img src="assets/images/bd-attendance/classdiagram.PNG" alt="Class Diagram aa" >
+  <img src="assets/images/bd-attendance/academic-class.png" alt="Class Diagram aa" >
 </p>
 
 
 #### 5.2.7.2. Bounded Context Database Design Diagram
+
+
+A continuación se presenta el diseño de base de datos relacional para PostgreSQL.
+
 
 <p align="center">
   <img src="assets/images/bd-attendance/bd-diagram.png" alt="Class Diagram aa" width="850">
