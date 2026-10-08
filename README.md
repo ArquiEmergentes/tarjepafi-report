@@ -3488,6 +3488,115 @@ De esta manera, el bounded context mantiene un modelo consistente independientem
 
 ## 5.5. Bounded Context: Data Management Context
 
+El Data Management Context es el bounded context encargado de centralizar, almacenar,
+organizar y transformar la información generada a partir de las interacciones con las
+tarjetas IoT y los lectores distribuidos en el campus universitario. Su propósito
+principal es convertir los datos operativos generados por los diferentes bounded
+contexts en información consolidada que pueda ser consultada y analizada por el
+personal autorizado de la universidad.
+
+Este contexto recibe información relacionada con las lecturas de las tarjetas, los
+registros de asistencia, los accesos al campus y el uso de los espacios universitarios.
+A partir de estos datos, mantiene un historial que permite generar reportes y
+visualizaciones sobre el comportamiento de las actividades realizadas dentro de la
+universidad.
+
+La información procesada por este contexto se encuentra orientada principalmente al
+personal administrativo y responsables de la gestión universitaria. Estos usuarios
+pueden acceder a un dashboard web para consultar información consolidada mediante
+reportes e indicadores relacionados con asistencia, accesos, ocupación y utilización
+de los espacios del campus. Los estudiantes, docentes y demás usuarios que utilizan
+la tarjeta IoT no interactúan directamente con este contexto, ya que su interacción
+con el sistema se realiza mediante la credencial física y los lectores IoT.
+
+### Responsabilidades principales
+
+- Almacenar los datos generados por las interacciones de las tarjetas IoT y los
+  lectores distribuidos en el campus.
+- Consolidar información proveniente de los diferentes bounded contexts de la
+  solución.
+- Ordenar y clasificar los registros almacenados para facilitar su procesamiento y
+  consulta.
+- Mantener información histórica sobre asistencia, accesos y utilización de
+  espacios universitarios.
+- Generar reportes periódicos sobre la información registrada.
+- Proporcionar información consolidada para la visualización mediante el dashboard
+  administrativo.
+- Detectar y registrar errores producidos durante el almacenamiento o procesamiento
+  de los datos.
+
+### Reglas de negocio principales
+
+- Todo dato generado por una interacción válida de una tarjeta IoT debe conservar su
+  información temporal para permitir posteriormente su análisis histórico.
+- Los registros provenientes de diferentes procesos deben conservar su contexto de
+  origen para poder distinguir información relacionada con asistencia, accesos y
+  utilización de espacios.
+- La información almacenada debe poder organizarse por diferentes periodos de
+  consulta, como semanal, mensual o semestral.
+- Los reportes generados deben utilizar información previamente registrada y procesada
+  por el sistema.
+- El acceso a los reportes y visualizaciones está restringido al personal autorizado
+  de la universidad.
+- Un error durante el registro o procesamiento de información debe ser identificado
+  para evitar que un dato inválido sea utilizado en los reportes.
+- El contexto debe conservar la información histórica necesaria para permitir el
+  análisis de tendencias y comportamiento del campus.
+
+### Integración con otros Bounded Contexts
+
+El Data Management Context actúa como consumidor de la información generada por los
+bounded contexts operativos de TarjePAFI. En particular, recibe información relacionada
+con las lecturas de tarjetas provenientes del IoT Monitoring Context y datos derivados
+de procesos como la asistencia académica y la utilización de espacios.
+
+El IoT Monitoring Context constituye uno de los principales puntos de origen de
+información, debido a que procesa las interacciones físicas realizadas mediante las
+tarjetas NFC y los lectores IoT. A partir de estas interacciones se generan eventos
+que pueden ser utilizados por el Data Management Context para registrar información
+histórica.
+
+Asimismo, Academic Attendance Context aporta información relacionada con los
+registros de asistencia, mientras que Space and Facility Context proporciona
+información asociada al acceso y utilización de los espacios universitarios. De esta
+manera, el Data Management Context permite centralizar información que originalmente
+se encuentra distribuida entre diferentes procesos del sistema.
+
+La información consolidada es posteriormente utilizada para generar reportes que
+pueden ser consultados por el personal administrativo mediante el dashboard web.
+
+### Acceso administrativo
+
+El acceso al Data Management Context se realiza mediante la aplicación web
+administrativa. Este acceso está destinado exclusivamente al personal autorizado de
+la universidad, debido a que los reportes contienen información consolidada sobre
+asistencia, accesos, ocupación y utilización de espacios.
+
+Los estudiantes, docentes y trabajadores que utilizan las tarjetas IoT no necesitan
+acceder directamente al dashboard ni a los mecanismos de gestión de información.
+Su participación se limita a generar los eventos y registros que posteriormente son
+procesados por el sistema.
+
+### Generación de reportes
+
+El contexto permite generar reportes a partir de la información histórica almacenada.
+Estos reportes pueden organizarse según diferentes periodos, principalmente semanal,
+mensual y semestral.
+
+Los reportes pueden presentar información relacionada con:
+
+- Registros de asistencia.
+- Accesos al campus y a espacios restringidos.
+- Utilización de aulas, cubículos y otros ambientes.
+- Cantidad y frecuencia de interacciones mediante tarjetas IoT.
+- Tendencias de utilización de los espacios.
+- Información consolidada para apoyar la toma de decisiones administrativas.
+
+Como parte de la evolución del sistema, los datos consolidados también pueden ser
+utilizados para generar reportes asistidos mediante mecanismos de análisis,
+incluyendo el reporte generado por IA representado en el modelo conceptual del
+bounded context.
+
 ### 5.5.1. Domain Layer
 
 ### 5.5.2. Interface Layer
