@@ -112,6 +112,8 @@ Integrantes
 
 # Project Report Collaboration Insights
 
+Repositorio del reporte: 'https://github.com/ArquiEmergentes/tarjepafi-report'
+
 + TB1:
 
 <p align="center">
@@ -119,7 +121,17 @@ Integrantes
 </p>
 
 <p align="center">
-  <img src="assets//insight 2 tb1.png" alt="insights1" width="500">
+  <img src="assets/insight 2 tb1.png" alt="insights1" width="500">
+</p>
+
++ TP1:
+
+<p align="center">
+  <img src="assets/insight tp1.png" alt="insights1" width="500">
+</p>
+
+<p align="center">
+  <img src="assets/insight tp1 2.png" alt="insights1" width="500">
 </p>
 
 
@@ -4845,3 +4857,12 @@ User Persona: [Nombre del User Persona] — Estudiante.
 + Sutjarittham, T., Habibi Gharakheili, H., Kanhere, S. S., & Sivaraman, V. (2019). Experiences with IoT and AI in a smart campus for optimizing classroom usage. IEEE Internet of Things Journal, 6(5), 7595–7607. https://doi.org/10.1109/JIOT.2019.2902410
 
 + Prabakaran, S., Geetha, S., Nivesh Raja, R., Dhanush Balaji, G., Maya Kannan, M., & Sam Brainald, C. (2025). Smart campus surveillance and guidance system using face recognition. *Journal on Innovations in Teaching and Learning*, *4*(4), 22–31. https://doi.org/10.46632/jitl/4/4/4
+
+
+# Anexos
+
+Repositorio Informe: 'https://github.com/ArquiEmergentes/tarjepafi-report'
+
+Link del PPT: 'https://canva.link/6w07ca9lagsijv0'
+
+Link del Video: 'https://canva.link/bxmdxpftk3cfien'
