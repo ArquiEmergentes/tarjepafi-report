@@ -4896,6 +4896,93 @@ Herramientas utilizadas para documentar la arquitectura, el modelo de dominio y 
 | Swagger (OpenAPI) | Documentación interactiva de los endpoints REST del Backend API, generada con springdoc-openapi. | [https://swagger.io/](https://swagger.io/) |
 
 
+### 7.1.2. Source Code Management
+
+El código fuente de TarjePAFI se gestiona con Git y se aloja en GitHub, dentro de la organización del equipo: [https://github.com/ArquiEmergentes](https://github.com/ArquiEmergentes)
+
+Cada componente de la solución tiene su propio repositorio. El Backend API se divide en un repositorio por bounded context, de modo que cada uno pueda evolucionar y versionarse de forma independiente.
+
+| Componente | Repositorio |
+| --- | --- |
+| Informe del proyecto | [https://github.com/ArquiEmergentes/tarjepafi-report](https://github.com/ArquiEmergentes/tarjepafi-report) |
+| Landing Page | [https://github.com/ArquiEmergentes/tarjepafi-landing-page](https://github.com/ArquiEmergentes/tarjepafi-landing-page) |
+| Web App administrativa (Angular) | [https://github.com/ArquiEmergentes/tarjepafi-web-app](https://github.com/ArquiEmergentes/tarjepafi-web-app) |
+| Backend: IAM Context | [https://github.com/ArquiEmergentes/tarjepafi-iam-service](https://github.com/ArquiEmergentes/tarjepafi-iam-service) |
+| Backend: Academic Attendance Context | [https://github.com/ArquiEmergentes/tarjepafi-academic-attendance-service](https://github.com/ArquiEmergentes/tarjepafi-academic-attendance-service) |
+| Backend: Space and Facility Context | [https://github.com/ArquiEmergentes/tarjepafi-space-facility-service](https://github.com/ArquiEmergentes/tarjepafi-space-facility-service) |
+| Backend: IoT Monitoring Context | [https://github.com/ArquiEmergentes/tarjepafi-iot-monitoring-service](https://github.com/ArquiEmergentes/tarjepafi-iot-monitoring-service) |
+| Backend: Data Management Context | [https://github.com/ArquiEmergentes/tarjepafi-data-management-service](https://github.com/ArquiEmergentes/tarjepafi-data-management-service) |
+
+**GitFlow**
+
+Todos los repositorios siguen el modelo de ramificación GitFlow propuesto por Vincent Driessen, que separa el trabajo en curso de las versiones estables.
+
+```mermaid
+gitGraph
+    commit id: "init"
+    branch develop
+    checkout develop
+    commit id: "setup"
+    branch feature/attendance-registration
+    checkout feature/attendance-registration
+    commit id: "feat: attendance"
+    checkout develop
+    merge feature/attendance-registration
+    branch release/v1.0.0
+    checkout release/v1.0.0
+    commit id: "chore: bump version"
+    checkout main
+    merge release/v1.0.0 tag: "v1.0.0"
+    checkout develop
+    merge release/v1.0.0
+    checkout main
+    branch hotfix/v1.0.1
+    checkout hotfix/v1.0.1
+    commit id: "fix: card validation"
+    checkout main
+    merge hotfix/v1.0.1 tag: "v1.0.1"
+    checkout develop
+    merge hotfix/v1.0.1
+```
+
+Estructura de ramas:
+
+1. **main:** contiene la versión estable que está en producción. Solo recibe merges desde ramas release y hotfix, y cada merge se etiqueta con su número de versión.
+2. **develop:** integra las funcionalidades terminadas y es la base para crear nuevas ramas feature. Es la rama de trabajo del equipo.
+3. **feature:** cada funcionalidad, User Story o Technical Story se desarrolla en su propia rama creada desde develop, con el formato `feature/<nombre-de-la-funcionalidad>` en kebab-case e inglés (por ejemplo, `feature/attendance-registration`). Al terminar se integra a develop mediante un Pull Request.
+4. **release:** se crea desde develop cuando un conjunto de funcionalidades está listo para publicarse, con el formato `release/v<MAJOR>.<MINOR>.<PATCH>` (por ejemplo, `release/v1.0.0`). En ella solo se hacen ajustes finales y correcciones menores; luego se integra a main y a develop.
+5. **hotfix:** se crea desde main para corregir un error crítico en producción, con el formato `hotfix/v<MAJOR>.<MINOR>.<PATCH>` (por ejemplo, `hotfix/v1.0.1`). Una vez corregido, se integra a main y a develop.
+
+**Pull Requests**
+
+Ningún cambio se sube directamente a main ni a develop. Toda integración se realiza mediante un Pull Request que debe ser revisado y aprobado por al menos un integrante del equipo distinto a su autor antes de hacer el merge.
+
+
+
+
+**Conventional Commits**
+
+Los mensajes de commit siguen la especificación Conventional Commits, escritos en inglés y en modo imperativo:
+
+`<type>(<scope>): <description>`
+
+El `scope` es opcional e indica el módulo o sección afectada. Ejemplos:
+
+- `feat(attendance): add attendance registration from card tap event`
+- `fix(iam): validate expired JWT tokens`
+- `docs(readme): add source code management section`
+
+Tipos permitidos:
+
+| Tipo | Uso |
+| --- | --- |
+| feat | Nueva funcionalidad. |
+| fix | Corrección de un error. |
+| docs | Cambios en la documentación. |
+| style | Cambios de formato que no alteran el comportamiento del código. |
+| refactor | Reestructuración del código sin cambiar su funcionalidad. |
+| test | Creación o modificación de pruebas. |
+| chore | Tareas de mantenimiento, configuración o dependencias. |
 
 # Conclusiones
 
