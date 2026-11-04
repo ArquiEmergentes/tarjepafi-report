@@ -4816,6 +4816,241 @@ User Persona: [Nombre del User Persona] — Estudiante.
 
 **Explicación del flujo:** Desde el Home (MOB-02), el estudiante usa la bottom navigation para moverse entre las secciones de consulta. En Mi horario (MOB-03) selecciona el día y ve sus clases con estado Próxima, En curso o Finalizada. En Historial de asistencia (MOB-07) revisa el resumen de sesiones, presentes, tardanzas y ausencias, y la lista de registros por curso y fecha. Finalmente, en Perfil / Credencial (MOB-08) confirma sus datos y el estado de su credencial NFC, indicado con el badge "Credencial activa". Este flujo es solo de consulta: ninguna interacción modifica el estado de una pantalla, por lo que cada paso corresponde a una pantalla distinta.
 
+
+# Capítulo VII: Product Implementation, Validation & Deployment
+
+## 7.1. Software Configuration Management
+
+En esta sección se definen las herramientas, normas y procedimientos que el equipo de PafiSolutions adopta para el desarrollo de TarjePAFI. El objetivo es asegurar la integridad, la trazabilidad y la consistencia de los artefactos de software (Web App administrativa, Backend API, firmware de los lectores NFC y documentación) durante todo su ciclo de vida: desde la planificación y el desarrollo, pasando por la integración y las pruebas, hasta el despliegue y el mantenimiento.
+
+### 7.1.1. Software Development Environment Configuration
+
+**Project Management**
+
+Herramientas utilizadas para la planificación, la asignación de tareas y el seguimiento de los Sprints del equipo.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Trello | Tablero utilizado para gestionar el Product Backlog y el Sprint Backlog, y para hacer seguimiento del estado de cada User Story y Technical Story. | [https://trello.com/](https://trello.com/) |
+| WhatsApp / Discord | Aplicaciones de mensajería utilizadas para la comunicación diaria, la coordinación de tareas y las reuniones virtuales del equipo. | No aplica |
+| GitHub (Pull Requests e Issues) | Revisión de los cambios del informe y del código mediante Pull Requests antes de integrarlos a la rama develop. | [https://github.com/ArquiEmergentes](https://github.com/ArquiEmergentes) |
+
+**Requirements Management**
+
+Herramientas enfocadas en la recolección, estructuración y trazabilidad de los requisitos y en el modelado del dominio.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Miro | Pizarra colaborativa utilizada para el Lean UX Canvas y las sesiones de EventStorming, Candidate Context Discovery y Domain Message Flows Modeling. | [https://miro.com/](https://miro.com/) |
+| Lucidchart | Herramienta utilizada para elaborar los As-is y To-be Scenario Maps de cada segmento objetivo. | [https://lucid.app/](https://lucid.app/) |
+| GitHub (Markdown) | Repositorio del informe donde se documentan las User Stories, Technical Stories, criterios de aceptación y el Product Backlog. | [https://github.com/ArquiEmergentes/tarjepafi-report](https://github.com/ArquiEmergentes/tarjepafi-report) |
+
+**Product UX/UI Design**
+
+Plataformas empleadas para el diseño visual y de interacción de las interfaces.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Figma | Plataforma colaborativa utilizada para los Wireframes, Mock-ups y Wireflows de la Landing Page, la Web App administrativa y la aplicación móvil. | [https://www.figma.com/](https://www.figma.com/) |
+
+**Software Development**
+
+Entornos de desarrollo y tecnologías base utilizadas para codificar cada componente de la solución.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| IntelliJ IDEA | IDE utilizado para desarrollar el Backend API en Java 25 con Spring Boot, organizado como monolito modular con un módulo por bounded context. | [https://www.jetbrains.com/idea/](https://www.jetbrains.com/idea/) |
+| Visual Studio Code | Editor utilizado para desarrollar la Web App administrativa en Angular (TypeScript) y para editar la documentación en Markdown. | [https://code.visualstudio.com/](https://code.visualstudio.com/) |
+| Wokwi | Simulador online de hardware utilizado para programar en C++ (framework Arduino) y probar el firmware de los lectores ESP32 con lector NFC, ya que la solución se valida mediante simulación y no con un prototipo físico. | [https://wokwi.com/](https://wokwi.com/) |
+| RabbitMQ | Message broker que recibe de forma asíncrona los eventos de lectura NFC publicados por los lectores y los entrega a los consumidores del Backend API. | [https://www.rabbitmq.com/](https://www.rabbitmq.com/) |
+| PostgreSQL | Sistema de gestión de base de datos relacional que persiste la información de asistencias, accesos, reservas, lectores y reportes. | [https://www.postgresql.org/](https://www.postgresql.org/) |
+
+**Software Testing**
+
+Herramientas para asegurar la calidad del código y el correcto funcionamiento de los servicios.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Postman | Plataforma utilizada para probar los endpoints REST del Backend API, incluido el registro manual de asistencias sin pasar por RabbitMQ. | [https://www.postman.com/](https://www.postman.com/) |
+| JUnit 5 / Mockito | Frameworks utilizados dentro de Spring Boot para las pruebas unitarias de la lógica de dominio y de los servicios de aplicación. | [https://junit.org/junit5/](https://junit.org/junit5/) |
+| Gherkin | Lenguaje utilizado para redactar los escenarios de los criterios de aceptación en formato Given - When - Then. | [https://cucumber.io/docs/gherkin/](https://cucumber.io/docs/gherkin/) |
+
+**Software Deployment**
+
+Herramientas para el control de versiones, la integración y el despliegue de la solución.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Git / GitHub | Sistema de control de versiones bajo el modelo GitFlow y plataforma de alojamiento de los repositorios de la organización. | [https://github.com/](https://github.com/) |
+
+
+**Software Documentation**
+
+Herramientas utilizadas para documentar la arquitectura, el modelo de dominio y los servicios.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Structurizr | Herramienta Diagram-as-Code utilizada para modelar la arquitectura de software bajo el C4 Model. | [https://structurizr.com/](https://structurizr.com/) |
+| PlantUML | Herramienta utilizada para elaborar los diagramas de clases de la Domain Layer de cada bounded context. | [https://plantuml.com/](https://plantuml.com/) |
+| dbdiagram.io | Herramienta utilizada para modelar en DBML los diagramas de base de datos de cada bounded context. | [https://dbdiagram.io/](https://dbdiagram.io/) |
+| Swagger (OpenAPI) | Documentación interactiva de los endpoints REST del Backend API, generada con springdoc-openapi. | [https://swagger.io/](https://swagger.io/) |
+
+
+### 7.1.2. Source Code Management
+
+El código fuente de TarjePAFI se gestiona con Git y se aloja en GitHub, dentro de la organización del equipo: [https://github.com/ArquiEmergentes](https://github.com/ArquiEmergentes)
+
+Cada componente de la solución tiene su propio repositorio. El Backend API se divide en un repositorio por bounded context, de modo que cada uno pueda evolucionar y versionarse de forma independiente.
+
+| Componente | Repositorio |
+| --- | --- |
+| Informe del proyecto | [https://github.com/ArquiEmergentes/tarjepafi-report](https://github.com/ArquiEmergentes/tarjepafi-report) |
+| Landing Page | [https://github.com/ArquiEmergentes/tarjepafi-landing-page](https://github.com/ArquiEmergentes/tarjepafi-landing-page) |
+| Web App administrativa (Angular) | [https://github.com/ArquiEmergentes/tarjepafi-web-app](https://github.com/ArquiEmergentes/tarjepafi-web-app) |
+| Backend: IAM Context | [https://github.com/ArquiEmergentes/tarjepafi-iam-service](https://github.com/ArquiEmergentes/tarjepafi-iam-service) |
+| Backend: Academic Attendance Context | [https://github.com/ArquiEmergentes/tarjepafi-academic-attendance-service](https://github.com/ArquiEmergentes/tarjepafi-academic-attendance-service) |
+| Backend: Space and Facility Context | [https://github.com/ArquiEmergentes/tarjepafi-space-facility-service](https://github.com/ArquiEmergentes/tarjepafi-space-facility-service) |
+| Backend: IoT Monitoring Context | [https://github.com/ArquiEmergentes/tarjepafi-iot-monitoring-service](https://github.com/ArquiEmergentes/tarjepafi-iot-monitoring-service) |
+| Backend: Data Management Context | [https://github.com/ArquiEmergentes/tarjepafi-data-management-service](https://github.com/ArquiEmergentes/tarjepafi-data-management-service) |
+
+**GitFlow**
+
+Todos los repositorios siguen el modelo de ramificación GitFlow propuesto por Vincent Driessen, que separa el trabajo en curso de las versiones estables.
+
+```mermaid
+gitGraph
+    commit id: "init"
+    branch develop
+    checkout develop
+    commit id: "setup"
+    branch feature/attendance-registration
+    checkout feature/attendance-registration
+    commit id: "feat: attendance"
+    checkout develop
+    merge feature/attendance-registration
+    branch release/v1.0.0
+    checkout release/v1.0.0
+    commit id: "chore: bump version"
+    checkout main
+    merge release/v1.0.0 tag: "v1.0.0"
+    checkout develop
+    merge release/v1.0.0
+    checkout main
+    branch hotfix/v1.0.1
+    checkout hotfix/v1.0.1
+    commit id: "fix: card validation"
+    checkout main
+    merge hotfix/v1.0.1 tag: "v1.0.1"
+    checkout develop
+    merge hotfix/v1.0.1
+```
+
+Estructura de ramas:
+
+1. **main:** contiene la versión estable que está en producción. Solo recibe merges desde ramas release y hotfix, y cada merge se etiqueta con su número de versión.
+2. **develop:** integra las funcionalidades terminadas y es la base para crear nuevas ramas feature. Es la rama de trabajo del equipo.
+3. **feature:** cada funcionalidad, User Story o Technical Story se desarrolla en su propia rama creada desde develop, con el formato `feature/<nombre-de-la-funcionalidad>` en kebab-case e inglés (por ejemplo, `feature/attendance-registration`). Al terminar se integra a develop mediante un Pull Request.
+4. **release:** se crea desde develop cuando un conjunto de funcionalidades está listo para publicarse, con el formato `release/v<MAJOR>.<MINOR>.<PATCH>` (por ejemplo, `release/v1.0.0`). En ella solo se hacen ajustes finales y correcciones menores; luego se integra a main y a develop.
+5. **hotfix:** se crea desde main para corregir un error crítico en producción, con el formato `hotfix/v<MAJOR>.<MINOR>.<PATCH>` (por ejemplo, `hotfix/v1.0.1`). Una vez corregido, se integra a main y a develop.
+
+**Pull Requests**
+
+Ningún cambio se sube directamente a main ni a develop. Toda integración se realiza mediante un Pull Request que debe ser revisado y aprobado por al menos un integrante del equipo distinto a su autor antes de hacer el merge.
+
+
+
+
+**Conventional Commits**
+
+Los mensajes de commit siguen la especificación Conventional Commits, escritos en inglés y en modo imperativo:
+
+`<type>(<scope>): <description>`
+
+El `scope` es opcional e indica el módulo o sección afectada. Ejemplos:
+
+- `feat(attendance): add attendance registration from card tap event`
+- `fix(iam): validate expired JWT tokens`
+- `docs(readme): add source code management section`
+
+Tipos permitidos:
+
+| Tipo | Uso |
+| --- | --- |
+| feat | Nueva funcionalidad. |
+| fix | Corrección de un error. |
+| docs | Cambios en la documentación. |
+| style | Cambios de formato que no alteran el comportamiento del código. |
+| refactor | Reestructuración del código sin cambiar su funcionalidad. |
+| test | Creación o modificación de pruebas. |
+| chore | Tareas de mantenimiento, configuración o dependencias. |
+
+
+### 7.1.3. Source Code Style Guide & Conventions
+
+Para que el código de TarjePAFI sea legible, consistente y fácil de mantener entre los distintos integrantes, el equipo adopta las siguientes guías y convenciones. Como regla general, **todo el código (nombres de variables, clases, métodos, endpoints, tablas, colas y comentarios) se escribe en inglés**, mientras que la documentación del informe se redacta en español.
+
+
+**Web App administrativa (Angular / TypeScript)**
+
+Se toma como referencia la guía oficial [Angular Style Guide](https://angular.dev/style-guide) y la [Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html).
+
+- **Nomenclatura:** camelCase para variables y funciones, PascalCase para clases, interfaces y tipos, y UPPER_SNAKE_CASE para constantes.
+- **Archivos:** kebab-case con el tipo de artefacto como sufijo, por ejemplo `attendance-history.component.ts`, `reservation.service.ts` y `card-holder.model.ts`.
+- **Estructura:** el código se organiza por bounded context (`iam`, `attendance`, `space-facility`, `iot-monitoring`, `data-management`), y dentro de cada uno se separan los componentes de vista, los servicios que consumen el Backend API y los modelos.
+- **Tipado estricto:** se activa el modo `strict` de TypeScript. Se definen interfaces para las respuestas del Backend API y se evita el uso del tipo `any`.
+- **Responsabilidades:** los componentes solo manejan la presentación. Las llamadas HTTP y la lógica de negocio del cliente se ubican en servicios inyectables.
+- **Selectores:** los componentes usan el prefijo `tp-` en sus selectores, por ejemplo `<tp-reservation-list>`.
+
+**Backend API (Java 25 / Spring Boot)**
+
+Se toma como referencia la [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
+
+- **Nomenclatura:** PascalCase para clases, records y enums, camelCase para métodos y atributos, y UPPER_SNAKE_CASE para constantes y valores de enums (por ejemplo, `DeviceStatus.OFFLINE`).
+- **Paquetes:** en minúsculas, con la base `com.pafisolutions.tarjepafi.<boundedcontext>` y un subpaquete por capa: `domain`, `application`, `interfaces` e `infrastructure`, siguiendo la estructura definida en el Capítulo V.
+- **Sufijos por tipo de clase:** `Command`, `Query`, `CommandHandler`, `QueryHandler`, `Repository`, `Controller`, `Resource` (DTO de respuesta), `Consumer` y `Event`. Los eventos de dominio se nombran en pasado (`AttendanceRecorded`, `SpaceReleased`).
+- **Value Objects:** se implementan como `record` de Java y validan sus invariantes en el constructor (por ejemplo, `SpaceId` y `ReaderEventId`).
+- **Inyección de dependencias:** por constructor, evitando `@Autowired` sobre atributos.
+- **Manejo de errores:** las excepciones de dominio se traducen a respuestas HTTP en un `@RestControllerAdvice` por bounded context, sin exponer detalles internos al cliente.
+
+**RESTful API**
+
+- Los endpoints se versionan bajo el prefijo `/api/v1/`.
+- Los recursos se nombran con sustantivos en plural y en kebab-case, por ejemplo `/api/v1/attendance-records` y `/api/v1/class-sessions/{sessionId}`.
+- Se usan los verbos HTTP según su semántica: `GET` para consultar, `POST` para crear, `PUT` o `PATCH` para actualizar y `DELETE` para eliminar.
+- Los atributos de los cuerpos JSON se escriben en camelCase.
+- Se responden los códigos HTTP estándar: `200`, `201`, `204`, `400`, `401`, `403`, `404` y `409`.
+
+**Mensajería (RabbitMQ)**
+
+- Los eventos de integración se publican en el exchange de tipo topic `tarjepafi.events`.
+- Las routing keys siguen el formato `<contexto>.<evento>` en kebab-case y en pasado, salvo los eventos de lectura del lector, por ejemplo `iot.card-tap`, `attendance.recorded` y `academic.class-session-started`.
+- Las colas siguen el formato `<contexto-consumidor>.<evento>.queue`, por ejemplo `attendance.card-tap.queue` y `space.card-tap.queue`. Cada cola tiene asociada su dead-letter queue con el sufijo `.dlq`.
+- Todo mensaje incluye un `eventId` (UUID) que se usa como llave de idempotencia y un `timestamp` en formato ISO 8601 (UTC).
+
+**Base de datos (PostgreSQL)**
+
+- Tablas y columnas en snake_case, con nombres de tablas en plural, por ejemplo `attendance_records` y `space_reservations`.
+- Las claves primarias se llaman `id` y las claves foráneas `<entidad>_id`, por ejemplo `space_id`.
+- Las restricciones e índices usan prefijos que indiquen su tipo: `pk_`, `fk_`, `uk_` e `idx_`.
+- Cada bounded context es dueño de sus propias tablas y no accede directamente a las tablas de otro contexto.
+
+**Firmware IoT (C++ / Arduino framework en Wokwi)**
+
+Se toma como referencia la [Arduino Style Guide for Writing Libraries](https://docs.arduino.cc/learn/contributions/arduino-library-style-guide/).
+
+- **Nomenclatura:** camelCase para variables y funciones, PascalCase para clases y UPPER_SNAKE_CASE para constantes y definiciones de pines (por ejemplo, `RFID_SS_PIN`).
+- **Organización:** la lógica se divide en módulos con su archivo `.h` y `.cpp` (lectura NFC, conexión de red, publicación de eventos y almacenamiento local), dejando `setup()` y `loop()` lo más cortos posible.
+- **Sin bloqueos:** se evita el uso de `delay()` en el ciclo principal y se usa `millis()` para las tareas periódicas, de modo que el lector siga respondiendo a nuevas lecturas.
+- **Configuración:** las credenciales de red, el identificador del lector y la dirección del broker se definen en un archivo de configuración aparte, que no se sube al repositorio con valores reales.
+
+**Testing & Documentación (Gherkin)**
+
+- Los escenarios de aceptación siguen la estructura `Given - When - Then`, con un escenario por comportamiento.
+- Los archivos `.feature` se escriben en inglés y se nombran en kebab-case según la funcionalidad, por ejemplo `attendance-registration.feature`.
+- Las pruebas unitarias en Java se nombran con el formato `methodName_condition_expectedResult`, por ejemplo `registerAttendance_whenCardIsDeactivated_rejectsTap`.
+
+
+
 # Conclusiones
 
 + TB1:
