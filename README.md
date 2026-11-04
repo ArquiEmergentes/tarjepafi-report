@@ -4984,6 +4984,73 @@ Tipos permitidos:
 | test | Creación o modificación de pruebas. |
 | chore | Tareas de mantenimiento, configuración o dependencias. |
 
+
+### 7.1.3. Source Code Style Guide & Conventions
+
+Para que el código de TarjePAFI sea legible, consistente y fácil de mantener entre los distintos integrantes, el equipo adopta las siguientes guías y convenciones. Como regla general, **todo el código (nombres de variables, clases, métodos, endpoints, tablas, colas y comentarios) se escribe en inglés**, mientras que la documentación del informe se redacta en español.
+
+
+**Web App administrativa (Angular / TypeScript)**
+
+Se toma como referencia la guía oficial [Angular Style Guide](https://angular.dev/style-guide) y la [Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html).
+
+- **Nomenclatura:** camelCase para variables y funciones, PascalCase para clases, interfaces y tipos, y UPPER_SNAKE_CASE para constantes.
+- **Archivos:** kebab-case con el tipo de artefacto como sufijo, por ejemplo `attendance-history.component.ts`, `reservation.service.ts` y `card-holder.model.ts`.
+- **Estructura:** el código se organiza por bounded context (`iam`, `attendance`, `space-facility`, `iot-monitoring`, `data-management`), y dentro de cada uno se separan los componentes de vista, los servicios que consumen el Backend API y los modelos.
+- **Tipado estricto:** se activa el modo `strict` de TypeScript. Se definen interfaces para las respuestas del Backend API y se evita el uso del tipo `any`.
+- **Responsabilidades:** los componentes solo manejan la presentación. Las llamadas HTTP y la lógica de negocio del cliente se ubican en servicios inyectables.
+- **Selectores:** los componentes usan el prefijo `tp-` en sus selectores, por ejemplo `<tp-reservation-list>`.
+
+**Backend API (Java 25 / Spring Boot)**
+
+Se toma como referencia la [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
+
+- **Nomenclatura:** PascalCase para clases, records y enums, camelCase para métodos y atributos, y UPPER_SNAKE_CASE para constantes y valores de enums (por ejemplo, `DeviceStatus.OFFLINE`).
+- **Paquetes:** en minúsculas, con la base `com.pafisolutions.tarjepafi.<boundedcontext>` y un subpaquete por capa: `domain`, `application`, `interfaces` e `infrastructure`, siguiendo la estructura definida en el Capítulo V.
+- **Sufijos por tipo de clase:** `Command`, `Query`, `CommandHandler`, `QueryHandler`, `Repository`, `Controller`, `Resource` (DTO de respuesta), `Consumer` y `Event`. Los eventos de dominio se nombran en pasado (`AttendanceRecorded`, `SpaceReleased`).
+- **Value Objects:** se implementan como `record` de Java y validan sus invariantes en el constructor (por ejemplo, `SpaceId` y `ReaderEventId`).
+- **Inyección de dependencias:** por constructor, evitando `@Autowired` sobre atributos.
+- **Manejo de errores:** las excepciones de dominio se traducen a respuestas HTTP en un `@RestControllerAdvice` por bounded context, sin exponer detalles internos al cliente.
+
+**RESTful API**
+
+- Los endpoints se versionan bajo el prefijo `/api/v1/`.
+- Los recursos se nombran con sustantivos en plural y en kebab-case, por ejemplo `/api/v1/attendance-records` y `/api/v1/class-sessions/{sessionId}`.
+- Se usan los verbos HTTP según su semántica: `GET` para consultar, `POST` para crear, `PUT` o `PATCH` para actualizar y `DELETE` para eliminar.
+- Los atributos de los cuerpos JSON se escriben en camelCase.
+- Se responden los códigos HTTP estándar: `200`, `201`, `204`, `400`, `401`, `403`, `404` y `409`.
+
+**Mensajería (RabbitMQ)**
+
+- Los eventos de integración se publican en el exchange de tipo topic `tarjepafi.events`.
+- Las routing keys siguen el formato `<contexto>.<evento>` en kebab-case y en pasado, salvo los eventos de lectura del lector, por ejemplo `iot.card-tap`, `attendance.recorded` y `academic.class-session-started`.
+- Las colas siguen el formato `<contexto-consumidor>.<evento>.queue`, por ejemplo `attendance.card-tap.queue` y `space.card-tap.queue`. Cada cola tiene asociada su dead-letter queue con el sufijo `.dlq`.
+- Todo mensaje incluye un `eventId` (UUID) que se usa como llave de idempotencia y un `timestamp` en formato ISO 8601 (UTC).
+
+**Base de datos (PostgreSQL)**
+
+- Tablas y columnas en snake_case, con nombres de tablas en plural, por ejemplo `attendance_records` y `space_reservations`.
+- Las claves primarias se llaman `id` y las claves foráneas `<entidad>_id`, por ejemplo `space_id`.
+- Las restricciones e índices usan prefijos que indiquen su tipo: `pk_`, `fk_`, `uk_` e `idx_`.
+- Cada bounded context es dueño de sus propias tablas y no accede directamente a las tablas de otro contexto.
+
+**Firmware IoT (C++ / Arduino framework en Wokwi)**
+
+Se toma como referencia la [Arduino Style Guide for Writing Libraries](https://docs.arduino.cc/learn/contributions/arduino-library-style-guide/).
+
+- **Nomenclatura:** camelCase para variables y funciones, PascalCase para clases y UPPER_SNAKE_CASE para constantes y definiciones de pines (por ejemplo, `RFID_SS_PIN`).
+- **Organización:** la lógica se divide en módulos con su archivo `.h` y `.cpp` (lectura NFC, conexión de red, publicación de eventos y almacenamiento local), dejando `setup()` y `loop()` lo más cortos posible.
+- **Sin bloqueos:** se evita el uso de `delay()` en el ciclo principal y se usa `millis()` para las tareas periódicas, de modo que el lector siga respondiendo a nuevas lecturas.
+- **Configuración:** las credenciales de red, el identificador del lector y la dirección del broker se definen en un archivo de configuración aparte, que no se sube al repositorio con valores reales.
+
+**Testing & Documentación (Gherkin)**
+
+- Los escenarios de aceptación siguen la estructura `Given - When - Then`, con un escenario por comportamiento.
+- Los archivos `.feature` se escriben en inglés y se nombran en kebab-case según la funcionalidad, por ejemplo `attendance-registration.feature`.
+- Las pruebas unitarias en Java se nombran con el formato `methodName_condition_expectedResult`, por ejemplo `registerAttendance_whenCardIsDeactivated_rejectsTap`.
+
+
+
 # Conclusiones
 
 + TB1:
