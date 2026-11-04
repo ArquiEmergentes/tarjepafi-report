@@ -4816,6 +4816,87 @@ User Persona: [Nombre del User Persona] — Estudiante.
 
 **Explicación del flujo:** Desde el Home (MOB-02), el estudiante usa la bottom navigation para moverse entre las secciones de consulta. En Mi horario (MOB-03) selecciona el día y ve sus clases con estado Próxima, En curso o Finalizada. En Historial de asistencia (MOB-07) revisa el resumen de sesiones, presentes, tardanzas y ausencias, y la lista de registros por curso y fecha. Finalmente, en Perfil / Credencial (MOB-08) confirma sus datos y el estado de su credencial NFC, indicado con el badge "Credencial activa". Este flujo es solo de consulta: ninguna interacción modifica el estado de una pantalla, por lo que cada paso corresponde a una pantalla distinta.
 
+
+# Capítulo VII: Product Implementation, Validation & Deployment
+
+## 7.1. Software Configuration Management
+
+En esta sección se definen las herramientas, normas y procedimientos que el equipo de PafiSolutions adopta para el desarrollo de TarjePAFI. El objetivo es asegurar la integridad, la trazabilidad y la consistencia de los artefactos de software (Web App administrativa, Backend API, firmware de los lectores NFC y documentación) durante todo su ciclo de vida: desde la planificación y el desarrollo, pasando por la integración y las pruebas, hasta el despliegue y el mantenimiento.
+
+### 7.1.1. Software Development Environment Configuration
+
+**Project Management**
+
+Herramientas utilizadas para la planificación, la asignación de tareas y el seguimiento de los Sprints del equipo.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Trello | Tablero utilizado para gestionar el Product Backlog y el Sprint Backlog, y para hacer seguimiento del estado de cada User Story y Technical Story. | [https://trello.com/](https://trello.com/) |
+| WhatsApp / Discord | Aplicaciones de mensajería utilizadas para la comunicación diaria, la coordinación de tareas y las reuniones virtuales del equipo. | No aplica |
+| GitHub (Pull Requests e Issues) | Revisión de los cambios del informe y del código mediante Pull Requests antes de integrarlos a la rama develop. | [https://github.com/ArquiEmergentes](https://github.com/ArquiEmergentes) |
+
+**Requirements Management**
+
+Herramientas enfocadas en la recolección, estructuración y trazabilidad de los requisitos y en el modelado del dominio.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Miro | Pizarra colaborativa utilizada para el Lean UX Canvas y las sesiones de EventStorming, Candidate Context Discovery y Domain Message Flows Modeling. | [https://miro.com/](https://miro.com/) |
+| Lucidchart | Herramienta utilizada para elaborar los As-is y To-be Scenario Maps de cada segmento objetivo. | [https://lucid.app/](https://lucid.app/) |
+| GitHub (Markdown) | Repositorio del informe donde se documentan las User Stories, Technical Stories, criterios de aceptación y el Product Backlog. | [https://github.com/ArquiEmergentes/tarjepafi-report](https://github.com/ArquiEmergentes/tarjepafi-report) |
+
+**Product UX/UI Design**
+
+Plataformas empleadas para el diseño visual y de interacción de las interfaces.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Figma | Plataforma colaborativa utilizada para los Wireframes, Mock-ups y Wireflows de la Landing Page, la Web App administrativa y la aplicación móvil. | [https://www.figma.com/](https://www.figma.com/) |
+
+**Software Development**
+
+Entornos de desarrollo y tecnologías base utilizadas para codificar cada componente de la solución.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| IntelliJ IDEA | IDE utilizado para desarrollar el Backend API en Java 25 con Spring Boot, organizado como monolito modular con un módulo por bounded context. | [https://www.jetbrains.com/idea/](https://www.jetbrains.com/idea/) |
+| Visual Studio Code | Editor utilizado para desarrollar la Web App administrativa en Angular (TypeScript) y para editar la documentación en Markdown. | [https://code.visualstudio.com/](https://code.visualstudio.com/) |
+| Wokwi | Simulador online de hardware utilizado para programar en C++ (framework Arduino) y probar el firmware de los lectores ESP32 con lector NFC, ya que la solución se valida mediante simulación y no con un prototipo físico. | [https://wokwi.com/](https://wokwi.com/) |
+| RabbitMQ | Message broker que recibe de forma asíncrona los eventos de lectura NFC publicados por los lectores y los entrega a los consumidores del Backend API. | [https://www.rabbitmq.com/](https://www.rabbitmq.com/) |
+| PostgreSQL | Sistema de gestión de base de datos relacional que persiste la información de asistencias, accesos, reservas, lectores y reportes. | [https://www.postgresql.org/](https://www.postgresql.org/) |
+
+**Software Testing**
+
+Herramientas para asegurar la calidad del código y el correcto funcionamiento de los servicios.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Postman | Plataforma utilizada para probar los endpoints REST del Backend API, incluido el registro manual de asistencias sin pasar por RabbitMQ. | [https://www.postman.com/](https://www.postman.com/) |
+| JUnit 5 / Mockito | Frameworks utilizados dentro de Spring Boot para las pruebas unitarias de la lógica de dominio y de los servicios de aplicación. | [https://junit.org/junit5/](https://junit.org/junit5/) |
+| Gherkin | Lenguaje utilizado para redactar los escenarios de los criterios de aceptación en formato Given - When - Then. | [https://cucumber.io/docs/gherkin/](https://cucumber.io/docs/gherkin/) |
+
+**Software Deployment**
+
+Herramientas para el control de versiones, la integración y el despliegue de la solución.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Git / GitHub | Sistema de control de versiones bajo el modelo GitFlow y plataforma de alojamiento de los repositorios de la organización. | [https://github.com/](https://github.com/) |
+
+
+**Software Documentation**
+
+Herramientas utilizadas para documentar la arquitectura, el modelo de dominio y los servicios.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Structurizr | Herramienta Diagram-as-Code utilizada para modelar la arquitectura de software bajo el C4 Model. | [https://structurizr.com/](https://structurizr.com/) |
+| PlantUML | Herramienta utilizada para elaborar los diagramas de clases de la Domain Layer de cada bounded context. | [https://plantuml.com/](https://plantuml.com/) |
+| dbdiagram.io | Herramienta utilizada para modelar en DBML los diagramas de base de datos de cada bounded context. | [https://dbdiagram.io/](https://dbdiagram.io/) |
+| Swagger (OpenAPI) | Documentación interactiva de los endpoints REST del Backend API, generada con springdoc-openapi. | [https://swagger.io/](https://swagger.io/) |
+
+
+
 # Conclusiones
 
 + TB1:
