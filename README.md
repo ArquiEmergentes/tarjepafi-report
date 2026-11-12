@@ -5065,7 +5065,7 @@ Entrevistador: Para el registro de la entrevista, por favor indique sus nombres,
 
 Entrevistado: [Entrevistado responde]
 
-Entrevistador: Le explico brevemente la idea. Hoy en la universidad la asistencia, los accesos y el uso de los ambientes se controlan de forma manual o en sistemas separados. TarjePAFI propone una sola tarjeta NFC para estudiantes, docentes y trabajadores. Al acercarla a un lector instalado en el aula, en una puerta o en un torniquete, se registra automáticamente la asistencia, el ingreso o la jornada laboral. Toda esa información llega a una plataforma web donde los administradores ven indicadores y generan reportes, y donde los docentes revisan sus clases y la asistencia de sus alumnos.
+Entrevistador: Le explico brevemente la idea. Hoy en la universidad la asistencia, los accesos y el uso de los ambientes se controlan de forma manual o en sistemas separados. TarjePAFI propone una sola tarjeta NFC para estudiantes, docentes y trabajadores. Al acercarla a un lector instalado en el aula, en una puerta o en un torniquete, se registra automáticamente la asistencia, el ingreso o la jornada laboral. Toda esa información llega a una plataforma web donde los administradores ven indicadores y generan reportes.
 
 Entrevistador: A continuación le mostraré nuestra Landing Page y luego la aplicación web. Le pido que observe con atención; al final le haré algunas preguntas.
 
