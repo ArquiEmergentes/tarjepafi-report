@@ -5077,14 +5077,15 @@ Entrevistador: A continuación le mostraré nuestra Landing Page y luego la apli
 
 1. Con sus propias palabras, ¿qué entendió que hace TarjePAFI y en qué le ayudaría dentro del campus?
 2. ¿Qué le pareció la Landing Page? ¿Le quedó claro qué es el producto y cómo funciona?
-3. ¿Qué opina del diseño de la plataforma: colores, tipografía, íconos y tamaño de los textos?
+3. ¿Qué opina del diseño de lo que vio en la Landing Page y en la pantalla del lector: colores, íconos y tamaño de los textos?
 4. ¿Los mensajes que muestra el lector son claros y lo bastante cortos para leerlos al pasar la tarjeta?
 5. Si el lector rechazara su tarjeta, ¿el mensaje le diría qué pasó y qué hacer?
 6. ¿Le parece más rápido o más cómodo que la forma en que hoy registra su asistencia o su ingreso? ¿Por qué?
-7. ¿Cree que podría usar la tarjeta y la plataforma por su cuenta, sin que nadie le explique?
-8. ¿Qué parte de lo que vio le gustó más y qué parte le pareció confusa?
-9. ¿Usaría TarjePAFI en su día a día? ¿Por qué sí o por qué no?
-10. ¿Qué opina de llevar una tarjeta física en lugar de usar su celular como credencial?
+7. Si mañana le entregaran su tarjeta TarjePAFI, ¿qué necesitaría para empezar a usarla sin ayuda: una charla breve, un video, carteles junto a los lectores u otra cosa?
+8. Después de pasar la tarjeta, ¿sentiría la seguridad de que su asistencia o su ingreso quedó registrado? ¿Qué le daría más confianza?
+9. ¿Usaría la tarjeta TarjePAFI en su día a día para registrar su asistencia o ingresar a los espacios del campus? ¿Por qué sí o por qué no?
+10. ¿Qué opina de llevar una tarjeta física en lugar de mostrar su celular como credencial en todas las puertas de ingreso a los de seguridad?
+
 
 **Segmento #2: Personal administrativo con acceso a la plataforma de reportes**
 
