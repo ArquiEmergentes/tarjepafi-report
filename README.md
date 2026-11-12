@@ -4882,6 +4882,8 @@ Herramientas para el control de versiones, la integración y el despliegue de la
 | Herramienta | Descripción | Enlace |
 | --- | --- | --- |
 | Git / GitHub | Sistema de control de versiones bajo el modelo GitFlow y plataforma de alojamiento de los repositorios de la organización. | [https://github.com/](https://github.com/) |
+| GitHub Pages | Servicio de hosting estático utilizado para publicar la Landing Page directamente desde su repositorio. | [https://pages.github.com/](https://pages.github.com/) |
+| Netlify | Plataforma de despliegue continuo utilizada para compilar y publicar la Web App administrativa (Angular) a partir de su repositorio en GitHub. | [https://www.netlify.com/](https://www.netlify.com/) |
 
 
 **Software Documentation**
@@ -4906,12 +4908,8 @@ Cada componente de la solución tiene su propio repositorio. El Backend API se d
 | --- | --- |
 | Informe del proyecto | [https://github.com/ArquiEmergentes/tarjepafi-report](https://github.com/ArquiEmergentes/tarjepafi-report) |
 | Landing Page | [https://github.com/ArquiEmergentes/tarjepafi-landing-page](https://github.com/ArquiEmergentes/tarjepafi-landing-page) |
-| Web App administrativa (Angular) | [https://github.com/ArquiEmergentes/tarjepafi-web-app](https://github.com/ArquiEmergentes/tarjepafi-web-app) |
-| Backend: IAM Context | [https://github.com/ArquiEmergentes/tarjepafi-iam-service](https://github.com/ArquiEmergentes/tarjepafi-iam-service) |
-| Backend: Academic Attendance Context | [https://github.com/ArquiEmergentes/tarjepafi-academic-attendance-service](https://github.com/ArquiEmergentes/tarjepafi-academic-attendance-service) |
-| Backend: Space and Facility Context | [https://github.com/ArquiEmergentes/tarjepafi-space-facility-service](https://github.com/ArquiEmergentes/tarjepafi-space-facility-service) |
-| Backend: IoT Monitoring Context | [https://github.com/ArquiEmergentes/tarjepafi-iot-monitoring-service](https://github.com/ArquiEmergentes/tarjepafi-iot-monitoring-service) |
-| Backend: Data Management Context | [https://github.com/ArquiEmergentes/tarjepafi-data-management-service](https://github.com/ArquiEmergentes/tarjepafi-data-management-service) |
+| Web App administrativa (Angular) | [https://github.com/ArquiEmergentes/tarjepafi-webapp](https://github.com/ArquiEmergentes/tarjepafi-webapp) |
+
 
 **GitFlow**
 
@@ -5048,6 +5046,39 @@ Se toma como referencia la [Arduino Style Guide for Writing Libraries](https://d
 - Los escenarios de aceptación siguen la estructura `Given - When - Then`, con un escenario por comportamiento.
 - Los archivos `.feature` se escriben en inglés y se nombran en kebab-case según la funcionalidad, por ejemplo `attendance-registration.feature`.
 - Las pruebas unitarias en Java se nombran con el formato `methodName_condition_expectedResult`, por ejemplo `registerAttendance_whenCardIsDeactivated_rejectsTap`.
+
+
+### 7.1.4. Software Deployment Configuration
+
+En esta etapa del proyecto se despliegan dos productos: la Landing Page y la Web App administrativa. La Web App consume una Fake API que simula los endpoints del Backend API con datos de prueba, lo que permite validar los flujos de la interfaz antes de que los servicios reales estén disponibles. Ambos despliegues parten de la rama `main` de su repositorio, de modo que solo se publica lo que fue integrado mediante un Pull Request aprobado, según el flujo GitFlow descrito en la sección 7.1.2.
+
+| Producto | Tecnología | Repositorio | Plataforma de despliegue |
+| --- | --- | --- | --- |
+| Landing Page | HTML5, CSS3 y JavaScript | [tarjepafi-landing-page](https://github.com/ArquiEmergentes/tarjepafi-landing-page) | GitHub Pages |
+| Web App administrativa | Angular (TypeScript) con Fake API | [tarjepafi-webapp](https://github.com/ArquiEmergentes/tarjepafi-webapp) | Netlify |
+
+**Landing Page (GitHub Pages)**
+
+Como la Landing Page es un sitio estático que no requiere compilación, se publica directamente con GitHub Pages:
+
+1. El código fuente se mantiene en el repositorio `tarjepafi-landing-page`, con el archivo `index.html` en la raíz y los recursos (estilos, scripts, imágenes y archivos de traducción) organizados en carpetas.
+2. En la configuración del repositorio (*Settings > Pages*) se selecciona como fuente la opción *Deploy from a branch*, con la rama `main` y la carpeta raíz (`/root`).
+3. Cada vez que se integra un cambio a `main`, GitHub Pages vuelve a publicar el sitio de forma automática, sin intervención manual.
+4. El sitio queda disponible en una URL pública con protocolo HTTPS, con el formato `https://arquiemergentes.github.io/tarjepafi-landing-page/`.
+5. Las rutas a los recursos se escriben de forma relativa para que funcionen correctamente bajo el subdirectorio del repositorio.
+
+**Web App administrativa (Netlify)**
+
+La Web App requiere un proceso de compilación, por lo que se despliega en Netlify con integración continua desde GitHub:
+
+1. Desde el panel de Netlify se importa el repositorio `tarjepafi-webapp` y se autoriza el acceso a la organización de GitHub.
+2. Se configura la rama de producción `main` y los parámetros de compilación: el comando `ng build` y como carpeta de publicación la salida generada por Angular (`dist/tarjepafi-webapp/browser`).
+3. Se agrega una regla de redirección (`/* /index.html 200`), mediante un archivo `_redirects` o `netlify.toml`, para que las rutas internas de la aplicación funcionen al recargar la página o al acceder a ellas directamente.
+4. La URL base de la Fake API se define en los archivos de entorno de Angular (`environment.ts` y `environment.prod.ts`). Así, cuando el Backend API esté disponible, basta con cambiar este valor para que la Web App consuma los servicios reales sin modificar los componentes ni los servicios.
+5. Con la integración activa, cada push o merge a `main` dispara una nueva compilación y despliegue automático. Si la compilación falla, Netlify mantiene publicada la última versión estable.
+6. Al completar la compilación, Netlify publica la aplicación en una URL pública con protocolo HTTPS. Además, genera *Deploy Previews* para cada Pull Request, lo que permite revisar los cambios antes de integrarlos.
+
+
 
 
 
