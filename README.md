@@ -5046,8 +5046,7 @@ Se toma como referencia la [Arduino Style Guide for Writing Libraries](https://d
 - Los escenarios de aceptación siguen la estructura `Given - When - Then`, con un escenario por comportamiento.
 - Los archivos `.feature` se escriben en inglés y se nombran en kebab-case según la funcionalidad, por ejemplo `attendance-registration.feature`.
 - Las pruebas unitarias en Java se nombran con el formato `methodName_condition_expectedResult`, por ejemplo `registerAttendance_whenCardIsDeactivated_rejectsTap`.
-
-
+  
 ### 7.1.4. Software Deployment Configuration
 
 En esta etapa del proyecto se despliegan dos productos: la Landing Page y la Web App administrativa. La Web App consume una Fake API que simula los endpoints del Backend API con datos de prueba, lo que permite validar los flujos de la interfaz antes de que los servicios reales estén disponibles. Ambos despliegues parten de la rama `main` de su repositorio, de modo que solo se publica lo que fue integrado mediante un Pull Request aprobado, según el flujo GitFlow descrito en la sección 7.1.2.
@@ -5078,9 +5077,310 @@ La Web App requiere un proceso de compilación, por lo que se despliega en Netli
 5. Con la integración activa, cada push o merge a `main` dispara una nueva compilación y despliegue automático. Si la compilación falla, Netlify mantiene publicada la última versión estable.
 6. Al completar la compilación, Netlify publica la aplicación en una URL pública con protocolo HTTPS. Además, genera *Deploy Previews* para cada Pull Request, lo que permite revisar los cambios antes de integrarlos.
 
+## 7.3. Validation Interviews
+
+### 7.3.1. Diseño de Entrevistas
+
+**Introducción (común a ambos segmentos)**
+
+Entrevistador: Buenos días/tardes/noches. En esta ocasión le presentaremos TarjePAFI, la solución que venimos desarrollando, para conocer su opinión sobre su diseño, su facilidad de uso y su utilidad.
+
+Entrevistador: Antes de comenzar, quisiera comentarle que no existen respuestas correctas o incorrectas. Nos interesa su opinión sincera, incluyendo aquello que no le guste o no entienda. La entrevista será grabada únicamente con fines académicos y su información será tratada de manera confidencial. ¿Nos autoriza a grabar la sesión?
+
+Entrevistado: [Entrevistado responde]
+
+Entrevistador: Para el registro de la entrevista, por favor indique sus nombres, apellidos, edad, distrito y ocupación o cargo dentro de la universidad.
+
+Entrevistado: [Entrevistado responde]
+
+Entrevistador: Le explico brevemente la idea. Hoy en la universidad la asistencia, los accesos y el uso de los ambientes se controlan de forma manual o en sistemas separados. TarjePAFI propone una sola tarjeta NFC para estudiantes, docentes y trabajadores. Al acercarla a un lector instalado en el aula, en una puerta o en un torniquete, se registra automáticamente la asistencia, el ingreso o la jornada laboral. Toda esa información llega a una plataforma web donde los administradores ven indicadores y generan reportes.
+
+Entrevistador: A continuación le mostraré nuestra Landing Page y luego la aplicación web. Le pido que observe con atención; al final le haré algunas preguntas.
+
+[El entrevistador realiza la demostración correspondiente al segmento del entrevistado.]
+
+**Segmento #1: Portadores de credencial (estudiantes, docentes y personal del campus)**
+
+**Preguntas generales:**
+
+1. Con sus propias palabras, ¿qué entendió que hace TarjePAFI y en qué le ayudaría dentro del campus?
+2. ¿Qué le pareció la Landing Page? ¿Le quedó claro qué es el producto y cómo funciona?
+3. ¿Qué opina del diseño de lo que vio en la Landing Page y en la pantalla del lector: colores, íconos y tamaño de los textos?
+4. ¿Los mensajes que muestra el lector son claros y lo bastante cortos para leerlos al pasar la tarjeta?
+5. Si el lector rechazara su tarjeta, ¿el mensaje le diría qué pasó y qué hacer?
+6. ¿Le parece más rápido o más cómodo que la forma en que hoy registra su asistencia o su ingreso? ¿Por qué?
+7. Si mañana le entregaran su tarjeta TarjePAFI, ¿qué necesitaría para empezar a usarla sin ayuda: una charla breve, un video, carteles junto a los lectores u otra cosa?
+8. Después de pasar la tarjeta, ¿sentiría la seguridad de que su asistencia o su ingreso quedó registrado? ¿Qué le daría más confianza?
+9. ¿Usaría la tarjeta TarjePAFI en su día a día para registrar su asistencia o ingresar a los espacios del campus? ¿Por qué sí o por qué no?
+10. ¿Qué opina de llevar una tarjeta física en lugar de mostrar su celular como credencial en todas las puertas de ingreso a los de seguridad?
 
 
+**Segmento #2: Personal administrativo con acceso a la plataforma de reportes**
 
+**Preguntas generales:**
+
+1. Con sus propias palabras, ¿qué entendió que hace TarjePAFI y qué problema resuelve para su área?
+2. ¿Qué le pareció la Landing Page? ¿Le quedó claro qué ofrece el producto y cómo contactar al equipo?
+3. ¿Qué opina del diseño de la aplicación web: colores, tipografía, íconos y distribución de la información? ¿Le transmite confianza?
+4. ¿Las etiquetas de estado (Activa, Bloqueada, Perdida, Sin conexión, Denegado) se distinguen con facilidad?
+5. ¿Los indicadores del Dashboard son los que necesita para tomar decisiones? ¿Cuál agregaría o quitaría?
+6. ¿Los nombres del menú (Credenciales, Verificar matrículas, Lectores IoT, Registros de acceso, Reportes) le parecen claros?
+7. De lo que vio, ¿qué función le pareció más fácil de usar y cuál más confusa? ¿Por qué?
+8. ¿Cree que podría realizar estas tareas por su cuenta, sin capacitación previa?
+9. ¿Usaría TarjePAFI en su trabajo? ¿Por qué sí o por qué no?
+
+**Preguntas complementarias:**
+
+1. ¿Los mensajes de confirmación y de error le parecen claros? ¿Le parece adecuado que acciones como desactivar tarjetas pidan confirmación?
+2. ¿El reporte y el archivo CSV tienen el formato que usaría con su equipo o sus superiores?
+3. ¿Qué tendría que mejorar la aplicación para que la prefiera sobre las herramientas que usa actualmente?
+4. Del 0 al 10, ¿qué tan probable es que recomiende TarjePAFI a otra institución? ¿Qué necesitaría su universidad para aprobar su implementación?
+
+
+**Cierre (común a ambos segmentos)**
+
+Entrevistador: Eso sería todo, muchas gracias por participar.
+
+Entrevistador: ¿Desea agregar algún comentario adicional o algo que considere que no le preguntamos?
+
+Entrevistado: [Entrevistado responde]
+
+Entrevistador: Perfecto, sus comentarios nos ayudarán a mejorar TarjePAFI. Agradezco mucho su tiempo y sus respuestas. Hasta luego.
+
+### 7.3.2. Registro de Entrevistas
+
+### 7.3.3. Evaluaciones según heurísticas
+
+**Evaluación Heurística de Usabilidad y Diseño Inclusivo de ElectroLink**
+
+| Campo | Descripción |
+| :--- | :--- |
+| **Carrera** | Ingeniería de Software |
+| **Curso** | Arquitecturas de Software Emergentes |
+| **Sección** | 9056 |
+| **Profesor** | Enrique Alejandro Valdivia Verde |
+| **Auditor(es)** | Grupo 3 |
+| **Cliente(s)** | Grupor 1 |
+| **Site / App a Evaluar** | **ElectroLink** – aplicación web y aplicación móvil |
+| **Fecha de la evaluación** | 2026-11-07 |
+| **Tipo de evaluación** | Auditoría interna de usabilidad y diseño inclusivo sobre la versión demostrada en las entrevistas de validación |
+
+La evaluación se realizó con tres auditores del equipo, de forma independiente y sin la presencia de los participantes. Se revisaron las nueve vistas principales del dashboard web y las ocho pantallas de la aplicación móvil, incluidos los estados de alerta, error, carga y pérdida de conexión. Los hallazgos de ambas aplicaciones se consolidaron en una sola lista por consenso y se calificaron con la escala de severidad de cuatro niveles que se presenta a continuación.
+
+**Escala de severidad**
+
+| Nivel | Descripción |
+| :---: | :--- |
+| **1** | Problema superficial: fácilmente superable, ocurre con poca frecuencia. No requiere atención inmediata. |
+| **2** | Problema menor: aparece con algo más de frecuencia o genera leve dificultad. Requiere revisión en próximas versiones. |
+| **3** | Problema mayor: ocurre con frecuencia o afecta notablemente la experiencia del usuario. Debe corregirse con prioridad alta. |
+| **4** | Problema muy grave: impide el uso normal del sistema. Debe corregirse antes del lanzamiento. |
+
+**Tareas a evaluar**
+
+El alcance de esta evaluación incluye la revisión de la usabilidad y la experiencia de usuario en las siguientes tareas:
+
+1. Iniciar sesión y recuperar la contraseña (aplicación web).
+2. Interpretar el estado de la red en el dashboard (aplicación web).
+3. Revisar el estado de conectividad de los sensores (aplicación web).
+4. Gestionar una alerta crítica y asignarla a mantenimiento (aplicación web).
+5. Consultar el consumo por equipo y la proyección de factura (aplicación web).
+6. Comparar periodos y filtrar el historial de alertas (aplicación web).
+7. Configurar los umbrales térmicos y eléctricos de un equipo (aplicación web).
+8. Descargar el reporte SST y consultar el certificado de salud técnica (aplicación web).
+9. Gestionar notificaciones, perfil y cierre de sesión (aplicación web).
+10. Iniciar sesión con PIN de cuatro dígitos (aplicación móvil).
+11. Interpretar el semáforo de seguridad antes de limpiar (aplicación móvil).
+12. Reportar una falla con fotografía (aplicación móvil).
+13. Reaccionar ante una alerta crítica y seguir el protocolo de apagado (aplicación móvil).
+14. Consultar el historial de fallas de un equipo (aplicación móvil).
+15. Cerrar el turno operativo (aplicación móvil).
+16. Activar el modo limpieza del panel (aplicación móvil).
+17. Consultar la guía de primeros auxilios eléctricos (aplicación móvil).
+18. Operar la aplicación con conectividad intermitente (aplicación móvil).
+
+**Tabla resumen de problemas**
+
+| # | Aplicación | Problema identificado | Escala de severidad | Heurística / Principio violado(a) |
+| :---: | :---: | :--- | :---: | :--- |
+| 1 | Web | Un sensor desconectado solo se advierte dentro de la tarjeta del equipo; no existe un aviso global del estado del monitoreo. | 3 | **Usability:** Visibilidad del estado del sistema |
+| 2 | Web | La generación del reporte SST no completa la descarga cuando el rango supera los 30 días y la vista queda en carga indefinida. | 4 | **Usability:** Visibilidad del estado del sistema |
+| 3 | Web | El formulario de umbrales acepta valores fuera de rango sin validación ni confirmación del cambio. | 3 | **Usability:** Prevención de errores |
+| 4 | Web | Los indicadores kWh, factor de potencia y demanda aparecen sin glosa ni equivalencia práctica. | 2 | **Usability:** Correspondencia entre el sistema y el mundo real |
+| 5 | Web | Las severidades usan colores y nombres distintos en el dashboard, el historial y el PDF, que además mezcla inglés y español. | 3 | **Information Architecture:** Consistencia y lenguaje del usuario |
+| 6 | Web | No existe un selector de local para el perfil zonal; el supervisor debe cerrar sesión para consultar otra sede. | 3 | **Usability:** Flexibilidad y eficiencia de uso |
+| 7 | Web | Los filtros del historial se representan solo con un icono de embudo, sin etiqueta ni resumen de criterios activos. | 2 | **Usability:** Reconocer antes que recordar |
+| 8 | Web | Una alerta asignada a un técnico no se puede reasignar ni cancelar desde la interfaz. | 2 | **Usability:** Libertad y control del usuario |
+| 9 | Web | El inicio de sesión devuelve un mensaje genérico para credenciales inválidas, cuenta bloqueada y falta de permisos. | 2 | **Usability:** Ayuda para reconocer y recuperarse de errores |
+| 10 | Web | El menú lateral usa iconos sin `aria-label` y los badges de alerta presentan un contraste inferior a 3:1. | 3 | **Inclusive Design:** Accesibilidad visual y experiencias comparables |
+| 11 | Web | El reporte SST no indica qué incluye, qué periodo cubre ni cómo presentarlo en una inspección. | 2 | **Usability:** Ayuda y documentación |
+| 12 | Móvil | La confirmación del reporte es un aviso flotante de dos segundos y desaparece sin dejar estado visible en la pantalla. | 3 | **Usability:** Visibilidad del estado del sistema |
+| 13 | Móvil | La alerta crítica se encabeza con "Fuga a tierra – 35 mA", un término que el personal operativo no comprende. | 3 | **Usability:** Correspondencia entre el sistema y el mundo real |
+| 14 | Móvil | "Cerrar turno" y "Ayuda / Emergencia" están contiguos y se ejecutan sin confirmación. | 4 | **Usability:** Prevención de errores |
+| 15 | Móvil | Un reporte enviado no se puede editar ni anular aunque se haya seleccionado el equipo equivocado. | 2 | **Usability:** Libertad y control del usuario |
+| 16 | Móvil | El semáforo lista doce equipos en una sola columna; si el equipo en alerta está al final, el estado crítico queda fuera de pantalla. | 2 | **Usability:** Diseño estético y minimalista |
+| 17 | Móvil | El modo limpieza se activa con una pulsación larga de tres segundos, gesto que no se usa en ninguna otra pantalla. | 2 | **Usability:** Consistencia y estándares |
+| 18 | Móvil | Varias áreas táctiles miden menos de 44 dp y el texto crítico usa 12 sp, sin modo de alto contraste. | 3 | **Inclusive Design:** Accesibilidad visual y motriz |
+| 19 | Móvil | La navegación inferior usa solo iconos, sin etiquetas de texto. | 1 | **Usability:** Reconocer antes que recordar |
+| 20 | Móvil | Ante una pérdida de conexión la aplicación muestra "Error de red" sin aclarar que las alertas locales siguen activas. | 3 | **Usability:** Ayuda para reconocer y recuperarse de errores |
+| 21 | Móvil | No existe una guía de primer turno ni una opción para recuperar el PIN de acceso. | 2 | **Usability:** Ayuda y documentación |
+| 22 | Móvil | La alarma sonora no se puede silenciar una vez que el equipo fue apagado y la alerta atendida. | 3 | **Usability:** Libertad y control del usuario |
+
+**Descripción de problemas**
+
+**PROBLEMA #1: Sensor desconectado sin aviso global**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Visibilidad del estado del sistema
+- **Descripción:** La desconexión de un sensor solo se representa con un icono gris dentro de la tarjeta del equipo afectado. Si el manager no recorre toda la lista, no advierte que una parte de la cocina dejó de estar monitoreada y asume una cobertura total que no existe.
+- **Recomendación:** Incorporar un banner permanente en la cabecera del dashboard con el número de sensores desconectados, el equipo afectado y el tiempo transcurrido desde la última lectura, con acceso directo al detalle.
+
+**PROBLEMA #2: Descarga del reporte SST incompleta en rangos largos**
+
+- **Severidad:** 4
+- **Heurística violada:** Usability – Visibilidad del estado del sistema
+- **Descripción:** Al solicitar el reporte con más de 30 días de historial, la generación no concluye: no aparece barra de progreso, el botón permanece habilitado y la vista queda en carga indefinida. El manager no puede completar la tarea ni sabe si el documento se está generando. Es el único problema que impide por completo el cumplimiento de una tarea del sistema.
+- **Recomendación:** Procesar la generación de forma asíncrona con indicador de progreso, deshabilitar el botón durante el proceso, limitar o paginar el rango solicitado, notificar el resultado y ofrecer reintento con mensaje de error explícito.
+
+**PROBLEMA #3: Umbrales sin validación ni confirmación**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Prevención de errores
+- **Descripción:** El formulario de umbrales acepta cero grados, una corriente muy superior a la nominal o un valor vacío, y guarda el cambio sin resumen ni confirmación. Un umbral mal configurado puede anular una alerta de seguridad o generar falsas alarmas en cadena.
+- **Recomendación:** Definir rangos válidos por tipo de equipo, mostrar una advertencia cuando el valor se aleje del histórico, exigir confirmación con resumen del cambio y registrar la modificación en la bitácora de auditoría.
+
+**PROBLEMA #4: Indicadores eléctricos sin glosa**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Correspondencia entre el sistema y el mundo real
+- **Descripción:** El módulo de energía muestra kWh, factor de potencia y demanda sin explicación ni equivalencia en soles. Un participante de la validación no supo interpretar el factor de potencia y el manager debe traducir mentalmente el dato técnico para tomar una decisión de negocio.
+- **Recomendación:** Añadir ayudas contextuales con una definición breve, la equivalencia económica del indicador y una nota de qué acción se recomienda cuando el valor sale del rango esperado.
+
+**PROBLEMA #5: Severidades inconsistentes entre vistas y documentos**
+
+- **Severidad:** 3
+- **Heurística violada:** Information Architecture – Consistencia y lenguaje del usuario
+- **Descripción:** El dashboard usa ámbar para las alertas medias, el historial usa naranja y el PDF emplea amarillo. Además, el reporte alterna etiquetas en inglés y español. El manager debe reinterpretar el significado del color y del nombre cada vez que cambia de vista, y el documento que presenta ante la gerencia no coincide con lo que ve en pantalla.
+- **Recomendación:** Unificar la paleta, la nomenclatura y los rótulos en todas las vistas y en los documentos exportados, con una leyenda única de severidades y revisión de traducción antes de cada entrega.
+
+**PROBLEMA #6: Ausencia de selector multi-local**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Flexibilidad y eficiencia de uso
+- **Descripción:** El perfil zonal no dispone de un selector de local ni de una vista comparativa. Para consultar otra sede debe cerrar sesión y volver a ingresar, lo que contradice la propuesta de valor multisede descrita en el análisis competitivo y en el mapa de impacto.
+- **Recomendación:** Incorporar un selector de local persistente en la cabecera, recordar la última sede consultada y ofrecer una vista comparativa de indicadores entre locales para el perfil zonal.
+
+**PROBLEMA #7: Filtros representados solo por un icono**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Reconocer antes que recordar
+- **Descripción:** En el historial de alertas el único acceso al filtro es un icono de embudo sin etiqueta, y una vez aplicado no se muestra un resumen de los criterios activos. El usuario debe recordar qué filtros dejó configurados y puede interpretar una lista incompleta como el historial completo.
+- **Recomendación:** Mostrar los filtros como controles con texto visible, chips con los criterios aplicados, un contador de resultados y la opción de limpiar todos los filtros.
+
+**PROBLEMA #8: Alerta asignada sin reasignación ni cancelación**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Libertad y control del usuario
+- **Descripción:** Una vez que la alerta se asigna a un técnico, no existe forma de reasignarla ni de cancelar la asignación desde la interfaz. Si el técnico no está disponible, el manager pierde el control del caso y debe recurrir a un canal externo.
+- **Recomendación:** Permitir reasignar y cancelar la asignación con un motivo obligatorio, registrar la acción en la bitácora y notificar al técnico afectado.
+
+**PROBLEMA #9: Mensajes de error genéricos en el inicio de sesión**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Ayuda para reconocer y recuperarse de errores
+- **Descripción:** Credenciales inválidas, cuenta bloqueada y usuario sin permisos producen el mismo mensaje "Ocurrió un error". El usuario no sabe si debe corregir la contraseña, esperar un desbloqueo o solicitar acceso, y termina repitiendo el intento.
+- **Recomendación:** Diferenciar cada caso con un mensaje específico, indicar la acción siguiente y ofrecer el enlace de recuperación de contraseña o de contacto con el administrador según corresponda.
+
+**PROBLEMA #10: Iconos sin etiquetas accesibles y contraste insuficiente**
+
+- **Severidad:** 3
+- **Heurística violada:** Inclusive Design – Accesibilidad visual y experiencias comparables
+- **Descripción:** Los iconos del menú lateral no exponen `aria-label` ni `title`, el elemento activo no declara `aria-current` y los badges de alerta tienen un contraste inferior a 3:1 sobre el fondo. Un usuario con lector de pantalla no identifica las secciones y un usuario con baja visión no distingue el estado de las alertas.
+- **Recomendación:** Añadir `aria-label` descriptivo a cada icono, `aria-current="page"` al elemento activo, foco visible en toda la navegación y ajustar la paleta hasta alcanzar un contraste mínimo de 4.5:1 en texto y 3:1 en componentes.
+
+**PROBLEMA #11: Reporte SST sin alcance ni instrucciones**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Ayuda y documentación
+- **Descripción:** El PDF descargable no indica qué eventos incluye, qué periodo cubre, quién lo emite ni cómo debe presentarse ante una inspección. El manager debe explicar el documento por su cuenta y el auditor externo no puede interpretarlo sin acompañamiento.
+- **Recomendación:** Añadir una portada con alcance, periodo, local y responsable, una leyenda de severidades y una nota breve sobre el uso del documento en inspecciones de SUNAFIL e INDECI.
+
+**PROBLEMA #12: Confirmación del reporte sin estado persistente**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Visibilidad del estado del sistema
+- **Descripción:** Al enviar un reporte aparece un aviso flotante durante dos segundos y la pantalla vuelve al semáforo sin ninguna marca en la tarjeta del equipo. El trabajador no puede confirmar que el aviso quedó registrado y tiende a repetirlo o a volver al aviso verbal.
+- **Recomendación:** Mostrar un estado persistente "Reportado, en espera de atención" en la tarjeta del equipo, una bandeja "Mis reportes" con el historial propio y una marca de tiempo de la última actualización.
+
+**PROBLEMA #13: Lenguaje técnico en la alerta crítica**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Correspondencia entre el sistema y el mundo real
+- **Descripción:** La pantalla de peligro se encabeza con "Fuga a tierra detectada, 35 mA". El personal de cocina y limpieza no interpreta la unidad ni el concepto, y en una emergencia necesita una instrucción, no una medición. Una participante declaró que no sabía si el valor era grave.
+- **Recomendación:** Encabezar con "PELIGRO: NO TOQUES ESTE EQUIPO", acompañar con un pictograma y un color de fondo dominante, y desplazar el detalle eléctrico a una segunda línea o a una vista técnica para el manager.
+
+**PROBLEMA #14: Acciones críticas contiguas y sin confirmación**
+
+- **Severidad:** 4
+- **Heurística violada:** Usability – Prevención de errores
+- **Descripción:** Los botones "Cerrar turno" y "Ayuda / Emergencia" comparten el borde inferior de la pantalla y se ejecutan al primer toque. Una participante activó ambos por error durante la demostración, y en un turno real el cierre accidental dejaría el registro incompleto o dispararía una falsa emergencia.
+- **Recomendación:** Separar físicamente las acciones destructivas, exigir confirmación en dos pasos para el cierre de turno y mantener la acción de emergencia en una zona fija, diferenciada por color y forma, fuera del flujo operativo.
+
+**PROBLEMA #15: Reporte enviado sin posibilidad de corrección**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Libertad y control del usuario
+- **Descripción:** Si el trabajador selecciona el equipo equivocado o adjunta la foto incorrecta, no puede editar ni anular el reporte. El error queda registrado y el manager recibe una asignación sobre una máquina que no presenta la falla.
+- **Recomendación:** Permitir editar o anular el reporte durante los primeros cinco minutos, con confirmación y registro de la corrección en la bitácora.
+
+**PROBLEMA #16: Estado crítico fuera de pantalla en el semáforo**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Diseño estético y minimalista
+- **Descripción:** El semáforo presenta los doce equipos en una lista vertical. Si el equipo en rojo está al final, el trabajador debe desplazarse para descubrir el peligro, justo cuando la alerta exige una reacción inmediata.
+- **Recomendación:** Ordenar los equipos por severidad, fijar el equipo en alerta en la parte superior y mostrar solo el estado y el nombre, sin métricas técnicas.
+
+**PROBLEMA #17: Modo limpieza con gesto no descubrible**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Consistencia y estándares
+- **Descripción:** El bloqueo del panel se activa con una pulsación larga de tres segundos, interacción que no aparece en ninguna otra pantalla de la aplicación. Dos de tres participantes no la descubrieron y uno intentó tocar el botón sin éxito.
+- **Recomendación:** Reemplazar el gesto por un botón explícito con cuenta regresiva visible, confirmación al finalizar y una etiqueta que explique para qué sirve.
+
+**PROBLEMA #18: Accesibilidad táctil y visual insuficiente**
+
+- **Severidad:** 3
+- **Heurística violada:** Inclusive Design – Accesibilidad visual y motriz
+- **Descripción:** Varios controles miden menos de 44 dp y el texto de la alerta usa 12 sp. En una cocina con manos húmedas, guantes o grasa el toque falla, y con iluminación intensa el texto pequeño pierde legibilidad. El usuario debe repetir la acción o acercarse al dispositivo.
+- **Recomendación:** Elevar las áreas táctiles a 48 dp como mínimo, la tipografía crítica a 16 sp, ofrecer un modo de alto contraste y validar la interfaz con guantes y manos húmedas.
+
+**PROBLEMA #19: Navegación inferior solo con iconos**
+
+- **Severidad:** 1
+- **Heurística violada:** Usability – Reconocer antes que recordar
+- **Descripción:** La barra inferior no incluye etiquetas de texto y el usuario debe probar cada icono para conocer su función, lo que añade fricción en el primer uso.
+- **Recomendación:** Añadir etiquetas breves bajo cada icono y mantener el estado activo resaltado.
+
+**PROBLEMA #20: Mensaje de error sin contexto de continuidad**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Ayuda para reconocer y recuperarse de errores
+- **Descripción:** Cuando se pierde la conexión, la aplicación muestra "Error de red" y bloquea la vista sin explicar que las alertas locales siguen operativas ni que el reporte quedará en cola. El trabajador interpreta que el sistema completo dejó de funcionar y pierde confianza en la protección.
+- **Recomendación:** Informar el estado sin conexión, aclarar que las alertas de cocina continúan activas, indicar cuántos reportes están pendientes de envío y confirmar la sincronización al recuperar la red.
+
+**PROBLEMA #21: Ausencia de guía inicial y recuperación de PIN**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Ayuda y documentación
+- **Descripción:** No existe un tutorial de primer turno ni una opción para recuperar el PIN de acceso. El trabajador nuevo depende de que un compañero le explique la aplicación, y quien olvida su código queda bloqueado sin ruta de solución.
+- **Recomendación:** Incorporar un tutorial de tres pasos en el primer inicio, ayuda contextual en el semáforo y la recuperación de PIN mediante el manager o un código enviado al correo registrado.
+
+**PROBLEMA #22: Alarma sonora no silenciable tras atender la alerta**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Libertad y control del usuario
+- **Descripción:** Una vez que el equipo fue apagado y la alerta atendida, la alarma continúa sonando hasta que el sistema recibe la confirmación del backend. Si la conectividad es inestable, el sonido permanece en la cocina y el personal no tiene forma de silenciarlo, lo que lleva a ignorar futuras alarmas.
+- **Recomendación:** Añadir una acción "Alerta atendida" que silencie la alarma local de inmediato, registre la confirmación y la sincronice cuando se recupere la conexión, manteniendo visible el estado de peligro hasta la verificación.
 
 # Conclusiones
 
