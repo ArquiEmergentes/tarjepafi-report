@@ -4843,11 +4843,142 @@ User Persona: [Nombre del User Persona] — Estudiante.
 
 ### 6.4.3. Applications Mock-ups
 
+<p align="center">
+  <img src="assets/images/mockups/mockups-tarjepafi.png" alt="Mockup-Web" width="850">
+</p>
+
+
+Link Figma: 'https://www.figma.com/design/O6Xg9ewnVSa8wl5v8hAGNj/TarjePAFI-%E2%80%94-Smart-Campus-Design?node-id=1-4&t=81NRBXZNYi2dZaHI-1'
+
 
 ### 6.4.4. Applications User Flow Diagrams
 
+En esta sección se presentan los User Flow Diagrams de TarjePAFI, elaborados en Figma a partir de los mock-ups de alta fidelidad. Se diseñó un diagrama por cada User goal, considerando los User Persona de los dos portales de la aplicación web: el administrador universitario y el usuario con credencial (estudiante, docente o trabajador). Ambos ingresan por un login único que los redirige a su portal según el rol. Cada diagrama muestra el happy path, es decir, la ruta esperada para cumplir el objetivo, y los unhappy paths o caminos alternos: errores, resultados vacíos, cancelaciones o eventos automáticos del sistema. Los pasos con borde cian representan un nuevo estado de una misma pantalla, como un modal, un toast o un cambio en el estado del registro. Los pasos con borde rojo representan estados de error o situaciones alternas.
+
++ **UF-01 · Revisar la asistencia de una sesión académica**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow1.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como administrador, quiero revisar quiénes asistieron, llegaron tarde o faltaron a una sesión académica para hacer seguimiento de la asistencia.
+
+**Explicación del flujo:** El flujo inicia en el Login (WEB-01).
+
+**Happy path:** el administrador ingresa credenciales válidas y el sistema lo dirige al Dashboard General (WEB-02). Desde la sidebar abre Asistencia Académica, donde ve en Control de Asistencia (WEB-03) las sesiones del día con sus presentes, ausentes y estado. Al seleccionar “Ver detalle”, llega al Detalle de sesión (WEB-04) y revisa el registro de cada estudiante con su hora y método de marcación.
+
+**Unhappy paths:**
+
+Si las credenciales no son válidas, el Login muestra un mensaje de error que explica qué pasó sin culpar al usuario, y este puede corregir los datos y reintentar.
+Si los filtros aplicados en Control de Asistencia no tienen coincidencias, la pantalla muestra un estado vacío con la opción “Limpiar filtros” para volver a la lista completa.
+
+
++ **UF-02 · Supervisar y cancelar una reserva en tolerancia**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow2.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como administrador, quiero identificar una reserva cuya presencia no ha sido validada y cancelarla para liberar el espacio.
+
+**Explicación del flujo:** El administrador parte del Dashboard General (WEB-02) y, mediante “Ver todas las reservas”, accede a Espacios y Cubículos (WEB-05). Allí identifica un cubículo “En tolerancia” por su color, icono y texto, y al seleccionarlo abre el Detalle de reserva (WEB-06), con el contador del tiempo restante.
+
+**Happy path:** el administrador presiona “Cancelar reserva” y la pantalla muestra un modal de confirmación destructiva. Al confirmar, regresa a Espacios y Cubículos con un toast de éxito y el cubículo vuelve a figurar como disponible.
+
+**Unhappy paths:**
+
+Si el administrador no interviene y el contador llega a cero, el sistema libera la reserva automáticamente por falta de validación NFC y lo informa con un toast.
+Si en el modal elige “Mantener reserva”, la acción se descarta y la reserva queda sin cambios.
+
++ **UF-03 · Atender un lector IoT sin comunicación**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow3.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como administrador, quiero diagnosticar un lector NFC que dejó de comunicarse para restablecerlo o retirarlo de operación.
+
+**Explicación del flujo:** El flujo comienza cuando el Dashboard General (WEB-02) alerta que un lector dejó de reportar. El administrador entra a Infraestructura IoT (WEB-07), selecciona la fila del lector en estado Offline y abre el Detalle del lector (WEB-08), donde revisa su telemetría, señal e incidencias.
+
+**Happy path:** ejecuta “Ejecutar health check”, el lector responde y la pantalla pasa al estado Online con un toast de confirmación.
+
+**Unhappy paths:**
+
+el health check no obtiene respuesta y un toast de error recomienda verificar la alimentación y la conexión de red del dispositivo. El administrador decide entonces “Desactivar dispositivo” y confirma la acción en un modal destructivo. El lector queda en estado Maintenance y el cambio se registra en la auditoría.
+
++ **UF-04 · Bloquear una credencial y verificar la auditoría**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow4.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como administrador de seguridad, quiero bloquear una credencial NFC y comprobar que la acción quedó registrada en la auditoría.
+
+**Explicación del flujo:** Desde Gestión de credenciales (WEB-09), el administrador ubica al usuario y presiona “Bloquear”. La pantalla muestra un modal que advierte que la tarjeta dejará de dar acceso y de registrar asistencia de inmediato.
+
+**Happy path:** al confirmar, la credencial pasa a estado “Bloqueada” y un toast confirma la operación. Luego el administrador abre Reportes y Auditoría (WEB-10) desde la sidebar y verifica el nuevo evento con fecha y hora, usuario, acción, módulo y resultado.
+
+**Unhappy paths:**
+
+si el administrador presiona “Cancelar” en el modal, no se aplica ningún cambio y la credencial se mantiene activa.
+
++ **UF-05 · Reservar un cubículo**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow5.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como estudiante, quiero encontrar un cubículo disponible y reservarlo para estudiar hoy.
+
+**Explicación del flujo:** El estudiante inicia sesión en el Login (WEB-01) y el sistema, al reconocer su rol, lo dirige al Inicio de su portal (WEB-11). Con el acceso rápido “Buscar espacio” abre Crear reserva (WEB-14), donde indica sede, tipo de espacio, fecha, hora y duración.
+
+**Happy path:** selecciona “Reservar” en uno de los resultados y la pantalla muestra un modal de confirmación con el resumen de la reserva y el recordatorio de los 10 minutos de tolerancia. Al confirmar, llega a Mis reservas (WEB-13), donde la nueva reserva aparece en “Próximas” junto a un toast de éxito.
+
+**Unhappy paths:**
+
+si no hay espacios disponibles en el horario elegido, la pantalla muestra cero resultados y sugiere cambiar la hora o el tipo de espacio. El estudiante ajusta los criterios y vuelve a buscar.
+
+
++ **UF-06 · Validar la presencia en el cubículo reservado**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow6.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como estudiante, quiero validar mi presencia con mi credencial NFC para no perder mi reserva.
+
+**Explicación del flujo:** Al llegar la hora de inicio, el estudiante abre la reserva desde Mis reservas (WEB-13) y llega a Validar presencia (WEB-15). Esta pantalla muestra en ámbar el contador de tolerancia y las instrucciones para acercar la credencial al lector del cubículo.
+
+**Happy path:** el estudiante acerca su credencial y el lector la valida. La pantalla pasa al estado “Presencia validada” y la reserva queda como “Ocupado”.
+
+**Unhappy paths:**
+
+Si la credencial no se reconoce en el primer intento, se muestra un mensaje de error que indica verificar que esté activa e intentarlo nuevamente. Si el estudiante reintenta antes de que termine el tiempo, la presencia se valida.
+Si transcurren los 10 minutos sin validación, el sistema libera la reserva, la pantalla pasa al estado “Reserva liberada” y se ofrece la opción de crear una nueva.
+
+
++ **UF-07 · Consultar horario, asistencia y estado de la credencial**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow7.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como estudiante, quiero revisar mi horario del día, mi historial de asistencia y el estado de mi credencial.
+
+**Explicación del flujo:** Este flujo es solo de consulta y se recorre mediante la sidebar del portal de usuario.
+
+Desde el Inicio (WEB-11), el estudiante abre Mi horario (WEB-12), selecciona el día y ve sus clases con el estado Próxima, En curso o Finalizada.
+Luego accede a Mi asistencia (WEB-16), donde revisa el resumen de sesiones, presentes, tardanzas y ausencias, y el historial detallado por curso y fecha.
+Finalmente, en Mi credencial (WEB-17) confirma sus datos personales y el estado de su tarjeta NFC.
+
 
 ## 6.5. Applications Prototyping
+
+<p align="center">
+  <img src="assets/images//mockups/prototype-tarjepafi.png" alt="Mockup-prototype" width="850">
+</p>
+
+Figma: 'https://www.figma.com/proto/O6Xg9ewnVSa8wl5v8hAGNj/TarjePAFI-%E2%80%94-Smart-Campus-Design?node-id=21-283&p=f&t=LbQ1au689GFJu1BI-1&scaling=min-zoom&content-scaling=fixed&page-id=1%3A4&starting-point-node-id=21%3A283&show-proto-sidebar=1'
 
 
 # Capítulo VII: Product Implementation, Validation & Deployment
@@ -5127,6 +5258,683 @@ La Web App requiere un proceso de compilación, por lo que se despliega en Netli
 
 
 #### 7.2.1.4. Testing Suite Evidence for Sprint Review
+
+En esta sección se presenta el conjunto de pruebas automatizadas del Sprint 1 de la Web App de TarjePAFI. La suite tiene tres niveles:
+
+- **Unit Tests:** validan la lógica de dominio de cada bounded context (entidades, value objects y reglas) de forma aislada, sin red ni interfaz.
+- **Integration Tests:** validan los servicios web que consume la aplicación. Como en el Sprint 1 el backend se simula con **json-server** (Fake API con prefijo `/api/v1`), se verifica que cada recurso responda con el código HTTP, los filtros y la estructura de datos que esperan los *assemblers* de la capa de infraestructura.
+- **Acceptance Tests:** validan las User Stories del Sprint usando la aplicación real en un navegador (Chromium). Se ejecutan los flujos del administrador en el Simulador NFC y en la gestión de credenciales y, además, se comprueba en la Fake API que la lectura o el cambio de estado quedó registrado.
+
+Los Integration Tests y los Acceptance Tests siguen el enfoque **BDD**: los escenarios están escritos en archivos `.feature` con **Gherkin en español** y los *step definitions* están en **TypeScript**.
+
+**Herramientas utilizadas**
+
+| Nivel | Herramienta | Ubicación en el repositorio | Comando |
+|---|---|---|---|
+| Unit Tests | Vitest 4 (builder `@angular/build:unit-test` de Angular 21) | `webapp/src/app/**/domain/model/*.spec.ts` | `npm run test:unit` |
+| Integration Tests (BDD) | playwright-bdd 9 + Playwright 1.65 (`APIRequestContext`) | `webapp/e2e/features/integration/*.feature` | `npm run test:integration` |
+| Acceptance Tests (BDD) | playwright-bdd 9 + Playwright 1.65 (Chromium) | `webapp/e2e/features/acceptance/*.feature` | `npm run test:bdd` |
+| Step definitions | TypeScript | `webapp/e2e/steps/*.steps.ts` | — |
+
+Para que las pruebas sean repetibles, al ejecutar `npm run test:bdd` se genera una base de datos propia (`e2e/.db/db.e2e.json`) con el mismo *seed* determinista de la aplicación, se levanta json-server sobre ella y se inicia la Web App. Así, los tests no modifican los datos de la demo (`server/db.json`). Primero corren los Integration Tests con los datos recién generados y luego los Acceptance Tests, en orden y con un solo *worker*, porque estos últimos modifican la base.
+
+**Repositorio del proyecto de testing:** [https://github.com/ArquiEmergentes/tarjepafi-webapp](https://github.com/ArquiEmergentes/tarjepafi-webapp) (rama `feat/sprint1-fase7-testing-suite`, carpetas `webapp/src/app/**/domain/model` y `webapp/e2e`).
+
+##### Unit Tests
+
+Se implementaron **49 Unit Tests** en 9 archivos. La siguiente tabla indica, para cada archivo, las clases y los comportamientos que se prueban y la User Story con la que se relacionan.
+
+| Archivo `.spec.ts` | Bounded Context | Clase / función | Comportamientos verificados | User Story |
+|---|---|---|---|---|
+| `iam-domain.spec.ts` | IAM | `EmailAddress` | Acepta solo correos `@upc.edu.pe` y normaliza mayúsculas; rechaza correos sin formato o de otro dominio. | Login (regla de acceso) |
+| | | `User` | Solo las cuentas `ACTIVE` están habilitadas; verificación de roles. | Login (regla de acceso) |
+| `credentials-domain.spec.ts` | Credentials | `Credential` | Solo una tarjeta `ACTIVE` puede bloquearse o reportarse perdida; se da de baja desde `ACTIVE`, `BLOCKED` o `LOST`; se reactiva desde `BLOCKED`, `LOST` o `DEACTIVATED` y guarda la fecha del cambio; rechaza transiciones no permitidas. | US10, US13 |
+| | | `resolveAccess` | La excepción de la tarjeta tiene prioridad sobre los roles del espacio; sin excepción se usan los roles permitidos. | US14 |
+| | | `planEnrollmentVerification` | Vencido el plazo, desactiva solo las tarjetas `ACTIVE` de estudiantes con matrícula pendiente; dentro del plazo no desactiva ninguna. | US15 |
+| `attendance-domain.spec.ts` | Academic Attendance | `Session` | Está en curso desde 15 min antes del inicio hasta el fin; se cierra sola 15 min después del fin; muestra el horario como `10:00–11:30`. | US01, US04, US23 |
+| | | `AttendanceRecord` | `PRESENT` si marca hasta inicio + tolerancia, si no `LATE`; un `PENDING` se confirma según su propia hora de marcación; la salida del docente calcula la duración; la edición del docente guarda origen, autor, fecha y motivo. | US01, US16, US17, US22, US23 |
+| `space-facility-domain.spec.ts` | Space & Facility | `Space` | Solo permite los roles configurados; identifica un espacio en mantenimiento; `toProps()` devuelve una copia de los roles. | US12 |
+| | | `AccessRecord` | Distingue un acceso concedido de uno denegado. | US12 |
+| | | `WorkShift` | Abre la jornada con la fecha de la entrada; al cerrarse calcula los minutos trabajados sin mutar la jornada original. | US24 |
+| `iot-domain.spec.ts` | IoT Monitoring | `Reader` | Valida el formato `RDR-X-000`; solo `ACTIVE` o `DEGRADED` procesan lecturas; transiciones de activación y desactivación; pierde conexión tras 3 heartbeats sin comunicarse; un heartbeat devuelve a `ACTIVE` a un lector `OFFLINE`. | Simulador NFC (US01, US16) |
+| | | `validateConfiguration` | Acepta una configuración válida; exige intervalos > 0, heartbeat ≥ comunicación y firmware `x.y.z`. | Gestión de lectores |
+| `iot-events-domain.spec.ts` | IoT Monitoring | `CardTapEvent` | Normaliza el UID leído (`04 3d 9b…` → `04:3D:9B:…`); acepta UIDs de 4 a 7 bytes; identifica una lectura rechazada. | US01, US02 |
+| | | `Incident` | Está abierta mientras no se resuelva; al resolverse guarda la fecha sin mutar la original. | Gestión de lectores |
+| `report-domain.spec.ts` | Data Management | `Report` | El periodo es válido si inicio ≤ fin; sugiere semana, mes o semestre de la fecha actual. | Reportes |
+| | | `summarizeRecords` | Usa el último hecho de cada asistencia e ignora los pendientes; cuenta accesos, hora pico y lectores con incidencias; sin datos devuelve 0. | Reportes |
+| `date-time.spec.ts` | Shared Kernel | `date-time` | Suma minutos cruzando la hora; minutos entre dos fechas; formato de duraciones del lector (`1 h 30 min`); día de la semana; combinación de fecha y hora. | US17, US23, US24 |
+| `app.spec.ts` | Shell | `App` | La aplicación se crea correctamente. | — |
+
+<p align="center">
+  <img src="assets/images/testing/unit-tests-vitest.png" alt="Ejecución de los Unit Tests con Vitest" width="900">
+</p>
+<p align="center"><em>Ejecución de los Unit Tests: 9 archivos y 49 tests aprobados.</em></p>
+
+##### Integration Tests (BDD)
+
+Los Integration Tests verifican los servicios web de la Fake API que consume cada bounded context. Se diseñaron **4 features con 18 escenarios**.
+
+| Feature | Recursos (`/api/v1`) | Escenarios | User Stories |
+|---|---|---|---|
+| `01-credentials-api.feature` | `/credentials`, `/cardHolders`, `/credentialPermissions`, `/settings` | 6 | US11, US13, US14, US15 |
+| `02-academic-attendance-api.feature` | `/sessions`, `/courses`, `/enrollments`, `/attendanceRecords` | 5 | US01, US04, US16, US21, US25 |
+| `03-iot-monitoring-api.feature` | `/readers`, `/cardTapEvents` | 4 | US01, US02 y gestión de lectores |
+| `04-space-facility-api.feature` | `/spaces`, `/accessRecords`, `/workShifts` | 3 | US12, US24 |
+
+**`01-credentials-api.feature`**: comprueba que la Web App puede ubicar una credencial por el UID leído y un titular por su código (US11), consultar las excepciones de permisos (US14) y la fecha límite de matrícula (US15), y que un recurso inexistente devuelve 404 (US13).
+
+```gherkin
+# language: es
+@integration
+Característica: Servicios web de Credentials (Fake API /api/v1)
+  Como Web App de TarjePAFI,
+  necesito consultar titulares, credenciales y permisos en la API,
+  para resolver a quién pertenece cada tarjeta y qué espacios puede usar.
+
+  Antecedentes:
+    Dado que la Fake API de TarjePAFI está disponible
+
+  @US11
+  Escenario: Buscar una credencial por el UID leído en el lector
+    Cuando consulto el recurso "/credentials?cardUid=04:3D:9B:12:8F"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 1 elemento
+    Y el campo "cardHolderId" es "ch-u202312966"
+    Y el campo "status" es "ACTIVE"
+    Y cada elemento incluye los campos:
+      | id              |
+      | cardUid         |
+      | cardHolderId    |
+      | status          |
+      | issuedAt        |
+      | statusChangedAt |
+      | lastUsedAt      |
+
+  @US11
+  Escenario: Buscar un titular por su código institucional
+    Cuando consulto el recurso "/cardHolders?code=U202312966"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 1 elemento
+    Y el campo "fullName" es "Javier Gonzales Paredes"
+    Y el campo "role" es "STUDENT"
+    Y el campo "enrollmentStatus" es "COMPLETED"
+
+  @US11
+  Escenario: Un código de titular inexistente devuelve una lista vacía
+    Cuando consulto el recurso "/cardHolders?code=U999"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 0 elementos
+
+  @US14
+  Escenario: Consultar las excepciones de permisos de una tarjeta
+    Cuando consulto el recurso "/credentialPermissions?credentialId=cred-001"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 1 elemento
+    Y el campo "spaceId" es "sp-lab-e"
+    Y el campo "effect" es "ALLOW"
+
+  @US15
+  Escenario: Obtener la fecha límite de matrícula del ciclo
+    Cuando consulto el recurso "/settings"
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "term" es "2026-2"
+    Y el campo "enrollmentDeadline" es "2026-10-03T23:59:59"
+
+  @US13
+  Escenario: Una credencial que no existe devuelve 404
+    Cuando consulto el recurso "/credentials/cred-999"
+    Entonces la respuesta tiene el código HTTP 404
+```
+
+**`02-academic-attendance-api.feature`**: comprueba los datos académicos simulados que usa el registro de asistencia: la sesión de clase con su horario y tolerancia (US04, US25), el curso y la materia (US25), las matrículas del estudiante (US01), la estructura de las asistencias (US01, US16) y las reuniones (US21).
+
+```gherkin
+# language: es
+@integration
+Característica: Servicios web de Academic Attendance (Fake API /api/v1)
+  Como Web App de TarjePAFI,
+  necesito consultar cursos, sesiones, matrículas y asistencias en la API,
+  para validar cada lectura del aula y mostrar el curso y el horario de la clase.
+
+  Antecedentes:
+    Dado que la Fake API de TarjePAFI está disponible
+
+  @US04 @US25
+  Escenario: Consultar la sesión de clase del miércoles en el Aula A-301
+    Cuando consulto el recurso "/sessions?spaceId=sp-a301&date=2026-10-07"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 1 elemento
+    Y el campo "type" es "CLASS"
+    Y el campo "scheduledStart" es "2026-10-07T10:00:00"
+    Y el campo "scheduledEnd" es "2026-10-07T11:30:00"
+    Y el campo "toleranceMinutes" es "10"
+
+  @US25
+  Escenario: Consultar el curso y la materia
+    Cuando consulto el recurso "/courses/crs-01"
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "name" es "Aplicaciones Web"
+    Y el campo "subject" es "Desarrollo de Software"
+
+  @US01
+  Escenario: Consultar las matrículas activas de un estudiante
+    Cuando consulto el recurso "/enrollments?studentId=ch-u202312966&status=ACTIVE"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista no vacía
+    Y todos los elementos tienen el campo "term" igual a "2026-2"
+
+  @US01 @US16
+  Escenario: Las asistencias registradas incluyen hora, estado y origen
+    Cuando consulto el recurso "/attendanceRecords?cardHolderId=ch-u202312966&_limit=5"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista no vacía
+    Y cada elemento incluye los campos:
+      | sessionId    |
+      | cardHolderId |
+      | role         |
+      | checkInAt    |
+      | status       |
+      | source       |
+
+  @US21
+  Escenario: Consultar los convocados de una reunión
+    Cuando consulto el recurso "/sessions?type=MEETING"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 2 elementos
+    Y todos los elementos tienen el campo "type" igual a "MEETING"
+```
+
+**`03-iot-monitoring-api.feature`**: comprueba la consulta y el registro de lectores (POST y PATCH) y que cada lectura NFC guarda el resultado y el mensaje mostrado en el lector (US01, US02).
+
+```gherkin
+# language: es
+@integration
+Característica: Servicios web de IoT Monitoring (Fake API /api/v1)
+  Como Web App de TarjePAFI,
+  necesito registrar y consultar lectores NFC y sus lecturas en la API,
+  para operar el simulador y monitorear la conectividad de los dispositivos.
+
+  Antecedentes:
+    Dado que la Fake API de TarjePAFI está disponible
+
+  Escenario: Consultar un lector con su configuración
+    Cuando consulto el recurso "/readers/RDR-A-301"
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "status" es "ACTIVE"
+    Y el campo "spaceId" es "sp-a301"
+    Y el campo "configuration.readerMode" es "ATTENDANCE"
+    Y el campo "configuration.firmwareVersion" es "2.4.1"
+
+  Escenario: Registrar un lector y activarlo
+    Cuando registro un lector con el cuerpo:
+      """
+      {
+        "id": "RDR-Z-901",
+        "name": "Lector de prueba Z-901",
+        "deviceType": "DOOR_READER",
+        "spaceId": "sp-bib",
+        "status": "REGISTERED",
+        "configuration": { "readerMode": "ACCESS_CONTROL", "communicationInterval": 30, "heartbeatInterval": 60, "firmwareVersion": "2.4.1" },
+        "registeredAt": "2026-10-07T09:50:00",
+        "lastSeenAt": null
+      }
+      """
+    Entonces la respuesta tiene el código HTTP 201
+    Y el campo "status" es "REGISTERED"
+    Cuando actualizo el lector "RDR-Z-901" con:
+      """
+      { "status": "ACTIVE", "lastSeenAt": "2026-10-07T09:51:00" }
+      """
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "status" es "ACTIVE"
+    Cuando consulto el recurso "/readers/RDR-Z-901"
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "status" es "ACTIVE"
+    Y el campo "lastSeenAt" es "2026-10-07T09:51:00"
+
+  Escenario: Un lector que no existe devuelve 404
+    Cuando consulto el recurso "/readers/RDR-Z-999"
+    Entonces la respuesta tiene el código HTTP 404
+
+  @US01 @US02
+  Escenario: Las lecturas NFC guardan el resultado y el mensaje mostrado en el lector
+    Cuando consulto el recurso "/cardTapEvents?outcome=ATTENDANCE&_limit=5"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista no vacía
+    Y cada elemento incluye los campos:
+      | id             |
+      | readerId       |
+      | cardUid        |
+      | tappedAt       |
+      | outcome        |
+      | displayMessage |
+```
+
+**`04-space-facility-api.feature`**: comprueba la política de acceso de un área restringida y el motivo de los accesos denegados (US12), y la jornada abierta de un trabajador (US24).
+
+```gherkin
+# language: es
+@integration
+Característica: Servicios web de Space & Facility (Fake API /api/v1)
+  Como Web App de TarjePAFI,
+  necesito consultar espacios, registros de acceso y jornadas en la API,
+  para decidir el acceso a cada espacio y calcular las horas trabajadas.
+
+  Antecedentes:
+    Dado que la Fake API de TarjePAFI está disponible
+
+  @US12
+  Escenario: La Sala de Servidores es un área restringida solo para trabajadores
+    Cuando consulto el recurso "/spaces/sp-srv"
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "type" es "RESTRICTED_AREA"
+    Y el campo "accessPolicy" es "RESTRICTED"
+    Y el campo "allowedRoles" es "STAFF"
+
+  @US12
+  Escenario: Los accesos denegados guardan el motivo
+    Cuando consulto el recurso "/accessRecords?decision=DENIED&_limit=5"
+    Entonces la respuesta tiene el código HTTP 200
+    Y todos los elementos tienen el campo "decision" igual a "DENIED"
+    Y cada elemento incluye los campos:
+      | cardUid      |
+      | spaceId      |
+      | readerId     |
+      | denialReason |
+      | attemptedAt  |
+
+  @US24
+  Escenario: La jornada abierta de un trabajador no tiene salida
+    Cuando consulto el recurso "/workShifts?cardHolderId=ch-t0001&date=2026-10-07"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 1 elemento
+    Y el campo "status" es "OPEN"
+    Y el campo "exitAt" es "null"
+```
+
+##### Acceptance Tests (BDD)
+
+Los Acceptance Tests usan la Web App en Chromium como el administrador. Cada escenario inicia sesión, ejecuta el flujo en pantalla y verifica dos cosas: el mensaje que ve el usuario (por ejemplo, la pantalla del lector en el Simulador NFC) y lo que quedó registrado en la Fake API. Se diseñaron **7 features con 24 escenarios**.
+
+| Feature | Escenarios | User Stories |
+|---|---|---|
+| `01-asistencia-estudiantil.feature` | 5 | US01, US02, US04 |
+| `02-asistencia-docente.feature` | 4 | US16, US17, US18, US22, US23 |
+| `03-control-de-acceso.feature` | 3 | US12, US14 |
+| `04-cierre-de-turno.feature` | 2 | US24 |
+| `05-gestion-de-credenciales.feature` | 6 | US10, US11, US13 |
+| `06-verificacion-de-matriculas.feature` | 2 | US15 |
+| `07-asistencia-a-reuniones.feature` | 2 | US21 |
+
+**`01-asistencia-estudiantil.feature`** (US01, US02, US04): el estudiante matriculado registra su asistencia y el lector muestra "Asistencia tomada" con el curso y el horario. También se prueban la marcación duplicada, el estudiante no matriculado, el aula sin clase en curso y el UID no registrado.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Registro y confirmación de asistencia estudiantil con el lector NFC
+  Como estudiante,
+  quiero pasar mi tarjeta por el lector al entrar al salón y ver la confirmación con el horario de la clase,
+  para que mi asistencia se registre automáticamente y sepa que quedó registrada.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+    Y que estoy en el simulador de lector NFC
+
+  @US01 @US02 @US04
+  Escenario: Un estudiante matriculado registra su asistencia y ve el curso y el horario
+    Cuando uso el escenario rápido "Estudiante en A-301" y paso la tarjeta
+    Entonces el lector muestra "Asistencia tomada · Aplicaciones Web · 10:00–11:30"
+    Y el lector muestra el titular "Javier Gonzales Paredes"
+    Y la Fake API guarda la lectura de "U202312966" en "RDR-A-301" con resultado "ATTENDANCE"
+
+  @US01
+  Escenario: La asistencia no se registra dos veces en la misma sesión
+    Cuando paso la tarjeta de "U202311233" por el lector "RDR-A-301"
+    Y paso la tarjeta de "U202311233" por el lector "RDR-A-301"
+    Entonces el lector muestra "Tu asistencia ya fue registrada"
+
+  @US01
+  Escenario: Un estudiante que no está matriculado en la clase no registra asistencia
+    Cuando paso la tarjeta de "U202310137" por el lector "RDR-A-301"
+    Entonces el lector muestra "No estás matriculado en esta clase"
+    Y la Fake API guarda la lectura de "U202310137" en "RDR-A-301" con resultado "REJECTED"
+
+  @US04
+  Escenario: Si el aula no tiene una clase en su horario, el lector lo indica
+    # El Aula A-303 tiene clase de 13:00 a 14:30; a las 09:50 está fuera de la ventana de marcación.
+    Cuando paso la tarjeta de "U202310411" por el lector "RDR-A-303"
+    Entonces el lector muestra "No hay una clase en curso en esta aula"
+
+  @US01
+  Escenario: Un UID que no está registrado es rechazado
+    Cuando paso la tarjeta con UID "04:FF:12:AB:90" por el lector "RDR-A-301"
+    Entonces el lector muestra "Tarjeta no registrada"
+```
+
+**`02-asistencia-docente.feature`** (US16, US17, US18, US22, US23): la primera pasada del docente registra su llegada y confirma las asistencias pendientes; la segunda registra la salida con la duración de la clase; una tercera no la vuelve a registrar.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Llegada, salida y duración de la clase del docente
+  Como profesor,
+  quiero que al pasar mi tarjeta al inicio de la clase se registre mi llegada y se confirmen las asistencias
+  de los estudiantes, y que al pasarla de nuevo se registre mi salida con la duración de la clase,
+  para ahorrar tiempo en la toma de asistencia y llevar el control de mis horas de trabajo.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+    Y que estoy en el simulador de lector NFC
+
+  @US16 @US18 @US22
+  Escenario: La llegada del docente confirma las asistencias pendientes de sus estudiantes
+    Cuando paso la tarjeta de "U202311644" por el lector "RDR-A-301"
+    Y uso el escenario rápido "Docente en A-301" y paso la tarjeta
+    Entonces el lector muestra un mensaje que empieza con "Llegada registrada · Aplicaciones Web – Desarrollo de Software ·"
+    Y el lector muestra el titular "Carlos Mendoza Ríos"
+    Y la Fake API guarda la lectura de "D0001" en "RDR-A-301" con resultado "ATTENDANCE"
+
+  @US22
+  Escenario: Un docente sin clase asignada en el aula no registra su llegada
+    Cuando paso la tarjeta de "D0004" por el lector "RDR-A-301"
+    Entonces el lector muestra "No tienes una clase asignada en esta aula a esta hora"
+
+  @US17 @US18 @US23
+  Escenario: La segunda pasada del docente registra su salida y la duración de la clase
+    Dado que el docente "D0001" ya registró su llegada en el lector "RDR-A-301"
+    Cuando cambio la hora simulada a "2026-10-07T11:20"
+    Y paso la tarjeta de "D0001" por el lector "RDR-A-301"
+    Entonces el lector muestra "Salida registrada · Duración 1 h 30 min"
+
+  @US18
+  Escenario: Una tercera pasada no vuelve a registrar la salida
+    Dado que el docente "D0001" ya registró su llegada en el lector "RDR-A-301"
+    Cuando cambio la hora simulada a "2026-10-07T11:25"
+    Y paso la tarjeta de "D0001" por el lector "RDR-A-301"
+    Entonces el lector muestra "Tu salida ya fue registrada"
+```
+
+**`03-control-de-acceso.feature`** (US12, US14): acceso denegado a un área restringida y a un espacio en mantenimiento, con su motivo en los registros de acceso; y acceso concedido por una excepción de la tarjeta.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Control de acceso a áreas restringidas y permisos personalizados
+  Como administrador,
+  quiero que el lector muestre un mensaje cuando alguien intenta entrar a un área restringida
+  y poder personalizar los permisos de cada tarjeta,
+  para garantizar que solo ingresen las personas autorizadas.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+    Y que estoy en el simulador de lector NFC
+
+  @US12
+  Escenario: Un estudiante sin permiso no puede entrar a la Sala de Servidores
+    Cuando uso el escenario rápido "Estudiante en Sala de Servidores" y paso la tarjeta
+    Entonces el lector muestra "Acceso denegado"
+    Y la tabla de registros de acceso muestra el motivo "Sin permiso para el espacio"
+
+  @US12
+  Escenario: Nadie puede entrar a un espacio en mantenimiento
+    Cuando paso la tarjeta de "T0001" por el lector "RDR-D-004"
+    Entonces el lector muestra "Acceso denegado"
+    Y la tabla de registros de acceso muestra el motivo "Espacio en mantenimiento"
+
+  @US14
+  Escenario: La excepción de la tarjeta tiene prioridad sobre los roles del espacio
+    Cuando paso la tarjeta de "U202312966" por el lector "RDR-D-002"
+    Entonces el lector muestra "Acceso concedido"
+    Y la Fake API guarda la lectura de "U202312966" en "RDR-D-002" con resultado "ACCESS"
+```
+
+**`04-cierre-de-turno.feature`** (US24): con la jornada abierta no se abre otra; la salida cierra la jornada con las horas trabajadas y no se registra dos veces.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Cierre de turno del trabajador
+  Como trabajador,
+  quiero que la tarjeta sirva como herramienta de registro de salida del trabajo,
+  para llevar un registro exacto de mis horas trabajadas.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+    Y que estoy en el simulador de lector NFC
+
+  @US24
+  Escenario: Con la jornada abierta, una nueva entrada no abre otra jornada
+    Cuando paso la tarjeta de "T0001" por el lector "RDR-T-001"
+    Entonces el lector muestra "Tu jornada ya está abierta"
+
+  @US24
+  Escenario: La salida cierra la jornada y muestra las horas trabajadas
+    Cuando uso el escenario rápido "Trabajador en salida" y paso la tarjeta
+    Entonces el lector muestra un mensaje que empieza con "Salida registrada ·"
+    Y la Fake API guarda la lectura de "T0001" en "RDR-T-003" con resultado "WORK_SHIFT"
+    Cuando paso la tarjeta de "T0001" por el lector "RDR-T-003"
+    Entonces el lector muestra "Tu salida ya fue registrada"
+```
+
+**`05-gestion-de-credenciales.feature`** (US10, US11, US13): baja de la tarjeta de un estudiante retirado y su efecto en los lectores; bloqueo y reactivación; reactivación rechazada por matrícula pendiente; y validaciones al vincular un titular.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Gestión del ciclo de vida de las credenciales NFC
+  Como administrador,
+  quiero dar de baja, reactivar y vincular las tarjetas con la base de datos de titulares,
+  para gestionar fácilmente su estado y asegurar que solo las personas habilitadas usen los servicios.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+
+  @US10
+  Escenario: Dar de baja la tarjeta de un estudiante retirado
+    Dado que abrí la credencial de "U202310959"
+    Cuando doy de baja la tarjeta por "Retiro de la universidad" con el detalle "Retiro formal del ciclo 2026-2"
+    Entonces la tarjeta queda en estado "Desactivada"
+    Y el historial de estados registra el motivo "Retiro de la universidad"
+    Y la Fake API guarda la credencial de "U202310959" con estado "DEACTIVATED"
+
+  @US10
+  Escenario: Una tarjeta dada de baja ya no funciona en los lectores
+    Dado que estoy en el simulador de lector NFC
+    Cuando paso la tarjeta de "U202310959" por el lector "RDR-T-001"
+    Entonces el lector muestra "Tarjeta inactiva. Acércate a servicios universitarios"
+
+  @US13
+  Escenario: Reactivar una tarjeta bloqueada
+    Dado que abrí la credencial de "U202310822"
+    Cuando ejecuto la acción "Bloquear" con el motivo "Bloqueo preventivo por revisión"
+    Entonces la tarjeta queda en estado "Bloqueada"
+    Cuando ejecuto la acción "Reactivar"
+    Entonces veo el mensaje "reactivada"
+    Y la tarjeta queda en estado "Activa"
+    Y la Fake API guarda la credencial de "U202310822" con estado "ACTIVE"
+
+  @US13
+  Escenario: No se reactiva la tarjeta de un estudiante con matrícula pendiente
+    Dado que abrí la credencial de "U202413151"
+    Cuando ejecuto la acción "Reactivar"
+    Entonces veo el mensaje "No se puede reactivar: la matrícula del estudiante está pendiente."
+    Y la Fake API guarda la credencial de "U202413151" con estado "DEACTIVATED"
+
+  @US11
+  Escenario: Un código de titular que no existe no se puede vincular
+    Dado que abrí la credencial sin titular "cred-054"
+    Cuando busco al titular con código "U999" para vincularlo
+    Entonces veo el mensaje "Titular no encontrado"
+
+  @US11
+  Escenario: Un titular solo puede tener una tarjeta activa
+    Dado que abrí la credencial sin titular "cred-054"
+    Cuando busco al titular con código "U202312966" para vincularlo
+    Y confirmo la vinculación
+    Entonces veo el mensaje "El titular ya tiene una tarjeta activa (04:3D:9B:12:8F)"
+```
+
+**`06-verificacion-de-matriculas.feature`** (US15): vencido el plazo de matrícula, la verificación desactiva solo las tarjetas activas de estudiantes con matrícula pendiente y lo registra en el historial con el autor "Sistema".
+
+```gherkin
+# language: es
+@acceptance
+Característica: Desactivación automática de tarjetas por matrícula no completada
+  Como administrador,
+  quiero que las tarjetas se desactiven automáticamente si un estudiante no completa su matrícula a tiempo,
+  para mantener la seguridad.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+
+  @US15
+  Escenario: Vencido el plazo, se desactivan solo las tarjetas activas con matrícula pendiente
+    Cuando ejecuto la verificación de matrículas
+    Entonces el resultado indica "5 desactivadas"
+    Y la tarjeta de "U202310685" aparece entre las desactivadas
+    Y la Fake API guarda la credencial de "U202310685" con estado "DEACTIVATED"
+    Y la Fake API guarda la credencial de "U202312966" con estado "ACTIVE"
+
+  @US15
+  Escenario: El historial registra el motivo y que el cambio lo hizo el sistema
+    Dado que abrí la credencial de "U202310685"
+    Entonces la tarjeta queda en estado "Desactivada"
+    Y el historial de estados registra el motivo "Matrícula no completada"
+    Y el historial de estados registra el autor "Sistema"
+```
+
+**`07-asistencia-a-reuniones.feature`** (US21): el docente convocado registra su asistencia a la capacitación y uno no convocado es rechazado.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Registro de asistencia del docente a reuniones y capacitaciones
+  Como profesor,
+  quiero que mi tarjeta me permita marcar mi asistencia a reuniones o capacitaciones,
+  para llevar un control integral de mi tiempo.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+    Y que estoy en el simulador de lector NFC
+    Y la hora simulada es "2026-10-08T15:58"
+
+  @US21
+  Escenario: Un docente convocado registra su asistencia a la capacitación
+    Cuando paso la tarjeta de "D0001" por el lector "RDR-D-005"
+    Entonces el lector muestra "Asistencia registrada · Capacitación: uso de lectores NFC en aula"
+    Y la Fake API guarda la lectura de "D0001" en "RDR-D-005" con resultado "ATTENDANCE"
+
+  @US21
+  Escenario: Un docente que no fue convocado no registra asistencia
+    Cuando paso la tarjeta de "D0004" por el lector "RDR-D-005"
+    Entonces el lector muestra "No estás convocado a esta reunión"
+```
+
+##### Step definitions
+
+Los pasos Gherkin se implementan en TypeScript con `createBdd` de playwright-bdd. Están agrupados por responsabilidad:
+
+| Archivo | Responsabilidad |
+|---|---|
+| `fixtures.ts` | Fixtures compartidos: contexto del escenario y cliente de la Fake API (`FakeApi`) para preparar y verificar datos. |
+| `session.steps.ts` | Inicio de sesión por rol, navegación, diálogos de confirmación y mensajes en pantalla. |
+| `simulator.steps.ts` | Simulador NFC: elegir lector y tarjeta, pasar la tarjeta, cambiar la hora simulada y verificar el mensaje del lector y el `cardTapEvent` guardado. |
+| `credentials.steps.ts` | Acciones sobre credenciales (bloquear, reactivar, dar de baja, vincular), verificación de matrículas e historial de estados. |
+| `api.steps.ts` | Peticiones HTTP a la Fake API y validación de código de respuesta, campos y estructura. |
+
+Por ejemplo, el paso que pasa una tarjeta por el lector selecciona el lector y el UID en el simulador, pulsa "Pasar tarjeta" y espera a que la Web App registre la lectura en la API:
+
+```typescript
+When('paso la tarjeta de {string} por el lector {string}', async ({ page, api }, code: string, readerId: string) => {
+  await tapHolder(page, api, code, readerId);
+});
+
+/** Pulsa "Pasar tarjeta" y espera a que la Web App registre el cardTapEvent en la Fake API. */
+async function submitTap(page: Page): Promise<void> {
+  const saved = page.waitForResponse((r) => r.request().method() === 'POST' && r.url().includes('/cardTapEvents'));
+  await page.getByRole('button', { name: 'Pasar tarjeta' }).click();
+  await saved;
+  await expect(page.getByRole('button', { name: 'Pasar tarjeta' })).toBeEnabled();
+}
+
+Then('el lector muestra {string}', async ({ page }, message: string) => {
+  await expect(page.locator('.screen-message')).toHaveText(message);
+});
+```
+
+##### Evidencia de ejecución
+
+La ejecución completa de `npm run test:bdd` aprobó los **42 escenarios** (18 de integración y 24 de aceptación).
+
+<p align="center">
+  <img src="assets/images/testing/bdd-tests-terminal.png" alt="Ejecución de los tests BDD con Playwright" width="900">
+</p>
+<p align="center"><em>Ejecución de los Integration y Acceptance Tests BDD: 42 escenarios aprobados.</em></p>
+
+El reporte Cucumber generado por playwright-bdd resume el resultado por feature:
+
+<p align="center">
+  <img src="assets/images/testing/bdd-cucumber-report.png" alt="Reporte Cucumber de los tests BDD" width="850">
+</p>
+<p align="center"><em>Reporte Cucumber: 100 % (42/42) de escenarios aprobados.</em></p>
+
+Detalle de algunos features en el reporte, con cada paso Gherkin aprobado:
+
+<p align="center">
+  <img src="assets/images/testing/bdd-feature-01-credentials-api.png" alt="Feature de integración de Credentials" width="800">
+</p>
+<p align="center"><em>Integration Test: servicios web de Credentials.</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/bdd-feature-01-asistencia-estudiantil.png" alt="Feature de asistencia estudiantil" width="800">
+</p>
+<p align="center"><em>Acceptance Test: US01, US02 y US04.</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/bdd-feature-02-asistencia-docente.png" alt="Feature de asistencia docente" width="800">
+</p>
+<p align="center"><em>Acceptance Test: US16, US17, US18, US22 y US23.</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/bdd-feature-05-gestion-de-credenciales.png" alt="Feature de gestión de credenciales" width="800">
+</p>
+<p align="center"><em>Acceptance Test: US10, US11 y US13.</em></p>
+
+Capturas de la Web App tomadas por Playwright al final de algunos escenarios de aceptación:
+
+<p align="center">
+  <img src="assets/images/testing/acceptance-us01-asistencia-tomada.png" alt="US01: asistencia tomada en el simulador NFC" width="850">
+</p>
+<p align="center"><em>US01/US02/US04: el lector muestra "Asistencia tomada · Aplicaciones Web · 10:00–11:30".</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/acceptance-us23-salida-docente.png" alt="US23: salida del docente con la duración de la clase" width="850">
+</p>
+<p align="center"><em>US17/US23: salida del docente con la duración de la clase.</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/acceptance-us12-registro-acceso.png" alt="US12: registros de acceso denegados" width="850">
+</p>
+<p align="center"><em>US12: accesos denegados con su motivo en los registros de acceso.</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/acceptance-us15-verificacion.png" alt="US15: resultado de la verificación de matrículas" width="850">
+</p>
+<p align="center"><em>US15: resultado de la verificación de matrículas.</em></p>
+
+##### Commits relacionados con testing
+
+| Repository | Branch | Commit Id | Commit Message | Commit Message Body | Committed on (Date) |
+|---|---|---|---|---|---|
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase1-scaffold | [`abec0b0`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/abec0b0b6d53d20554b16cb31ce61af56bb1b0d8) | feat(webapp): scaffold Sprint 1 con shell por rol, login y json-server | Incluye los Unit Tests `app.spec.ts`, `iam-domain.spec.ts` y `date-time.spec.ts`. | 11/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase2-credenciales | [`0207578`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/020757844397134127088196d64b3f3b2ec1a095) | feat(credentials): gestión de credenciales y verificación de matrículas | Incluye los Unit Tests `credentials-domain.spec.ts` (US10, US13, US14, US15). | 11/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase3-lectores-iot | [`10b5869`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/10b58693281bfd0412ea68527a8643f78828bda5) | feat(iot-monitoring): gestión de lectores IoT | Incluye los Unit Tests `iot-domain.spec.ts` (`Reader`, `validateConfiguration`). | 11/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase4-asistencia-simulador | [`045aa7e`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/045aa7e7646375f9a0fa2245afe3c70264520bb4) | feat(attendance): simulador NFC, registros de acceso y vistas del docente | Incluye los Unit Tests `attendance-domain.spec.ts` (US01, US16, US17, US22, US23). | 12/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase5-dashboard-reportes | [`ef73e83`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/ef73e837534439406b2ef888169d078309e01adc) | feat(data-management): dashboard en vivo y reportes con exportación CSV | Incluye los Unit Tests `report-domain.spec.ts`. | 12/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase7-testing-suite | [`51c6fc6`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/51c6fc698093a34af7bf9e46a6a0e6de1fbab2be) | test(domain): unit tests de Space, AccessRecord, WorkShift, CardTapEvent e Incident | Completa la suite de Vitest con las entidades de Space & Facility e IoT Monitoring que no tenían pruebas (US12, US24). Total: 49 unit tests. | 13/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase7-testing-suite | [`4b6999b`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/4b6999b3c6ee6c4572c7d98d7d4406153ae0d35d) | test(bdd): integration tests de la Fake API con Gherkin y playwright-bdd | Configura playwright-bdd con proyectos integration y acceptance; base de datos propia para las pruebas; 4 features de integración (18 escenarios) y step definitions en TypeScript. | 13/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase7-testing-suite | [`667fd38`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/667fd388579b0b5b04e10974e8a887bb6cee0185) | test(bdd): acceptance tests de las user stories del Sprint 1 | 7 features en Gherkin (24 escenarios) que usan la Web App en Chromium: US01, US02, US04, US10–US18 y US21–US24. | 13/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase7-testing-suite | [`dbf8db1`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/dbf8db1a52a925f198708cd5b8553b8bb6960826) | docs: sección de testing y scripts en el README de la app | Documenta los comandos `test:unit`, `test:bdd`, `test:integration` y `test:report`. | 13/11/2026 |
 
 
 #### 7.2.1.5. Execution Evidence for Sprint Review
