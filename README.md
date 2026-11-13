@@ -262,6 +262,31 @@ Repositorio del reporte: 'https://github.com/ArquiEmergentes/tarjepafi-report'
   - [6.4. Applications UX/UI Design](#64-applications-uxui-design)
     - [6.4.1. Applications Wireframes](#641-applications-wireframes)
     - [6.4.2. Applications Wireflow Diagrams](#642-applications-wireflow-diagrams)
+    - [6.4.3. Applications Mock-ups](#643-applications-mock-ups)
+    - [6.4.4. Applications User Flow Diagrams](#644-applications-user-flow-diagrams)
+  - [6.5. Applications Prototyping](#65-applications-prototyping)
+
+- [Capítulo VII: Product Implementation, Validation & Deployment](#capítulo-vii-product-implementation-validation--deployment)
+  - [7.1. Software Configuration Management](#71-software-configuration-management)
+    - [7.1.1. Software Development Environment Configuration](#711-software-development-environment-configuration)
+    - [7.1.2. Source Code Management](#712-source-code-management)
+    - [7.1.3. Source Code Style Guide & Conventions](#713-source-code-style-guide--conventions)
+    - [7.1.4. Software Deployment Configuration](#714-software-deployment-configuration)
+  - [7.2. Solution Implementation](#72-solution-implementation)
+    - [7.2.1. Sprint 1](#721-sprint-1)
+      - [7.2.1.1. Sprint Planning 1](#7211-sprint-planning-1)
+      - [7.2.1.2. Sprint Backlog 1](#7212-sprint-backlog-1)
+      - [7.2.1.3. Development Evidence for Sprint Review](#7213-development-evidence-for-sprint-review)
+      - [7.2.1.4. Testing Suite Evidence for Sprint Review](#7214-testing-suite-evidence-for-sprint-review)
+      - [7.2.1.5. Execution Evidence for Sprint Review](#7215-execution-evidence-for-sprint-review)
+      - [7.2.1.6. Services Documentation Evidence for Sprint Review](#7216-services-documentation-evidence-for-sprint-review)
+      - [7.2.1.7. Software Deployment Evidence for Sprint Review](#7217-software-deployment-evidence-for-sprint-review)
+      - [7.2.1.8. Team Collaboration Insights during Sprint](#7218-team-collaboration-insights-during-sprint)
+  - [7.3. Validation Interviews](#73-validation-interviews)
+    - [7.3.1. Diseño de Entrevistas](#731-diseño-de-entrevistas)
+    - [7.3.2. Registro de Entrevistas](#732-registro-de-entrevistas)
+    - [7.3.3. Evaluaciones según heurísticas](#733-evaluaciones-según-heurísticas)
+  - [7.4. Video About-the-Product](#74-video-about-the-product)
 
 - [Conclusiones](#conclusiones)
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
@@ -4816,6 +4841,14 @@ User Persona: [Nombre del User Persona] — Estudiante.
 
 **Explicación del flujo:** Desde el Home (MOB-02), el estudiante usa la bottom navigation para moverse entre las secciones de consulta. En Mi horario (MOB-03) selecciona el día y ve sus clases con estado Próxima, En curso o Finalizada. En Historial de asistencia (MOB-07) revisa el resumen de sesiones, presentes, tardanzas y ausencias, y la lista de registros por curso y fecha. Finalmente, en Perfil / Credencial (MOB-08) confirma sus datos y el estado de su credencial NFC, indicado con el badge "Credencial activa". Este flujo es solo de consulta: ninguna interacción modifica el estado de una pantalla, por lo que cada paso corresponde a una pantalla distinta.
 
+### 6.4.3. Applications Mock-ups
+
+
+### 6.4.4. Applications User Flow Diagrams
+
+
+## 6.5. Applications Prototyping
+
 
 # Capítulo VII: Product Implementation, Validation & Deployment
 
@@ -5076,6 +5109,38 @@ La Web App requiere un proceso de compilación, por lo que se despliega en Netli
 4. La URL base de la Fake API se define en los archivos de entorno de Angular (`environment.ts` y `environment.prod.ts`). Así, cuando el Backend API esté disponible, basta con cambiar este valor para que la Web App consuma los servicios reales sin modificar los componentes ni los servicios.
 5. Con la integración activa, cada push o merge a `main` dispara una nueva compilación y despliegue automático. Si la compilación falla, Netlify mantiene publicada la última versión estable.
 6. Al completar la compilación, Netlify publica la aplicación en una URL pública con protocolo HTTPS. Además, genera *Deploy Previews* para cada Pull Request, lo que permite revisar los cambios antes de integrarlos.
+
+
+## 7.2. Solution Implementation
+
+
+### 7.2.1. Sprint 1
+
+
+#### 7.2.1.1. Sprint Planning 1
+
+
+#### 7.2.1.2. Sprint Backlog 1
+
+
+#### 7.2.1.3. Development Evidence for Sprint Review
+
+
+#### 7.2.1.4. Testing Suite Evidence for Sprint Review
+
+
+#### 7.2.1.5. Execution Evidence for Sprint Review
+
+
+#### 7.2.1.6. Services Documentation Evidence for Sprint Review
+
+
+#### 7.2.1.7. Software Deployment Evidence for Sprint Review
+
+
+#### 7.2.1.8. Team Collaboration Insights during Sprint
+
+
 
 ## 7.3. Validation Interviews
 
@@ -5381,6 +5446,10 @@ El alcance de esta evaluación incluye la revisión de la usabilidad y la experi
 - **Heurística violada:** Usability – Libertad y control del usuario
 - **Descripción:** Una vez que el equipo fue apagado y la alerta atendida, la alarma continúa sonando hasta que el sistema recibe la confirmación del backend. Si la conectividad es inestable, el sonido permanece en la cocina y el personal no tiene forma de silenciarlo, lo que lleva a ignorar futuras alarmas.
 - **Recomendación:** Añadir una acción "Alerta atendida" que silencie la alarma local de inmediato, registre la confirmación y la sincronice cuando se recupere la conexión, manteniendo visible el estado de peligro hasta la verificación.
+<br>
+
+## 7.4. Video About-the-Product
+
 
 # Conclusiones
 
