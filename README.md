@@ -6012,6 +6012,11 @@ Finalmente se accedió a la versión desplegada de la aplicación.
 
 #### 7.2.1.8. Team Collaboration Insights during Sprint
 
+Durante el desarrollo de este Sprint, el equipo de trabajo coordinó de manera colaborativa las actividades de diseño, estructuración de vistas, definición de esquemas de datos simulados y configuración de la infraestructura de despliegue web.
+
+La distribución y participación activa de los integrantes del equipo se reflejó en el flujo de control de versiones con Git y GitHub, asegurando contribuciones en los componentes clave del sistema.
+
+<img src="assets/images/evidence/team-evidence.png" alt="Evidencia del equipo" width="850">
 
 
 ## 7.3. Validation Interviews
