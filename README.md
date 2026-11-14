@@ -5970,6 +5970,16 @@ Sección para la visualización de los reportes generados con las métricas corr
 
 #### 7.2.1.6. Services Documentation Evidence for Sprint Review
 
+Durante este Sprint el equipo avanzó en el establecimiento y estructuración de la documentación preliminar respecto a los Web Services, esto último puesto a que el alcance de este Sprint comprendía el apartado del Frontend de la aplicación, dejando el desarrollo y posterior integración del Backend para el siguiente Sprint.
+
+A continuación se presentan los principales endpoints conceptualizados de las vistas presentadas en el punto anterior:
+
+| Endpoint / Ruta | Verbo HTTP | Acciones Implementadas | Parámetros Requeridos | Ejemplo de Response y Descripción |
+| :--- | :--- | :--- | :--- | :--- |
+| `/api/v1/auth/login` | `POST` | Autenticación institucional de usuarios y generación de token de acceso. | **Body:** `email` (string), `password` (string). | `{"token": "eyJhbGciOi...", "user": {"name": "María Torres", "role": "Administrator"}}`<br> *Devuelve el token de sesión y el rol del usuario autenticado.* | 
+| `/api/v1/dashboard/summary` | `GET` | Obtención de métricas operativas y KPIs en tiempo real de la sede. | **Query Params:** `sedeId` (string, opcional). | `{"attendanceRate": 73.7, "grantedAccess": 33, "onlineReaders": 15}`<br> *Proporciona el resumen ejecutivo para las tarjetas informativas del Dashboard.* | 
+| `/api/v1/credentials` | `GET` | Listado y filtrado de tarjetas NFC asignadas a la comunidad académica. | **Query Params:** `status` (string), `userType` (string), `search` (string). | `{"total": 55, "items": [{"id": "U202312966", "name": "Javier Gonzáles", "state": "Activa"}]}`<br> *Retorna el catálogo paginado de credenciales emitidas.* |
+| `/api/v1/iot-readers` | `GET` | Monitoreo del estado operativo de los lectores NFC de la sede. | **Query Params:** `location` (string), `status` (string). | `{"readers": [{"code": "RDR-A-301", "status": "Activo", "firmware": "2.4.1"}]}`<br> *Devuelve el listado de dispositivos IoT y su telemetría.* | 
 
 #### 7.2.1.7. Software Deployment Evidence for Sprint Review
 
