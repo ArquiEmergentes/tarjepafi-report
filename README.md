@@ -6091,6 +6091,91 @@ Entrevistador: Perfecto, sus comentarios nos ayudarán a mejorar TarjePAFI. Agra
 
 ### 7.3.2. Registro de Entrevistas
 
+*Entrevistas a usuarios de tarjetas*
+---
+
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 1</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Alvaro Abanto</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>Los Olivos</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>4:27-10:48</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://youtu.be/uIg0VdhjYA0`
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Álvaro Abanto Dávila, estudiante de Ciencias de la Computación en la UPC de 21 años y actualmente practicante, entiende TarjePafi como una tarjeta con tecnología NFC para validar la asistencia y el ingreso. Considera que ayudaría al campus a hacer seguimiento de cuántas veces un alumno falta o llega tarde. La landing page le dejó claro el producto y su funcionamiento, y valora que esté dividida en funcionalidades, pasos y segmentos a los que se dirige. Sobre el diseño, dice que los colores transmiten un estilo educativo y formal, y le parecen adecuados la tipografía, los íconos y el tamaño de los textos. Los mensajes del lector le parecen suficientes para entender si llegó temprano, tarde o si ya no puede registrar asistencia porque la clase terminó. Aun así, cree que cuando la tarjeta sea rechazada el mensaje debería explicar el motivo, por si se trata de un error. Hoy ingresa mostrando el carné digital de la aplicación Mi UPC, y en clase el profesor pasa lista uno por uno. Ve la tarjeta como una opción más rápida y cómoda, sobre todo porque la aplicación a veces se cae o demora en cargar cuando llega justo a la hora. Para empezar a usarla le bastaría un tutorial breve que explique qué hace la tarjeta, para qué sirve y cómo se usa, aunque considera que el flujo es sencillo. Confiaría en que su registro quedó guardado siempre que el sistema esté bien implementado, y sí la usaría a diario por comodidad y rapidez. Prefiere la tarjeta física al celular como credencial porque no depende de la batería y lo hace menos vulnerable a robos al no tener que sacar el teléfono, aunque señala como desventaja que, si la olvida, no tendría cómo identificarse.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/foto2.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 2</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Estefano Solis</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>Pueblo Libre</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>5:08-10:34</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://youtu.be/e-u0WlXbfVM`
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Estefano Solis Campos, estudiante de 21 años, entiende TarjePafi como una credencial física que se acerca a los lectores del campus para marcar la asistencia, ingresar a la universidad y reservar espacios como los cubículos. Cree que le ayudaría a evitar las colas en la puerta y el tiempo que se pierde en clase al pasar lista. La landing page le pareció limpia, ordenada y fácil de entender. Valora que separe bien los beneficios, los pasos de funcionamiento y las preguntas frecuentes. Sobre el diseño, dice que los colores le dan un aire moderno y serio, que los íconos son claros y que el tamaño de letra le permite leer sin forzar la vista. Le parece que los mensajes del lector son cortos y se entienden a la primera, así que no frenan el paso de la gente. Sin embargo, sugiere que cuando el acceso sea denegado aparezca una línea que indique qué hacer, por ejemplo acudir a administración o reservar un espacio, para no quedarse solo con el aviso. Considera la tarjeta más rápida y cómoda que el método actual con el celular, que falla cuando no hay internet, la aplicación no carga o la batería está baja. Para empezar a usarla le bastaría una explicación breve o un video simple al recibirla, junto con un cartel al lado del lector que explique el significado de las luces. Le daría seguridad que el lector responda al instante con un mensaje en pantalla, una luz verde y un pitido, además de poder revisar su historial si tiene dudas. Prefiere llevar la tarjeta física en la billetera antes que mostrar el celular, porque no depende de la batería y evita las colas con el personal de seguridad.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/foto1.png" alt="Segmento 2 entrevista 2 " width="1000"><br>
+    </td>
+  </tr>
+</table>
+
 ### 7.3.3. Evaluaciones según heurísticas
 
 **Evaluación Heurística de Usabilidad y Diseño Inclusivo de ElectroLink**
