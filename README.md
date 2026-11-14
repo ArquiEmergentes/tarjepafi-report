@@ -77,7 +77,7 @@ Integrantes
 
 <br>
   
-**Fecha de publicación:** Septiembre del 2026
+**Fecha de publicación:** Noviembre del 2026
 
 **Período 202620**
 
@@ -107,6 +107,18 @@ Integrantes
 | 1.6 | 06/10/2026 | Rivera Ratachi, Renzo Sebastián | Incorporación del Landing Page Wireframe en versiones desktop y mobile (Landing Page UI Design). |
 | 1.7 | 07/10/2026 | Velarde Luyo, Piero Alberto | Incorporación del Landing Page Mock-up en versiones desktop y mobile. |
 | 1.8 | 08/10/2026 | Gonzales Alvarado, Javier Sebastian | Incorporación de los Applications Wireflow Diagrams web y móvil, del Student Outcome y de las Conclusiones de la TP1. Revisión, integración y consolidación final del documento correspondiente a la TP1. |
+| 1.9 | 14/10/2026 | Via Luna, Bruce | Incorporación del Sprint Planning y del Sprint Backlog correspondientes a la TB2. |
+| 2.0 | 16/10/2026 | Palomino Fiestas, Erick Leonardo | Incorporación del diseño de las entrevistas de validación y de las evaluaciones según heurísticas. |
+| 2.1 | 19/10/2026 | Gonzales Alvarado, Javier Sebastian | Incorporación de los Mockups, los Userflow Diagrams y el Prototype de la aplicación. |
+| 2.2 | 22/10/2026 | Rivera Ratachi, Renzo Sebastián | Incorporación de la Software Configuration Management, la Software Development Environment Configuration y el Source Code Management. |
+| 2.3 | 26/10/2026 | Rivera Ratachi, Renzo Sebastián | Incorporación del Source Code Style Guide & Conventions, la Software Deployment Configuration y el desarrollo de la Landing Page. |
+| 2.4 | 30/10/2026 | Gonzales Alvarado, Javier Sebastian | Incorporación del Frontend de la aplicación web (Angular). |
+| 2.5 | 02/11/2026 | Via Luna, Bruce | Incorporación de la entrevista de validación realizada y del Evidence for Sprint Execution. |
+| 2.6 | 04/11/2026 | Palomino Fiestas, Erick Leonardo | Incorporación de las entrevistas de validación y de sus resúmenes. |
+| 2.7 | 06/11/2026 | Velarde Luyo, Piero Alberto | Incorporación del despliegue de la aplicación web y del Software Deployment Evidence. |
+| 2.8 | 09/11/2026 | Velarde Luyo, Piero Alberto | Incorporación de la Services Documentation y del Services Execution Evidence. |
+| 2.9 | 11/11/2026 | Gonzales Alvarado, Javier Sebastian | Incorporación del Testing Suite (pruebas unitarias, de integración y de aceptación). |
+| 3.0 | 13/11/2026 | Gonzales Alvarado, Javier Sebastian | Incorporación del Student Outcome y de las Conclusiones de la TB2. Revisión, integración y consolidación final del documento correspondiente a la TB2. |
 
 <div style="break-after: page;"></div>
 
@@ -262,6 +274,31 @@ Repositorio del reporte: 'https://github.com/ArquiEmergentes/tarjepafi-report'
   - [6.4. Applications UX/UI Design](#64-applications-uxui-design)
     - [6.4.1. Applications Wireframes](#641-applications-wireframes)
     - [6.4.2. Applications Wireflow Diagrams](#642-applications-wireflow-diagrams)
+    - [6.4.3. Applications Mock-ups](#643-applications-mock-ups)
+    - [6.4.4. Applications User Flow Diagrams](#644-applications-user-flow-diagrams)
+  - [6.5. Applications Prototyping](#65-applications-prototyping)
+
+- [Capítulo VII: Product Implementation, Validation & Deployment](#capítulo-vii-product-implementation-validation--deployment)
+  - [7.1. Software Configuration Management](#71-software-configuration-management)
+    - [7.1.1. Software Development Environment Configuration](#711-software-development-environment-configuration)
+    - [7.1.2. Source Code Management](#712-source-code-management)
+    - [7.1.3. Source Code Style Guide & Conventions](#713-source-code-style-guide--conventions)
+    - [7.1.4. Software Deployment Configuration](#714-software-deployment-configuration)
+  - [7.2. Solution Implementation](#72-solution-implementation)
+    - [7.2.1. Sprint 1](#721-sprint-1)
+      - [7.2.1.1. Sprint Planning 1](#7211-sprint-planning-1)
+      - [7.2.1.2. Sprint Backlog 1](#7212-sprint-backlog-1)
+      - [7.2.1.3. Development Evidence for Sprint Review](#7213-development-evidence-for-sprint-review)
+      - [7.2.1.4. Testing Suite Evidence for Sprint Review](#7214-testing-suite-evidence-for-sprint-review)
+      - [7.2.1.5. Execution Evidence for Sprint Review](#7215-execution-evidence-for-sprint-review)
+      - [7.2.1.6. Services Documentation Evidence for Sprint Review](#7216-services-documentation-evidence-for-sprint-review)
+      - [7.2.1.7. Software Deployment Evidence for Sprint Review](#7217-software-deployment-evidence-for-sprint-review)
+      - [7.2.1.8. Team Collaboration Insights during Sprint](#7218-team-collaboration-insights-during-sprint)
+  - [7.3. Validation Interviews](#73-validation-interviews)
+    - [7.3.1. Diseño de Entrevistas](#731-diseño-de-entrevistas)
+    - [7.3.2. Registro de Entrevistas](#732-registro-de-entrevistas)
+    - [7.3.3. Evaluaciones según heurísticas](#733-evaluaciones-según-heurísticas)
+  - [7.4. Video About-the-Product](#74-video-about-the-product)
 
 - [Conclusiones](#conclusiones)
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
@@ -284,8 +321,8 @@ Criterio: : Capacidad de comunicarse efectivamente con un rango de audiencias.
 
 | Criterio específico | Acciones realizadas | Conclusiones |
 |---|---|---|
-| **Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.** | **Gonzales Alvarado, Javier Sebastian – TB1:** Expuso y explicó la propuesta de arquitectura del sistema, comunicando la organización de los Bounded Contexts y sus relaciones mediante el Context Mapping y System Landscape Diagram.<br><br>**Via Luna, Bruce – TB1:** Expuso la definición de los Bounded Contexts y explicó la interacción entre ellos mediante el Domain Message Flow Diagram.<br><br>**Palomino Fiestas, Erick Leonardo – TB1:** Expuso las principales decisiones de diseño arquitectónico y explicó su relación con los Architectural Drivers identificados para la solución.<br><br>**Velarde Luyo, Piero Alberto – TB1:** Expuso el análisis de los competidores y explicó las estrategias y tácticas planteadas para diferenciar la solución frente a otras alternativas del mercado.<br><br>**Rivera Ratachi, Renzo Sebastián – TB1:** Expuso los principales escenarios de calidad identificados para el sistema, explicando su importancia dentro del diseño de la solución.<br><br>**Gonzales Alvarado, Javier Sebastian – TP1:** Expuso el diseño táctico del IoT Monitoring Context, explicando la recepción de las lecturas NFC y su transformación mediante la Anti-Corruption Layer. Asimismo, presentó los wireframes y wireflows de la aplicación web y móvil, explicando el recorrido del usuario en cada flujo.<br><br>**Via Luna, Bruce – TP1:** Expuso el diseño táctico del IAM Context, explicando el proceso de autenticación de los administradores, y presentó los sistemas de etiquetado (Labeling Systems) y de búsqueda (Searching Systems) definidos para la landing page y la plataforma web.<br><br>**Palomino Fiestas, Erick Leonardo – TP1:** Expuso el diseño táctico del Space and Facility Context, explicando las reglas de control de accesos, aforo y activación de reservas, y presentó las guías de estilo generales y las específicas para web, móvil y dispositivos.<br><br>**Velarde Luyo, Piero Alberto – TP1:** Expuso el diseño táctico del Data Management Context, explicando la consolidación de datos y la generación de reportes, y presentó los mock-ups de la landing page web y móvil junto con el reanálisis de las entrevistas.<br><br>**Rivera Ratachi, Renzo Sebastián – TP1:** Expuso el diseño táctico del Academic Attendance Context, explicando las reglas de registro de asistencia, y presentó los SEO Tags y Meta Tags, los sistemas de navegación y los wireframes de la landing page. | Durante la TB1, el equipo comunicó oralmente los principales resultados del análisis y diseño de la solución, explicando aspectos de negocio, experiencia de usuario y arquitectura de software mediante conceptos y recursos visuales que facilitaron la comprensión de las decisiones tomadas durante el proyecto.<br><br>Durante la TP1, el equipo comunicó oralmente el diseño táctico de los bounded contexts y las decisiones de diseño de la experiencia de usuario, adaptando el nivel de detalle técnico y apoyándose en diagramas, wireframes, wireflows y mock-ups para facilitar la comprensión de públicos con distintos perfiles. |
-| **Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.** | **Gonzales Alvarado, Javier Sebastian – TB1:** Documentó los antecedentes y la problemática del proyecto, describiendo de manera estructurada la situación que da origen a la solución propuesta.<br><br>**Via Luna, Bruce – TB1:** Documentó las User Stories del producto, expresando las necesidades funcionales de los usuarios de manera estructurada y comprensible.<br><br>**Palomino Fiestas, Erick Leonardo – TB1:** Documentó el Lean UX Process, organizando los supuestos y elementos necesarios para definir y validar la propuesta de solución.<br><br>**Velarde Luyo, Piero Alberto – TB1:** Documentó la descripción y análisis de los competidores, presentando de manera objetiva sus principales características y su relación con la propuesta del proyecto.<br><br>**Rivera Ratachi, Renzo Sebastián – TB1:** Documentó las User Personas y el Empathy Mapping, estructurando las características, necesidades y comportamientos de los usuarios considerados en la solución.<br><br>**Gonzales Alvarado, Javier Sebastian – TP1:** Documentó el IoT Monitoring Context en sus capas de dominio, aplicación, interfaz e infraestructura, junto con los wireframes y wireflows de la aplicación web y móvil, describiendo de forma estructurada cada flujo y sus interacciones.<br><br>**Via Luna, Bruce – TP1:** Documentó el IAM Context y los sistemas de etiquetado y de búsqueda, describiendo los componentes de autenticación y la organización de la información de la landing page y la plataforma web.<br><br>**Palomino Fiestas, Erick Leonardo – TP1:** Documentó el Space and Facility Context y las guías de estilo generales y de web, móvil y dispositivos, especificando las reglas de negocio y los criterios visuales que aseguran la consistencia de la solución.<br><br>**Velarde Luyo, Piero Alberto – TP1:** Documentó el Data Management Context, los mock-ups de la landing page web y móvil y el reanálisis de las entrevistas, presentando de manera objetiva la información consolidada y los hallazgos de los usuarios.<br><br>**Rivera Ratachi, Renzo Sebastián – TP1:** Documentó el Academic Attendance Context, los SEO Tags y Meta Tags, los sistemas de navegación y los wireframes de la landing page, describiendo con claridad las reglas de asistencia y la estructura de navegación. | Durante la TB1, el equipo logró comunicar por escrito los resultados obtenidos en las diferentes actividades del proyecto, utilizando artefactos de negocio, UX y arquitectura que permitieron organizar la información de forma clara, objetiva y coherente para diferentes tipos de lectores.<br><br>Durante la TP1, el equipo documentó por escrito el diseño táctico de los cinco bounded contexts y el diseño UX/UI de la solución mediante tablas, diagramas y especificaciones estructuradas, lo que permitió que tanto perfiles técnicos como no técnicos comprendan las decisiones adoptadas. |
+| **Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.** | **Gonzales Alvarado, Javier Sebastian – TB1:** Expuso y explicó la propuesta de arquitectura del sistema, comunicando la organización de los Bounded Contexts y sus relaciones mediante el Context Mapping y System Landscape Diagram.<br><br>**Via Luna, Bruce – TB1:** Expuso la definición de los Bounded Contexts y explicó la interacción entre ellos mediante el Domain Message Flow Diagram.<br><br>**Palomino Fiestas, Erick Leonardo – TB1:** Expuso las principales decisiones de diseño arquitectónico y explicó su relación con los Architectural Drivers identificados para la solución.<br><br>**Velarde Luyo, Piero Alberto – TB1:** Expuso el análisis de los competidores y explicó las estrategias y tácticas planteadas para diferenciar la solución frente a otras alternativas del mercado.<br><br>**Rivera Ratachi, Renzo Sebastián – TB1:** Expuso los principales escenarios de calidad identificados para el sistema, explicando su importancia dentro del diseño de la solución.<br><br>**Gonzales Alvarado, Javier Sebastian – TP1:** Expuso el diseño táctico del IoT Monitoring Context, explicando la recepción de las lecturas NFC y su transformación mediante la Anti-Corruption Layer. Asimismo, presentó los wireframes y wireflows de la aplicación web y móvil, explicando el recorrido del usuario en cada flujo.<br><br>**Via Luna, Bruce – TP1:** Expuso el diseño táctico del IAM Context, explicando el proceso de autenticación de los administradores, y presentó los sistemas de etiquetado (Labeling Systems) y de búsqueda (Searching Systems) definidos para la landing page y la plataforma web.<br><br>**Palomino Fiestas, Erick Leonardo – TP1:** Expuso el diseño táctico del Space and Facility Context, explicando las reglas de control de accesos, aforo y activación de reservas, y presentó las guías de estilo generales y las específicas para web, móvil y dispositivos.<br><br>**Velarde Luyo, Piero Alberto – TP1:** Expuso el diseño táctico del Data Management Context, explicando la consolidación de datos y la generación de reportes, y presentó los mock-ups de la landing page web y móvil junto con el reanálisis de las entrevistas.<br><br>**Rivera Ratachi, Renzo Sebastián – TP1:** Expuso el diseño táctico del Academic Attendance Context, explicando las reglas de registro de asistencia, y presentó los SEO Tags y Meta Tags, los sistemas de navegación y los wireframes de la landing page.<br><br>**Gonzales Alvarado, Javier Sebastian – TB2:** Expuso los mockups, los userflow diagrams y el prototipo de la solución, y presentó el funcionamiento del frontend de la aplicación web desarrollada en Angular, explicando cómo la interfaz soporta cada flujo de usuario. Asimismo, explicó la estrategia de la suite de pruebas (unitarias, de integración y de aceptación).<br><br>**Via Luna, Bruce – TB2:** Expuso el sprint planning y el Sprint Backlog del equipo, explicando la priorización de las tareas, y presentó los resultados de la entrevista de validación realizada junto con la evidencia de la ejecución del sprint.<br><br>**Palomino Fiestas, Erick Leonardo – TB2:** Expuso el diseño de las entrevistas y los resultados de las evaluaciones según heurísticas, y presentó los resúmenes de las entrevistas de validación, explicando los hallazgos relevantes sobre la experiencia de los usuarios.<br><br>**Velarde Luyo, Piero Alberto – TB2:** Expuso el proceso de despliegue de la aplicación web y presentó la evidencia del software deployment, así como la documentación de los servicios y la evidencia de su ejecución.<br><br>**Rivera Ratachi, Renzo Sebastián – TB2:** Expuso la configuración del entorno de desarrollo y de la gestión de configuración del software (control del código fuente, guía de estilo y convenciones de código, y configuración del despliegue), y presentó la landing page de la solución. | Durante la TB1, el equipo comunicó oralmente los principales resultados del análisis y diseño de la solución, explicando aspectos de negocio, experiencia de usuario y arquitectura de software mediante conceptos y recursos visuales que facilitaron la comprensión de las decisiones tomadas durante el proyecto.<br><br>Durante la TP1, el equipo comunicó oralmente el diseño táctico de los bounded contexts y las decisiones de diseño de la experiencia de usuario, adaptando el nivel de detalle técnico y apoyándose en diagramas, wireframes, wireflows y mock-ups para facilitar la comprensión de públicos con distintos perfiles.<br><br>Durante la TB2, el equipo comunicó oralmente el avance de la implementación de TarjePAFI, desde el prototipo y el frontend hasta el despliegue, la gestión de configuración y la ejecución del sprint, así como los resultados de la validación con usuarios, y ajustó el nivel de detalle técnico según la audiencia de cada exposición. |
+| **Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.** | **Gonzales Alvarado, Javier Sebastian – TB1:** Documentó los antecedentes y la problemática del proyecto, describiendo de manera estructurada la situación que da origen a la solución propuesta.<br><br>**Via Luna, Bruce – TB1:** Documentó las User Stories del producto, expresando las necesidades funcionales de los usuarios de manera estructurada y comprensible.<br><br>**Palomino Fiestas, Erick Leonardo – TB1:** Documentó el Lean UX Process, organizando los supuestos y elementos necesarios para definir y validar la propuesta de solución.<br><br>**Velarde Luyo, Piero Alberto – TB1:** Documentó la descripción y análisis de los competidores, presentando de manera objetiva sus principales características y su relación con la propuesta del proyecto.<br><br>**Rivera Ratachi, Renzo Sebastián – TB1:** Documentó las User Personas y el Empathy Mapping, estructurando las características, necesidades y comportamientos de los usuarios considerados en la solución.<br><br>**Gonzales Alvarado, Javier Sebastian – TP1:** Documentó el IoT Monitoring Context en sus capas de dominio, aplicación, interfaz e infraestructura, junto con los wireframes y wireflows de la aplicación web y móvil, describiendo de forma estructurada cada flujo y sus interacciones.<br><br>**Via Luna, Bruce – TP1:** Documentó el IAM Context y los sistemas de etiquetado y de búsqueda, describiendo los componentes de autenticación y la organización de la información de la landing page y la plataforma web.<br><br>**Palomino Fiestas, Erick Leonardo – TP1:** Documentó el Space and Facility Context y las guías de estilo generales y de web, móvil y dispositivos, especificando las reglas de negocio y los criterios visuales que aseguran la consistencia de la solución.<br><br>**Velarde Luyo, Piero Alberto – TP1:** Documentó el Data Management Context, los mock-ups de la landing page web y móvil y el reanálisis de las entrevistas, presentando de manera objetiva la información consolidada y los hallazgos de los usuarios.<br><br>**Rivera Ratachi, Renzo Sebastián – TP1:** Documentó el Academic Attendance Context, los SEO Tags y Meta Tags, los sistemas de navegación y los wireframes de la landing page, describiendo con claridad las reglas de asistencia y la estructura de navegación.<br><br>**Gonzales Alvarado, Javier Sebastian – TB2:** Documentó los mockups, los userflow diagrams y el prototipo de la solución, y entregó el frontend de la aplicación web en Angular junto con la suite de pruebas (unitarias, de integración y de aceptación), dejando constancia estructurada de los casos y resultados de prueba.<br><br>**Via Luna, Bruce – TB2:** Documentó el sprint planning y el Sprint Backlog, la entrevista de validación realizada y la evidencia de la ejecución del sprint (Evidence for Sprint Execution), registrando de forma ordenada las tareas planificadas y los avances logrados.<br><br>**Palomino Fiestas, Erick Leonardo – TB2:** Documentó el diseño de las entrevistas, las evaluaciones según heurísticas y las entrevistas de validación con sus respectivos resúmenes, presentando de manera objetiva los hallazgos de los usuarios.<br><br>**Velarde Luyo, Piero Alberto – TB2:** Documentó el despliegue de la aplicación web mediante la evidencia de software deployment, y elaboró la documentación de los servicios junto con la evidencia de su ejecución.<br><br>**Rivera Ratachi, Renzo Sebastián – TB2:** Documentó la Software Configuration Management, la configuración del entorno de desarrollo, la gestión del código fuente (Source Code Management), la guía de estilo y convenciones de código y la configuración del despliegue, además de desarrollar la landing page. | Durante la TB1, el equipo logró comunicar por escrito los resultados obtenidos en las diferentes actividades del proyecto, utilizando artefactos de negocio, UX y arquitectura que permitieron organizar la información de forma clara, objetiva y coherente para diferentes tipos de lectores.<br><br>Durante la TP1, el equipo documentó por escrito el diseño táctico de los cinco bounded contexts y el diseño UX/UI de la solución mediante tablas, diagramas y especificaciones estructuradas, lo que permitió que tanto perfiles técnicos como no técnicos comprendan las decisiones adoptadas.<br><br>Durante la TB2, el equipo documentó por escrito la implementación y operación de la solución: planificación y ejecución del sprint, validación con usuarios, pruebas, configuración del entorno, despliegue y servicios. Esta documentación permite que perfiles técnicos y no técnicos puedan seguir y verificar lo realizado. |
 
 </div>
 <div style="break-after: page;"></div>
@@ -881,7 +918,7 @@ Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego
   </tr>
   <tr>
     <td><strong>Edad</strong></td>
-    <td>24</td>
+    <td>27</td>
   </tr>
   <tr>
     <td><strong>Distrito</strong></td>
@@ -4816,6 +4853,1752 @@ User Persona: [Nombre del User Persona] — Estudiante.
 
 **Explicación del flujo:** Desde el Home (MOB-02), el estudiante usa la bottom navigation para moverse entre las secciones de consulta. En Mi horario (MOB-03) selecciona el día y ve sus clases con estado Próxima, En curso o Finalizada. En Historial de asistencia (MOB-07) revisa el resumen de sesiones, presentes, tardanzas y ausencias, y la lista de registros por curso y fecha. Finalmente, en Perfil / Credencial (MOB-08) confirma sus datos y el estado de su credencial NFC, indicado con el badge "Credencial activa". Este flujo es solo de consulta: ninguna interacción modifica el estado de una pantalla, por lo que cada paso corresponde a una pantalla distinta.
 
+### 6.4.3. Applications Mock-ups
+
+<p align="center">
+  <img src="assets/images/mockups/mockups-tarjepafi.png" alt="Mockup-Web" width="850">
+</p>
+
+
+Link Figma: 'https://www.figma.com/design/O6Xg9ewnVSa8wl5v8hAGNj/TarjePAFI-%E2%80%94-Smart-Campus-Design?node-id=1-4&t=81NRBXZNYi2dZaHI-1'
+
+
+### 6.4.4. Applications User Flow Diagrams
+
+En esta sección se presentan los User Flow Diagrams de TarjePAFI, elaborados en Figma a partir de los mock-ups de alta fidelidad. Se diseñó un diagrama por cada User goal, considerando los User Persona de los dos portales de la aplicación web: el administrador universitario y el usuario con credencial (estudiante, docente o trabajador). Ambos ingresan por un login único que los redirige a su portal según el rol. Cada diagrama muestra el happy path, es decir, la ruta esperada para cumplir el objetivo, y los unhappy paths o caminos alternos: errores, resultados vacíos, cancelaciones o eventos automáticos del sistema. Los pasos con borde cian representan un nuevo estado de una misma pantalla, como un modal, un toast o un cambio en el estado del registro. Los pasos con borde rojo representan estados de error o situaciones alternas.
+
++ **UF-01 · Revisar la asistencia de una sesión académica**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow1.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como administrador, quiero revisar quiénes asistieron, llegaron tarde o faltaron a una sesión académica para hacer seguimiento de la asistencia.
+
+**Explicación del flujo:** El flujo inicia en el Login (WEB-01).
+
+**Happy path:** el administrador ingresa credenciales válidas y el sistema lo dirige al Dashboard General (WEB-02). Desde la sidebar abre Asistencia Académica, donde ve en Control de Asistencia (WEB-03) las sesiones del día con sus presentes, ausentes y estado. Al seleccionar “Ver detalle”, llega al Detalle de sesión (WEB-04) y revisa el registro de cada estudiante con su hora y método de marcación.
+
+**Unhappy paths:**
+
+Si las credenciales no son válidas, el Login muestra un mensaje de error que explica qué pasó sin culpar al usuario, y este puede corregir los datos y reintentar.
+Si los filtros aplicados en Control de Asistencia no tienen coincidencias, la pantalla muestra un estado vacío con la opción “Limpiar filtros” para volver a la lista completa.
+
+
++ **UF-02 · Supervisar y cancelar una reserva en tolerancia**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow2.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como administrador, quiero identificar una reserva cuya presencia no ha sido validada y cancelarla para liberar el espacio.
+
+**Explicación del flujo:** El administrador parte del Dashboard General (WEB-02) y, mediante “Ver todas las reservas”, accede a Espacios y Cubículos (WEB-05). Allí identifica un cubículo “En tolerancia” por su color, icono y texto, y al seleccionarlo abre el Detalle de reserva (WEB-06), con el contador del tiempo restante.
+
+**Happy path:** el administrador presiona “Cancelar reserva” y la pantalla muestra un modal de confirmación destructiva. Al confirmar, regresa a Espacios y Cubículos con un toast de éxito y el cubículo vuelve a figurar como disponible.
+
+**Unhappy paths:**
+
+Si el administrador no interviene y el contador llega a cero, el sistema libera la reserva automáticamente por falta de validación NFC y lo informa con un toast.
+Si en el modal elige “Mantener reserva”, la acción se descarta y la reserva queda sin cambios.
+
++ **UF-03 · Atender un lector IoT sin comunicación**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow3.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como administrador, quiero diagnosticar un lector NFC que dejó de comunicarse para restablecerlo o retirarlo de operación.
+
+**Explicación del flujo:** El flujo comienza cuando el Dashboard General (WEB-02) alerta que un lector dejó de reportar. El administrador entra a Infraestructura IoT (WEB-07), selecciona la fila del lector en estado Offline y abre el Detalle del lector (WEB-08), donde revisa su telemetría, señal e incidencias.
+
+**Happy path:** ejecuta “Ejecutar health check”, el lector responde y la pantalla pasa al estado Online con un toast de confirmación.
+
+**Unhappy paths:**
+
+el health check no obtiene respuesta y un toast de error recomienda verificar la alimentación y la conexión de red del dispositivo. El administrador decide entonces “Desactivar dispositivo” y confirma la acción en un modal destructivo. El lector queda en estado Maintenance y el cambio se registra en la auditoría.
+
++ **UF-04 · Bloquear una credencial y verificar la auditoría**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow4.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como administrador de seguridad, quiero bloquear una credencial NFC y comprobar que la acción quedó registrada en la auditoría.
+
+**Explicación del flujo:** Desde Gestión de credenciales (WEB-09), el administrador ubica al usuario y presiona “Bloquear”. La pantalla muestra un modal que advierte que la tarjeta dejará de dar acceso y de registrar asistencia de inmediato.
+
+**Happy path:** al confirmar, la credencial pasa a estado “Bloqueada” y un toast confirma la operación. Luego el administrador abre Reportes y Auditoría (WEB-10) desde la sidebar y verifica el nuevo evento con fecha y hora, usuario, acción, módulo y resultado.
+
+**Unhappy paths:**
+
+si el administrador presiona “Cancelar” en el modal, no se aplica ningún cambio y la credencial se mantiene activa.
+
++ **UF-05 · Reservar un cubículo**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow5.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como estudiante, quiero encontrar un cubículo disponible y reservarlo para estudiar hoy.
+
+**Explicación del flujo:** El estudiante inicia sesión en el Login (WEB-01) y el sistema, al reconocer su rol, lo dirige al Inicio de su portal (WEB-11). Con el acceso rápido “Buscar espacio” abre Crear reserva (WEB-14), donde indica sede, tipo de espacio, fecha, hora y duración.
+
+**Happy path:** selecciona “Reservar” en uno de los resultados y la pantalla muestra un modal de confirmación con el resumen de la reserva y el recordatorio de los 10 minutos de tolerancia. Al confirmar, llega a Mis reservas (WEB-13), donde la nueva reserva aparece en “Próximas” junto a un toast de éxito.
+
+**Unhappy paths:**
+
+si no hay espacios disponibles en el horario elegido, la pantalla muestra cero resultados y sugiere cambiar la hora o el tipo de espacio. El estudiante ajusta los criterios y vuelve a buscar.
+
+
++ **UF-06 · Validar la presencia en el cubículo reservado**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow6.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como estudiante, quiero validar mi presencia con mi credencial NFC para no perder mi reserva.
+
+**Explicación del flujo:** Al llegar la hora de inicio, el estudiante abre la reserva desde Mis reservas (WEB-13) y llega a Validar presencia (WEB-15). Esta pantalla muestra en ámbar el contador de tolerancia y las instrucciones para acercar la credencial al lector del cubículo.
+
+**Happy path:** el estudiante acerca su credencial y el lector la valida. La pantalla pasa al estado “Presencia validada” y la reserva queda como “Ocupado”.
+
+**Unhappy paths:**
+
+Si la credencial no se reconoce en el primer intento, se muestra un mensaje de error que indica verificar que esté activa e intentarlo nuevamente. Si el estudiante reintenta antes de que termine el tiempo, la presencia se valida.
+Si transcurren los 10 minutos sin validación, el sistema libera la reserva, la pantalla pasa al estado “Reserva liberada” y se ofrece la opción de crear una nueva.
+
+
++ **UF-07 · Consultar horario, asistencia y estado de la credencial**
+
+<p align="center">
+  <img src="assets/images/mockups/userflow7.png" alt="Mockup-Web" width="850">
+</p>
+
+**User goal:** Como estudiante, quiero revisar mi horario del día, mi historial de asistencia y el estado de mi credencial.
+
+**Explicación del flujo:** Este flujo es solo de consulta y se recorre mediante la sidebar del portal de usuario.
+
+Desde el Inicio (WEB-11), el estudiante abre Mi horario (WEB-12), selecciona el día y ve sus clases con el estado Próxima, En curso o Finalizada.
+Luego accede a Mi asistencia (WEB-16), donde revisa el resumen de sesiones, presentes, tardanzas y ausencias, y el historial detallado por curso y fecha.
+Finalmente, en Mi credencial (WEB-17) confirma sus datos personales y el estado de su tarjeta NFC.
+
+
+## 6.5. Applications Prototyping
+
+<p align="center">
+  <img src="assets/images//mockups/prototype-tarjepafi.png" alt="Mockup-prototype" width="850">
+</p>
+
+Figma: 'https://www.figma.com/proto/O6Xg9ewnVSa8wl5v8hAGNj/TarjePAFI-%E2%80%94-Smart-Campus-Design?node-id=21-283&p=f&t=LbQ1au689GFJu1BI-1&scaling=min-zoom&content-scaling=fixed&page-id=1%3A4&starting-point-node-id=21%3A283&show-proto-sidebar=1'
+
+
+# Capítulo VII: Product Implementation, Validation & Deployment
+
+## 7.1. Software Configuration Management
+
+En esta sección se definen las herramientas, normas y procedimientos que el equipo de PafiSolutions adopta para el desarrollo de TarjePAFI. El objetivo es asegurar la integridad, la trazabilidad y la consistencia de los artefactos de software (Web App administrativa, Backend API, firmware de los lectores NFC y documentación) durante todo su ciclo de vida: desde la planificación y el desarrollo, pasando por la integración y las pruebas, hasta el despliegue y el mantenimiento.
+
+### 7.1.1. Software Development Environment Configuration
+
+**Project Management**
+
+Herramientas utilizadas para la planificación, la asignación de tareas y el seguimiento de los Sprints del equipo.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Trello | Tablero utilizado para gestionar el Product Backlog y el Sprint Backlog, y para hacer seguimiento del estado de cada User Story y Technical Story. | [https://trello.com/](https://trello.com/) |
+| WhatsApp / Discord | Aplicaciones de mensajería utilizadas para la comunicación diaria, la coordinación de tareas y las reuniones virtuales del equipo. | No aplica |
+| GitHub (Pull Requests e Issues) | Revisión de los cambios del informe y del código mediante Pull Requests antes de integrarlos a la rama develop. | [https://github.com/ArquiEmergentes](https://github.com/ArquiEmergentes) |
+
+**Requirements Management**
+
+Herramientas enfocadas en la recolección, estructuración y trazabilidad de los requisitos y en el modelado del dominio.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Miro | Pizarra colaborativa utilizada para el Lean UX Canvas y las sesiones de EventStorming, Candidate Context Discovery y Domain Message Flows Modeling. | [https://miro.com/](https://miro.com/) |
+| Lucidchart | Herramienta utilizada para elaborar los As-is y To-be Scenario Maps de cada segmento objetivo. | [https://lucid.app/](https://lucid.app/) |
+| GitHub (Markdown) | Repositorio del informe donde se documentan las User Stories, Technical Stories, criterios de aceptación y el Product Backlog. | [https://github.com/ArquiEmergentes/tarjepafi-report](https://github.com/ArquiEmergentes/tarjepafi-report) |
+
+**Product UX/UI Design**
+
+Plataformas empleadas para el diseño visual y de interacción de las interfaces.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Figma | Plataforma colaborativa utilizada para los Wireframes, Mock-ups y Wireflows de la Landing Page, la Web App administrativa y la aplicación móvil. | [https://www.figma.com/](https://www.figma.com/) |
+
+**Software Development**
+
+Entornos de desarrollo y tecnologías base utilizadas para codificar cada componente de la solución.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| IntelliJ IDEA | IDE utilizado para desarrollar el Backend API en Java 25 con Spring Boot, organizado como monolito modular con un módulo por bounded context. | [https://www.jetbrains.com/idea/](https://www.jetbrains.com/idea/) |
+| Visual Studio Code | Editor utilizado para desarrollar la Web App administrativa en Angular (TypeScript) y para editar la documentación en Markdown. | [https://code.visualstudio.com/](https://code.visualstudio.com/) |
+| Wokwi | Simulador online de hardware utilizado para programar en C++ (framework Arduino) y probar el firmware de los lectores ESP32 con lector NFC, ya que la solución se valida mediante simulación y no con un prototipo físico. | [https://wokwi.com/](https://wokwi.com/) |
+| RabbitMQ | Message broker que recibe de forma asíncrona los eventos de lectura NFC publicados por los lectores y los entrega a los consumidores del Backend API. | [https://www.rabbitmq.com/](https://www.rabbitmq.com/) |
+| PostgreSQL | Sistema de gestión de base de datos relacional que persiste la información de asistencias, accesos, reservas, lectores y reportes. | [https://www.postgresql.org/](https://www.postgresql.org/) |
+
+**Software Testing**
+
+Herramientas para asegurar la calidad del código y el correcto funcionamiento de los servicios.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Postman | Plataforma utilizada para probar los endpoints REST del Backend API, incluido el registro manual de asistencias sin pasar por RabbitMQ. | [https://www.postman.com/](https://www.postman.com/) |
+| JUnit 5 / Mockito | Frameworks utilizados dentro de Spring Boot para las pruebas unitarias de la lógica de dominio y de los servicios de aplicación. | [https://junit.org/junit5/](https://junit.org/junit5/) |
+| Gherkin | Lenguaje utilizado para redactar los escenarios de los criterios de aceptación en formato Given - When - Then. | [https://cucumber.io/docs/gherkin/](https://cucumber.io/docs/gherkin/) |
+
+**Software Deployment**
+
+Herramientas para el control de versiones, la integración y el despliegue de la solución.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Git / GitHub | Sistema de control de versiones bajo el modelo GitFlow y plataforma de alojamiento de los repositorios de la organización. | [https://github.com/](https://github.com/) |
+| GitHub Pages | Servicio de hosting estático utilizado para publicar la Landing Page directamente desde su repositorio. | [https://pages.github.com/](https://pages.github.com/) |
+| Netlify | Plataforma de despliegue continuo utilizada para compilar y publicar la Web App administrativa (Angular) a partir de su repositorio en GitHub. | [https://www.netlify.com/](https://www.netlify.com/) |
+
+
+**Software Documentation**
+
+Herramientas utilizadas para documentar la arquitectura, el modelo de dominio y los servicios.
+
+| Herramienta | Descripción | Enlace |
+| --- | --- | --- |
+| Structurizr | Herramienta Diagram-as-Code utilizada para modelar la arquitectura de software bajo el C4 Model. | [https://structurizr.com/](https://structurizr.com/) |
+| PlantUML | Herramienta utilizada para elaborar los diagramas de clases de la Domain Layer de cada bounded context. | [https://plantuml.com/](https://plantuml.com/) |
+| dbdiagram.io | Herramienta utilizada para modelar en DBML los diagramas de base de datos de cada bounded context. | [https://dbdiagram.io/](https://dbdiagram.io/) |
+| Swagger (OpenAPI) | Documentación interactiva de los endpoints REST del Backend API, generada con springdoc-openapi. | [https://swagger.io/](https://swagger.io/) |
+
+
+### 7.1.2. Source Code Management
+
+El código fuente de TarjePAFI se gestiona con Git y se aloja en GitHub, dentro de la organización del equipo: [https://github.com/ArquiEmergentes](https://github.com/ArquiEmergentes)
+
+Cada componente de la solución tiene su propio repositorio. El Backend API se divide en un repositorio por bounded context, de modo que cada uno pueda evolucionar y versionarse de forma independiente.
+
+| Componente | Repositorio |
+| --- | --- |
+| Informe del proyecto | [https://github.com/ArquiEmergentes/tarjepafi-report](https://github.com/ArquiEmergentes/tarjepafi-report) |
+| Landing Page | [https://github.com/ArquiEmergentes/tarjepafi-landing-page](https://github.com/ArquiEmergentes/tarjepafi-landing-page) |
+| Web App administrativa (Angular) | [https://github.com/ArquiEmergentes/tarjepafi-webapp](https://github.com/ArquiEmergentes/tarjepafi-webapp) |
+
+
+**GitFlow**
+
+Todos los repositorios siguen el modelo de ramificación GitFlow propuesto por Vincent Driessen, que separa el trabajo en curso de las versiones estables.
+
+```mermaid
+gitGraph
+    commit id: "init"
+    branch develop
+    checkout develop
+    commit id: "setup"
+    branch feature/attendance-registration
+    checkout feature/attendance-registration
+    commit id: "feat: attendance"
+    checkout develop
+    merge feature/attendance-registration
+    branch release/v1.0.0
+    checkout release/v1.0.0
+    commit id: "chore: bump version"
+    checkout main
+    merge release/v1.0.0 tag: "v1.0.0"
+    checkout develop
+    merge release/v1.0.0
+    checkout main
+    branch hotfix/v1.0.1
+    checkout hotfix/v1.0.1
+    commit id: "fix: card validation"
+    checkout main
+    merge hotfix/v1.0.1 tag: "v1.0.1"
+    checkout develop
+    merge hotfix/v1.0.1
+```
+
+Estructura de ramas:
+
+1. **main:** contiene la versión estable que está en producción. Solo recibe merges desde ramas release y hotfix, y cada merge se etiqueta con su número de versión.
+2. **develop:** integra las funcionalidades terminadas y es la base para crear nuevas ramas feature. Es la rama de trabajo del equipo.
+3. **feature:** cada funcionalidad, User Story o Technical Story se desarrolla en su propia rama creada desde develop, con el formato `feature/<nombre-de-la-funcionalidad>` en kebab-case e inglés (por ejemplo, `feature/attendance-registration`). Al terminar se integra a develop mediante un Pull Request.
+4. **release:** se crea desde develop cuando un conjunto de funcionalidades está listo para publicarse, con el formato `release/v<MAJOR>.<MINOR>.<PATCH>` (por ejemplo, `release/v1.0.0`). En ella solo se hacen ajustes finales y correcciones menores; luego se integra a main y a develop.
+5. **hotfix:** se crea desde main para corregir un error crítico en producción, con el formato `hotfix/v<MAJOR>.<MINOR>.<PATCH>` (por ejemplo, `hotfix/v1.0.1`). Una vez corregido, se integra a main y a develop.
+
+**Pull Requests**
+
+Ningún cambio se sube directamente a main ni a develop. Toda integración se realiza mediante un Pull Request que debe ser revisado y aprobado por al menos un integrante del equipo distinto a su autor antes de hacer el merge.
+
+
+
+
+**Conventional Commits**
+
+Los mensajes de commit siguen la especificación Conventional Commits, escritos en inglés y en modo imperativo:
+
+`<type>(<scope>): <description>`
+
+El `scope` es opcional e indica el módulo o sección afectada. Ejemplos:
+
+- `feat(attendance): add attendance registration from card tap event`
+- `fix(iam): validate expired JWT tokens`
+- `docs(readme): add source code management section`
+
+Tipos permitidos:
+
+| Tipo | Uso |
+| --- | --- |
+| feat | Nueva funcionalidad. |
+| fix | Corrección de un error. |
+| docs | Cambios en la documentación. |
+| style | Cambios de formato que no alteran el comportamiento del código. |
+| refactor | Reestructuración del código sin cambiar su funcionalidad. |
+| test | Creación o modificación de pruebas. |
+| chore | Tareas de mantenimiento, configuración o dependencias. |
+
+
+### 7.1.3. Source Code Style Guide & Conventions
+
+Para que el código de TarjePAFI sea legible, consistente y fácil de mantener entre los distintos integrantes, el equipo adopta las siguientes guías y convenciones. Como regla general, **todo el código (nombres de variables, clases, métodos, endpoints, tablas, colas y comentarios) se escribe en inglés**, mientras que la documentación del informe se redacta en español.
+
+
+**Web App administrativa (Angular / TypeScript)**
+
+Se toma como referencia la guía oficial [Angular Style Guide](https://angular.dev/style-guide) y la [Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html).
+
+- **Nomenclatura:** camelCase para variables y funciones, PascalCase para clases, interfaces y tipos, y UPPER_SNAKE_CASE para constantes.
+- **Archivos:** kebab-case con el tipo de artefacto como sufijo, por ejemplo `attendance-history.component.ts`, `reservation.service.ts` y `card-holder.model.ts`.
+- **Estructura:** el código se organiza por bounded context (`iam`, `attendance`, `space-facility`, `iot-monitoring`, `data-management`), y dentro de cada uno se separan los componentes de vista, los servicios que consumen el Backend API y los modelos.
+- **Tipado estricto:** se activa el modo `strict` de TypeScript. Se definen interfaces para las respuestas del Backend API y se evita el uso del tipo `any`.
+- **Responsabilidades:** los componentes solo manejan la presentación. Las llamadas HTTP y la lógica de negocio del cliente se ubican en servicios inyectables.
+- **Selectores:** los componentes usan el prefijo `tp-` en sus selectores, por ejemplo `<tp-reservation-list>`.
+
+**Backend API (Java 25 / Spring Boot)**
+
+Se toma como referencia la [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
+
+- **Nomenclatura:** PascalCase para clases, records y enums, camelCase para métodos y atributos, y UPPER_SNAKE_CASE para constantes y valores de enums (por ejemplo, `DeviceStatus.OFFLINE`).
+- **Paquetes:** en minúsculas, con la base `com.pafisolutions.tarjepafi.<boundedcontext>` y un subpaquete por capa: `domain`, `application`, `interfaces` e `infrastructure`, siguiendo la estructura definida en el Capítulo V.
+- **Sufijos por tipo de clase:** `Command`, `Query`, `CommandHandler`, `QueryHandler`, `Repository`, `Controller`, `Resource` (DTO de respuesta), `Consumer` y `Event`. Los eventos de dominio se nombran en pasado (`AttendanceRecorded`, `SpaceReleased`).
+- **Value Objects:** se implementan como `record` de Java y validan sus invariantes en el constructor (por ejemplo, `SpaceId` y `ReaderEventId`).
+- **Inyección de dependencias:** por constructor, evitando `@Autowired` sobre atributos.
+- **Manejo de errores:** las excepciones de dominio se traducen a respuestas HTTP en un `@RestControllerAdvice` por bounded context, sin exponer detalles internos al cliente.
+
+**RESTful API**
+
+- Los endpoints se versionan bajo el prefijo `/api/v1/`.
+- Los recursos se nombran con sustantivos en plural y en kebab-case, por ejemplo `/api/v1/attendance-records` y `/api/v1/class-sessions/{sessionId}`.
+- Se usan los verbos HTTP según su semántica: `GET` para consultar, `POST` para crear, `PUT` o `PATCH` para actualizar y `DELETE` para eliminar.
+- Los atributos de los cuerpos JSON se escriben en camelCase.
+- Se responden los códigos HTTP estándar: `200`, `201`, `204`, `400`, `401`, `403`, `404` y `409`.
+
+**Mensajería (RabbitMQ)**
+
+- Los eventos de integración se publican en el exchange de tipo topic `tarjepafi.events`.
+- Las routing keys siguen el formato `<contexto>.<evento>` en kebab-case y en pasado, salvo los eventos de lectura del lector, por ejemplo `iot.card-tap`, `attendance.recorded` y `academic.class-session-started`.
+- Las colas siguen el formato `<contexto-consumidor>.<evento>.queue`, por ejemplo `attendance.card-tap.queue` y `space.card-tap.queue`. Cada cola tiene asociada su dead-letter queue con el sufijo `.dlq`.
+- Todo mensaje incluye un `eventId` (UUID) que se usa como llave de idempotencia y un `timestamp` en formato ISO 8601 (UTC).
+
+**Base de datos (PostgreSQL)**
+
+- Tablas y columnas en snake_case, con nombres de tablas en plural, por ejemplo `attendance_records` y `space_reservations`.
+- Las claves primarias se llaman `id` y las claves foráneas `<entidad>_id`, por ejemplo `space_id`.
+- Las restricciones e índices usan prefijos que indiquen su tipo: `pk_`, `fk_`, `uk_` e `idx_`.
+- Cada bounded context es dueño de sus propias tablas y no accede directamente a las tablas de otro contexto.
+
+**Firmware IoT (C++ / Arduino framework en Wokwi)**
+
+Se toma como referencia la [Arduino Style Guide for Writing Libraries](https://docs.arduino.cc/learn/contributions/arduino-library-style-guide/).
+
+- **Nomenclatura:** camelCase para variables y funciones, PascalCase para clases y UPPER_SNAKE_CASE para constantes y definiciones de pines (por ejemplo, `RFID_SS_PIN`).
+- **Organización:** la lógica se divide en módulos con su archivo `.h` y `.cpp` (lectura NFC, conexión de red, publicación de eventos y almacenamiento local), dejando `setup()` y `loop()` lo más cortos posible.
+- **Sin bloqueos:** se evita el uso de `delay()` en el ciclo principal y se usa `millis()` para las tareas periódicas, de modo que el lector siga respondiendo a nuevas lecturas.
+- **Configuración:** las credenciales de red, el identificador del lector y la dirección del broker se definen en un archivo de configuración aparte, que no se sube al repositorio con valores reales.
+
+**Testing & Documentación (Gherkin)**
+
+- Los escenarios de aceptación siguen la estructura `Given - When - Then`, con un escenario por comportamiento.
+- Los archivos `.feature` se escriben en inglés y se nombran en kebab-case según la funcionalidad, por ejemplo `attendance-registration.feature`.
+- Las pruebas unitarias en Java se nombran con el formato `methodName_condition_expectedResult`, por ejemplo `registerAttendance_whenCardIsDeactivated_rejectsTap`.
+  
+### 7.1.4. Software Deployment Configuration
+
+En esta etapa del proyecto se despliegan dos productos: la Landing Page y la Web App administrativa. La Web App consume una Fake API que simula los endpoints del Backend API con datos de prueba, lo que permite validar los flujos de la interfaz antes de que los servicios reales estén disponibles. Ambos despliegues parten de la rama `main` de su repositorio, de modo que solo se publica lo que fue integrado mediante un Pull Request aprobado, según el flujo GitFlow descrito en la sección 7.1.2.
+
+| Producto | Tecnología | Repositorio | Plataforma de despliegue |
+| --- | --- | --- | --- |
+| Landing Page | HTML5, CSS3 y JavaScript | [tarjepafi-landing-page](https://github.com/ArquiEmergentes/tarjepafi-landing-page) | GitHub Pages |
+| Web App administrativa | Angular (TypeScript) con Fake API | [tarjepafi-webapp](https://github.com/ArquiEmergentes/tarjepafi-webapp) | Netlify |
+
+**Landing Page (GitHub Pages)**
+
+Como la Landing Page es un sitio estático que no requiere compilación, se publica directamente con GitHub Pages:
+
+1. El código fuente se mantiene en el repositorio `tarjepafi-landing-page`, con el archivo `index.html` en la raíz y los recursos (estilos, scripts, imágenes y archivos de traducción) organizados en carpetas.
+2. En la configuración del repositorio (*Settings > Pages*) se selecciona como fuente la opción *Deploy from a branch*, con la rama `main` y la carpeta raíz (`/root`).
+3. Cada vez que se integra un cambio a `main`, GitHub Pages vuelve a publicar el sitio de forma automática, sin intervención manual.
+4. El sitio queda disponible en una URL pública con protocolo HTTPS, con el formato `https://arquiemergentes.github.io/tarjepafi-landing-page/`.
+5. Las rutas a los recursos se escriben de forma relativa para que funcionen correctamente bajo el subdirectorio del repositorio.
+
+**Web App administrativa (Netlify)**
+
+La Web App requiere un proceso de compilación, por lo que se despliega en Netlify con integración continua desde GitHub:
+
+1. Desde el panel de Netlify se importa el repositorio `tarjepafi-webapp` y se autoriza el acceso a la organización de GitHub.
+2. Se configura la rama de producción `main` y los parámetros de compilación: el comando `ng build` y como carpeta de publicación la salida generada por Angular (`dist/tarjepafi-webapp/browser`).
+3. Se agrega una regla de redirección (`/* /index.html 200`), mediante un archivo `_redirects` o `netlify.toml`, para que las rutas internas de la aplicación funcionen al recargar la página o al acceder a ellas directamente.
+4. La URL base de la Fake API se define en los archivos de entorno de Angular (`environment.ts` y `environment.prod.ts`). Así, cuando el Backend API esté disponible, basta con cambiar este valor para que la Web App consuma los servicios reales sin modificar los componentes ni los servicios.
+5. Con la integración activa, cada push o merge a `main` dispara una nueva compilación y despliegue automático. Si la compilación falla, Netlify mantiene publicada la última versión estable.
+6. Al completar la compilación, Netlify publica la aplicación en una URL pública con protocolo HTTPS. Además, genera *Deploy Previews* para cada Pull Request, lo que permite revisar los cambios antes de integrarlos.
+
+
+## 7.2. Solution Implementation
+
+
+### 7.2.1. Sprint 1
+
+El objetivo principal del Sprint 1 fue implementar las secciones principales de la Landing Page y el frontend de TarjePafi y desarrollar las funcionalidades base del backend para la gestión de proyectos y tareas.
+Este sprint combinó tareas de diseño visual, estructura HTML, desarrollo en JavaScript y construcción de endpoints.
+
+#### 7.2.1.1. Sprint Planning 1
+
+| Elemento | Detalle |
+|-----------|----------|
+| Sprint # | Sprint 1 |
+| Fecha | 5 de noviembre del 2026 |
+| Hora | 3:00 p.m. |
+| Lugar | Virtual – Google Meet |
+| Elaborado por | Erick Leonardo Palomino Fiestas |
+| Participantes (Reunión de planificación) | Todos los participantes |
+| Resumen de la revisión anterior | Al ser el primer sprint, aún no se completa|
+| Resumen de la retrospectiva anterior |Al ser el primer sprint, aún no se completa |
+| Objetivo del Sprint | El objetivo de este sprint es establecer la base técnica y visual del proyecto, desarrollando la landing page y el desarrollo del frontend para la gestión de cuentas y evidencia de resultados. Se busca garantizar que los usuarios puedan acceder a las funciones basicas.<br> Resultado esperado: Desplegar la primera versión funcional del sistema. <br>Impacto: Validar la propuesta de valor e iniciar pruebas internas.<br> Usuarios objetivo: Personas dentro de espacios universitarios.<br> Evento clave: Los usuarios pueden iniciar sesión y visualizar sus funcionalidades dentro del sistema. |
+| Velocidad del Sprint | 105 Story Points |
+| Suma de Story Points | La suma de Story Points planificados para este sprint es de 105 Story Points. |
+
+#### 7.2.1.2. Sprint Backlog 1
+
+| Código US / TS | Título | Id de Tarea | Título de la Tarea | Descripción | Estimación (hrs) | Story Points | Asignado a | Estado |
+| :--- | :--- | :--- | :--- | :--- | :---: | :---: | :--- | :---: |
+| **US05** | Uso en Dispositivos Móviles | TK-US05-01 | Implementar breakpoints y diseño adaptativo | Ajustar CSS/Tailwind y layout general para pantallas móviles (smartphones/tablets). | 6 | 1 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **US05** | Uso en Dispositivos Móviles | TK-US05-02 | Pruebas de usabilidad y renderizado responsive | Verificar la correcta navegación, imágenes y menús hamburguesa en dispositivos móviles. | 6 | 1 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **US09** | Sección de Preguntas Frecuentes (FAQ) | TK-US09-01 | Diseñar componente de acordeón para FAQ | Implementar el componente interactivo para desplegar y replegar preguntas y respuestas. | 6 | 1 | Bruce Via Luna | To-Do |
+| **US09** | Sección de Preguntas Frecuentes (FAQ) | TK-US09-02 | Poblar contenido e integrar búsqueda | Cargar las preguntas frecuentes sobre TarjePAFI y añadir opción de filtrado/búsqueda rápida. | 6 | 1 | Erick Leonardo Palomino Fiestas | To-Do |
+| **US10** | Baja de Tarjeta para Estudiantes Retirados | TK-US10-01 | Implementar lógica de desactivación/baja de tarjeta | Cambiar el estado de la credencial a "Desactivada" en el directorio de titulares. | 6 | 1 | Piero Alberto Velarde Luyo | To-Do |
+| **US10** | Baja de Tarjeta para Estudiantes Retirados | TK-US10-02 | Probar rechazo de acceso para tarjetas dadas de baja | Verificar que cualquier intento de uso de una tarjeta desactivada sea denegado. | 6 | 1 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **US11** | Vinculación a Base de Datos | TK-US11-01 | Diseñar tabla y modelo de sincronización `card_holders` | Modelar la vinculación entre los UIDs de las tarjetas y el Padrón de Estudiantes. | 9 | 1.5 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **US11** | Vinculación a Base de Datos | TK-US11-02 | Manejo de excepciones y errores de "Estudiante no encontrado" | Emitir mensajes de error adecuados cuando una tarjeta no se encuentre en la BD. | 9 | 1.5 | Bruce Via Luna | To-Do |
+| **US13** | Reactivación de Tarjetas | TK-US13-01 | Desarrollar función de reactivación de credenciales | Cambiar el estado de la tarjeta de "Desactivada" a "Activa" tras la reincorporación. | 6 | 1 | Erick Leonardo Palomino Fiestas | To-Do |
+| **US13** | Reactivación de Tarjetas | TK-US13-02 | Validar restitución inmediata de accesos | Confirmar que el estudiante reactivado pueda usar nuevamente todos los servicios autorizados. | 6 | 1 | Piero Alberto Velarde Luyo | To-Do |
+| **US14** | Personalización de Permisos de Acceso | TK-US14-01 | Interfaz de asignación de permisos por rol y tarjeta | Diseñar la vista administrativa para asignar roles y permisos a credenciales. | 9 | 1.5 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **US14** | Personalización de Permisos de Acceso | TK-US14-02 | Integración del guardado de permisos y validación de accesos | Aplicar inmediatamente las modificaciones de permisos en las puertas/lectores. | 9 | 1.5 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **US15** | Desactivación Automática de Tarjetas | TK-US15-01 | Crear proceso batch/event-driven de verificación de matrícula | Evaluar la fecha límite de matrícula frente al estado del estudiante. | 15 | 2.5 | Bruce Via Luna | To-Do |
+| **US15** | Desactivación Automática de Tarjetas | TK-US15-02 | Desactivar automáticamente tarjetas sin matrícula completa | Cambiar el estado de las credenciales a inactivo si no registraron matrícula a tiempo. | 15 | 2.5 | Erick Leonardo Palomino Fiestas | To-Do |
+| **US16** | Registro de Asistencia Docente | TK-US16-01 | Desarrollar lógica de sesión docente al pasar tarjeta | Reconocer el tap del docente como disparador/consolidador de asistencia del aula. | 12 | 2 | Piero Alberto Velarde Luyo | To-Do |
+| **US16** | Registro de Asistencia Docente | TK-US16-02 | Consolidar marcaciones previas de estudiantes | Asociar automáticamente los registros de los alumnos en cola a la sesión iniciada por el profesor. | 12 | 2 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **US16** | Registro de Asistencia Docente | TK-US16-03 | Manejo de sesión sin estudiantes registrados | Generar notificación/informe cuando la sesión del docente no contenga marcaciones de alumnos. | 6 | 1 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **US18** | Confirmación de Registro de Asistencia Docente | TK-US18-01 | Implementar señal de confirmación visual/sonora para docentes | Mostrar mensaje específico de confirmación de sesión docente en la pantalla del lector. | 6 | 1 | Bruce Via Luna | To-Do |
+| **US18** | Confirmación de Registro de Asistencia Docente | TK-US18-02 | Pruebas de integración de mensajes de confirmación docente | Verificar tiempos de respuesta en el lector tras el escaneo del profesor. | 6 | 1 | Erick Leonardo Palomino Fiestas | To-Do |
+| **US26** | Visualización de Funcionalidades | TK-US26-01 | Diseñar componentes UI de funcionalidades | Crear los mockups y componentes visuales para la sección de funcionalidades en la Landing Page. | 6 | 1 | Piero Alberto Velarde Luyo | To-Do |
+| **US26** | Visualización de Funcionalidades | TK-US26-02 | Maquetar e integrar sección de características | Implementar el maquetado responsive e integración de datos estáticos/dinámicos en la Landing Page. | 6 | 1 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **US27** | Acceso a Contacto y Soporte | TK-US27-01 | Crear componente de botón/formulario de contacto | Diseñar y maquetar el botón flotante/visible y la modal o formulario de contacto. | 6 | 1 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **US27** | Acceso a Contacto y Soporte | TK-US27-02 | Integración del flujo de envío de consultas | Conectar el formulario de contacto con el canal/servicio de mensajería o correo de soporte. | 6 | 1 | Bruce Via Luna | To-Do |
+| **TS01** | Aprovisionamiento de cuentas administrativas | TK-TS01-01 | Desarrollar componente `AdminDataSeeder` | Crear el seeder ejecutable en la fase de inicialización de la aplicación. | 6 | 1 | Erick Leonardo Palomino Fiestas | To-Do |
+| **TS01** | Aprovisionamiento de cuentas administrativas | TK-TS01-02 | Cifrado BCrypt y prevención de duplicados | Aplicar BCrypt para contraseñas iniciales y verificar no re-crear cuentas existentes. | 6 | 1 | Piero Alberto Velarde Luyo | To-Do |
+| **TS02** | Endpoint de inicio de sesión | TK-TS02-01 | Implementar DTOs y endpoint `POST /api/v1/auth/sign-in` | Crear la estructura de petición/respuesta y controller de autenticación. | 6 | 1 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **TS02** | Endpoint de inicio de sesión | TK-TS02-02 | Generar Token JWT (`TokenResource`) y manejo de credenciales inválidas | Integrar generador de JWT y responder 401 Unauthorized / 400 Bad Request según corresponda. | 12 | 2 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **TS03** | Filtro de autenticación y autorización JWT | TK-TS03-01 | Implementar `JwtAuthenticationFilter` en la cadena de seguridad | Interceptación de solicitudes HTTP y extracción/validación de la cabecera `Authorization: Bearer`. | 9 | 1.5 | Bruce Via Luna | To-Do |
+| **TS03** | Filtro de autenticación y autorización JWT | TK-TS03-02 | Configurar autorización basada en roles (401 vs 403) | Proteger endpoints administrativos garantizando respuestas HTTP 401 y 403 según el rol. | 9 | 1.5 | Erick Leonardo Palomino Fiestas | To-Do |
+| **TS04** | Endpoint de perfil autenticado | TK-TS04-01 | Implementar `GET /api/v1/auth/me` con retorno de `UserResource` | Retornar los datos del usuario autenticado excluyendo el hash de la contraseña. | 3 | 0.5 | Piero Alberto Velarde Luyo | To-Do |
+| **TS04** | Endpoint de perfil autenticado | TK-TS04-02 | Validar estado de cuenta activo/inactivo (403 Forbidden) | Denegar acceso si la cuenta del token está suspendida o inactiva. | 3 | 0.5 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **TS05** | Endpoint de registro de lectores IoT | TK-TS05-01 | Definir DTOs, contrato OpenAPI y validar payload | Crear las clases de Request/Response y reglas de validación para `POST /api/v1/iot/readers`. | 6 | 1 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **TS05** | Endpoint de registro de lectores IoT | TK-TS05-02 | Implementar lógica de dominio de Readers y manejo de duplicados | Escribir servicios de validación de `readerId` existente y control de excepciones. | 12 | 2 | Bruce Via Luna | To-Do |
+| **TS05** | Endpoint de registro de lectores IoT | TK-TS05-03 | Publicación de evento `ReaderRegistered` y persistencia DB | Mapear entidades JPA/DB y publicar evento de integración tras el guardado exitoso. | 6 | 1 | Erick Leonardo Palomino Fiestas | To-Do |
+| **TS05** | Endpoint de registro de lectores IoT | TK-TS05-04 | Pruebas unitarias e integración en `POST /api/v1/iot/readers` | Cobertura de tests para casos 201 Created, 409 Conflict y 400 Bad Request. | 6 | 1 | Piero Alberto Velarde Luyo | To-Do |
+| **TS06** | Endpoint de consulta de lector IoT | TK-TS06-01 | Implementar DTO `ReaderResource` y mapeo de datos de lector | Crear la estructura de respuesta con estado, ubicación y `lastSeenAt`. | 3 | 0.5 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **TS06** | Endpoint de consulta de lector IoT | TK-TS06-02 | Implementar `GET /api/v1/iot/readers/{readerId}` y manejar 404 Not Found | Desarrollar el controlador para buscar lectores y retornar 404 si no existen. | 3 | 0.5 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **TS07** | Endpoint de configuración de lector IoT | TK-TS07-01 | Implementar `PATCH /api/v1/iot/readers/{readerId}/configuration` | Crear endpoint para actualizar parámetros del `ConfigurationProfile`. | 9 | 1.5 | Bruce Via Luna | To-Do |
+| **TS07** | Endpoint de configuración de lector IoT | TK-TS07-02 | Validar reglas del dominio y emitir `DeviceConfigured` | Mantener configuración previa en caso de 400 Bad Request y publicar evento si es válido. | 9 | 1.5 | Erick Leonardo Palomino Fiestas | To-Do |
+| **TS08** | Endpoints de activación y desactivación de lectores | TK-TS08-01 | Implementar `POST /api/v1/iot/readers/{readerId}/activate` y evento `DeviceActivated` | Cambiar estado a activo y notificar evento de activación. | 6 | 1 | Piero Alberto Velarde Luyo | To-Do |
+| **TS08** | Endpoints de activación y desactivación de lectores | TK-TS08-02 | Implementar `POST /api/v1/iot/readers/{readerId}/deactivate` y omitir `CardTapEvent` | Pasar a inactivo, publicar `DeviceDeactivated` y filtrar sus lecturas posteriores. | 6 | 1 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **TS09** | Endpoints de telemetría y salud de lectores | TK-TS09-01 | Implementar `GET /api/v1/iot/readers/{readerId}/telemetry` | Retornar lista de telemetría ordenada cronológicamente por `capturedAt`. | 9 | 1.5 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **TS09** | Endpoints de telemetría y salud de lectores | TK-TS09-02 | Implementar `GET /api/v1/iot/readers/{readerId}/health` | Retornar estado de salud actual del lector y marca de última comunicación. | 9 | 1.5 | Bruce Via Luna | To-Do |
+| **TS10** | Ingesta de lecturas NFC mediante RabbitMQ y ACL | TK-TS10-01 | Configurar colas, exchanges y binding de RabbitMQ | Definir arquitectura de mensajería para eventos de lecturas NFC. | 12 | 2 | Erick Leonardo Palomino Fiestas | To-Do |
+| **TS10** | Ingesta de lecturas NFC mediante RabbitMQ y ACL | TK-TS10-02 | Implementar `DevicePayloadAdapter` | Traducir los payloads heterogéneos del hardware a la estructura estándar de dominio. | 12 | 2 | Piero Alberto Velarde Luyo | To-Do |
+| **TS10** | Ingesta de lecturas NFC mediante RabbitMQ y ACL | TK-TS10-03 | Desarrollar `DeviceEventConsumer` | Escuchar mensajes de RabbitMQ, validar estado del lector y emitir `CardTapEvent`. | 12 | 2 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **TS10** | Ingesta de lecturas NFC mediante RabbitMQ y ACL | TK-TS10-04 | Manejo de lecturas no autorizadas y Dead-Letter Queue | Descartar lecturas de lectores no registrados y enrutar payloads malformados a la DLQ. | 12 | 2 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **TS11** | Procesamiento de heartbeats y detección de lectores desconectados | TK-TS11-01 | Implementar actualización de `lastSeenAt` con heartbeats | Procesar mensajes periódicos para actualizar la salud del lector. | 15 | 2.5 | Bruce Via Luna | To-Do |
+| **TS11** | Procesamiento de heartbeats y detección de lectores desconectados | TK-TS11-02 | Job de detección de desconexión y emisión de `DeviceOfflineDetected` | Evaluar lectores que superen el umbral sin comunicación, marcarlos como offline y registrar incidencia. | 15 | 2.5 | Erick Leonardo Palomino Fiestas | To-Do |
+| **TS12** | Creación y cierre de sesiones de clase desde eventos académicos | TK-TS12-01 | Configurar consumidores para `ClassSessionStarted` y `ClassSessionEnded` | Suscribir el bounded context de asistencia a los eventos de inicio y fin de clase. | 6 | 1 | Piero Alberto Velarde Luyo | To-Do |
+| **TS12** | Creación y cierre de sesiones de clase desde eventos académicos | TK-TS12-02 | Implementar idempotencia en creación de `ClassSession` | Garantizar que el procesamiento evite duplicados usando `externalSessionCode`. | 6 | 1 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **TS12** | Creación y cierre de sesiones de clase desde eventos académicos | TK-TS12-03 | Implementar lógica de cierre de ventana de asistencia | Manejar la actualización de estado a cerrado al recibir `ClassSessionEnded`. | 6 | 1 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **TS13** | Registro de asistencia a partir de CardTapEvent | TK-TS13-01 | Implementar `CardTapEventConsumer` en Academic Attendance | Escuchar `CardTapEvent` y orquestar la conversión a `RegisterAttendanceCommand`. | 12 | 2 | Bruce Via Luna | To-Do |
+| **TS13** | Registro de asistencia a partir de CardTapEvent | TK-TS13-02 | Evaluar reglas de negocio de puntualidad (PRESENT vs LATE) | Verificar la tolerancia de tiempo de la sesión para asignar la marca correspondiente. | 12 | 2 | Erick Leonardo Palomino Fiestas | To-Do |
+| **TS13** | Registro de asistencia a partir de CardTapEvent | TK-TS13-03 | Manejo de rechazos de asistencia (`AttendanceRejected`) | Validar vigencia de tarjeta y existencia de sesión activa en el aula para emitir rechazos. | 12 | 2 | Piero Alberto Velarde Luyo | To-Do |
+| **TS13** | Registro de asistencia a partir de CardTapEvent | TK-TS13-04 | Pruebas de idempotencia por `eventId` e integración | Garantizar el descarte de marcaciones duplicadas recibidas en ráfaga. | 12 | 2 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **TS17** | Endpoints de consulta de asistencia | TK-TS17-01 | Implementar `GET /api/v1/class-sessions/{sessionId}/attendance` | Crear endpoint para listar marcas de asistencia por sesión de clase. | 9 | 1.5 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **TS17** | Endpoints de consulta de asistencia | TK-TS17-02 | Implementar `GET /api/v1/card-holders/{cardHolderId}/attendance-history` con validación de rango | Retornar historial por titular validando que `from` sea menor o igual a `to`. | 9 | 1.5 | Bruce Via Luna | To-Do |
+| **TS22** | Control de acceso, permanencia y activación de reservas a partir de CardTapEvent | TK-TS22-01 | Desarrollar `SpaceCardTapEventConsumer` para ingresos y salidas de campus | Controlar ocupación, permanencia y publicación de `CampusEntryGranted` / `CampusExitRecorded`. | 12 | 2 | Erick Leonardo Palomino Fiestas | To-Do |
+| **TS22** | Control de acceso, permanencia y activación de reservas a partir de CardTapEvent | TK-TS22-02 | Lógica de control para zonas restringidas (`SpaceAccessDenied`) | Validar roles autorizados en áreas de acceso exclusivo del personal. | 12 | 2 | Piero Alberto Velarde Luyo | To-Do |
+| **TS22** | Control de acceso, permanencia y activación de reservas a partir de CardTapEvent | TK-TS22-03 | Implementar Check-in de reservas en espacios | Cambiar estado de reserva a `CHECKED_IN` e ingresar eventos `ReservationActivated`. | 12 | 2 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **TS22** | Control de acceso, permanencia y activación de reservas a partir de CardTapEvent | TK-TS22-04 | Manejo de lecturas fuera de alcance, DLQ e idempotencia | Filtrar eventos de aulas o lectores sin espacio configurado y evitar reprocesamiento. | 12 | 2 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **TS24** | Ingesta de eventos al historial de datos | TK-TS24-01 | Diseñar modelo inmutable `DataRecord` y persistencia | Crear estructura de almacenamiento histórico centralizado para Data Management. | 10 | 1.5 | Bruce Via Luna | To-Do |
+| **TS24** | Ingesta de eventos al historial de datos | TK-TS24-02 | Implementar consumidor multiorigen (IoT, Attendance, Space) | Consumir eventos de los 3 bounded contexts e ingerirlos como `DataRegistered`. | 10 | 1.5 | Erick Leonardo Palomino Fiestas | To-Do |
+| **TS24** | Ingesta de eventos al historial de datos | TK-TS24-03 | Validación de coherencia y manejo de incoherencias (`DataRegistrationError`) | Filtrar eventos con inconsistencias de context/dataType y asegurar descarte de duplicados. | 10 | 2 | Piero Alberto Velarde Luyo | To-Do |
+| **TS25** | Endpoints de consulta de registros históricos | TK-TS25-01 | Implementar `GET /api/v1/data-records` y `/{dataRecordId}` | Desarrollar controladores para lectura general de registros históricos. | 9 | 1.5 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **TS25** | Endpoints de consulta de registros históricos | TK-TS25-02 | Implementar filtros `/period` y `/type/{dataType}` con validaciones | Permitir filtrado por rango de fechas y validar la enumeración de `dataType`. | 9 | 1.5 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **TS26** | Endpoints de generación de reportes | TK-TS26-01 | Implementar `POST /api/v1/reports/weekly`, `/monthly` y `/semester` | Crear endpoints de solicitud de consolidación de reportes. | 15 | 2.5 | Bruce Via Luna | To-Do |
+| **TS26** | Endpoints de generación de reportes | TK-TS26-02 | Proceso asíncrono de consolidación y publicación de eventos | Generar resúmenes en estado `GENERATING` -> `GENERATED` y publicar eventos. | 15 | 2.5 | Erick Leonardo Palomino Fiestas | To-Do |
+| **TS27** | Endpoints de consulta de reportes | TK-TS27-01 | Implementar `GET /api/v1/reports` y `/{reportId}` | Crear endpoints para listar reportes ordenados y ver resumen detallado. | 6 | 1 | Piero Alberto Velarde Luyo | To-Do |
+| **TS27** | Endpoints de consulta de reportes | TK-TS27-02 | Implementar endpoints específicos `/weekly`, `/monthly`, `/semester` | Exponer vistas de lectura agrupadas por la periodicidad del reporte. | 6 | 1 | Javier Sebastián Gonzales Alvarado | To-Do |
+| **TS29** | Adaptador del directorio de titulares | TK-TS29-01 | Definir puerto `CardHolderDirectoryPort` y modelo snapshot | Crear interfaz y DTOs de lectura del directorio de titulares. | 9 | 1.5 | Renzo Sebastian Rivera Ratachi | To-Do |
+| **TS29** | Adaptador del directorio de titulares | TK-TS29-02 | Implementar adaptador sobre la tabla `card_holders` | Consultar estado, rol y vigencia de la credencial retornando política `CARD_INACTIVE`. | 9 | 1.5 | Bruce Via Luna | To-Do |
+
+#### 7.2.1.3. Development Evidence for Sprint Review
+
++ Development Evidence for Landing Page
+
+| Repository| Branch | Commit Id| Commit Message | Commit Message Body|Commited on (Date)|
+|--------|---------------|------------|---------------|---------|--|
+| tarjepafi-landing-page|main|71b1c32|Merge pull request #1 from ArquiEmergentes/develop|feat: add images and form| 12/11/2026
+| tarjepafi-landing-page|develop|79f34fb|hotfix: fixed image badges|-| 12/11/2026
+| tarjepafi-landing-page|develop|baa12b8|feat: add images and form|-|12/11/2026
+| tarjepafi-landing-page|develop|41fb87e|feat: add hero section and product info|-|12/11/2026
+
++ Development Evidence for Frontend
+
+| Repository| Branch | Commit Id| Commit Message | Commit Message Body|Commited on (Date)|
+|--------|---------------|------------|---------------|---------|--|
+| tarjepafi-webapp|feat/sprint1-fase7-testing-suite|201309c|docs(): add readme|-|13/11/2026
+| tarjepafi-webapp|feat/sprint1-fase7-testing-suite|dbf8db1|docs: sección de testing y scripts en el README de la app|-|13/11/2026
+| tarjepafi-webapp|feat/sprint1-fase7-testing-suite|667fd38|test(bdd): acceptance tests de las user stories del Sprint 1|7 features en Gherkin (24 escenarios) que usan la Web App en Chromium:US01, US02, US04, US10, US11, US12, US13, US14, US15, US16, US17, US18,US21, US22, US23 y US24.|13/11/2026
+| tarjepafi-webapp|feat/sprint1-fase7-testing-suite|4b6999b|test(bdd): integration tests de la Fake API con Gherkin y playwright-bdd|-|13/11/2026
+| tarjepafi-webapp|feat/sprint1-fase7-testing-suite|51c6fc6|test(domain): unit tests de Space, AccessRecord, WorkShift, CardTapEvent e Incident|Completa la suite de Vitest con las entidades de Space & Facility e IoT Monitoringque no tenían pruebas (US12, US24). Total: 49 unit tests.|13/11/2026
+| tarjepafi-webapp|feat/sprint1-fase6-readme|d529b3a|Merge pull request #6 from ArquiEmergentes/docs/sprint1-fase6-readme|docs: README de la app con instalación, arquitectura y trazabilidad|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase6-readme|18df19c|docs: README de la app con instalación, arquitectura y trazabilidad|-|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase5-dashboard-reportes|a3a7cdf|Merge pull request #5 from ArquiEmergentes/feat/sprint1-fase5-dashboard-reportes|feat(data-management): dashboard en vivo y reportes con exportación CSV|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase5-dashboard-reportes|ef73e83|feat(data-management): dashboard en vivo y reportes con exportación CSV|-|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase4-asistencia-simulador|6623ebe|Merge pull request #4 from ArquiEmergentes/feat/sprint1-fase4-asistencia-simulador|feat(attendance): simulador NFC, registros de acceso y vistas del doc…|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase4-asistencia-simulador|045aa7e|feat(attendance): simulador NFC, registros de acceso y vistas del docente|-|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase3-lectores-iot|cd4aabf|Merge pull request #3 from ArquiEmergentes/feat/sprint1-fase3-lectores-iot|feat(iot-monitoring): gestión de lectores IoT|11/11/2026
+| tarjepafi-webapp|feat/sprint1-fase3-lectores-iot|10b5869|feat(iot-monitoring): gestión de lectores IoT|-|11/11/2026
+| tarjepafi-webapp|feat/sprint1-fase2-credenciales|af1d18e|Merge pull request #2 from ArquiEmergentes/feat/sprint1-fase2-credenciales|feat(credentials): gestión de credenciales y verificación de matrículas|11/11/2026
+| tarjepafi-webapp|feat/sprint1-fase2-credenciales|0207578|feat(credentials): gestión de credenciales y verificación de matrículas|-|11/11/2026
+| tarjepafi-webapp|develop|0207578|feat(credentials): gestión de credenciales y verificación de matrículas|-|11/11/2026
+| tarjepafi-webapp|develop|1bd1413|Merge pull request #1 from ArquiEmergentes/feat/sprint1-fase1-scaffold|feat(webapp): scaffold Sprint 1 con shell por rol, login y json-server|11/11/2026
+| tarjepafi-webapp|develop|abec0b0|feat(webapp): scaffold Sprint 1 con shell por rol, login y json-server|-|11/11/2026
+| tarjepafi-webapp|main|1a91fcc|chore: initial commit|-|11/11/2026
+
+#### 7.2.1.4. Testing Suite Evidence for Sprint Review
+
+En esta sección se presenta el conjunto de pruebas automatizadas del Sprint 1 de la Web App de TarjePAFI. La suite tiene tres niveles:
+
+- **Unit Tests:** validan la lógica de dominio de cada bounded context (entidades, value objects y reglas) de forma aislada, sin red ni interfaz.
+- **Integration Tests:** validan los servicios web que consume la aplicación. Como en el Sprint 1 el backend se simula con **json-server** (Fake API con prefijo `/api/v1`), se verifica que cada recurso responda con el código HTTP, los filtros y la estructura de datos que esperan los *assemblers* de la capa de infraestructura.
+- **Acceptance Tests:** validan las User Stories del Sprint usando la aplicación real en un navegador (Chromium). Se ejecutan los flujos del administrador en el Simulador NFC y en la gestión de credenciales y, además, se comprueba en la Fake API que la lectura o el cambio de estado quedó registrado.
+
+Los Integration Tests y los Acceptance Tests siguen el enfoque **BDD**: los escenarios están escritos en archivos `.feature` con **Gherkin en español** y los *step definitions* están en **TypeScript**.
+
+**Herramientas utilizadas**
+
+| Nivel | Herramienta | Ubicación en el repositorio | Comando |
+|---|---|---|---|
+| Unit Tests | Vitest 4 (builder `@angular/build:unit-test` de Angular 21) | `webapp/src/app/**/domain/model/*.spec.ts` | `npm run test:unit` |
+| Integration Tests (BDD) | playwright-bdd 9 + Playwright 1.65 (`APIRequestContext`) | `webapp/e2e/features/integration/*.feature` | `npm run test:integration` |
+| Acceptance Tests (BDD) | playwright-bdd 9 + Playwright 1.65 (Chromium) | `webapp/e2e/features/acceptance/*.feature` | `npm run test:bdd` |
+| Step definitions | TypeScript | `webapp/e2e/steps/*.steps.ts` | — |
+
+Para que las pruebas sean repetibles, al ejecutar `npm run test:bdd` se genera una base de datos propia (`e2e/.db/db.e2e.json`) con el mismo *seed* determinista de la aplicación, se levanta json-server sobre ella y se inicia la Web App. Así, los tests no modifican los datos de la demo (`server/db.json`). Primero corren los Integration Tests con los datos recién generados y luego los Acceptance Tests, en orden y con un solo *worker*, porque estos últimos modifican la base.
+
+**Repositorio del proyecto de testing:** [https://github.com/ArquiEmergentes/tarjepafi-webapp](https://github.com/ArquiEmergentes/tarjepafi-webapp) (rama `feat/sprint1-fase7-testing-suite`, carpetas `webapp/src/app/**/domain/model` y `webapp/e2e`).
+
+##### Unit Tests
+
+Se implementaron **49 Unit Tests** en 9 archivos. La siguiente tabla indica, para cada archivo, las clases y los comportamientos que se prueban y la User Story con la que se relacionan.
+
+| Archivo `.spec.ts` | Bounded Context | Clase / función | Comportamientos verificados | User Story |
+|---|---|---|---|---|
+| `iam-domain.spec.ts` | IAM | `EmailAddress` | Acepta solo correos `@upc.edu.pe` y normaliza mayúsculas; rechaza correos sin formato o de otro dominio. | Login (regla de acceso) |
+| | | `User` | Solo las cuentas `ACTIVE` están habilitadas; verificación de roles. | Login (regla de acceso) |
+| `credentials-domain.spec.ts` | Credentials | `Credential` | Solo una tarjeta `ACTIVE` puede bloquearse o reportarse perdida; se da de baja desde `ACTIVE`, `BLOCKED` o `LOST`; se reactiva desde `BLOCKED`, `LOST` o `DEACTIVATED` y guarda la fecha del cambio; rechaza transiciones no permitidas. | US10, US13 |
+| | | `resolveAccess` | La excepción de la tarjeta tiene prioridad sobre los roles del espacio; sin excepción se usan los roles permitidos. | US14 |
+| | | `planEnrollmentVerification` | Vencido el plazo, desactiva solo las tarjetas `ACTIVE` de estudiantes con matrícula pendiente; dentro del plazo no desactiva ninguna. | US15 |
+| `attendance-domain.spec.ts` | Academic Attendance | `Session` | Está en curso desde 15 min antes del inicio hasta el fin; se cierra sola 15 min después del fin; muestra el horario como `10:00–11:30`. | US01, US04, US23 |
+| | | `AttendanceRecord` | `PRESENT` si marca hasta inicio + tolerancia, si no `LATE`; un `PENDING` se confirma según su propia hora de marcación; la salida del docente calcula la duración; la edición del docente guarda origen, autor, fecha y motivo. | US01, US16, US17, US22, US23 |
+| `space-facility-domain.spec.ts` | Space & Facility | `Space` | Solo permite los roles configurados; identifica un espacio en mantenimiento; `toProps()` devuelve una copia de los roles. | US12 |
+| | | `AccessRecord` | Distingue un acceso concedido de uno denegado. | US12 |
+| | | `WorkShift` | Abre la jornada con la fecha de la entrada; al cerrarse calcula los minutos trabajados sin mutar la jornada original. | US24 |
+| `iot-domain.spec.ts` | IoT Monitoring | `Reader` | Valida el formato `RDR-X-000`; solo `ACTIVE` o `DEGRADED` procesan lecturas; transiciones de activación y desactivación; pierde conexión tras 3 heartbeats sin comunicarse; un heartbeat devuelve a `ACTIVE` a un lector `OFFLINE`. | Simulador NFC (US01, US16) |
+| | | `validateConfiguration` | Acepta una configuración válida; exige intervalos > 0, heartbeat ≥ comunicación y firmware `x.y.z`. | Gestión de lectores |
+| `iot-events-domain.spec.ts` | IoT Monitoring | `CardTapEvent` | Normaliza el UID leído (`04 3d 9b…` → `04:3D:9B:…`); acepta UIDs de 4 a 7 bytes; identifica una lectura rechazada. | US01, US02 |
+| | | `Incident` | Está abierta mientras no se resuelva; al resolverse guarda la fecha sin mutar la original. | Gestión de lectores |
+| `report-domain.spec.ts` | Data Management | `Report` | El periodo es válido si inicio ≤ fin; sugiere semana, mes o semestre de la fecha actual. | Reportes |
+| | | `summarizeRecords` | Usa el último hecho de cada asistencia e ignora los pendientes; cuenta accesos, hora pico y lectores con incidencias; sin datos devuelve 0. | Reportes |
+| `date-time.spec.ts` | Shared Kernel | `date-time` | Suma minutos cruzando la hora; minutos entre dos fechas; formato de duraciones del lector (`1 h 30 min`); día de la semana; combinación de fecha y hora. | US17, US23, US24 |
+| `app.spec.ts` | Shell | `App` | La aplicación se crea correctamente. | — |
+
+<p align="center">
+  <img src="assets/images/testing/unit-tests-vitest.png" alt="Ejecución de los Unit Tests con Vitest" width="900">
+</p>
+<p align="center"><em>Ejecución de los Unit Tests: 9 archivos y 49 tests aprobados.</em></p>
+
+##### Integration Tests (BDD)
+
+Los Integration Tests verifican los servicios web de la Fake API que consume cada bounded context. Se diseñaron **4 features con 18 escenarios**.
+
+| Feature | Recursos (`/api/v1`) | Escenarios | User Stories |
+|---|---|---|---|
+| `01-credentials-api.feature` | `/credentials`, `/cardHolders`, `/credentialPermissions`, `/settings` | 6 | US11, US13, US14, US15 |
+| `02-academic-attendance-api.feature` | `/sessions`, `/courses`, `/enrollments`, `/attendanceRecords` | 5 | US01, US04, US16, US21, US25 |
+| `03-iot-monitoring-api.feature` | `/readers`, `/cardTapEvents` | 4 | US01, US02 y gestión de lectores |
+| `04-space-facility-api.feature` | `/spaces`, `/accessRecords`, `/workShifts` | 3 | US12, US24 |
+
+**`01-credentials-api.feature`**: comprueba que la Web App puede ubicar una credencial por el UID leído y un titular por su código (US11), consultar las excepciones de permisos (US14) y la fecha límite de matrícula (US15), y que un recurso inexistente devuelve 404 (US13).
+
+```gherkin
+# language: es
+@integration
+Característica: Servicios web de Credentials (Fake API /api/v1)
+  Como Web App de TarjePAFI,
+  necesito consultar titulares, credenciales y permisos en la API,
+  para resolver a quién pertenece cada tarjeta y qué espacios puede usar.
+
+  Antecedentes:
+    Dado que la Fake API de TarjePAFI está disponible
+
+  @US11
+  Escenario: Buscar una credencial por el UID leído en el lector
+    Cuando consulto el recurso "/credentials?cardUid=04:3D:9B:12:8F"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 1 elemento
+    Y el campo "cardHolderId" es "ch-u202312966"
+    Y el campo "status" es "ACTIVE"
+    Y cada elemento incluye los campos:
+      | id              |
+      | cardUid         |
+      | cardHolderId    |
+      | status          |
+      | issuedAt        |
+      | statusChangedAt |
+      | lastUsedAt      |
+
+  @US11
+  Escenario: Buscar un titular por su código institucional
+    Cuando consulto el recurso "/cardHolders?code=U202312966"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 1 elemento
+    Y el campo "fullName" es "Javier Gonzales Paredes"
+    Y el campo "role" es "STUDENT"
+    Y el campo "enrollmentStatus" es "COMPLETED"
+
+  @US11
+  Escenario: Un código de titular inexistente devuelve una lista vacía
+    Cuando consulto el recurso "/cardHolders?code=U999"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 0 elementos
+
+  @US14
+  Escenario: Consultar las excepciones de permisos de una tarjeta
+    Cuando consulto el recurso "/credentialPermissions?credentialId=cred-001"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 1 elemento
+    Y el campo "spaceId" es "sp-lab-e"
+    Y el campo "effect" es "ALLOW"
+
+  @US15
+  Escenario: Obtener la fecha límite de matrícula del ciclo
+    Cuando consulto el recurso "/settings"
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "term" es "2026-2"
+    Y el campo "enrollmentDeadline" es "2026-10-03T23:59:59"
+
+  @US13
+  Escenario: Una credencial que no existe devuelve 404
+    Cuando consulto el recurso "/credentials/cred-999"
+    Entonces la respuesta tiene el código HTTP 404
+```
+
+**`02-academic-attendance-api.feature`**: comprueba los datos académicos simulados que usa el registro de asistencia: la sesión de clase con su horario y tolerancia (US04, US25), el curso y la materia (US25), las matrículas del estudiante (US01), la estructura de las asistencias (US01, US16) y las reuniones (US21).
+
+```gherkin
+# language: es
+@integration
+Característica: Servicios web de Academic Attendance (Fake API /api/v1)
+  Como Web App de TarjePAFI,
+  necesito consultar cursos, sesiones, matrículas y asistencias en la API,
+  para validar cada lectura del aula y mostrar el curso y el horario de la clase.
+
+  Antecedentes:
+    Dado que la Fake API de TarjePAFI está disponible
+
+  @US04 @US25
+  Escenario: Consultar la sesión de clase del miércoles en el Aula A-301
+    Cuando consulto el recurso "/sessions?spaceId=sp-a301&date=2026-10-07"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 1 elemento
+    Y el campo "type" es "CLASS"
+    Y el campo "scheduledStart" es "2026-10-07T10:00:00"
+    Y el campo "scheduledEnd" es "2026-10-07T11:30:00"
+    Y el campo "toleranceMinutes" es "10"
+
+  @US25
+  Escenario: Consultar el curso y la materia
+    Cuando consulto el recurso "/courses/crs-01"
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "name" es "Aplicaciones Web"
+    Y el campo "subject" es "Desarrollo de Software"
+
+  @US01
+  Escenario: Consultar las matrículas activas de un estudiante
+    Cuando consulto el recurso "/enrollments?studentId=ch-u202312966&status=ACTIVE"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista no vacía
+    Y todos los elementos tienen el campo "term" igual a "2026-2"
+
+  @US01 @US16
+  Escenario: Las asistencias registradas incluyen hora, estado y origen
+    Cuando consulto el recurso "/attendanceRecords?cardHolderId=ch-u202312966&_limit=5"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista no vacía
+    Y cada elemento incluye los campos:
+      | sessionId    |
+      | cardHolderId |
+      | role         |
+      | checkInAt    |
+      | status       |
+      | source       |
+
+  @US21
+  Escenario: Consultar los convocados de una reunión
+    Cuando consulto el recurso "/sessions?type=MEETING"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 2 elementos
+    Y todos los elementos tienen el campo "type" igual a "MEETING"
+```
+
+**`03-iot-monitoring-api.feature`**: comprueba la consulta y el registro de lectores (POST y PATCH) y que cada lectura NFC guarda el resultado y el mensaje mostrado en el lector (US01, US02).
+
+```gherkin
+# language: es
+@integration
+Característica: Servicios web de IoT Monitoring (Fake API /api/v1)
+  Como Web App de TarjePAFI,
+  necesito registrar y consultar lectores NFC y sus lecturas en la API,
+  para operar el simulador y monitorear la conectividad de los dispositivos.
+
+  Antecedentes:
+    Dado que la Fake API de TarjePAFI está disponible
+
+  Escenario: Consultar un lector con su configuración
+    Cuando consulto el recurso "/readers/RDR-A-301"
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "status" es "ACTIVE"
+    Y el campo "spaceId" es "sp-a301"
+    Y el campo "configuration.readerMode" es "ATTENDANCE"
+    Y el campo "configuration.firmwareVersion" es "2.4.1"
+
+  Escenario: Registrar un lector y activarlo
+    Cuando registro un lector con el cuerpo:
+      """
+      {
+        "id": "RDR-Z-901",
+        "name": "Lector de prueba Z-901",
+        "deviceType": "DOOR_READER",
+        "spaceId": "sp-bib",
+        "status": "REGISTERED",
+        "configuration": { "readerMode": "ACCESS_CONTROL", "communicationInterval": 30, "heartbeatInterval": 60, "firmwareVersion": "2.4.1" },
+        "registeredAt": "2026-10-07T09:50:00",
+        "lastSeenAt": null
+      }
+      """
+    Entonces la respuesta tiene el código HTTP 201
+    Y el campo "status" es "REGISTERED"
+    Cuando actualizo el lector "RDR-Z-901" con:
+      """
+      { "status": "ACTIVE", "lastSeenAt": "2026-10-07T09:51:00" }
+      """
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "status" es "ACTIVE"
+    Cuando consulto el recurso "/readers/RDR-Z-901"
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "status" es "ACTIVE"
+    Y el campo "lastSeenAt" es "2026-10-07T09:51:00"
+
+  Escenario: Un lector que no existe devuelve 404
+    Cuando consulto el recurso "/readers/RDR-Z-999"
+    Entonces la respuesta tiene el código HTTP 404
+
+  @US01 @US02
+  Escenario: Las lecturas NFC guardan el resultado y el mensaje mostrado en el lector
+    Cuando consulto el recurso "/cardTapEvents?outcome=ATTENDANCE&_limit=5"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista no vacía
+    Y cada elemento incluye los campos:
+      | id             |
+      | readerId       |
+      | cardUid        |
+      | tappedAt       |
+      | outcome        |
+      | displayMessage |
+```
+
+**`04-space-facility-api.feature`**: comprueba la política de acceso de un área restringida y el motivo de los accesos denegados (US12), y la jornada abierta de un trabajador (US24).
+
+```gherkin
+# language: es
+@integration
+Característica: Servicios web de Space & Facility (Fake API /api/v1)
+  Como Web App de TarjePAFI,
+  necesito consultar espacios, registros de acceso y jornadas en la API,
+  para decidir el acceso a cada espacio y calcular las horas trabajadas.
+
+  Antecedentes:
+    Dado que la Fake API de TarjePAFI está disponible
+
+  @US12
+  Escenario: La Sala de Servidores es un área restringida solo para trabajadores
+    Cuando consulto el recurso "/spaces/sp-srv"
+    Entonces la respuesta tiene el código HTTP 200
+    Y el campo "type" es "RESTRICTED_AREA"
+    Y el campo "accessPolicy" es "RESTRICTED"
+    Y el campo "allowedRoles" es "STAFF"
+
+  @US12
+  Escenario: Los accesos denegados guardan el motivo
+    Cuando consulto el recurso "/accessRecords?decision=DENIED&_limit=5"
+    Entonces la respuesta tiene el código HTTP 200
+    Y todos los elementos tienen el campo "decision" igual a "DENIED"
+    Y cada elemento incluye los campos:
+      | cardUid      |
+      | spaceId      |
+      | readerId     |
+      | denialReason |
+      | attemptedAt  |
+
+  @US24
+  Escenario: La jornada abierta de un trabajador no tiene salida
+    Cuando consulto el recurso "/workShifts?cardHolderId=ch-t0001&date=2026-10-07"
+    Entonces la respuesta tiene el código HTTP 200
+    Y la respuesta es una lista con 1 elemento
+    Y el campo "status" es "OPEN"
+    Y el campo "exitAt" es "null"
+```
+
+##### Acceptance Tests (BDD)
+
+Los Acceptance Tests usan la Web App en Chromium como el administrador. Cada escenario inicia sesión, ejecuta el flujo en pantalla y verifica dos cosas: el mensaje que ve el usuario (por ejemplo, la pantalla del lector en el Simulador NFC) y lo que quedó registrado en la Fake API. Se diseñaron **7 features con 24 escenarios**.
+
+| Feature | Escenarios | User Stories |
+|---|---|---|
+| `01-asistencia-estudiantil.feature` | 5 | US01, US02, US04 |
+| `02-asistencia-docente.feature` | 4 | US16, US17, US18, US22, US23 |
+| `03-control-de-acceso.feature` | 3 | US12, US14 |
+| `04-cierre-de-turno.feature` | 2 | US24 |
+| `05-gestion-de-credenciales.feature` | 6 | US10, US11, US13 |
+| `06-verificacion-de-matriculas.feature` | 2 | US15 |
+| `07-asistencia-a-reuniones.feature` | 2 | US21 |
+
+**`01-asistencia-estudiantil.feature`** (US01, US02, US04): el estudiante matriculado registra su asistencia y el lector muestra "Asistencia tomada" con el curso y el horario. También se prueban la marcación duplicada, el estudiante no matriculado, el aula sin clase en curso y el UID no registrado.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Registro y confirmación de asistencia estudiantil con el lector NFC
+  Como estudiante,
+  quiero pasar mi tarjeta por el lector al entrar al salón y ver la confirmación con el horario de la clase,
+  para que mi asistencia se registre automáticamente y sepa que quedó registrada.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+    Y que estoy en el simulador de lector NFC
+
+  @US01 @US02 @US04
+  Escenario: Un estudiante matriculado registra su asistencia y ve el curso y el horario
+    Cuando uso el escenario rápido "Estudiante en A-301" y paso la tarjeta
+    Entonces el lector muestra "Asistencia tomada · Aplicaciones Web · 10:00–11:30"
+    Y el lector muestra el titular "Javier Gonzales Paredes"
+    Y la Fake API guarda la lectura de "U202312966" en "RDR-A-301" con resultado "ATTENDANCE"
+
+  @US01
+  Escenario: La asistencia no se registra dos veces en la misma sesión
+    Cuando paso la tarjeta de "U202311233" por el lector "RDR-A-301"
+    Y paso la tarjeta de "U202311233" por el lector "RDR-A-301"
+    Entonces el lector muestra "Tu asistencia ya fue registrada"
+
+  @US01
+  Escenario: Un estudiante que no está matriculado en la clase no registra asistencia
+    Cuando paso la tarjeta de "U202310137" por el lector "RDR-A-301"
+    Entonces el lector muestra "No estás matriculado en esta clase"
+    Y la Fake API guarda la lectura de "U202310137" en "RDR-A-301" con resultado "REJECTED"
+
+  @US04
+  Escenario: Si el aula no tiene una clase en su horario, el lector lo indica
+    # El Aula A-303 tiene clase de 13:00 a 14:30; a las 09:50 está fuera de la ventana de marcación.
+    Cuando paso la tarjeta de "U202310411" por el lector "RDR-A-303"
+    Entonces el lector muestra "No hay una clase en curso en esta aula"
+
+  @US01
+  Escenario: Un UID que no está registrado es rechazado
+    Cuando paso la tarjeta con UID "04:FF:12:AB:90" por el lector "RDR-A-301"
+    Entonces el lector muestra "Tarjeta no registrada"
+```
+
+**`02-asistencia-docente.feature`** (US16, US17, US18, US22, US23): la primera pasada del docente registra su llegada y confirma las asistencias pendientes; la segunda registra la salida con la duración de la clase; una tercera no la vuelve a registrar.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Llegada, salida y duración de la clase del docente
+  Como profesor,
+  quiero que al pasar mi tarjeta al inicio de la clase se registre mi llegada y se confirmen las asistencias
+  de los estudiantes, y que al pasarla de nuevo se registre mi salida con la duración de la clase,
+  para ahorrar tiempo en la toma de asistencia y llevar el control de mis horas de trabajo.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+    Y que estoy en el simulador de lector NFC
+
+  @US16 @US18 @US22
+  Escenario: La llegada del docente confirma las asistencias pendientes de sus estudiantes
+    Cuando paso la tarjeta de "U202311644" por el lector "RDR-A-301"
+    Y uso el escenario rápido "Docente en A-301" y paso la tarjeta
+    Entonces el lector muestra un mensaje que empieza con "Llegada registrada · Aplicaciones Web – Desarrollo de Software ·"
+    Y el lector muestra el titular "Carlos Mendoza Ríos"
+    Y la Fake API guarda la lectura de "D0001" en "RDR-A-301" con resultado "ATTENDANCE"
+
+  @US22
+  Escenario: Un docente sin clase asignada en el aula no registra su llegada
+    Cuando paso la tarjeta de "D0004" por el lector "RDR-A-301"
+    Entonces el lector muestra "No tienes una clase asignada en esta aula a esta hora"
+
+  @US17 @US18 @US23
+  Escenario: La segunda pasada del docente registra su salida y la duración de la clase
+    Dado que el docente "D0001" ya registró su llegada en el lector "RDR-A-301"
+    Cuando cambio la hora simulada a "2026-10-07T11:20"
+    Y paso la tarjeta de "D0001" por el lector "RDR-A-301"
+    Entonces el lector muestra "Salida registrada · Duración 1 h 30 min"
+
+  @US18
+  Escenario: Una tercera pasada no vuelve a registrar la salida
+    Dado que el docente "D0001" ya registró su llegada en el lector "RDR-A-301"
+    Cuando cambio la hora simulada a "2026-10-07T11:25"
+    Y paso la tarjeta de "D0001" por el lector "RDR-A-301"
+    Entonces el lector muestra "Tu salida ya fue registrada"
+```
+
+**`03-control-de-acceso.feature`** (US12, US14): acceso denegado a un área restringida y a un espacio en mantenimiento, con su motivo en los registros de acceso; y acceso concedido por una excepción de la tarjeta.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Control de acceso a áreas restringidas y permisos personalizados
+  Como administrador,
+  quiero que el lector muestre un mensaje cuando alguien intenta entrar a un área restringida
+  y poder personalizar los permisos de cada tarjeta,
+  para garantizar que solo ingresen las personas autorizadas.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+    Y que estoy en el simulador de lector NFC
+
+  @US12
+  Escenario: Un estudiante sin permiso no puede entrar a la Sala de Servidores
+    Cuando uso el escenario rápido "Estudiante en Sala de Servidores" y paso la tarjeta
+    Entonces el lector muestra "Acceso denegado"
+    Y la tabla de registros de acceso muestra el motivo "Sin permiso para el espacio"
+
+  @US12
+  Escenario: Nadie puede entrar a un espacio en mantenimiento
+    Cuando paso la tarjeta de "T0001" por el lector "RDR-D-004"
+    Entonces el lector muestra "Acceso denegado"
+    Y la tabla de registros de acceso muestra el motivo "Espacio en mantenimiento"
+
+  @US14
+  Escenario: La excepción de la tarjeta tiene prioridad sobre los roles del espacio
+    Cuando paso la tarjeta de "U202312966" por el lector "RDR-D-002"
+    Entonces el lector muestra "Acceso concedido"
+    Y la Fake API guarda la lectura de "U202312966" en "RDR-D-002" con resultado "ACCESS"
+```
+
+**`04-cierre-de-turno.feature`** (US24): con la jornada abierta no se abre otra; la salida cierra la jornada con las horas trabajadas y no se registra dos veces.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Cierre de turno del trabajador
+  Como trabajador,
+  quiero que la tarjeta sirva como herramienta de registro de salida del trabajo,
+  para llevar un registro exacto de mis horas trabajadas.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+    Y que estoy en el simulador de lector NFC
+
+  @US24
+  Escenario: Con la jornada abierta, una nueva entrada no abre otra jornada
+    Cuando paso la tarjeta de "T0001" por el lector "RDR-T-001"
+    Entonces el lector muestra "Tu jornada ya está abierta"
+
+  @US24
+  Escenario: La salida cierra la jornada y muestra las horas trabajadas
+    Cuando uso el escenario rápido "Trabajador en salida" y paso la tarjeta
+    Entonces el lector muestra un mensaje que empieza con "Salida registrada ·"
+    Y la Fake API guarda la lectura de "T0001" en "RDR-T-003" con resultado "WORK_SHIFT"
+    Cuando paso la tarjeta de "T0001" por el lector "RDR-T-003"
+    Entonces el lector muestra "Tu salida ya fue registrada"
+```
+
+**`05-gestion-de-credenciales.feature`** (US10, US11, US13): baja de la tarjeta de un estudiante retirado y su efecto en los lectores; bloqueo y reactivación; reactivación rechazada por matrícula pendiente; y validaciones al vincular un titular.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Gestión del ciclo de vida de las credenciales NFC
+  Como administrador,
+  quiero dar de baja, reactivar y vincular las tarjetas con la base de datos de titulares,
+  para gestionar fácilmente su estado y asegurar que solo las personas habilitadas usen los servicios.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+
+  @US10
+  Escenario: Dar de baja la tarjeta de un estudiante retirado
+    Dado que abrí la credencial de "U202310959"
+    Cuando doy de baja la tarjeta por "Retiro de la universidad" con el detalle "Retiro formal del ciclo 2026-2"
+    Entonces la tarjeta queda en estado "Desactivada"
+    Y el historial de estados registra el motivo "Retiro de la universidad"
+    Y la Fake API guarda la credencial de "U202310959" con estado "DEACTIVATED"
+
+  @US10
+  Escenario: Una tarjeta dada de baja ya no funciona en los lectores
+    Dado que estoy en el simulador de lector NFC
+    Cuando paso la tarjeta de "U202310959" por el lector "RDR-T-001"
+    Entonces el lector muestra "Tarjeta inactiva. Acércate a servicios universitarios"
+
+  @US13
+  Escenario: Reactivar una tarjeta bloqueada
+    Dado que abrí la credencial de "U202310822"
+    Cuando ejecuto la acción "Bloquear" con el motivo "Bloqueo preventivo por revisión"
+    Entonces la tarjeta queda en estado "Bloqueada"
+    Cuando ejecuto la acción "Reactivar"
+    Entonces veo el mensaje "reactivada"
+    Y la tarjeta queda en estado "Activa"
+    Y la Fake API guarda la credencial de "U202310822" con estado "ACTIVE"
+
+  @US13
+  Escenario: No se reactiva la tarjeta de un estudiante con matrícula pendiente
+    Dado que abrí la credencial de "U202413151"
+    Cuando ejecuto la acción "Reactivar"
+    Entonces veo el mensaje "No se puede reactivar: la matrícula del estudiante está pendiente."
+    Y la Fake API guarda la credencial de "U202413151" con estado "DEACTIVATED"
+
+  @US11
+  Escenario: Un código de titular que no existe no se puede vincular
+    Dado que abrí la credencial sin titular "cred-054"
+    Cuando busco al titular con código "U999" para vincularlo
+    Entonces veo el mensaje "Titular no encontrado"
+
+  @US11
+  Escenario: Un titular solo puede tener una tarjeta activa
+    Dado que abrí la credencial sin titular "cred-054"
+    Cuando busco al titular con código "U202312966" para vincularlo
+    Y confirmo la vinculación
+    Entonces veo el mensaje "El titular ya tiene una tarjeta activa (04:3D:9B:12:8F)"
+```
+
+**`06-verificacion-de-matriculas.feature`** (US15): vencido el plazo de matrícula, la verificación desactiva solo las tarjetas activas de estudiantes con matrícula pendiente y lo registra en el historial con el autor "Sistema".
+
+```gherkin
+# language: es
+@acceptance
+Característica: Desactivación automática de tarjetas por matrícula no completada
+  Como administrador,
+  quiero que las tarjetas se desactiven automáticamente si un estudiante no completa su matrícula a tiempo,
+  para mantener la seguridad.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+
+  @US15
+  Escenario: Vencido el plazo, se desactivan solo las tarjetas activas con matrícula pendiente
+    Cuando ejecuto la verificación de matrículas
+    Entonces el resultado indica "5 desactivadas"
+    Y la tarjeta de "U202310685" aparece entre las desactivadas
+    Y la Fake API guarda la credencial de "U202310685" con estado "DEACTIVATED"
+    Y la Fake API guarda la credencial de "U202312966" con estado "ACTIVE"
+
+  @US15
+  Escenario: El historial registra el motivo y que el cambio lo hizo el sistema
+    Dado que abrí la credencial de "U202310685"
+    Entonces la tarjeta queda en estado "Desactivada"
+    Y el historial de estados registra el motivo "Matrícula no completada"
+    Y el historial de estados registra el autor "Sistema"
+```
+
+**`07-asistencia-a-reuniones.feature`** (US21): el docente convocado registra su asistencia a la capacitación y uno no convocado es rechazado.
+
+```gherkin
+# language: es
+@acceptance
+Característica: Registro de asistencia del docente a reuniones y capacitaciones
+  Como profesor,
+  quiero que mi tarjeta me permita marcar mi asistencia a reuniones o capacitaciones,
+  para llevar un control integral de mi tiempo.
+
+  Antecedentes:
+    Dado que inicié sesión como "administrador"
+    Y que estoy en el simulador de lector NFC
+    Y la hora simulada es "2026-10-08T15:58"
+
+  @US21
+  Escenario: Un docente convocado registra su asistencia a la capacitación
+    Cuando paso la tarjeta de "D0001" por el lector "RDR-D-005"
+    Entonces el lector muestra "Asistencia registrada · Capacitación: uso de lectores NFC en aula"
+    Y la Fake API guarda la lectura de "D0001" en "RDR-D-005" con resultado "ATTENDANCE"
+
+  @US21
+  Escenario: Un docente que no fue convocado no registra asistencia
+    Cuando paso la tarjeta de "D0004" por el lector "RDR-D-005"
+    Entonces el lector muestra "No estás convocado a esta reunión"
+```
+
+##### Step definitions
+
+Los pasos Gherkin se implementan en TypeScript con `createBdd` de playwright-bdd. Están agrupados por responsabilidad:
+
+| Archivo | Responsabilidad |
+|---|---|
+| `fixtures.ts` | Fixtures compartidos: contexto del escenario y cliente de la Fake API (`FakeApi`) para preparar y verificar datos. |
+| `session.steps.ts` | Inicio de sesión por rol, navegación, diálogos de confirmación y mensajes en pantalla. |
+| `simulator.steps.ts` | Simulador NFC: elegir lector y tarjeta, pasar la tarjeta, cambiar la hora simulada y verificar el mensaje del lector y el `cardTapEvent` guardado. |
+| `credentials.steps.ts` | Acciones sobre credenciales (bloquear, reactivar, dar de baja, vincular), verificación de matrículas e historial de estados. |
+| `api.steps.ts` | Peticiones HTTP a la Fake API y validación de código de respuesta, campos y estructura. |
+
+Por ejemplo, el paso que pasa una tarjeta por el lector selecciona el lector y el UID en el simulador, pulsa "Pasar tarjeta" y espera a que la Web App registre la lectura en la API:
+
+```typescript
+When('paso la tarjeta de {string} por el lector {string}', async ({ page, api }, code: string, readerId: string) => {
+  await tapHolder(page, api, code, readerId);
+});
+
+/** Pulsa "Pasar tarjeta" y espera a que la Web App registre el cardTapEvent en la Fake API. */
+async function submitTap(page: Page): Promise<void> {
+  const saved = page.waitForResponse((r) => r.request().method() === 'POST' && r.url().includes('/cardTapEvents'));
+  await page.getByRole('button', { name: 'Pasar tarjeta' }).click();
+  await saved;
+  await expect(page.getByRole('button', { name: 'Pasar tarjeta' })).toBeEnabled();
+}
+
+Then('el lector muestra {string}', async ({ page }, message: string) => {
+  await expect(page.locator('.screen-message')).toHaveText(message);
+});
+```
+
+##### Evidencia de ejecución
+
+La ejecución completa de `npm run test:bdd` aprobó los **42 escenarios** (18 de integración y 24 de aceptación).
+
+<p align="center">
+  <img src="assets/images/testing/bdd-tests-terminal.png" alt="Ejecución de los tests BDD con Playwright" width="900">
+</p>
+<p align="center"><em>Ejecución de los Integration y Acceptance Tests BDD: 42 escenarios aprobados.</em></p>
+
+El reporte Cucumber generado por playwright-bdd resume el resultado por feature:
+
+<p align="center">
+  <img src="assets/images/testing/bdd-cucumber-report.png" alt="Reporte Cucumber de los tests BDD" width="850">
+</p>
+<p align="center"><em>Reporte Cucumber: 100 % (42/42) de escenarios aprobados.</em></p>
+
+Detalle de algunos features en el reporte, con cada paso Gherkin aprobado:
+
+<p align="center">
+  <img src="assets/images/testing/bdd-feature-01-credentials-api.png" alt="Feature de integración de Credentials" width="800">
+</p>
+<p align="center"><em>Integration Test: servicios web de Credentials.</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/bdd-feature-01-asistencia-estudiantil.png" alt="Feature de asistencia estudiantil" width="800">
+</p>
+<p align="center"><em>Acceptance Test: US01, US02 y US04.</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/bdd-feature-02-asistencia-docente.png" alt="Feature de asistencia docente" width="800">
+</p>
+<p align="center"><em>Acceptance Test: US16, US17, US18, US22 y US23.</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/bdd-feature-05-gestion-de-credenciales.png" alt="Feature de gestión de credenciales" width="800">
+</p>
+<p align="center"><em>Acceptance Test: US10, US11 y US13.</em></p>
+
+Capturas de la Web App tomadas por Playwright al final de algunos escenarios de aceptación:
+
+<p align="center">
+  <img src="assets/images/testing/acceptance-us01-asistencia-tomada.png" alt="US01: asistencia tomada en el simulador NFC" width="850">
+</p>
+<p align="center"><em>US01/US02/US04: el lector muestra "Asistencia tomada · Aplicaciones Web · 10:00–11:30".</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/acceptance-us23-salida-docente.png" alt="US23: salida del docente con la duración de la clase" width="850">
+</p>
+<p align="center"><em>US17/US23: salida del docente con la duración de la clase.</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/acceptance-us12-registro-acceso.png" alt="US12: registros de acceso denegados" width="850">
+</p>
+<p align="center"><em>US12: accesos denegados con su motivo en los registros de acceso.</em></p>
+
+<p align="center">
+  <img src="assets/images/testing/acceptance-us15-verificacion.png" alt="US15: resultado de la verificación de matrículas" width="850">
+</p>
+<p align="center"><em>US15: resultado de la verificación de matrículas.</em></p>
+
+##### Commits relacionados con testing
+
+| Repository | Branch | Commit Id | Commit Message | Commit Message Body | Committed on (Date) |
+|---|---|---|---|---|---|
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase1-scaffold | [`abec0b0`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/abec0b0b6d53d20554b16cb31ce61af56bb1b0d8) | feat(webapp): scaffold Sprint 1 con shell por rol, login y json-server | Incluye los Unit Tests `app.spec.ts`, `iam-domain.spec.ts` y `date-time.spec.ts`. | 11/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase2-credenciales | [`0207578`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/020757844397134127088196d64b3f3b2ec1a095) | feat(credentials): gestión de credenciales y verificación de matrículas | Incluye los Unit Tests `credentials-domain.spec.ts` (US10, US13, US14, US15). | 11/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase3-lectores-iot | [`10b5869`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/10b58693281bfd0412ea68527a8643f78828bda5) | feat(iot-monitoring): gestión de lectores IoT | Incluye los Unit Tests `iot-domain.spec.ts` (`Reader`, `validateConfiguration`). | 11/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase4-asistencia-simulador | [`045aa7e`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/045aa7e7646375f9a0fa2245afe3c70264520bb4) | feat(attendance): simulador NFC, registros de acceso y vistas del docente | Incluye los Unit Tests `attendance-domain.spec.ts` (US01, US16, US17, US22, US23). | 12/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase5-dashboard-reportes | [`ef73e83`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/ef73e837534439406b2ef888169d078309e01adc) | feat(data-management): dashboard en vivo y reportes con exportación CSV | Incluye los Unit Tests `report-domain.spec.ts`. | 12/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase7-testing-suite | [`51c6fc6`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/51c6fc698093a34af7bf9e46a6a0e6de1fbab2be) | test(domain): unit tests de Space, AccessRecord, WorkShift, CardTapEvent e Incident | Completa la suite de Vitest con las entidades de Space & Facility e IoT Monitoring que no tenían pruebas (US12, US24). Total: 49 unit tests. | 13/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase7-testing-suite | [`4b6999b`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/4b6999b3c6ee6c4572c7d98d7d4406153ae0d35d) | test(bdd): integration tests de la Fake API con Gherkin y playwright-bdd | Configura playwright-bdd con proyectos integration y acceptance; base de datos propia para las pruebas; 4 features de integración (18 escenarios) y step definitions en TypeScript. | 13/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase7-testing-suite | [`667fd38`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/667fd388579b0b5b04e10974e8a887bb6cee0185) | test(bdd): acceptance tests de las user stories del Sprint 1 | 7 features en Gherkin (24 escenarios) que usan la Web App en Chromium: US01, US02, US04, US10–US18 y US21–US24. | 13/11/2026 |
+| ArquiEmergentes/tarjepafi-webapp | feat/sprint1-fase7-testing-suite | [`dbf8db1`](https://github.com/ArquiEmergentes/tarjepafi-webapp/commit/dbf8db1a52a925f198708cd5b8553b8bb6960826) | docs: sección de testing y scripts en el README de la app | Documenta los comandos `test:unit`, `test:bdd`, `test:integration` y `test:report`. | 13/11/2026 |
+
+
+#### 7.2.1.5. Execution Evidence for Sprint Review
+
+Durante este Sprint, el equipo se centró en el diseño, desarrollo e implementación de las principales vistas de la interfaz del usuario de la aplicación web de TarjePafi para la gestión de accesos y credenciales. Actualmente esta está operando mediante una capa de simulación o FakeAPI para poder validar la experiencia de usuario y la navegación a través de los diferentes módulos.
+
+A continuación se presentarán algunas de las vistas principales:
+
+**Panel de control principal o Dashboard**
+
+Esta vista presenta un resumen operativo en tiempo real con los indicadores claves de rendimiento.
+
+<img src="assets/images/evidence/dashboard-sprint-1.png" alt="Dashboard de la aplicación web" width="850">
+
+**Gestión de credenciales**
+
+Apartado destinado al control de las tarjetas NFC asignadas a estudiantes, docentes y trabajadores.
+
+<img src="assets/images/evidence/credenciales-sprint-1.png" alt="Módulo de credenciales" width="850">
+
+**Vista de los lectores IoT**
+
+Panel destinado al monitoreo de los lectores NFC distribuidos por el campus.
+
+<img src="assets/images/evidence/lectores-iot-sprint-1.png" alt="Módulo de lectores IoT" width="850">
+
+**Módulo de reportes**
+
+Sección para la visualización de los reportes generados con las métricas correspondientes.
+
+<img src="assets/images/evidence/reportes-sprint-1.png" alt="Módulo de reportes" width="850">
+
+
+#### 7.2.1.6. Services Documentation Evidence for Sprint Review
+
+Durante este Sprint el equipo avanzó en el establecimiento y estructuración de la documentación preliminar respecto a los Web Services, esto último puesto a que el alcance de este Sprint comprendía el apartado del Frontend de la aplicación, dejando el desarrollo y posterior integración del Backend para el siguiente Sprint.
+
+A continuación se presentan los principales endpoints conceptualizados de las vistas presentadas en el punto anterior:
+
+| Endpoint / Ruta | Verbo HTTP | Acciones Implementadas | Parámetros Requeridos | Ejemplo de Response y Descripción |
+| :--- | :--- | :--- | :--- | :--- |
+| `/api/v1/auth/login` | `POST` | Autenticación institucional de usuarios y generación de token de acceso. | **Body:** `email` (string), `password` (string). | `{"token": "eyJhbGciOi...", "user": {"name": "María Torres", "role": "Administrator"}}`<br> *Devuelve el token de sesión y el rol del usuario autenticado.* | 
+| `/api/v1/dashboard/summary` | `GET` | Obtención de métricas operativas y KPIs en tiempo real de la sede. | **Query Params:** `sedeId` (string, opcional). | `{"attendanceRate": 73.7, "grantedAccess": 33, "onlineReaders": 15}`<br> *Proporciona el resumen ejecutivo para las tarjetas informativas del Dashboard.* | 
+| `/api/v1/credentials` | `GET` | Listado y filtrado de tarjetas NFC asignadas a la comunidad académica. | **Query Params:** `status` (string), `userType` (string), `search` (string). | `{"total": 55, "items": [{"id": "U202312966", "name": "Javier Gonzáles", "state": "Activa"}]}`<br> *Retorna el catálogo paginado de credenciales emitidas.* |
+| `/api/v1/iot-readers` | `GET` | Monitoreo del estado operativo de los lectores NFC de la sede. | **Query Params:** `location` (string), `status` (string). | `{"readers": [{"code": "RDR-A-301", "status": "Activo", "firmware": "2.4.1"}]}`<br> *Devuelve el listado de dispositivos IoT y su telemetría.* | 
+
+#### 7.2.1.7. Software Deployment Evidence for Sprint Review
+
+Durante este Sprint, el equipo configuró el de despliegue continuo y gestión de artefactos digitales para la aplicación web de TarjePafi, integrando el repositorio oficial de GitHub con la plataforma de alojamiento en la nube Netlify.
+
+Primero se ingresó a la plataforma con las credenciales de GitHub y se creó un grupo de trabajo
+
+<img src="assets/images/evidence/netlify-log-in.png" alt="Log in de Netlify" width="850">
+
+Luego se creó un nuevo proyecto.
+
+<img src="assets/images/evidence/netlify-new-project.png" alt="Nuevo proyecto de Netlify" width="850">
+
+Se procedió a dar acceso al repositorio de la organización.
+
+<img src="assets/images/evidence/netlify-give-access.png" alt="Dar acceso a la organización" width="850">
+
+Se seleccionó el repositorio en el que estaba alojada la aplicación web.
+
+<img src="assets/images/evidence/netlify-select-repo.png" alt="Seleccionar repositorio de GitHub" width="850">
+
+Se ingresaron las configuraciones respectivas del proyecto.
+
+<img src="assets/images/evidence/netlify-configure.png" alt="Configuración de despliegue" width="850">
+
+Finalmente se accedió a la versión desplegada de la aplicación.
+
+<img src="assets/images/evidence/netlify-deploy.png" alt="Aplicación desplegada" width="850">
+
+
+#### 7.2.1.8. Team Collaboration Insights during Sprint
+
+Durante el desarrollo de este Sprint, el equipo de trabajo coordinó de manera colaborativa las actividades de diseño, estructuración de vistas, definición de esquemas de datos simulados y configuración de la infraestructura de despliegue web.
+
+La distribución y participación activa de los integrantes del equipo se reflejó en el flujo de control de versiones con Git y GitHub, asegurando contribuciones en los componentes clave del sistema.
+
+<img src="assets/images/evidence/team-evidence.png" alt="Evidencia del equipo" width="850">
+
+
+## 7.3. Validation Interviews
+
+### 7.3.1. Diseño de Entrevistas
+
+**Introducción (común a ambos segmentos)**
+
+Entrevistador: Buenos días/tardes/noches. En esta ocasión le presentaremos TarjePAFI, la solución que venimos desarrollando, para conocer su opinión sobre su diseño, su facilidad de uso y su utilidad.
+
+Entrevistador: Antes de comenzar, quisiera comentarle que no existen respuestas correctas o incorrectas. Nos interesa su opinión sincera, incluyendo aquello que no le guste o no entienda. La entrevista será grabada únicamente con fines académicos y su información será tratada de manera confidencial. ¿Nos autoriza a grabar la sesión?
+
+Entrevistado: [Entrevistado responde]
+
+Entrevistador: Para el registro de la entrevista, por favor indique sus nombres, apellidos, edad, distrito y ocupación o cargo dentro de la universidad.
+
+Entrevistado: [Entrevistado responde]
+
+Entrevistador: Le explico brevemente la idea. Hoy en la universidad la asistencia, los accesos y el uso de los ambientes se controlan de forma manual o en sistemas separados. TarjePAFI propone una sola tarjeta NFC para estudiantes, docentes y trabajadores. Al acercarla a un lector instalado en el aula, en una puerta o en un torniquete, se registra automáticamente la asistencia, el ingreso o la jornada laboral. Toda esa información llega a una plataforma web donde los administradores ven indicadores y generan reportes.
+
+Entrevistador: A continuación le mostraré nuestra Landing Page y luego la aplicación web. Le pido que observe con atención; al final le haré algunas preguntas.
+
+[El entrevistador realiza la demostración correspondiente al segmento del entrevistado.]
+
+**Segmento #1: Portadores de credencial (estudiantes, docentes y personal del campus)**
+
+**Preguntas generales:**
+
+1. Con sus propias palabras, ¿qué entendió que hace TarjePAFI y en qué le ayudaría dentro del campus?
+2. ¿Qué le pareció la Landing Page? ¿Le quedó claro qué es el producto y cómo funciona?
+3. ¿Qué opina del diseño de lo que vio en la Landing Page y en la pantalla del lector: colores, íconos y tamaño de los textos?
+4. ¿Los mensajes que muestra el lector son claros y lo bastante cortos para leerlos al pasar la tarjeta?
+5. Si el lector rechazara su tarjeta, ¿el mensaje le diría qué pasó y qué hacer?
+6. ¿Le parece más rápido o más cómodo que la forma en que hoy registra su asistencia o su ingreso? ¿Por qué?
+7. Si mañana le entregaran su tarjeta TarjePAFI, ¿qué necesitaría para empezar a usarla sin ayuda: una charla breve, un video, carteles junto a los lectores u otra cosa?
+8. Después de pasar la tarjeta, ¿sentiría la seguridad de que su asistencia o su ingreso quedó registrado? ¿Qué le daría más confianza?
+9. ¿Usaría la tarjeta TarjePAFI en su día a día para registrar su asistencia o ingresar a los espacios del campus? ¿Por qué sí o por qué no?
+10. ¿Qué opina de llevar una tarjeta física en lugar de mostrar su celular como credencial en todas las puertas de ingreso a los de seguridad?
+
+
+**Segmento #2: Personal administrativo con acceso a la plataforma de reportes**
+
+**Preguntas generales:**
+
+1. Con sus propias palabras, ¿qué entendió que hace TarjePAFI y qué problema resuelve para su área?
+2. ¿Qué le pareció la Landing Page? ¿Le quedó claro qué ofrece el producto y cómo contactar al equipo?
+3. ¿Qué opina del diseño de la aplicación web: colores, tipografía, íconos y distribución de la información? ¿Le transmite confianza?
+4. ¿Las etiquetas de estado (Activa, Bloqueada, Perdida, Sin conexión, Denegado) se distinguen con facilidad?
+5. ¿Los indicadores del Dashboard son los que necesita para tomar decisiones? ¿Cuál agregaría o quitaría?
+6. ¿Los nombres del menú (Credenciales, Verificar matrículas, Lectores IoT, Registros de acceso, Reportes) le parecen claros?
+7. De lo que vio, ¿qué función le pareció más fácil de usar y cuál más confusa? ¿Por qué?
+8. ¿Cree que podría realizar estas tareas por su cuenta, sin capacitación previa?
+9. ¿Usaría TarjePAFI en su trabajo? ¿Por qué sí o por qué no?
+
+**Preguntas complementarias:**
+
+1. ¿Los mensajes de confirmación y de error le parecen claros? ¿Le parece adecuado que acciones como desactivar tarjetas pidan confirmación?
+2. ¿El reporte y el archivo CSV tienen el formato que usaría con su equipo o sus superiores?
+3. ¿Qué tendría que mejorar la aplicación para que la prefiera sobre las herramientas que usa actualmente?
+4. Del 0 al 10, ¿qué tan probable es que recomiende TarjePAFI a otra institución? ¿Qué necesitaría su universidad para aprobar su implementación?
+
+
+**Cierre (común a ambos segmentos)**
+
+Entrevistador: Eso sería todo, muchas gracias por participar.
+
+Entrevistador: ¿Desea agregar algún comentario adicional o algo que considere que no le preguntamos?
+
+Entrevistado: [Entrevistado responde]
+
+Entrevistador: Perfecto, sus comentarios nos ayudarán a mejorar TarjePAFI. Agradezco mucho su tiempo y sus respuestas. Hasta luego.
+
+### 7.3.2. Registro de Entrevistas
+
+*Entrevistas a usuarios administrativos*
+---
+
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 1</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Carlos Pingus</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>27</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>San Martin de Porres</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>0:00-12:29</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211a620_upc_edu_pe/IQBovHMAMsI_Q6mWNnb1TkkyAZ1Vo3RTmHDhuR3-sxrrarA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=1r6Qk0`
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Carlos Pingus, administrativo de universidad de 27 años de edad, menciona que en su área, la solución de TarjePAFI permite visualizar mejor los accesos o autorizaciones para los estudiantes o trabajadores según su entendimiento del software. También nos menciona que la información brindada en la landing page es acorde a lo presentado en la aplicación web. En lo que respecta al diseño de esta última, nos comentó que la distribución y cantidad de información es lo que más confianza le brindaba. Respecto a las etiquetas de estado de las tarjetas NFC, comentó que la distinción con colores de sus estados ayudaban a diferenciarlos con claridad. También comentó que toda la información brindada por el dashboard contenía la información necesaria para una mejor toma de decisiones, de igual manera, los nombres de las pestañas en el menú eran adecuadas para la navegación.
+      Es por esto último que el entrevistado mencionó que sí utilizaría la solución, esta le parecía bastante intuitiva a grandes rasgos. 
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/entrevista-h-carlos.jpg" alt="Segmento 1 entrevista 1 " width="1000"><br>
+    </td>
+  </tr>
+</table>
+
+
+*Entrevistas a usuarios de tarjetas*
+---
+
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 1</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Alvaro Abanto</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>Los Olivos</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>4:27-10:48</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://youtu.be/uIg0VdhjYA0`
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Álvaro Abanto Dávila, estudiante de Ciencias de la Computación en la UPC de 21 años y actualmente practicante, entiende TarjePafi como una tarjeta con tecnología NFC para validar la asistencia y el ingreso. Considera que ayudaría al campus a hacer seguimiento de cuántas veces un alumno falta o llega tarde. La landing page le dejó claro el producto y su funcionamiento, y valora que esté dividida en funcionalidades, pasos y segmentos a los que se dirige. Sobre el diseño, dice que los colores transmiten un estilo educativo y formal, y le parecen adecuados la tipografía, los íconos y el tamaño de los textos. Los mensajes del lector le parecen suficientes para entender si llegó temprano, tarde o si ya no puede registrar asistencia porque la clase terminó. Aun así, cree que cuando la tarjeta sea rechazada el mensaje debería explicar el motivo, por si se trata de un error. Hoy ingresa mostrando el carné digital de la aplicación Mi UPC, y en clase el profesor pasa lista uno por uno. Ve la tarjeta como una opción más rápida y cómoda, sobre todo porque la aplicación a veces se cae o demora en cargar cuando llega justo a la hora. Para empezar a usarla le bastaría un tutorial breve que explique qué hace la tarjeta, para qué sirve y cómo se usa, aunque considera que el flujo es sencillo. Confiaría en que su registro quedó guardado siempre que el sistema esté bien implementado, y sí la usaría a diario por comodidad y rapidez. Prefiere la tarjeta física al celular como credencial porque no depende de la batería y lo hace menos vulnerable a robos al no tener que sacar el teléfono, aunque señala como desventaja que, si la olvida, no tendría cómo identificarse.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/foto2.png" alt="Segmento 2 entrevista 1 " width="1000"><br>
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 2</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Estefano Solis</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>Pueblo Libre</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>5:08-10:34</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://youtu.be/e-u0WlXbfVM`
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Estefano Solis Campos, estudiante de 21 años, entiende TarjePafi como una credencial física que se acerca a los lectores del campus para marcar la asistencia, ingresar a la universidad y reservar espacios como los cubículos. Cree que le ayudaría a evitar las colas en la puerta y el tiempo que se pierde en clase al pasar lista. La landing page le pareció limpia, ordenada y fácil de entender. Valora que separe bien los beneficios, los pasos de funcionamiento y las preguntas frecuentes. Sobre el diseño, dice que los colores le dan un aire moderno y serio, que los íconos son claros y que el tamaño de letra le permite leer sin forzar la vista. Le parece que los mensajes del lector son cortos y se entienden a la primera, así que no frenan el paso de la gente. Sin embargo, sugiere que cuando el acceso sea denegado aparezca una línea que indique qué hacer, por ejemplo acudir a administración o reservar un espacio, para no quedarse solo con el aviso. Considera la tarjeta más rápida y cómoda que el método actual con el celular, que falla cuando no hay internet, la aplicación no carga o la batería está baja. Para empezar a usarla le bastaría una explicación breve o un video simple al recibirla, junto con un cartel al lado del lector que explique el significado de las luces. Le daría seguridad que el lector responda al instante con un mensaje en pantalla, una luz verde y un pitido, además de poder revisar su historial si tiene dudas. Prefiere llevar la tarjeta física en la billetera antes que mostrar el celular, porque no depende de la batería y evita las colas con el personal de seguridad.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/foto1.png" alt="Segmento 2 entrevista 2 " width="1000"><br>
+    </td>
+  </tr>
+</table>
+
+### 7.3.3. Evaluaciones según heurísticas
+
+**Evaluación Heurística de Usabilidad y Diseño Inclusivo de ElectroLink**
+
+| Campo | Descripción |
+| :--- | :--- |
+| **Carrera** | Ingeniería de Software |
+| **Curso** | Arquitecturas de Software Emergentes |
+| **Sección** | 9056 |
+| **Profesor** | Enrique Alejandro Valdivia Verde |
+| **Auditor(es)** | Grupo 3 |
+| **Cliente(s)** | Grupor 1 |
+| **Site / App a Evaluar** | **ElectroLink** – aplicación web y aplicación móvil |
+| **Fecha de la evaluación** | 2026-11-07 |
+| **Tipo de evaluación** | Auditoría interna de usabilidad y diseño inclusivo sobre la versión demostrada en las entrevistas de validación |
+
+La evaluación se realizó con tres auditores del equipo, de forma independiente y sin la presencia de los participantes. Se revisaron las nueve vistas principales del dashboard web y las ocho pantallas de la aplicación móvil, incluidos los estados de alerta, error, carga y pérdida de conexión. Los hallazgos de ambas aplicaciones se consolidaron en una sola lista por consenso y se calificaron con la escala de severidad de cuatro niveles que se presenta a continuación.
+
+**Escala de severidad**
+
+| Nivel | Descripción |
+| :---: | :--- |
+| **1** | Problema superficial: fácilmente superable, ocurre con poca frecuencia. No requiere atención inmediata. |
+| **2** | Problema menor: aparece con algo más de frecuencia o genera leve dificultad. Requiere revisión en próximas versiones. |
+| **3** | Problema mayor: ocurre con frecuencia o afecta notablemente la experiencia del usuario. Debe corregirse con prioridad alta. |
+| **4** | Problema muy grave: impide el uso normal del sistema. Debe corregirse antes del lanzamiento. |
+
+**Tareas a evaluar**
+
+El alcance de esta evaluación incluye la revisión de la usabilidad y la experiencia de usuario en las siguientes tareas:
+
+1. Iniciar sesión y recuperar la contraseña (aplicación web).
+2. Interpretar el estado de la red en el dashboard (aplicación web).
+3. Revisar el estado de conectividad de los sensores (aplicación web).
+4. Gestionar una alerta crítica y asignarla a mantenimiento (aplicación web).
+5. Consultar el consumo por equipo y la proyección de factura (aplicación web).
+6. Comparar periodos y filtrar el historial de alertas (aplicación web).
+7. Configurar los umbrales térmicos y eléctricos de un equipo (aplicación web).
+8. Descargar el reporte SST y consultar el certificado de salud técnica (aplicación web).
+9. Gestionar notificaciones, perfil y cierre de sesión (aplicación web).
+10. Iniciar sesión con PIN de cuatro dígitos (aplicación móvil).
+11. Interpretar el semáforo de seguridad antes de limpiar (aplicación móvil).
+12. Reportar una falla con fotografía (aplicación móvil).
+13. Reaccionar ante una alerta crítica y seguir el protocolo de apagado (aplicación móvil).
+14. Consultar el historial de fallas de un equipo (aplicación móvil).
+15. Cerrar el turno operativo (aplicación móvil).
+16. Activar el modo limpieza del panel (aplicación móvil).
+17. Consultar la guía de primeros auxilios eléctricos (aplicación móvil).
+18. Operar la aplicación con conectividad intermitente (aplicación móvil).
+
+**Tabla resumen de problemas**
+
+| # | Aplicación | Problema identificado | Escala de severidad | Heurística / Principio violado(a) |
+| :---: | :---: | :--- | :---: | :--- |
+| 1 | Web | Un sensor desconectado solo se advierte dentro de la tarjeta del equipo; no existe un aviso global del estado del monitoreo. | 3 | **Usability:** Visibilidad del estado del sistema |
+| 2 | Web | La generación del reporte SST no completa la descarga cuando el rango supera los 30 días y la vista queda en carga indefinida. | 4 | **Usability:** Visibilidad del estado del sistema |
+| 3 | Web | El formulario de umbrales acepta valores fuera de rango sin validación ni confirmación del cambio. | 3 | **Usability:** Prevención de errores |
+| 4 | Web | Los indicadores kWh, factor de potencia y demanda aparecen sin glosa ni equivalencia práctica. | 2 | **Usability:** Correspondencia entre el sistema y el mundo real |
+| 5 | Web | Las severidades usan colores y nombres distintos en el dashboard, el historial y el PDF, que además mezcla inglés y español. | 3 | **Information Architecture:** Consistencia y lenguaje del usuario |
+| 6 | Web | No existe un selector de local para el perfil zonal; el supervisor debe cerrar sesión para consultar otra sede. | 3 | **Usability:** Flexibilidad y eficiencia de uso |
+| 7 | Web | Los filtros del historial se representan solo con un icono de embudo, sin etiqueta ni resumen de criterios activos. | 2 | **Usability:** Reconocer antes que recordar |
+| 8 | Web | Una alerta asignada a un técnico no se puede reasignar ni cancelar desde la interfaz. | 2 | **Usability:** Libertad y control del usuario |
+| 9 | Web | El inicio de sesión devuelve un mensaje genérico para credenciales inválidas, cuenta bloqueada y falta de permisos. | 2 | **Usability:** Ayuda para reconocer y recuperarse de errores |
+| 10 | Web | El menú lateral usa iconos sin `aria-label` y los badges de alerta presentan un contraste inferior a 3:1. | 3 | **Inclusive Design:** Accesibilidad visual y experiencias comparables |
+| 11 | Web | El reporte SST no indica qué incluye, qué periodo cubre ni cómo presentarlo en una inspección. | 2 | **Usability:** Ayuda y documentación |
+| 12 | Móvil | La confirmación del reporte es un aviso flotante de dos segundos y desaparece sin dejar estado visible en la pantalla. | 3 | **Usability:** Visibilidad del estado del sistema |
+| 13 | Móvil | La alerta crítica se encabeza con "Fuga a tierra – 35 mA", un término que el personal operativo no comprende. | 3 | **Usability:** Correspondencia entre el sistema y el mundo real |
+| 14 | Móvil | "Cerrar turno" y "Ayuda / Emergencia" están contiguos y se ejecutan sin confirmación. | 4 | **Usability:** Prevención de errores |
+| 15 | Móvil | Un reporte enviado no se puede editar ni anular aunque se haya seleccionado el equipo equivocado. | 2 | **Usability:** Libertad y control del usuario |
+| 16 | Móvil | El semáforo lista doce equipos en una sola columna; si el equipo en alerta está al final, el estado crítico queda fuera de pantalla. | 2 | **Usability:** Diseño estético y minimalista |
+| 17 | Móvil | El modo limpieza se activa con una pulsación larga de tres segundos, gesto que no se usa en ninguna otra pantalla. | 2 | **Usability:** Consistencia y estándares |
+| 18 | Móvil | Varias áreas táctiles miden menos de 44 dp y el texto crítico usa 12 sp, sin modo de alto contraste. | 3 | **Inclusive Design:** Accesibilidad visual y motriz |
+| 19 | Móvil | La navegación inferior usa solo iconos, sin etiquetas de texto. | 1 | **Usability:** Reconocer antes que recordar |
+| 20 | Móvil | Ante una pérdida de conexión la aplicación muestra "Error de red" sin aclarar que las alertas locales siguen activas. | 3 | **Usability:** Ayuda para reconocer y recuperarse de errores |
+| 21 | Móvil | No existe una guía de primer turno ni una opción para recuperar el PIN de acceso. | 2 | **Usability:** Ayuda y documentación |
+| 22 | Móvil | La alarma sonora no se puede silenciar una vez que el equipo fue apagado y la alerta atendida. | 3 | **Usability:** Libertad y control del usuario |
+
+**Descripción de problemas**
+
+**PROBLEMA #1: Sensor desconectado sin aviso global**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Visibilidad del estado del sistema
+- **Descripción:** La desconexión de un sensor solo se representa con un icono gris dentro de la tarjeta del equipo afectado. Si el manager no recorre toda la lista, no advierte que una parte de la cocina dejó de estar monitoreada y asume una cobertura total que no existe.
+- **Recomendación:** Incorporar un banner permanente en la cabecera del dashboard con el número de sensores desconectados, el equipo afectado y el tiempo transcurrido desde la última lectura, con acceso directo al detalle.
+
+**PROBLEMA #2: Descarga del reporte SST incompleta en rangos largos**
+
+- **Severidad:** 4
+- **Heurística violada:** Usability – Visibilidad del estado del sistema
+- **Descripción:** Al solicitar el reporte con más de 30 días de historial, la generación no concluye: no aparece barra de progreso, el botón permanece habilitado y la vista queda en carga indefinida. El manager no puede completar la tarea ni sabe si el documento se está generando. Es el único problema que impide por completo el cumplimiento de una tarea del sistema.
+- **Recomendación:** Procesar la generación de forma asíncrona con indicador de progreso, deshabilitar el botón durante el proceso, limitar o paginar el rango solicitado, notificar el resultado y ofrecer reintento con mensaje de error explícito.
+
+**PROBLEMA #3: Umbrales sin validación ni confirmación**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Prevención de errores
+- **Descripción:** El formulario de umbrales acepta cero grados, una corriente muy superior a la nominal o un valor vacío, y guarda el cambio sin resumen ni confirmación. Un umbral mal configurado puede anular una alerta de seguridad o generar falsas alarmas en cadena.
+- **Recomendación:** Definir rangos válidos por tipo de equipo, mostrar una advertencia cuando el valor se aleje del histórico, exigir confirmación con resumen del cambio y registrar la modificación en la bitácora de auditoría.
+
+**PROBLEMA #4: Indicadores eléctricos sin glosa**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Correspondencia entre el sistema y el mundo real
+- **Descripción:** El módulo de energía muestra kWh, factor de potencia y demanda sin explicación ni equivalencia en soles. Un participante de la validación no supo interpretar el factor de potencia y el manager debe traducir mentalmente el dato técnico para tomar una decisión de negocio.
+- **Recomendación:** Añadir ayudas contextuales con una definición breve, la equivalencia económica del indicador y una nota de qué acción se recomienda cuando el valor sale del rango esperado.
+
+**PROBLEMA #5: Severidades inconsistentes entre vistas y documentos**
+
+- **Severidad:** 3
+- **Heurística violada:** Information Architecture – Consistencia y lenguaje del usuario
+- **Descripción:** El dashboard usa ámbar para las alertas medias, el historial usa naranja y el PDF emplea amarillo. Además, el reporte alterna etiquetas en inglés y español. El manager debe reinterpretar el significado del color y del nombre cada vez que cambia de vista, y el documento que presenta ante la gerencia no coincide con lo que ve en pantalla.
+- **Recomendación:** Unificar la paleta, la nomenclatura y los rótulos en todas las vistas y en los documentos exportados, con una leyenda única de severidades y revisión de traducción antes de cada entrega.
+
+**PROBLEMA #6: Ausencia de selector multi-local**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Flexibilidad y eficiencia de uso
+- **Descripción:** El perfil zonal no dispone de un selector de local ni de una vista comparativa. Para consultar otra sede debe cerrar sesión y volver a ingresar, lo que contradice la propuesta de valor multisede descrita en el análisis competitivo y en el mapa de impacto.
+- **Recomendación:** Incorporar un selector de local persistente en la cabecera, recordar la última sede consultada y ofrecer una vista comparativa de indicadores entre locales para el perfil zonal.
+
+**PROBLEMA #7: Filtros representados solo por un icono**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Reconocer antes que recordar
+- **Descripción:** En el historial de alertas el único acceso al filtro es un icono de embudo sin etiqueta, y una vez aplicado no se muestra un resumen de los criterios activos. El usuario debe recordar qué filtros dejó configurados y puede interpretar una lista incompleta como el historial completo.
+- **Recomendación:** Mostrar los filtros como controles con texto visible, chips con los criterios aplicados, un contador de resultados y la opción de limpiar todos los filtros.
+
+**PROBLEMA #8: Alerta asignada sin reasignación ni cancelación**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Libertad y control del usuario
+- **Descripción:** Una vez que la alerta se asigna a un técnico, no existe forma de reasignarla ni de cancelar la asignación desde la interfaz. Si el técnico no está disponible, el manager pierde el control del caso y debe recurrir a un canal externo.
+- **Recomendación:** Permitir reasignar y cancelar la asignación con un motivo obligatorio, registrar la acción en la bitácora y notificar al técnico afectado.
+
+**PROBLEMA #9: Mensajes de error genéricos en el inicio de sesión**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Ayuda para reconocer y recuperarse de errores
+- **Descripción:** Credenciales inválidas, cuenta bloqueada y usuario sin permisos producen el mismo mensaje "Ocurrió un error". El usuario no sabe si debe corregir la contraseña, esperar un desbloqueo o solicitar acceso, y termina repitiendo el intento.
+- **Recomendación:** Diferenciar cada caso con un mensaje específico, indicar la acción siguiente y ofrecer el enlace de recuperación de contraseña o de contacto con el administrador según corresponda.
+
+**PROBLEMA #10: Iconos sin etiquetas accesibles y contraste insuficiente**
+
+- **Severidad:** 3
+- **Heurística violada:** Inclusive Design – Accesibilidad visual y experiencias comparables
+- **Descripción:** Los iconos del menú lateral no exponen `aria-label` ni `title`, el elemento activo no declara `aria-current` y los badges de alerta tienen un contraste inferior a 3:1 sobre el fondo. Un usuario con lector de pantalla no identifica las secciones y un usuario con baja visión no distingue el estado de las alertas.
+- **Recomendación:** Añadir `aria-label` descriptivo a cada icono, `aria-current="page"` al elemento activo, foco visible en toda la navegación y ajustar la paleta hasta alcanzar un contraste mínimo de 4.5:1 en texto y 3:1 en componentes.
+
+**PROBLEMA #11: Reporte SST sin alcance ni instrucciones**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Ayuda y documentación
+- **Descripción:** El PDF descargable no indica qué eventos incluye, qué periodo cubre, quién lo emite ni cómo debe presentarse ante una inspección. El manager debe explicar el documento por su cuenta y el auditor externo no puede interpretarlo sin acompañamiento.
+- **Recomendación:** Añadir una portada con alcance, periodo, local y responsable, una leyenda de severidades y una nota breve sobre el uso del documento en inspecciones de SUNAFIL e INDECI.
+
+**PROBLEMA #12: Confirmación del reporte sin estado persistente**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Visibilidad del estado del sistema
+- **Descripción:** Al enviar un reporte aparece un aviso flotante durante dos segundos y la pantalla vuelve al semáforo sin ninguna marca en la tarjeta del equipo. El trabajador no puede confirmar que el aviso quedó registrado y tiende a repetirlo o a volver al aviso verbal.
+- **Recomendación:** Mostrar un estado persistente "Reportado, en espera de atención" en la tarjeta del equipo, una bandeja "Mis reportes" con el historial propio y una marca de tiempo de la última actualización.
+
+**PROBLEMA #13: Lenguaje técnico en la alerta crítica**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Correspondencia entre el sistema y el mundo real
+- **Descripción:** La pantalla de peligro se encabeza con "Fuga a tierra detectada, 35 mA". El personal de cocina y limpieza no interpreta la unidad ni el concepto, y en una emergencia necesita una instrucción, no una medición. Una participante declaró que no sabía si el valor era grave.
+- **Recomendación:** Encabezar con "PELIGRO: NO TOQUES ESTE EQUIPO", acompañar con un pictograma y un color de fondo dominante, y desplazar el detalle eléctrico a una segunda línea o a una vista técnica para el manager.
+
+**PROBLEMA #14: Acciones críticas contiguas y sin confirmación**
+
+- **Severidad:** 4
+- **Heurística violada:** Usability – Prevención de errores
+- **Descripción:** Los botones "Cerrar turno" y "Ayuda / Emergencia" comparten el borde inferior de la pantalla y se ejecutan al primer toque. Una participante activó ambos por error durante la demostración, y en un turno real el cierre accidental dejaría el registro incompleto o dispararía una falsa emergencia.
+- **Recomendación:** Separar físicamente las acciones destructivas, exigir confirmación en dos pasos para el cierre de turno y mantener la acción de emergencia en una zona fija, diferenciada por color y forma, fuera del flujo operativo.
+
+**PROBLEMA #15: Reporte enviado sin posibilidad de corrección**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Libertad y control del usuario
+- **Descripción:** Si el trabajador selecciona el equipo equivocado o adjunta la foto incorrecta, no puede editar ni anular el reporte. El error queda registrado y el manager recibe una asignación sobre una máquina que no presenta la falla.
+- **Recomendación:** Permitir editar o anular el reporte durante los primeros cinco minutos, con confirmación y registro de la corrección en la bitácora.
+
+**PROBLEMA #16: Estado crítico fuera de pantalla en el semáforo**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Diseño estético y minimalista
+- **Descripción:** El semáforo presenta los doce equipos en una lista vertical. Si el equipo en rojo está al final, el trabajador debe desplazarse para descubrir el peligro, justo cuando la alerta exige una reacción inmediata.
+- **Recomendación:** Ordenar los equipos por severidad, fijar el equipo en alerta en la parte superior y mostrar solo el estado y el nombre, sin métricas técnicas.
+
+**PROBLEMA #17: Modo limpieza con gesto no descubrible**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Consistencia y estándares
+- **Descripción:** El bloqueo del panel se activa con una pulsación larga de tres segundos, interacción que no aparece en ninguna otra pantalla de la aplicación. Dos de tres participantes no la descubrieron y uno intentó tocar el botón sin éxito.
+- **Recomendación:** Reemplazar el gesto por un botón explícito con cuenta regresiva visible, confirmación al finalizar y una etiqueta que explique para qué sirve.
+
+**PROBLEMA #18: Accesibilidad táctil y visual insuficiente**
+
+- **Severidad:** 3
+- **Heurística violada:** Inclusive Design – Accesibilidad visual y motriz
+- **Descripción:** Varios controles miden menos de 44 dp y el texto de la alerta usa 12 sp. En una cocina con manos húmedas, guantes o grasa el toque falla, y con iluminación intensa el texto pequeño pierde legibilidad. El usuario debe repetir la acción o acercarse al dispositivo.
+- **Recomendación:** Elevar las áreas táctiles a 48 dp como mínimo, la tipografía crítica a 16 sp, ofrecer un modo de alto contraste y validar la interfaz con guantes y manos húmedas.
+
+**PROBLEMA #19: Navegación inferior solo con iconos**
+
+- **Severidad:** 1
+- **Heurística violada:** Usability – Reconocer antes que recordar
+- **Descripción:** La barra inferior no incluye etiquetas de texto y el usuario debe probar cada icono para conocer su función, lo que añade fricción en el primer uso.
+- **Recomendación:** Añadir etiquetas breves bajo cada icono y mantener el estado activo resaltado.
+
+**PROBLEMA #20: Mensaje de error sin contexto de continuidad**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Ayuda para reconocer y recuperarse de errores
+- **Descripción:** Cuando se pierde la conexión, la aplicación muestra "Error de red" y bloquea la vista sin explicar que las alertas locales siguen operativas ni que el reporte quedará en cola. El trabajador interpreta que el sistema completo dejó de funcionar y pierde confianza en la protección.
+- **Recomendación:** Informar el estado sin conexión, aclarar que las alertas de cocina continúan activas, indicar cuántos reportes están pendientes de envío y confirmar la sincronización al recuperar la red.
+
+**PROBLEMA #21: Ausencia de guía inicial y recuperación de PIN**
+
+- **Severidad:** 2
+- **Heurística violada:** Usability – Ayuda y documentación
+- **Descripción:** No existe un tutorial de primer turno ni una opción para recuperar el PIN de acceso. El trabajador nuevo depende de que un compañero le explique la aplicación, y quien olvida su código queda bloqueado sin ruta de solución.
+- **Recomendación:** Incorporar un tutorial de tres pasos en el primer inicio, ayuda contextual en el semáforo y la recuperación de PIN mediante el manager o un código enviado al correo registrado.
+
+**PROBLEMA #22: Alarma sonora no silenciable tras atender la alerta**
+
+- **Severidad:** 3
+- **Heurística violada:** Usability – Libertad y control del usuario
+- **Descripción:** Una vez que el equipo fue apagado y la alerta atendida, la alarma continúa sonando hasta que el sistema recibe la confirmación del backend. Si la conectividad es inestable, el sonido permanece en la cocina y el personal no tiene forma de silenciarlo, lo que lleva a ignorar futuras alarmas.
+- **Recomendación:** Añadir una acción "Alerta atendida" que silencie la alarma local de inmediato, registre la confirmación y la sincronice cuando se recupere la conexión, manteniendo visible el estado de peligro hasta la verificación.
+<br>
+
+## 7.4. Video About-the-Product
+
+<p align="center">
+  <img src="assets/about-the-product.png" alt="About the Product" width="850">
+</p>
+
+
+Link: 'https://upcedupe-my.sharepoint.com/:v:/g/personal/u202312966_upc_edu_pe/IQAn5FZaLBHdRZ_k_rCs6TP5AcPUX_zGFACnFKeofa6uphA?e=2E5fSS'
+
 # Conclusiones
 
 + TB1:
@@ -4844,6 +6627,20 @@ User Persona: [Nombre del User Persona] — Estudiante.
 
   + Los wireframes, mock-ups y wireflows de la landing page, la web app administrativa y la aplicación móvil se construyeron a partir de los user goals y las personas identificadas en el Capítulo II. Los wireflows representan cada interacción (clic, tap, lectura NFC o evento del sistema) y su resultado en pantalla. Esto permitió validar los flujos de consulta de asistencia, horarios y estado de la credencial antes de la implementación, y reducir el riesgo de rediseños posteriores.
 
++ TB2:
+
+  + Los mock-ups de alta fidelidad, los siete User Flow Diagrams y el prototipo navegable en Figma cerraron el diseño de los dos portales de la aplicación web: el del administrador universitario y el del usuario con credencial, ambos con un login único que redirige según el rol. Cada flujo documenta su happy path y también sus caminos alternos (credenciales inválidas, filtros sin resultados, lectores sin respuesta, reservas liberadas por tolerancia vencida o credenciales no reconocidas). Diseñar estos casos antes de programar obligó a definir mensajes de error, estados vacíos y modales de confirmación para las acciones destructivas, como bloquear una credencial, cancelar una reserva o desactivar un lector.
+
+  + La configuración del Software Configuration Management dejó reglas claras para trabajar en equipo: GitFlow con ramas feature, release y hotfix, Pull Requests revisados por un integrante distinto al autor, Conventional Commits y guías de estilo para Angular, Spring Boot, RabbitMQ, PostgreSQL y el firmware de los lectores. La regla de escribir todo el código en inglés y nombrar paquetes, colas y tablas según el bounded context mantiene la correspondencia entre el modelo táctico del Capítulo V y el código.
+
+  + En el Sprint 1 se publicaron la Landing Page en GitHub Pages y la Web App en Netlify, con despliegue automático desde la rama main. La Web App consume una Fake API construida con json-server bajo el prefijo /api/v1, lo que permitió implementar y probar los módulos de credenciales, verificación de matrículas, lectores IoT, simulador NFC, asistencia, dashboard y reportes sin esperar al backend. Como la URL base se define en los archivos de entorno de Angular, pasar a los servicios reales en el siguiente Sprint solo requerirá cambiar ese valor.
+
+  + La suite de pruebas se organizó en tres niveles: 49 Unit Tests sobre las reglas de dominio de cada bounded context, 18 escenarios de integración que verifican los recursos de la Fake API y 24 escenarios de aceptación que recorren las User Stories del Sprint en Chromium. Los 42 escenarios BDD, escritos en Gherkin y ejecutados sobre una base de datos propia de pruebas, se aprobaron en su totalidad. Esto da evidencia de que reglas como la tolerancia PRESENT/LATE, las transiciones de estado de las credenciales, la desactivación por matrícula pendiente y la detección de lectores offline se comportan como se especificó.
+
+  + Las entrevistas de validación con estudiantes confirmaron la propuesta de valor: ambos consideran la tarjeta más rápida y cómoda que el carné digital del celular, que falla sin internet, sin batería o cuando la aplicación no carga. También aprobaron la claridad de la Landing Page y de los mensajes del lector. La principal mejora que pidieron fue que, cuando el lector rechace una tarjeta, el mensaje explique el motivo y qué hacer después. Esa observación debe pasar al backlog del siguiente Sprint, junto con material de apoyo como un tutorial breve o carteles junto a los lectores.
+
+  + La evaluación heurística aplicada a ElectroLink permitió al equipo practicar la auditoría de usabilidad y diseño inclusivo con una escala de severidad. Varios de los problemas encontrados, como mensajes de error genéricos, filtros sin resumen visible, acciones críticas sin confirmación o iconos sin etiquetas accesibles, sirven como lista de control para revisar las propias interfaces de TarjePAFI antes de las siguientes entregas.
+
 # Bibliografía
 
 + Azizi, S., Nair, G., Rabiee, R., & Olofsson, T. (2020). Application of Internet of Things in academic buildings for space use efficiency using occupancy and booking data. Building and Environment, 186, 107355. https://doi.org/10.1016/j.buildenv.2020.107355
@@ -4866,3 +6663,5 @@ Repositorio Informe: 'https://github.com/ArquiEmergentes/tarjepafi-report'
 Link del PPT: 'https://canva.link/6w07ca9lagsijv0'
 
 Link del Video: 'https://canva.link/bxmdxpftk3cfien'
+
+Link Front end: 'https://tarjepafi.netlify.app'
