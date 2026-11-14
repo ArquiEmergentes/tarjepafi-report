@@ -5247,6 +5247,8 @@ La Web App requiere un proceso de compilación, por lo que se despliega en Netli
 
 ### 7.2.1. Sprint 1
 
+El objetivo principal del Sprint 1 fue implementar las secciones principales de la Landing Page y el frontend de TarjePafi y desarrollar las funcionalidades base del backend para la gestión de proyectos y tareas.
+Este sprint combinó tareas de diseño visual, estructura HTML, desarrollo en JavaScript y construcción de endpoints.
 
 #### 7.2.1.1. Sprint Planning 1
 
@@ -5344,6 +5346,38 @@ La Web App requiere un proceso de compilación, por lo que se despliega en Netli
 
 #### 7.2.1.3. Development Evidence for Sprint Review
 
+## Development Evidence for Landing Page
+
+| Repository| Branch | Commit Id| Commit Message | Commit Message Body|Commited on (Date)|
+|--------|---------------|------------|---------------|---------|--|
+| tarjepafi-landing-page|main|71b1c32|Merge pull request #1 from ArquiEmergentes/develop|feat: add images and form| 12/11/2026
+| tarjepafi-landing-page|develop|79f34fb|hotfix: fixed image badges|-| 12/11/2026
+| tarjepafi-landing-page|develop|baa12b8|feat: add images and form|-|12/11/2026
+| tarjepafi-landing-page|develop|41fb87e|feat: add hero section and product info|-|12/11/2026
+
+## Development Evidence for Frontend
+
+| Repository| Branch | Commit Id| Commit Message | Commit Message Body|Commited on (Date)|
+|--------|---------------|------------|---------------|---------|--|
+| tarjepafi-webapp|feat/sprint1-fase7-testing-suite|201309c|docs(): add readme|-|13/11/2026
+| tarjepafi-webapp|feat/sprint1-fase7-testing-suite|dbf8db1|docs: sección de testing y scripts en el README de la app|-|13/11/2026
+| tarjepafi-webapp|feat/sprint1-fase7-testing-suite|667fd38|test(bdd): acceptance tests de las user stories del Sprint 1|7 features en Gherkin (24 escenarios) que usan la Web App en Chromium:US01, US02, US04, US10, US11, US12, US13, US14, US15, US16, US17, US18,US21, US22, US23 y US24.|13/11/2026
+| tarjepafi-webapp|feat/sprint1-fase7-testing-suite|4b6999b|test(bdd): integration tests de la Fake API con Gherkin y playwright-bdd|-|13/11/2026
+| tarjepafi-webapp|feat/sprint1-fase7-testing-suite|51c6fc6|test(domain): unit tests de Space, AccessRecord, WorkShift, CardTapEvent e Incident|Completa la suite de Vitest con las entidades de Space & Facility e IoT Monitoringque no tenían pruebas (US12, US24). Total: 49 unit tests.|13/11/2026
+| tarjepafi-webapp|feat/sprint1-fase6-readme|d529b3a|Merge pull request #6 from ArquiEmergentes/docs/sprint1-fase6-readme|docs: README de la app con instalación, arquitectura y trazabilidad|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase6-readme|18df19c|docs: README de la app con instalación, arquitectura y trazabilidad|-|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase5-dashboard-reportes|a3a7cdf|Merge pull request #5 from ArquiEmergentes/feat/sprint1-fase5-dashboard-reportes|feat(data-management): dashboard en vivo y reportes con exportación CSV|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase5-dashboard-reportes|ef73e83|feat(data-management): dashboard en vivo y reportes con exportación CSV|-|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase4-asistencia-simulador|6623ebe|Merge pull request #4 from ArquiEmergentes/feat/sprint1-fase4-asistencia-simulador|feat(attendance): simulador NFC, registros de acceso y vistas del doc…|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase4-asistencia-simulador|045aa7e|feat(attendance): simulador NFC, registros de acceso y vistas del docente|-|12/11/2026
+| tarjepafi-webapp|feat/sprint1-fase3-lectores-iot|cd4aabf|Merge pull request #3 from ArquiEmergentes/feat/sprint1-fase3-lectores-iot|feat(iot-monitoring): gestión de lectores IoT|11/11/2026
+| tarjepafi-webapp|feat/sprint1-fase3-lectores-iot|10b5869|feat(iot-monitoring): gestión de lectores IoT|-|11/11/2026
+| tarjepafi-webapp|feat/sprint1-fase2-credenciales|af1d18e|Merge pull request #2 from ArquiEmergentes/feat/sprint1-fase2-credenciales|feat(credentials): gestión de credenciales y verificación de matrículas|11/11/2026
+| tarjepafi-webapp|feat/sprint1-fase2-credenciales|0207578|feat(credentials): gestión de credenciales y verificación de matrículas|-|11/11/2026
+| tarjepafi-webapp|develop|0207578|feat(credentials): gestión de credenciales y verificación de matrículas|-|11/11/2026
+| tarjepafi-webapp|develop|1bd1413|Merge pull request #1 from ArquiEmergentes/feat/sprint1-fase1-scaffold|feat(webapp): scaffold Sprint 1 con shell por rol, login y json-server|11/11/2026
+| tarjepafi-webapp|develop|abec0b0|feat(webapp): scaffold Sprint 1 con shell por rol, login y json-server|-|11/11/2026
+| tarjepafi-webapp|main|1a91fcc|chore: initial commit|-|11/11/2026
 
 #### 7.2.1.4. Testing Suite Evidence for Sprint Review
 
