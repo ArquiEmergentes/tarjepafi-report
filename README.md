@@ -5953,19 +5953,19 @@ Esta vista presenta un resumen operativo en tiempo real con los indicadores clav
 
 Apartado destinado al control de las tarjetas NFC asignadas a estudiantes, docentes y trabajadores.
 
-<img src="assets/images/evidence/credenciales-sprint-1.png" alt="Dashboard de la aplicación web" width="850">
+<img src="assets/images/evidence/credenciales-sprint-1.png" alt="Módulo de credenciales" width="850">
 
 **Vista de los lectores IoT**
 
 Panel destinado al monitoreo de los lectores NFC distribuidos por el campus.
 
-<img src="assets/images/evidence/lectores-iot-sprint-1.png" alt="Dashboard de la aplicación web" width="850">
+<img src="assets/images/evidence/lectores-iot-sprint-1.png" alt="Módulo de lectores IoT" width="850">
 
 **Módulo de reportes**
 
 Sección para la visualización de los reportes generados con las métricas correspondientes.
 
-<img src="assets/images/evidence/reportes-sprint-1.png" alt="Dashboard de la aplicación web" width="850">
+<img src="assets/images/evidence/reportes-sprint-1.png" alt="Módulo de reportes" width="850">
 
 
 #### 7.2.1.6. Services Documentation Evidence for Sprint Review
@@ -5982,6 +5982,32 @@ A continuación se presentan los principales endpoints conceptualizados de las v
 | `/api/v1/iot-readers` | `GET` | Monitoreo del estado operativo de los lectores NFC de la sede. | **Query Params:** `location` (string), `status` (string). | `{"readers": [{"code": "RDR-A-301", "status": "Activo", "firmware": "2.4.1"}]}`<br> *Devuelve el listado de dispositivos IoT y su telemetría.* | 
 
 #### 7.2.1.7. Software Deployment Evidence for Sprint Review
+
+Durante este Sprint, el equipo configuró el de despliegue continuo y gestión de artefactos digitales para la aplicación web de TarjePafi, integrando el repositorio oficial de GitHub con la plataforma de alojamiento en la nube Netlify.
+
+Primero se ingresó a la plataforma con las credenciales de GitHub y se creó un grupo de trabajo
+
+<img src="assets/images/evidence/netlify-log-in.png" alt="Log in de Netlify" width="850">
+
+Luego se creó un nuevo proyecto.
+
+<img src="assets/images/evidence/netlify-new-project.png" alt="Nuevo proyecto de Netlify" width="850">
+
+Se procedió a dar acceso al repositorio de la organización.
+
+<img src="assets/images/evidence/netlify-give-access.png" alt="Dar acceso a la organización" width="850">
+
+Se seleccionó el repositorio en el que estaba alojada la aplicación web.
+
+<img src="assets/images/evidence/netlify-select-repo.png" alt="Seleccionar repositorio de GitHub" width="850">
+
+Se ingresaron las configuraciones respectivas del proyecto.
+
+<img src="assets/images/evidence/netlify-configure.png" alt="Configuración de despliegue" width="850">
+
+Finalmente se accedió a la versión desplegada de la aplicación.
+
+<img src="assets/images/evidence/netlify-deploy.png" alt="Aplicación desplegada" width="850">
 
 
 #### 7.2.1.8. Team Collaboration Insights during Sprint
