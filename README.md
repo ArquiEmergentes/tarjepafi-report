@@ -5939,6 +5939,34 @@ Capturas de la Web App tomadas por Playwright al final de algunos escenarios de 
 
 #### 7.2.1.5. Execution Evidence for Sprint Review
 
+Durante este Sprint, el equipo se centró en el diseño, desarrollo e implementación de las principales vistas de la interfaz del usuario de la aplicación web de TarjePafi para la gestión de accesos y credenciales. Actualmente esta está operando mediante una capa de simulación o FakeAPI para poder validar la experiencia de usuario y la navegación a través de los diferentes módulos.
+
+A continuación se presentarán algunas de las vistas principales:
+
+**Panel de control principal o Dashboard**
+
+Esta vista presenta un resumen operativo en tiempo real con los indicadores claves de rendimiento.
+
+<img src="assets/images/evidence/dashboard-sprint-1.png" alt="Dashboard de la aplicación web" width="850">
+
+**Gestión de credenciales**
+
+Apartado destinado al control de las tarjetas NFC asignadas a estudiantes, docentes y trabajadores.
+
+<img src="assets/images/evidence/credenciales-sprint-1.png" alt="Dashboard de la aplicación web" width="850">
+
+**Vista de los lectores IoT**
+
+Panel destinado al monitoreo de los lectores NFC distribuidos por el campus.
+
+<img src="assets/images/evidence/lectores-iot-sprint-1.png" alt="Dashboard de la aplicación web" width="850">
+
+**Módulo de reportes**
+
+Sección para la visualización de los reportes generados con las métricas correspondientes.
+
+<img src="assets/images/evidence/reportes-sprint-1.png" alt="Dashboard de la aplicación web" width="850">
+
 
 #### 7.2.1.6. Services Documentation Evidence for Sprint Review
 
