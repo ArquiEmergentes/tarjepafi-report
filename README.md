@@ -906,7 +906,7 @@ Entrevistador: Perfecto, agradezco mucho su tiempo y sus respuestas. Hasta luego
   </tr>
   <tr>
     <td><strong>Edad</strong></td>
-    <td>24</td>
+    <td>27</td>
   </tr>
   <tr>
     <td><strong>Distrito</strong></td>
@@ -6212,6 +6212,52 @@ Entrevistado: [Entrevistado responde]
 Entrevistador: Perfecto, sus comentarios nos ayudarán a mejorar TarjePAFI. Agradezco mucho su tiempo y sus respuestas. Hasta luego.
 
 ### 7.3.2. Registro de Entrevistas
+
+*Entrevistas a usuarios administrativos*
+---
+
+<table align="center">
+  <tr>
+    <th colspan="2" style="text-align:center">Entrevista 1</th>
+  </tr>
+  <tr>
+    <td><strong>Entrevistado</strong></td>
+    <td>Carlos Pingus</td>
+  </tr>
+  <tr>
+    <td><strong>Edad</strong></td>
+    <td>27</td>
+  </tr>
+  <tr>
+    <td><strong>Distrito</strong></td>
+    <td>San Martin de Porres</td>
+  </tr>
+  <tr>
+    <td><strong>Timing</strong></td>
+    <td>0:00-12:29</td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td>
+      
+  `https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211a620_upc_edu_pe/IQBovHMAMsI_Q6mWNnb1TkkyAZ1Vo3RTmHDhuR3-sxrrarA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=1r6Qk0`
+
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:justify">
+      Resumen: <br>
+      Carlos Pingus, administrativo de universidad de 27 años de edad, menciona que en su área, la solución de TarjePAFI permite visualizar mejor los accesos o autorizaciones para los estudiantes o trabajadores según su entendimiento del software. También nos menciona que la información brindada en la landing page es acorde a lo presentado en la aplicación web. En lo que respecta al diseño de esta última, nos comentó que la distribución y cantidad de información es lo que más confianza le brindaba. Respecto a las etiquetas de estado de las tarjetas NFC, comentó que la distinción con colores de sus estados ayudaban a diferenciarlos con claridad. También comentó que toda la información brindada por el dashboard contenía la información necesaria para una mejor toma de decisiones, de igual manera, los nombres de las pestañas en el menú eran adecuadas para la navegación.
+      Es por esto último que el entrevistado mencionó que sí utilizaría la solución, esta le parecía bastante intuitiva a grandes rasgos. 
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>
+      <img src="assets/entrevista-h-carlos.jpg" alt="Segmento 1 entrevista 1 " width="1000"><br>
+    </td>
+  </tr>
+</table>
+
 
 *Entrevistas a usuarios de tarjetas*
 ---
