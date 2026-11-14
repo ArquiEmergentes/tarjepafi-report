@@ -5939,15 +5939,84 @@ Capturas de la Web App tomadas por Playwright al final de algunos escenarios de 
 
 #### 7.2.1.5. Execution Evidence for Sprint Review
 
+Durante este Sprint, el equipo se centró en el diseño, desarrollo e implementación de las principales vistas de la interfaz del usuario de la aplicación web de TarjePafi para la gestión de accesos y credenciales. Actualmente esta está operando mediante una capa de simulación o FakeAPI para poder validar la experiencia de usuario y la navegación a través de los diferentes módulos.
+
+A continuación se presentarán algunas de las vistas principales:
+
+**Panel de control principal o Dashboard**
+
+Esta vista presenta un resumen operativo en tiempo real con los indicadores claves de rendimiento.
+
+<img src="assets/images/evidence/dashboard-sprint-1.png" alt="Dashboard de la aplicación web" width="850">
+
+**Gestión de credenciales**
+
+Apartado destinado al control de las tarjetas NFC asignadas a estudiantes, docentes y trabajadores.
+
+<img src="assets/images/evidence/credenciales-sprint-1.png" alt="Módulo de credenciales" width="850">
+
+**Vista de los lectores IoT**
+
+Panel destinado al monitoreo de los lectores NFC distribuidos por el campus.
+
+<img src="assets/images/evidence/lectores-iot-sprint-1.png" alt="Módulo de lectores IoT" width="850">
+
+**Módulo de reportes**
+
+Sección para la visualización de los reportes generados con las métricas correspondientes.
+
+<img src="assets/images/evidence/reportes-sprint-1.png" alt="Módulo de reportes" width="850">
+
 
 #### 7.2.1.6. Services Documentation Evidence for Sprint Review
 
+Durante este Sprint el equipo avanzó en el establecimiento y estructuración de la documentación preliminar respecto a los Web Services, esto último puesto a que el alcance de este Sprint comprendía el apartado del Frontend de la aplicación, dejando el desarrollo y posterior integración del Backend para el siguiente Sprint.
+
+A continuación se presentan los principales endpoints conceptualizados de las vistas presentadas en el punto anterior:
+
+| Endpoint / Ruta | Verbo HTTP | Acciones Implementadas | Parámetros Requeridos | Ejemplo de Response y Descripción |
+| :--- | :--- | :--- | :--- | :--- |
+| `/api/v1/auth/login` | `POST` | Autenticación institucional de usuarios y generación de token de acceso. | **Body:** `email` (string), `password` (string). | `{"token": "eyJhbGciOi...", "user": {"name": "María Torres", "role": "Administrator"}}`<br> *Devuelve el token de sesión y el rol del usuario autenticado.* | 
+| `/api/v1/dashboard/summary` | `GET` | Obtención de métricas operativas y KPIs en tiempo real de la sede. | **Query Params:** `sedeId` (string, opcional). | `{"attendanceRate": 73.7, "grantedAccess": 33, "onlineReaders": 15}`<br> *Proporciona el resumen ejecutivo para las tarjetas informativas del Dashboard.* | 
+| `/api/v1/credentials` | `GET` | Listado y filtrado de tarjetas NFC asignadas a la comunidad académica. | **Query Params:** `status` (string), `userType` (string), `search` (string). | `{"total": 55, "items": [{"id": "U202312966", "name": "Javier Gonzáles", "state": "Activa"}]}`<br> *Retorna el catálogo paginado de credenciales emitidas.* |
+| `/api/v1/iot-readers` | `GET` | Monitoreo del estado operativo de los lectores NFC de la sede. | **Query Params:** `location` (string), `status` (string). | `{"readers": [{"code": "RDR-A-301", "status": "Activo", "firmware": "2.4.1"}]}`<br> *Devuelve el listado de dispositivos IoT y su telemetría.* | 
 
 #### 7.2.1.7. Software Deployment Evidence for Sprint Review
+
+Durante este Sprint, el equipo configuró el de despliegue continuo y gestión de artefactos digitales para la aplicación web de TarjePafi, integrando el repositorio oficial de GitHub con la plataforma de alojamiento en la nube Netlify.
+
+Primero se ingresó a la plataforma con las credenciales de GitHub y se creó un grupo de trabajo
+
+<img src="assets/images/evidence/netlify-log-in.png" alt="Log in de Netlify" width="850">
+
+Luego se creó un nuevo proyecto.
+
+<img src="assets/images/evidence/netlify-new-project.png" alt="Nuevo proyecto de Netlify" width="850">
+
+Se procedió a dar acceso al repositorio de la organización.
+
+<img src="assets/images/evidence/netlify-give-access.png" alt="Dar acceso a la organización" width="850">
+
+Se seleccionó el repositorio en el que estaba alojada la aplicación web.
+
+<img src="assets/images/evidence/netlify-select-repo.png" alt="Seleccionar repositorio de GitHub" width="850">
+
+Se ingresaron las configuraciones respectivas del proyecto.
+
+<img src="assets/images/evidence/netlify-configure.png" alt="Configuración de despliegue" width="850">
+
+Finalmente se accedió a la versión desplegada de la aplicación.
+
+<img src="assets/images/evidence/netlify-deploy.png" alt="Aplicación desplegada" width="850">
 
 
 #### 7.2.1.8. Team Collaboration Insights during Sprint
 
+Durante el desarrollo de este Sprint, el equipo de trabajo coordinó de manera colaborativa las actividades de diseño, estructuración de vistas, definición de esquemas de datos simulados y configuración de la infraestructura de despliegue web.
+
+La distribución y participación activa de los integrantes del equipo se reflejó en el flujo de control de versiones con Git y GitHub, asegurando contribuciones en los componentes clave del sistema.
+
+<img src="assets/images/evidence/team-evidence.png" alt="Evidencia del equipo" width="850">
 
 
 ## 7.3. Validation Interviews
