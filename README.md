@@ -146,6 +146,17 @@ Repositorio del reporte: 'https://github.com/ArquiEmergentes/tarjepafi-report'
   <img src="assets/insight tp1 2.png" alt="insights1" width="500">
 </p>
 
++ TB2:
+
+<p align="center">
+  <img src="assets/insight tb2.png" alt="insights1" width="500">
+</p>
+
+<p align="center">
+  <img src="assets/insight tb2 2.png" alt="insights1" width="500">
+</p>
+
+
 
 
 <div style="break-after: page;"></div>
